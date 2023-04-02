@@ -15,7 +15,6 @@
     "test": "jest -c test/jest.config.js"
   },
   "dependencies": {
-    "@next/bundle-analyzer": "^10.0.5",
     "@reduxjs/toolkit": "^1.6.0",
     "axios": "^0.21.1",
     "next": "^12.1.6",
@@ -31,6 +30,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
+    "@next/bundle-analyzer": "^13.2.4",
     "@storybook/addon-actions": "^6.1.14",
     "@storybook/addon-essentials": "^6.1.14",
     "@storybook/addon-knobs": "^6.1.14",
@@ -48,6 +48,7 @@
     "@typescript-eslint/eslint-plugin": "^4.9.1",
     "@typescript-eslint/parser": "^4.9.1",
     "babel-loader": "^8.2.2",
+    "cross-env": "^7.0.3",
     "dotenv": "^8.6.0",
     "eslint": "^7.15.0",
     "eslint-config-prettier": "^7.0.0",
