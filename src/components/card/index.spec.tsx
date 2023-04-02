@@ -6,7 +6,7 @@ import { describe, expect, it } from "@jest/globals";
 describe("Wrapper component testing with testing-library", () => {
     const component = render(
         <Card title="Title">
-            <div>Card</div>
+            <div>Card ---</div>
         </Card>,
     );
 
