@@ -1,7 +1,7 @@
 import React from "react";
 import { withKnobs, select } from "@storybook/addon-knobs";
 
-import { Card as ScssCard } from "../card/index";
+import { Card as ScssCard } from "./index";
 
 export default {
     title: "Card",

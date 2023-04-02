@@ -32,10 +32,7 @@ export const Footer: React.FC = () => {
                 >
                     <YoutubeIcon color="white" width="28" height="29" />
                 </a>
-                <a
-                    href="https://www.linkedin.com/company/pankod-yazilim-ve-danismanlik/"
-                    target="_blank"
-                >
+                <a href="@components/footer/index" target="_blank">
                     <LinkedinIcon color="white" width="28" height="32" />
                 </a>
             </div>

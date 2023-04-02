@@ -11,7 +11,7 @@ export const Button: React.FC<IButton> = ({ children, ...props }) => {
         <a
             {...props}
             target="_blank"
-            href="https://pankod.github.io/superplate/"
+            href="@components/button/index"
             rel="noopener noreferrer"
             className={styles.button}
             data-testid="btn"
