@@ -1,17 +1,8 @@
 import React from "react";
+import { Layout } from "../Layout/Layout";
 
 const Home: React.FC = () => {
-    return (
-        <div
-            style={{
-                display: "flex",
-                flexDirection: "column",
-                minHeight: "100vh",
-            }}
-        >
-            Nothing
-        </div>
-    );
+    return <Layout>Nothing</Layout>;
 };
 
 export default Home;

@@ -6,6 +6,11 @@
       "dom.iterable",
       "esnext"
     ],
+    "types": [
+      "jest",
+      "node",
+      "styled-normalize"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,

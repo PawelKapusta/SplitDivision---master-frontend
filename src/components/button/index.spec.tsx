@@ -1,7 +1,6 @@
 import { fireEvent, render } from "@test";
 
 import { Button } from "./index";
-import { describe, expect, it } from "@jest/globals";
 
 describe("Button component testing with testing-library", () => {
     it("renders without crashing", () => {
