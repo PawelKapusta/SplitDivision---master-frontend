@@ -1,9 +1,9 @@
 import React from "react";
 import { useSelector } from "react-redux";
 
-import { increase, decrease } from "@redux/actions";
-import { RootState } from "@redux/reducers";
-import { useAppDispatch } from "@redux/store";
+import { increase, decrease } from "../../../redux/actions";
+import { RootState } from "../../../redux/reducers";
+import { useAppDispatch } from "../../../redux/store";
 
 export default function Counter() {
     const dispatch = useAppDispatch();
@@ -21,7 +21,7 @@ export default function Counter() {
                     -
                 </button>
             </div>
-            <a href="https://react-redux.js.org/" target="_blank">
+            <a href="components/examples/counter/index" target="_blank">
                 Go To Documentation
             </a>
         </div>

@@ -1,7 +1,7 @@
 import React from "react";
-
-import { Footer } from "@components/footer";
-import { Header } from "@components/header";
+//
+// import Footer from "../components/footer/FooterStyles";
+import { Header } from "../components/header";
 import { LayoutContainer } from "./LayoutStyles";
 
 export type TLayoutProps = {
@@ -13,7 +13,6 @@ export const Layout = ({ children }: TLayoutProps): JSX.Element => {
         <LayoutContainer>
             <Header />
             <main>{children}</main>
-            <Footer />
         </LayoutContainer>
     );
 };

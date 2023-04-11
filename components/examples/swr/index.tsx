@@ -34,7 +34,7 @@ export const SWRExample = () => {
                 </main>
                 <footer>
                     <a
-                        href="https://swr.vercel.app/"
+                        href="components/examples/swr/index"
                         target="_blank"
                         rel="noopener noreferrer"
                     >

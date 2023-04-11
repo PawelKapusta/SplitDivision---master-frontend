@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./index.module.scss";
-import { Button } from "@components/button";
+import { Button } from "../button";
 
 export const Main: React.FC = () => {
     return (

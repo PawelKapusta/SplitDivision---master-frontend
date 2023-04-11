@@ -1,12 +1,10 @@
 import "isomorphic-unfetch";
 import * as nock from "nock";
 import * as dotenv from "dotenv";
-import httpAdapter from "axios/lib/adapters/http";
+
 import axios from "axios";
 
 dotenv.config({ path: ".env.test" });
-
-axios.defaults.adapter = httpAdapter;
 
 afterAll(() => {
     nock.cleanAll();
