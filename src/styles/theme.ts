@@ -16,7 +16,7 @@ export const theme: DefaultTheme = {
         },
     },
     colors: {
-        primary1: "hsl(204,23.8%,95.9%)",
+        primary: "#fff",
         background1: "#0F1624",
         accent1: "hsl(34.9,98.6%,72.9%)",
         button: "hsl(205.1,100%,36.1%)",
@@ -29,8 +29,3 @@ export const theme: DefaultTheme = {
         xl: "screen and (max-width: 1280px)",
     },
 };
-
-//     fonts: {
-//         title: "Space Grotesk, sans-serif",
-//         main: "Space Grotesk, sans-serif",
-//     },

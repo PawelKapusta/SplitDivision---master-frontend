@@ -1,6 +1,6 @@
 import { render } from "@test";
 
-import { Header } from "./index";
+import Header from "./index";
 
 describe("Header component testing with testing-library", () => {
     const { getByTestId } = render(<Header />);

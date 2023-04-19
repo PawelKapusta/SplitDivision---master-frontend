@@ -4,7 +4,7 @@ import { ThemeProvider } from "styled-components";
 
 import { Provider } from "react-redux";
 import store from "@redux/store";
-import GlobalStyle from "@styles/GlobalStyle";
+import GlobalStyles from "@styles/global-styles";
 import { theme } from "@styles/theme";
 
 import { appWithTranslation } from "@i18n";
@@ -12,7 +12,10 @@ import { appWithTranslation } from "@i18n";
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
     return (
         <Provider store={store}>
-            <Component {...pageProps} />
+            <ThemeProvider theme={theme}>
+                <GlobalStyles />
+                <Component {...pageProps} />
+            </ThemeProvider>
         </Provider>
     );
 }
