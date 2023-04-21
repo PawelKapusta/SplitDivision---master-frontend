@@ -13,7 +13,7 @@ export const Layout = ({ children }: TLayoutProps): JSX.Element => {
         <Container>
             <Header />
             <main>{children}</main>
-            {/*<FooterContainer />*/}
+            <FooterContainer />
         </Container>
     );
 };

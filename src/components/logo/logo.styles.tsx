@@ -10,4 +10,11 @@ export const LogoContainer = styled.div`
         display: block;
         border-radius: 45px;
     }
+
+    @media ${(props) => props.theme.breakpoints.md} {
+        img {
+            transition: transform 0.3s ease;
+            transform: scale(0.8);
+        }
+    }
 `;

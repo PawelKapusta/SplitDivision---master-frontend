@@ -4,7 +4,7 @@ import { Layout } from "../layout/layout";
 const Home: React.FC = () => {
     return (
         <Layout>
-            <div>Home page</div>
+            <div style={{ height: "100vh" }}>Home page</div>
         </Layout>
     );
 };
