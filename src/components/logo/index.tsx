@@ -5,14 +5,14 @@ import { LogoContainer } from "@components/logo/logo.styles";
 
 const Logo = () => {
     return (
-        <div>
+        <LogoContainer>
             <Image
                 src="/images/logo.png"
                 alt="logoImage"
                 width="175"
                 height="95"
             />
-        </div>
+        </LogoContainer>
     );
 };
 

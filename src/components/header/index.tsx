@@ -7,14 +7,12 @@ const Logo = React.lazy(() => import("@components/logo"));
 import {
     Container,
     Wrapper,
-    MainNav,
-    Actions,
     Hamburger,
     NavbarToggleIcon,
     NavbarMenu,
     NavbarMenuItem,
     MenuLink,
-    LogoContainer,
+    Avatar,
 } from "./header.styles";
 
 const Header = () => {
@@ -51,41 +49,17 @@ const Header = () => {
                         <MenuLink href="/faq">FAQ</MenuLink>
                     </NavbarMenuItem>
                     <NavbarMenuItem>
-                        <div>
+                        <Avatar>
                             <Image
                                 priority
                                 src="/icons/avatar.svg"
-                                height={32}
-                                width={32}
+                                height={50}
+                                width={50}
                                 alt="Follow us on Twitter"
                             />
-                        </div>
+                        </Avatar>
                     </NavbarMenuItem>
                 </NavbarMenu>
-                {/*<MainNav>*/}
-                {/*    <ul>*/}
-                {/*        <li>*/}
-                {/*            <a href="/about">About</a>*/}
-                {/*        </li>*/}
-                {/*        <li>*/}
-                {/*            <a href="/contact">Contact</a>*/}
-                {/*        </li>*/}
-                {/*        <li>*/}
-                {/*            <a href="/calculator">Currency converter</a>*/}
-                {/*        </li>*/}
-                {/*        <li>*/}
-                {/*            <a href="/faq">FAQ</a>*/}
-                {/*        </li>*/}
-                {/*        <li>*/}
-                {/*            <Actions>*/}
-                {/*                <Avatar*/}
-                {/*                    alt="Remy Sharp"*/}
-                {/*                    src="/static/images/avatar/1.jpg"*/}
-                {/*                />*/}
-                {/*            </Actions>*/}
-                {/*        </li>*/}
-                {/*    </ul>*/}
-                {/*</MainNav>*/}
             </Wrapper>
         </Container>
     );
