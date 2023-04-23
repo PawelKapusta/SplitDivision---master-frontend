@@ -55,7 +55,7 @@ const Header = () => {
                                 src="/icons/avatar.svg"
                                 height={50}
                                 width={50}
-                                alt="Follow us on Twitter"
+                                alt="Avatar icon"
                             />
                         </Avatar>
                     </NavbarMenuItem>

@@ -1,4 +1,3 @@
-import { useState } from "react";
 import styled from "styled-components";
 
 export const Container = styled.header`
@@ -7,17 +6,7 @@ export const Container = styled.header`
     justify-content: space-between;
     align-items: center;
     max-height: 200px;
-
-    //border: 1px solid red;
     box-shadow: 0 3px 5px #393f484d;
-
-    @media ${(props) => props.theme.breakpoints.sm} {
-        //display: grid;
-        //grid-template-columns: repeat(5, 1fr);
-        //grid-template-rows: repeat(2, 60px);
-        //grid-column-gap: 0.5rem;
-        //grid-row-gap: 0.5rem;
-    }
 `;
 
 export const Wrapper = styled.div`
@@ -25,9 +14,6 @@ export const Wrapper = styled.div`
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    @media ${(props) => props.theme.breakpoints.sm} {
-        //grid-area: 1 / 1 / 2 / 3;
-    }
 `;
 
 export const Actions = styled.div`

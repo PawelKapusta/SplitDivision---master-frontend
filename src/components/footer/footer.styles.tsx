@@ -1,18 +1,25 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-    width: 100%;
     min-height: 250px;
+    width: 100%;
     padding: 10px;
     flex-shrink: 0;
-    background: ${(props) => props.theme.palette.secondary.background.main};
+    background: #eaaf57;
+
+    @media ${(props) => props.theme.breakpoints.sm} {
+        margin-top: 50px;
+        padding: 1px;
+    }
 `;
 
 export const Wrapper = styled.div`
-    display: flex;
-    flex-direction: column;
     justify-content: center;
-    margin: 0 auto;
+    margin-top: 200px;
+
+    @media ${(props) => props.theme.breakpoints.sm} {
+        margin-top: 250px;
+    }
 `;
 
 export const Column = styled.div`
@@ -35,7 +42,7 @@ export const Row = styled.div`
 
     @media ${(props) => props.theme.breakpoints.md} {
         & > * {
-            flex: 1 0 calc(50% - 10px);
+            flex: 1 0 150px;
         }
     }
 `;

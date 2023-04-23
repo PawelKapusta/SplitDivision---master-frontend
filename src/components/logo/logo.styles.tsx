@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const LogoContainer = styled.div`
     max-width: 200px;
-    margin: 0 auto;
+    margin-bottom: 5px;
     border-radius: 45px;
     filter: brightness(120%);
 
