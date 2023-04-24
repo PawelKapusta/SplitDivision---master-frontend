@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 
-const Logo = React.lazy(() => import("@components/logo"));
+const Logo = dynamic(() => import("@components/logo"), {
+    ssr: false,
+});
 
 import {
     Container,
