@@ -17,6 +17,9 @@ const GlobalStyles = createGlobalStyle`
        font-family: 'Crimson Text', serif;
        animation: ${fadeIn} 0.5s ease-in-out;
      }
+     main {
+       height: 100vh;
+     }
      html {
        font-size: 18px;
        scroll-behavior: smooth;

@@ -4,7 +4,7 @@ import * as dotenv from "dotenv";
 
 import axios from "axios";
 
-dotenv.config({ path: ".env.test" });
+dotenv.config({ path: ".env.local.test" });
 
 afterAll(() => {
     nock.cleanAll();

@@ -8,8 +8,8 @@ import { createWrapper } from "next-redux-wrapper";
 import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
-import { authSlice } from "./authSlice";
-import { userSlice } from "./userSlice";
+import { authSlice } from "./slices/authSlice";
+import { userSlice } from "./slices/userSlice";
 
 const rootReducer = combineReducers({
     [authSlice.name]: authSlice.reducer,
@@ -20,6 +20,10 @@ const makeConfiguredStore = () =>
     configureStore({
         reducer: rootReducer,
         devTools: true,
+        middleware: (getDefaultMiddleware) =>
+            getDefaultMiddleware({
+                serializableCheck: false, // disable the serializable check
+            }),
     });
 
 export const makeStore = () => {
@@ -28,11 +32,9 @@ export const makeStore = () => {
     if (isServer) {
         return makeConfiguredStore();
     } else {
-        // we need it only on client side
-
         const persistConfig = {
             key: "nextjs",
-            whitelist: ["auth"], // make sure it does not clash with server keys
+            whitelist: ["auth"],
             storage,
         };
 
@@ -42,7 +44,7 @@ export const makeStore = () => {
             devTools: process.env.NODE_ENV !== "production",
         });
 
-        store.__persistor = persistStore(store); // Nasty hack
+        store.__persistor = persistStore(store);
 
         return store;
     }

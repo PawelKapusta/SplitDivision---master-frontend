@@ -1,13 +1,27 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { AppThunk } from "./store";
-import axios from "axios";
+import { AppThunk } from "../store";
 import { HYDRATE } from "next-redux-wrapper";
-import { AppState } from "./store";
+import { AppState } from "../store";
+import { AnyAction } from "@reduxjs/toolkit";
+import axios from "axios";
+// import { useAuthAxios } from "../../api/axios/axios";
+//
+// const axios = useAuthAxios();
 
 interface User {
-    id: number;
-    name: string;
+    id: string;
+    first_name: string;
+    last_name: string;
+    password: string;
+    username: string;
+    gender: string;
+    service: string;
     email: string;
+    phone: string;
+    birth_date: Date;
+    is_admin: boolean;
+    is_blocked: boolean;
+    avatar_image: string;
 }
 
 interface UserState {
@@ -28,7 +42,6 @@ const userSlice = createSlice({
     name: "user",
     initialState,
     reducers: {
-        // Get all users
         getUsersStart(state) {
             state.isLoading = true;
             state.error = null;
@@ -42,7 +55,6 @@ const userSlice = createSlice({
             state.error = action.payload;
         },
 
-        // Get one user
         getUserStart(state) {
             state.isLoading = true;
             state.error = null;
@@ -56,7 +68,6 @@ const userSlice = createSlice({
             state.error = action.payload;
         },
 
-        // Create user
         createUserStart(state) {
             state.isLoading = true;
             state.error = null;
@@ -70,7 +81,6 @@ const userSlice = createSlice({
             state.error = action.payload;
         },
 
-        // Update user
         updateUserStart(state) {
             state.isLoading = true;
             state.error = null;
@@ -87,12 +97,11 @@ const userSlice = createSlice({
             state.error = action.payload;
         },
 
-        // Delete user
         deleteUserStart(state) {
             state.isLoading = true;
             state.error = null;
         },
-        deleteUserSuccess(state, action: PayloadAction<number>) {
+        deleteUserSuccess(state, action: PayloadAction<string>) {
             state.users = state.users.filter((u) => u.id !== action.payload);
             state.isLoading = false;
         },
@@ -101,14 +110,14 @@ const userSlice = createSlice({
             state.error = action.payload;
         },
     },
-    extraReducers: {
-        [HYDRATE]: (state, action) => {
+    extraReducers: (builder) => {
+        builder.addCase(HYDRATE, (state: AppState, action: AnyAction) => {
             console.log("HYDRATE", action.payload);
             return {
                 ...state,
                 ...action.payload.auth,
             };
-        },
+        });
     },
 });
 
@@ -130,22 +139,79 @@ export const {
     deleteUserFailure,
 } = userSlice.actions;
 
-// Thunks
-
 export const fetchUsers = (): AppThunk => async (dispatch) => {
     try {
         dispatch(getUsersStart());
-        const response = await axios.get("http://localhost:5000/users");
+        const response = await axios.get(
+            `${process.env.NEXT_PUBLIC_API_GATEWAY_URL}/users`,
+        );
         const data = response.data;
         dispatch(getUsersSuccess(data));
     } catch (error) {
-        dispatch(getUsersFailure(error.message));
+        dispatch(getUsersFailure(error as string));
     }
 };
 
-// export const fetchUser = (id: number): AppThunk => async (dispatch) => {
-//   try {
-//     dispatch(getUser
+export const fetchUser =
+    (id: string): AppThunk =>
+    async (dispatch) => {
+        try {
+            dispatch(getUserStart());
+            const response = await axios.get(
+                `${process.env.NEXT_PUBLIC_API_GATEWAY_URL}/users/${id}`,
+            );
+            const data = response.data;
+            dispatch(getUserSuccess(data));
+        } catch (error) {
+            dispatch(getUserFailure(error as string));
+        }
+    };
+
+export const createUser =
+    (user: User): AppThunk =>
+    async (dispatch) => {
+        try {
+            dispatch(createUserStart());
+            const response = await axios.post(
+                `${process.env.NEXT_PUBLIC_API_GATEWAY_URL}/users`,
+                user,
+            );
+            const data = response.data;
+            dispatch(createUserSuccess(data));
+        } catch (error) {
+            dispatch(createUserFailure(error as string));
+        }
+    };
+
+export const updateUser =
+    (id: string, user: User): AppThunk =>
+    async (dispatch) => {
+        try {
+            dispatch(updateUserStart());
+            const response = await axios.put(
+                `${process.env.NEXT_PUBLIC_API_GATEWAY_URL}/users/${id}`,
+                user,
+            );
+            const data = response.data;
+            dispatch(updateUserSuccess(data));
+        } catch (error) {
+            dispatch(updateUserFailure(error as string));
+        }
+    };
+
+export const deleteUser =
+    (id: string): AppThunk =>
+    async (dispatch) => {
+        try {
+            dispatch(deleteUserStart());
+            await axios.delete(
+                `${process.env.NEXT_PUBLIC_API_GATEWAY_URL}/users/${id}`,
+            );
+            dispatch(deleteUserSuccess(id));
+        } catch (error) {
+            dispatch(deleteUserFailure(error as string));
+        }
+    };
 
 export const selectUserState = (state: AppState) => state.user;
 

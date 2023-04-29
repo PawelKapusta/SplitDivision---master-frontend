@@ -9,7 +9,9 @@
     "types": [
       "jest",
       "node",
-      "styled-normalize"
+      "styled-normalize",
+      "next-auth",
+      "@types/node"
     ],
     "allowJs": true,
     "skipLibCheck": true,

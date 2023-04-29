@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { selectAuthState } from "@redux/authSlice";
+import { selectAuthState } from "@redux/slices/authSlice";
 
 export default function SecondPage() {
     const authState = useSelector(selectAuthState);
