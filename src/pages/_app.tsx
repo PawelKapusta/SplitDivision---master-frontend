@@ -9,6 +9,7 @@ import { wrapper } from "@redux/store";
 import { PersistGate } from "redux-persist/integration/react";
 import { useStore } from "react-redux";
 import { Layout } from "../layout/layout";
+import Spinner from "@components/spinner";
 import { appWithTranslation } from "@i18n";
 
 interface MyAppProps extends AppProps {
@@ -32,7 +33,7 @@ function MyApp({
             <SessionProvider session={session}>
                 <PersistGate
                     persistor={store.__persistor}
-                    loading={<div>Loading ...</div>}
+                    loading={<Spinner />}
                 >
                     <ThemeProvider theme={theme}>
                         <GlobalStyles />
@@ -57,10 +58,7 @@ function MyApp({
     }
     return (
         <SessionProvider session={session}>
-            <PersistGate
-                persistor={store.__persistor}
-                loading={<div>Loading ...</div>}
-            >
+            <PersistGate persistor={store.__persistor} loading={<Spinner />}>
                 <ThemeProvider theme={theme}>
                     <GlobalStyles />
                     <Head>

@@ -7,7 +7,7 @@ export const Card = styled.div`
     max-width: 1300px;
     height: 700px;
     border-radius: 20px;
-    box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+    box-shadow: 0 0 20px #eaaf57;
 
     @media ${(props) => props.theme.breakpoints.lg} {
         width: 90%;
@@ -40,6 +40,7 @@ export const ImageContainer = styled.div`
 
     @media ${(props) => props.theme.breakpoints.md} {
         width: 100%;
+        height: 100%;
     }
 `;
 
@@ -50,6 +51,9 @@ export const CoinContainer = styled.div`
     width: 50px;
     height: 180px;
     z-index: 1;
+    background: transparent;
+    border: none;
+    box-shadow: none;
 
     img {
         object-fit: contain;
@@ -67,9 +71,8 @@ export const CoinContainer = styled.div`
         }
     }
     @media ${(props) => props.theme.breakpoints.md} {
-        top: 45%;
-        left: 68%;
-
+        top: 15%;
+        left: 62%;
         height: 150px;
 
         img {

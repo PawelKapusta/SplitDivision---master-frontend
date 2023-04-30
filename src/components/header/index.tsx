@@ -17,10 +17,12 @@ import {
     MenuLink,
     Avatar,
 } from "./header.styles";
+import { useSelector } from "react-redux";
+import { selectAuthState } from "@redux/slices/authSlice";
 
 const Header = () => {
     const [showMenu, setShowMenu] = useState(false);
-
+    const { isAuthenticated } = useSelector(selectAuthState);
     const toggleMenu = () => {
         setShowMenu(!showMenu);
     };
@@ -51,17 +53,25 @@ const Header = () => {
                     <NavbarMenuItem>
                         <MenuLink href="/faq">FAQ</MenuLink>
                     </NavbarMenuItem>
-                    <NavbarMenuItem>
-                        <Avatar>
-                            <Image
-                                priority
-                                src="/icons/avatar.svg"
-                                height={50}
-                                width={50}
-                                alt="Avatar icon"
-                            />
-                        </Avatar>
-                    </NavbarMenuItem>
+                    {isAuthenticated ? (
+                        <NavbarMenuItem>
+                            <Avatar>
+                                <Image
+                                    priority
+                                    src="/icons/avatar.svg"
+                                    height={50}
+                                    width={50}
+                                    alt="Avatar icon"
+                                />
+                            </Avatar>
+                        </NavbarMenuItem>
+                    ) : (
+                        <NavbarMenuItem>
+                            <MenuLink href="/auth/login" isAction>
+                                Login
+                            </MenuLink>
+                        </NavbarMenuItem>
+                    )}
                 </NavbarMenu>
             </Wrapper>
         </Container>

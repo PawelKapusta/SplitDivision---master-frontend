@@ -6,11 +6,24 @@ export const LoginCard = styled.div`
     justify-content: center;
     height: 100vh;
     margin: 0;
+
+    @media ${(props) => props.theme.breakpoints.md} {
+        margin-top: 50px;
+        align-items: flex-start;
+    }
 `;
 
 export const Form = styled.div`
     width: 50%;
     border-radius: 20px;
+
+    @media ${(props) => props.theme.breakpoints.md} {
+        margin-top: 50px;
+        width: 100%;
+    }
+
+    @media ${(props) => props.theme.breakpoints.sm} {
+    }
 `;
 
 export const Title = styled.div`
@@ -35,6 +48,16 @@ export const FormCard = styled.div`
     flex-direction: column;
     align-items: center;
     height: 550px;
+
+    @media ${(props) => props.theme.breakpoints.lg} {
+        height: 400px;
+    }
+    @media ${(props) => props.theme.breakpoints.md} {
+        margin-bottom: 50px;
+    }
+
+    @media ${(props) => props.theme.breakpoints.sm} {
+    }
 `;
 
 export const Input = styled.input`

@@ -16,11 +16,6 @@ export const Wrapper = styled.div`
     width: 100%;
 `;
 
-export const Actions = styled.div`
-    display: inline-block;
-    padding: 15px 30px;
-`;
-
 export const NavbarToggleIcon = styled.span`
     display: block;
     width: 20px;
@@ -55,7 +50,9 @@ export const Avatar = styled.div`
     }
 `;
 
-export const NavbarMenu = styled.ul<{ show: boolean }>`
+export const NavbarMenu = styled.ul<{
+    show: boolean;
+}>`
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -110,7 +107,6 @@ export const NavbarMenu = styled.ul<{ show: boolean }>`
 
 export const NavbarMenuItem = styled.li`
     margin-left: 10px;
-
     @media ${(props) => props.theme.breakpoints.md} {
         margin: 10px 0;
     }
@@ -118,11 +114,16 @@ export const NavbarMenuItem = styled.li`
 
 type MenuLinkProps = {
     href: string;
+    isAction?: boolean;
 };
 
 export const MenuLink = styled.a<MenuLinkProps>`
     color: #fff;
     text-decoration: none;
+    background: ${({ isAction }) =>
+        isAction ? "linear-gradient(to right, #6a0dad, #330766)" : "none"};
+    border-radius: ${({ isAction }) => (isAction ? "20px" : "none")};
+    margin-right: ${({ isAction }) => (isAction ? "10px" : "none")};
 `;
 
 type HamburgerProps = {

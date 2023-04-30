@@ -12,7 +12,6 @@ import {
 } from "@styles/pages/home.styles";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUsers, selectUserState } from "@redux/slices/userSlice";
-import { useSession } from "next-auth/react";
 
 const Home: React.FC = () => {
     const dispatch = useDispatch();
