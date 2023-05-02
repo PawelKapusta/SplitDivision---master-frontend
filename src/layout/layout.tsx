@@ -5,11 +5,22 @@ import Header from "@components/header";
 import { Container, BackButton } from "./layout.styles";
 
 export type TLayoutProps = {
+    excludeLayout?: boolean;
     children: JSX.Element;
 };
 
-export const Layout = ({ children }: TLayoutProps): JSX.Element => {
+export const Layout = ({
+    excludeLayout,
+    children,
+}: TLayoutProps): JSX.Element => {
     const { back } = useRouter();
+    if (excludeLayout) {
+        return (
+            <Container>
+                <main>{children}</main>
+            </Container>
+        );
+    }
     return (
         <Container>
             <Header />

@@ -93,7 +93,7 @@ function isAxiosError(error: unknown): error is AxiosError {
     return (error as AxiosError).isAxiosError !== undefined;
 }
 
-export const registerUser = (formData: any) => async (dispatch: any) => {
+export const registerUser = (formData: any) => async (dispatch: Dispatch) => {
     try {
         dispatch(setLoading());
         const res = await axios.post(
@@ -129,7 +129,7 @@ export const loginUser =
         }
     };
 
-export const logoutUser = () => async (dispatch: any) => {
+export const logoutUser = () => async (dispatch: Dispatch) => {
     try {
         dispatch(setLoading());
         dispatch(logoutSuccess());

@@ -4,6 +4,7 @@ import { HYDRATE } from "next-redux-wrapper";
 import { AppState } from "../store";
 import { AnyAction } from "@reduxjs/toolkit";
 import axios from "axios";
+import { Dispatch } from "redux";
 // import { useAuthAxios } from "../../api/axios/axios";
 //
 // const axios = useAuthAxios();
@@ -139,7 +140,7 @@ export const {
     deleteUserFailure,
 } = userSlice.actions;
 
-export const fetchUsers = (): AppThunk => async (dispatch) => {
+export const fetchUsers = (): AppThunk => async (dispatch: Dispatch) => {
     try {
         dispatch(getUsersStart());
         const response = await axios.get(
@@ -154,7 +155,7 @@ export const fetchUsers = (): AppThunk => async (dispatch) => {
 
 export const fetchUser =
     (id: string): AppThunk =>
-    async (dispatch) => {
+    async (dispatch: Dispatch) => {
         try {
             dispatch(getUserStart());
             const response = await axios.get(
@@ -169,7 +170,7 @@ export const fetchUser =
 
 export const createUser =
     (user: User): AppThunk =>
-    async (dispatch) => {
+    async (dispatch: Dispatch) => {
         try {
             dispatch(createUserStart());
             const response = await axios.post(
@@ -185,7 +186,7 @@ export const createUser =
 
 export const updateUser =
     (id: string, user: User): AppThunk =>
-    async (dispatch) => {
+    async (dispatch: Dispatch) => {
         try {
             dispatch(updateUserStart());
             const response = await axios.put(
@@ -201,7 +202,7 @@ export const updateUser =
 
 export const deleteUser =
     (id: string): AppThunk =>
-    async (dispatch) => {
+    async (dispatch: Dispatch) => {
         try {
             dispatch(deleteUserStart());
             await axios.delete(

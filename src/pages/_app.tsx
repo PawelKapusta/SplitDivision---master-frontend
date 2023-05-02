@@ -26,36 +26,6 @@ function MyApp({
 }: MyAppProps): JSX.Element {
     const store: any = useStore();
 
-    console.log("Component.excludeLayout", Component.excludeLayout);
-
-    if (Component.excludeLayout) {
-        return (
-            <SessionProvider session={session}>
-                <PersistGate
-                    persistor={store.__persistor}
-                    loading={<Spinner />}
-                >
-                    <ThemeProvider theme={theme}>
-                        <GlobalStyles />
-                        <Head>
-                            <title>Split Division</title>
-                            <meta
-                                property="og:title"
-                                content="My page title"
-                                key="title"
-                            />
-                            <link
-                                rel="preconnect"
-                                href="https://fonts.googleapis.com"
-                            />
-                            <link rel="icon" href="/icons/website-icon.svg" />
-                        </Head>
-                        <Component {...pageProps} />
-                    </ThemeProvider>
-                </PersistGate>
-            </SessionProvider>
-        );
-    }
     return (
         <SessionProvider session={session}>
             <PersistGate persistor={store.__persistor} loading={<Spinner />}>
@@ -74,7 +44,7 @@ function MyApp({
                         />
                         <link rel="icon" href="/icons/website-icon.svg" />
                     </Head>
-                    <Layout>
+                    <Layout excludeLayout={Component.excludeLayout}>
                         <Component {...pageProps} />
                     </Layout>
                 </ThemeProvider>

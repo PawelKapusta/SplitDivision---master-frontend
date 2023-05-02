@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import Image from "next/image";
 import CardContent from "@components/CardContent";
 import {
     MainBox,
@@ -25,7 +26,15 @@ const Home: React.FC = () => {
     return (
         <div>
             <MainBox>
-                <MainLeft />
+                <MainLeft>
+                    <Image
+                        src="/images/main-image.png"
+                        alt="main-image.png"
+                        width={600}
+                        height={600}
+                        loading="lazy"
+                    />
+                </MainLeft>
                 <MainRight>
                     <Title>What is Split Division?</Title>
                     <Description>

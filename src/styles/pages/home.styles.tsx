@@ -10,13 +10,21 @@ export const MainBox = styled.div`
     height: 550px;
     gap: 20px;
 
+    @media ${(props) => props.theme.breakpoints.xl} {
+        transition: margin-top 0.3s ease-in-out;
+        margin-top: 40px;
+    }
+
     @media ${(props) => props.theme.breakpoints.lg} {
-        margin-top: 100px;
+        transition: margin-top 0.3s ease-in-out;
+        margin-top: 30px;
         height: 450px;
+        margin-bottom: 30px;
     }
 
     @media ${(props) => props.theme.breakpoints.md} {
-        margin-top: 0;
+        transition: flex-direction 0.3s ease-in-out;
+        margin-top: 80px;
         flex-direction: column-reverse;
     }
 
@@ -27,13 +35,21 @@ export const MainBox = styled.div`
 
 export const MainLeft = styled.div`
     flex: 1;
-    height: 100%;
-    background-image: url("/images/main-image.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
     border: 3px outset #393f484d;
     border-radius: 30px;
+    margin-left: 30px;
+
+    img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        border-radius: 30px;
+    }
+
+    @media ${(props) => props.theme.breakpoints.lg} {
+        margin-left: 20px;
+    }
 
     @media ${(props) => props.theme.breakpoints.md} {
         width: 95%;
@@ -73,10 +89,6 @@ export const Title = styled.span`
         margin-top: 0;
         font-size: 25px;
     }
-
-    @media ${(props) => props.theme.breakpoints.sm} {
-        font-size: 22px;
-    }
 `;
 
 export const Description = styled.div`
@@ -113,10 +125,12 @@ export const CardsTitle = styled.div`
     color: #eaaf57;
 
     @media ${(props) => props.theme.breakpoints.md} {
+        margin-top: 170px;
         font-size: 22px;
     }
 
     @media ${(props) => props.theme.breakpoints.sm} {
+        margin-top: 100px;
         font-size: 20px;
     }
 `;
