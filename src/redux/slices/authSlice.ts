@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios, { AxiosError } from "axios";
 import { AppState } from "../store";
-import { LoginFormData } from "../../types/user";
+import { LoginFormData, RegisterFormValues } from "../../types/user";
 import { Dispatch } from "redux";
 
 interface AuthState {
@@ -93,22 +93,23 @@ function isAxiosError(error: unknown): error is AxiosError {
     return (error as AxiosError).isAxiosError !== undefined;
 }
 
-export const registerUser = (formData: any) => async (dispatch: Dispatch) => {
-    try {
-        dispatch(setLoading());
-        const res = await axios.post(
-            `${process.env.NEXT_PUBLIC_API_GATEWAY_URL}/users/register`,
-            formData,
-        );
-        dispatch(registerSuccess(res.data.token));
-    } catch (err) {
-        let errorMessage = "An error occurred while registering";
-        if (isAxiosError(err)) {
-            errorMessage = err.response?.data?.error || errorMessage;
+export const registerUser =
+    (formData: RegisterFormValues) => async (dispatch: Dispatch) => {
+        try {
+            dispatch(setLoading());
+            const res = await axios.post(
+                `${process.env.NEXT_PUBLIC_API_GATEWAY_URL}/users/register`,
+                formData,
+            );
+            dispatch(registerSuccess(res.data.token));
+        } catch (err) {
+            let errorMessage = "An error occurred while registering";
+            if (isAxiosError(err)) {
+                errorMessage = err.response?.data?.error || errorMessage;
+            }
+            dispatch(authError(errorMessage));
         }
-        dispatch(authError(errorMessage));
-    }
-};
+    };
 
 export const loginUser =
     (formData: LoginFormData) => async (dispatch: Dispatch) => {

@@ -24,32 +24,6 @@ export const NavbarToggleIcon = styled.span`
     margin: 4px 0;
 `;
 
-export const Avatar = styled.div`
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    cursor: pointer;
-
-    img {
-        border-radius: 50%;
-    }
-
-    img:hover {
-        box-shadow: 0px 5px 10px 0px #fff;
-        transform: translateX(-50%);
-        animation: jump 0.5s ease-in-out infinite alternate;
-    }
-
-    @keyframes jump {
-        from {
-            transform: translateY(0);
-        }
-        to {
-            transform: translateY(-10px);
-        }
-    }
-`;
-
 export const NavbarMenu = styled.ul<{
     show: boolean;
 }>`
@@ -94,9 +68,12 @@ export const NavbarMenu = styled.ul<{
             padding: 5px 0;
         }
 
-        li:last-child {
+        li:last-child:hover {
             display: flex;
             justify-content: center;
+            box-shadow: 0px 5px 10px 0px #fff;
+            transition: transform 0.2s ease;
+            transform: translateY(-5px);
         }
 
         a {

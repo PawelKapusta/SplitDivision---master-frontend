@@ -18,3 +18,17 @@ export interface LoginFormData {
     email: string;
     password: string;
 }
+
+export interface RegisterFormValues {
+    first_name: string;
+    last_name: string;
+    password: string;
+    confirm_password: string;
+    username: string;
+    gender: "male" | "female" | "other";
+    service: "website" | "facebook" | "google" | "slack";
+    email: string;
+    phone: string;
+    birth_date: string;
+    avatar_image: string;
+}

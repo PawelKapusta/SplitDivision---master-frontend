@@ -9,7 +9,7 @@ import {
     LoginButton,
     OAuthLoginButton,
     RegisterDescription,
-} from "@styles/pages/auth/login.styles";
+} from "@styles/pages/auth/auth.styles";
 
 const LoginForm = () => {
     const {

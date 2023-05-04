@@ -4,11 +4,11 @@ import { selectAuthState } from "@redux/slices/authSlice";
 import LoginForm from "@components/forms/LoginForm";
 import AccessCard from "@components/AccessCard";
 import {
-    LoginCard,
+    AuthContainer,
     Form,
     Title,
     Description,
-} from "@styles/pages/auth/login.styles";
+} from "@styles/pages/auth/auth.styles";
 
 const LoginPage = () => {
     const authState = useSelector(selectAuthState);
@@ -19,15 +19,15 @@ const LoginPage = () => {
     }
 
     return (
-        <LoginCard>
-            <AccessCard imageSrc="/icons/login_image.svg">
+        <AuthContainer>
+            <AccessCard imageSrc="/icons/auth_image.svg">
                 <Form>
                     <Title>Explore</Title>
                     <Description>Sign in and enjoy our platform!</Description>
                     <LoginForm />
                 </Form>
             </AccessCard>
-        </LoginCard>
+        </AuthContainer>
     );
 };
 
