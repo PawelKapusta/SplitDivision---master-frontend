@@ -18,6 +18,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { RegisterSchema } from "../../types/schema";
 import { RegisterFormValues } from "../../types/user";
+import { getFormattedDate } from "../../utils/date";
 
 const schema = yup.object().shape(RegisterSchema);
 
@@ -32,28 +33,19 @@ const RegisterForm = (): JSX.Element => {
     const dispatch = useDispatch();
 
     const [selectedDate, setSelectedDate] = useState<Date>(new Date());
-    const [selectedFormattedDate, setSelectedFormattedDate] =
-        useState<string>("");
+    const [selectedFormattedDate, setSelectedFormattedDate] = useState<string>(
+        getFormattedDate(new Date()),
+    );
 
     const handleDateChange = (datePicked: Date) => {
         setSelectedDate(datePicked);
-        const date = new Date(datePicked);
-        const year = date.getFullYear();
-        const month = String(date.getMonth() + 1).padStart(2, "0");
-        const day = String(date.getDate()).padStart(2, "0");
-        console.log(date, year, month, day);
-        const formattedDate = `${year}-${month}-${day}`;
-        setSelectedFormattedDate(formattedDate);
+        setSelectedFormattedDate(getFormattedDate(datePicked));
     };
 
     const onSubmit: SubmitHandler<RegisterFormValues> = (data) => {
-        console.log(data, "Adsadasdasdasdasd");
-        console.log("selected", selectedFormattedDate);
         data.birth_date = selectedFormattedDate;
-        console.log("data", data);
         dispatch(registerUser(data));
     };
-    console.log(errors);
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>

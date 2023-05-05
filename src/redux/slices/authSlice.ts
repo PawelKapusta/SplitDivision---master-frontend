@@ -51,8 +51,6 @@ export const authSlice = createSlice({
             if (typeof window !== "undefined") {
                 localStorage.setItem("token", action.payload);
             }
-            console.log("auth state", state);
-            console.log("action", action.payload);
             state.token = action.payload;
             state.isAuthenticated = true;
             state.isLoading = false;
@@ -64,6 +62,7 @@ export const authSlice = createSlice({
             state.token = null;
             state.isAuthenticated = false;
             state.isLoading = false;
+            state.error = null;
         },
         authError: (state, action: PayloadAction<string>) => {
             if (typeof window !== "undefined") {
@@ -103,9 +102,25 @@ export const registerUser =
             );
             dispatch(registerSuccess(res.data.token));
         } catch (err) {
-            let errorMessage = "An error occurred while registering";
+            let errorMessage = "An error occurred while registering",
+                mappedValidationError = "";
             if (isAxiosError(err)) {
-                errorMessage = err.response?.data?.error || errorMessage;
+                if (
+                    err.response?.data.error.validationErrors &&
+                    err.response?.data.error.validationErros?.length !== 0
+                ) {
+                    const message =
+                        err.response?.data.error.validationErrors[0].message;
+                    if (message === "Validation isEmail on email failed") {
+                        mappedValidationError = "Your email is invalid";
+                    } else if (message === "INVALID_COUNTRY") {
+                        mappedValidationError =
+                            "Invalid country in phone number";
+                    }
+                    errorMessage = mappedValidationError || errorMessage;
+                } else {
+                    errorMessage = err.response?.data?.error || errorMessage;
+                }
             }
             dispatch(authError(errorMessage));
         }
