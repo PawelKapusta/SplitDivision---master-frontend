@@ -1,17 +1,17 @@
 export const alertTypes = {
     success: {
-        background: "#dff0d8",
-        color: "#3c763d",
+        background: "green",
+        color: "white",
         icon: "/icons/success-icon.svg",
     },
     info: {
-        background: "#d9edf7",
-        color: "#31708f",
+        background: "#007bff",
+        color: "white",
         icon: "/icons/info-icon.svg",
     },
     warning: {
-        background: "#fcf8e3",
-        color: "#8a6d3b",
+        background: "#FFBF00",
+        color: "white",
         icon: "/icons/warning-icon.svg",
     },
     error: {
