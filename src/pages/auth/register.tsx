@@ -8,16 +8,14 @@ import {
 import AccessCard from "@components/AccessCard";
 import RegisterForm from "@components/forms/RegisterForm";
 import useAlert from "../../hocs/useAlert";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { selectAuthState } from "@redux/slices/authSlice";
 import { useRouter } from "next/router";
 
 const RegisterPage = () => {
     const { showAlert, AlertWrapper } = useAlert();
-    const dispatch = useDispatch();
     const router = useRouter();
-    const { error, isAuthenticated, isLoading } = useSelector(selectAuthState);
-    console.log("Erorororororor", error);
+    const { error, isAuthenticated } = useSelector(selectAuthState);
 
     if (isAuthenticated) {
         router.push("/");

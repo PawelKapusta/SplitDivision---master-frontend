@@ -112,27 +112,6 @@ export const BirthLabel = styled.label`
     font-size: 20px;
 `;
 
-export const LoginButton = styled.button`
-    margin-top: 20px;
-    cursor: pointer;
-    border-radius: 5px;
-    background: linear-gradient(to right, #6a0dad, #330766);
-    width: 80%;
-    height: 50px;
-    font-size: 20px;
-`;
-
-export const RegisterButton = styled.button`
-    margin-top: 20px;
-    cursor: pointer;
-    border-radius: 5px;
-    background: linear-gradient(to right, #4b79a1, #283e51);
-    width: 80%;
-    height: 50px;
-    font-size: 20px;
-    padding: 8px;
-`;
-
 export const OAuthLoginButton = styled.button`
     margin-top: 20px;
     cursor: pointer;

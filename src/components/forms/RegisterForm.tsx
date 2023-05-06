@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { useDispatch } from "react-redux";
-import { registerUser } from "@redux/slices/authSlice";
+import { useDispatch, useSelector } from "react-redux";
+import LoadingButton from "@components/loadingButton";
+import { registerUser, selectAuthState } from "@redux/slices/authSlice";
 import {
     Error,
     FormCard,
     Input,
-    RegisterButton,
     CustomDatePicker,
     RegisterDescription,
     Select,
@@ -23,6 +23,7 @@ import { getFormattedDate } from "../../utils/date";
 const schema = yup.object().shape(RegisterSchema);
 
 const RegisterForm = (): JSX.Element => {
+    const { isLoading } = useSelector(selectAuthState);
     const {
         register,
         handleSubmit,
@@ -136,7 +137,13 @@ const RegisterForm = (): JSX.Element => {
                 <Error>
                     {errors.birth_date && <p>{errors.birth_date.message}</p>}
                 </Error>
-                <RegisterButton type="submit">Register</RegisterButton>
+                <LoadingButton
+                    loading={isLoading}
+                    disabled={false}
+                    variety="Register"
+                >
+                    {isLoading ? "Loading..." : "Register"}
+                </LoadingButton>
                 <RegisterDescription>
                     <p>
                         Already have account yet?{" "}

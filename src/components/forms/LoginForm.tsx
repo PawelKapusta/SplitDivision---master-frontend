@@ -1,15 +1,15 @@
 import { useForm, SubmitHandler } from "react-hook-form";
-import { useDispatch } from "react-redux";
-import { loginUser } from "@redux/slices/authSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { loginUser, selectAuthState } from "@redux/slices/authSlice";
 import { LoginFormData } from "../../types/user";
 import {
     FormCard,
     Input,
     Error,
-    LoginButton,
     OAuthLoginButton,
     RegisterDescription,
 } from "@styles/pages/auth/auth.styles";
+import LoadingButton from "@components/loadingButton";
 
 const LoginForm = () => {
     const {
@@ -18,11 +18,12 @@ const LoginForm = () => {
         formState: { errors },
     } = useForm<LoginFormData>();
     const dispatch = useDispatch();
+    const { isLoading } = useSelector(selectAuthState);
 
     const onSubmit: SubmitHandler<LoginFormData> = (data) => {
         dispatch(loginUser(data));
     };
-    console.log("errors", errors);
+
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <FormCard>
@@ -44,7 +45,13 @@ const LoginForm = () => {
                 <Error>
                     {errors.password && <p>{errors.password.message}</p>}
                 </Error>
-                <LoginButton type="submit">Login</LoginButton>
+                <LoadingButton
+                    loading={isLoading}
+                    disabled={false}
+                    variety="Login"
+                >
+                    {isLoading ? "Loading..." : "Login"}
+                </LoadingButton>
                 <OAuthLoginButton>Placeholder 1</OAuthLoginButton>
                 <OAuthLoginButton>Placeholder 2</OAuthLoginButton>
                 <RegisterDescription>

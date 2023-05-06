@@ -9,14 +9,23 @@ import {
     Title,
     Description,
 } from "@styles/pages/auth/auth.styles";
+import { useEffect } from "react";
+import useAlert from "../../hocs/useAlert";
 
 const LoginPage = () => {
-    const authState = useSelector(selectAuthState);
+    const { error, isAuthenticated } = useSelector(selectAuthState);
+    const { showAlert, AlertWrapper } = useAlert();
     const router = useRouter();
 
-    if (authState.isAuthenticated) {
+    if (isAuthenticated) {
         router.push("/");
     }
+
+    useEffect(() => {
+        if (error !== null) {
+            showAlert(error, "error");
+        }
+    }, [error]);
 
     return (
         <AuthContainer>
@@ -27,6 +36,7 @@ const LoginPage = () => {
                     <LoginForm />
                 </Form>
             </AccessCard>
+            <AlertWrapper />
         </AuthContainer>
     );
 };

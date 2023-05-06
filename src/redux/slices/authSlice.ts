@@ -116,11 +116,14 @@ export const registerUser =
                     } else if (message === "INVALID_COUNTRY") {
                         mappedValidationError =
                             "Invalid country in phone number";
+                    } else if (message === "NOT_A_NUMBER") {
+                        mappedValidationError = "Invalid phone number";
                     }
                     errorMessage = mappedValidationError || errorMessage;
                 } else {
                     errorMessage = err.response?.data?.error || errorMessage;
                 }
+                dispatch(authError(errorMessage));
             }
             dispatch(authError(errorMessage));
         }
