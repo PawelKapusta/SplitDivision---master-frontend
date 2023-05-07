@@ -9,6 +9,7 @@ interface AuthState {
     isAuthenticated: boolean;
     isLoading: boolean;
     error: string | null;
+    userId?: string;
 }
 
 const getInitialState = (): AuthState => {
@@ -47,13 +48,18 @@ export const authSlice = createSlice({
             state.isAuthenticated = true;
             state.isLoading = false;
         },
-        loginSuccess: (state, action: PayloadAction<string>) => {
+        loginSuccess: (
+            state,
+            action: PayloadAction<{ JWT: string; userId: string }>,
+        ) => {
             if (typeof window !== "undefined") {
-                localStorage.setItem("token", action.payload);
+                localStorage.setItem("token", action.payload.JWT);
             }
-            state.token = action.payload;
+            state.token = action.payload.JWT;
             state.isAuthenticated = true;
             state.isLoading = false;
+            state.userId = action.payload.userId;
+            console.log(action.payload);
         },
         logoutSuccess: (state) => {
             if (typeof window !== "undefined") {
@@ -138,7 +144,7 @@ export const loginUser =
                 `${process.env.NEXT_PUBLIC_API_GATEWAY_URL}/users/login`,
                 formData,
             );
-            dispatch(loginSuccess(res.data.JWT));
+            dispatch(loginSuccess(res.data));
         } catch (err) {
             let errorMessage = "An error occurred while logging in";
             if (isAxiosError(err)) {

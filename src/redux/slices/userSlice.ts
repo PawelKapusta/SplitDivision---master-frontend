@@ -5,9 +5,7 @@ import { AppState } from "../store";
 import { AnyAction } from "@reduxjs/toolkit";
 import axios from "axios";
 import { Dispatch } from "redux";
-// import { useAuthAxios } from "../../api/axios/axios";
-//
-// const axios = useAuthAxios();
+import authAxios from "../../api/axios/axios";
 
 interface User {
     id: string;
@@ -110,6 +108,16 @@ const userSlice = createSlice({
             state.isLoading = false;
             state.error = action.payload;
         },
+        userError: (state, action: PayloadAction<string>) => {
+            console.log("auth state", state);
+            console.log("auth eroror", state.error);
+            state.users = [];
+            state.user = null;
+            state.isLoading = false;
+            state.error = action.payload;
+            console.log("action", action.payload);
+            console.log("error", state.error);
+        },
     },
     extraReducers: (builder) => {
         builder.addCase(HYDRATE, (state: AppState, action: AnyAction) => {
@@ -138,6 +146,7 @@ export const {
     deleteUserStart,
     deleteUserSuccess,
     deleteUserFailure,
+    userError,
 } = userSlice.actions;
 
 export const fetchUsers = (): AppThunk => async (dispatch: Dispatch) => {
@@ -158,7 +167,7 @@ export const fetchUser =
     async (dispatch: Dispatch) => {
         try {
             dispatch(getUserStart());
-            const response = await axios.get(
+            const response = await authAxios.get(
                 `${process.env.NEXT_PUBLIC_API_GATEWAY_URL}/users/${id}`,
             );
             const data = response.data;

@@ -29,6 +29,7 @@
     "axios": "^0.21.4",
     "dotenv-load": "^2.0.1",
     "html-webpack-plugin": "^5.5.0",
+    "jwt-decode": "^3.1.2",
     "next": "^13.3.1-canary.4",
     "next-auth": "^4.22.1",
     "next-compose-plugins": "^2.2.1",

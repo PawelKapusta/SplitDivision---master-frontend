@@ -12,16 +12,27 @@ import {
     CardsTitle,
 } from "@styles/pages/home.styles";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchUsers, selectUserState } from "@redux/slices/userSlice";
+import { fetchUser, selectUserState } from "@redux/slices/userSlice";
+import { selectAuthState } from "@redux/slices/authSlice";
+import { getDecodedJWTToken } from "../utils/jwt";
+import { TDecodedJWTToken } from "../types/jwt";
 
 const Home: React.FC = () => {
     const dispatch = useDispatch();
-    const { users } = useSelector(selectUserState);
+    const { user, users } = useSelector(selectUserState);
+    const { isAuthenticated, token } = useSelector(selectAuthState);
+    let decodedToken: TDecodedJWTToken, userId: string;
+    if (isAuthenticated) {
+        decodedToken = getDecodedJWTToken(token);
+        userId = decodedToken.id;
+    }
 
     useEffect(() => {
-        dispatch(fetchUsers());
-    }, [dispatch]);
-    console.log(users);
+        console.log("here");
+        dispatch(fetchUser(userId));
+    }, [isAuthenticated]);
+
+    console.log("user", user);
 
     return (
         <div>
