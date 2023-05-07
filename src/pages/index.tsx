@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import Image from "next/image";
-import CardContent from "@components/CardContent";
+import CardContent from "@components/card-content";
 import {
     MainBox,
     MainLeft,
@@ -28,11 +28,8 @@ const Home: React.FC = () => {
     }
 
     useEffect(() => {
-        console.log("here");
         dispatch(fetchUser(userId));
     }, [isAuthenticated]);
-
-    console.log("user", user);
 
     return (
         <div>

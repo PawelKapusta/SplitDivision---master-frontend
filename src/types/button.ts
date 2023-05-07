@@ -1,4 +1,4 @@
-export type TButton = "Login" | "Register";
+export type TButton = "Login" | "Register" | "Contact";
 
 export const ButtonTypes = {
     Login: {
@@ -6,5 +6,8 @@ export const ButtonTypes = {
     },
     Register: {
         background: "linear-gradient(to right, #4b79a1, #283e51)",
+    },
+    Contact: {
+        background: "linear-gradient(to right, #00c6ff, #0072ff)",
     },
 };

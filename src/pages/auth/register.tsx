@@ -5,7 +5,7 @@ import {
     AuthContainer,
     Title,
 } from "@styles/pages/auth/auth.styles";
-import AccessCard from "@components/AccessCard";
+import AccessCard from "@components/access-card";
 import RegisterForm from "@components/forms/RegisterForm";
 import useAlert from "../../hocs/useAlert";
 import { useSelector } from "react-redux";

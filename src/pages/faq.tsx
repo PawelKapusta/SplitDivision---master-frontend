@@ -1,8 +1,21 @@
 import type { NextPage } from "next";
-import { withAuth } from "../hocs/withAuth";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchFaqs, selectFaqState } from "@redux/slices/faqSlice";
+import Spinner from "@components/spinner";
+import FaqTable from "@components/faq-table";
 
 const FAQ: NextPage = () => {
-    return <div>FAQ</div>;
+    const dispatch = useDispatch();
+    const { isLoading, faqs } = useSelector(selectFaqState);
+
+    useEffect(() => {
+        dispatch(fetchFaqs());
+    }, [dispatch]);
+
+    console.log("faqs", faqs);
+
+    return <div>{isLoading ? <Spinner /> : <FaqTable />}</div>;
 };
 
-export default withAuth(FAQ);
+export default FAQ;

@@ -1,7 +1,12 @@
 import React from "react";
 import Image from "next/image";
 
-import { Card, ImageContainer, CoinContainer, Coin } from "./accessCard.styles";
+import {
+    Card,
+    ImageContainer,
+    CoinContainer,
+    Coin,
+} from "./access-card.styles";
 
 export type TAccessCard = {
     imageSrc: string;

@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import { selectAuthState } from "@redux/slices/authSlice";
 import LoginForm from "@components/forms/LoginForm";
-import AccessCard from "@components/AccessCard";
+import AccessCard from "@components/access-card";
 import {
     AuthContainer,
     Form,

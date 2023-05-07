@@ -10,10 +10,12 @@ import storage from "redux-persist/lib/storage";
 
 import { authSlice } from "./slices/authSlice";
 import { userSlice } from "./slices/userSlice";
+import { faqSlice } from "@redux/slices/faqSlice";
 
 const rootReducer = combineReducers({
     [authSlice.name]: authSlice.reducer,
     [userSlice.name]: userSlice.reducer,
+    [faqSlice.name]: faqSlice.reducer,
 });
 
 const makeConfiguredStore = () =>

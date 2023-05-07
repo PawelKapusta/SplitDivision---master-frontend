@@ -6,22 +6,7 @@ import { AnyAction } from "@reduxjs/toolkit";
 import axios from "axios";
 import { Dispatch } from "redux";
 import authAxios from "../../api/axios/axios";
-
-interface User {
-    id: string;
-    first_name: string;
-    last_name: string;
-    password: string;
-    username: string;
-    gender: string;
-    service: string;
-    email: string;
-    phone: string;
-    birth_date: Date;
-    is_admin: boolean;
-    is_blocked: boolean;
-    avatar_image: string;
-}
+import { User } from "../../types/user";
 
 interface UserState {
     users: User[];

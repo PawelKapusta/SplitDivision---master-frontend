@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import LoadingButton from "@components/loadingButton";
+import LoadingButton from "@components/loading-button";
 import { registerUser, selectAuthState } from "@redux/slices/authSlice";
 import {
     Error,

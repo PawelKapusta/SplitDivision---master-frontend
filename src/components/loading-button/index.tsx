@@ -1,7 +1,7 @@
 import React from "react";
 import CircularProgress from "@mui/material/CircularProgress";
 import { TButton } from "../../types/button";
-import { Button } from "./loadingButton.styles";
+import { Button } from "./loading-button.styles";
 
 type TLoadingButtonProps = {
     disabled: boolean;
