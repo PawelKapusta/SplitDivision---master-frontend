@@ -6,7 +6,7 @@ import {
     Title,
 } from "@styles/pages/auth/auth.styles";
 import AccessCard from "@components/access-card";
-import RegisterForm from "@components/forms/RegisterForm";
+import RegisterForm from "@components/forms/register-form";
 import useAlert from "../../hocs/useAlert";
 import { useSelector } from "react-redux";
 import { selectAuthState } from "@redux/slices/authSlice";

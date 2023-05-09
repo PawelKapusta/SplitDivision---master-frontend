@@ -38,8 +38,8 @@ const Home: React.FC = () => {
                     <Image
                         src="/images/main-image.png"
                         alt="main-image.png"
-                        width={600}
-                        height={600}
+                        width={500}
+                        height={500}
                         loading="lazy"
                     />
                 </MainLeft>

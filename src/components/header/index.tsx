@@ -38,9 +38,13 @@ const Header = () => {
                     <NavbarToggleIcon />
                 </Hamburger>
                 <NavbarMenu show={showMenu}>
-                    <NavbarMenuItem>
-                        <MenuLink href="/about">About</MenuLink>
-                    </NavbarMenuItem>
+                    {isAuthenticated ? (
+                        <NavbarMenuItem>
+                            <MenuLink href="/create/group">
+                                Create group
+                            </MenuLink>
+                        </NavbarMenuItem>
+                    ) : null}
                     <NavbarMenuItem>
                         <MenuLink href="/contact">Contact</MenuLink>
                     </NavbarMenuItem>

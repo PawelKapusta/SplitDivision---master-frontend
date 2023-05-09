@@ -8,7 +8,7 @@ export interface User {
     service: string;
     email: string;
     phone: string;
-    birth_date: Date;
+    birth_date: Date | string;
     is_admin: boolean;
     is_blocked: boolean;
     avatar_image: string;
@@ -29,6 +29,6 @@ export interface RegisterFormValues {
     service: "website" | "facebook" | "google" | "slack";
     email: string;
     phone: string;
-    birth_date: string;
+    birth_date: Date | string;
     avatar_image: string;
 }

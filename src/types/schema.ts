@@ -46,3 +46,17 @@ export const RegisterSchema = {
         .string()
         .max(1024, "Avatar image cannot exceed more than 1024 characters"),
 };
+
+export const GroupSchema = yup.object().shape({
+    name: yup
+        .string()
+        .max(50, "Group name cannot exceed more than 50 characters")
+        .required("Group name is a required field"),
+    description: yup
+        .string()
+        .max(1024, "Group description cannot exceed more than 1024 characters")
+        .required("Group description is a required field"),
+    data_created: yup
+        .string()
+        .required("Group date created is a required field"),
+});

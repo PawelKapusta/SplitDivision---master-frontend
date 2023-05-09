@@ -35,12 +35,16 @@ export const ContactRow = styled.div`
         width: 100%;
         margin-top: 20px;
         height: 50px;
+        border-radius: 20px;
+        padding: 15px;
     }
 
     textarea {
         width: 100%;
         margin-top: 20px;
         height: 300px;
+        border-radius: 20px;
+        padding: 15px;
     }
 `;
 

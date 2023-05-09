@@ -37,7 +37,8 @@ export const MainLeft = styled.div`
     flex: 1;
     border: 3px outset #393f484d;
     border-radius: 30px;
-    margin-left: 30px;
+    margin: 30px;
+    max-width: 1000px;
 
     img {
         display: block;
