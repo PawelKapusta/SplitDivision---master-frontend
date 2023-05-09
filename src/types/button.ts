@@ -1,4 +1,9 @@
-export type TButton = "Login" | "Register" | "Contact" | "CreateGroup";
+export type TButton =
+    | "Login"
+    | "Register"
+    | "Contact"
+    | "CreateGroup"
+    | "UpdateProfile";
 
 export const ButtonTypes = {
     Login: {
@@ -12,5 +17,8 @@ export const ButtonTypes = {
     },
     CreateGroup: {
         background: "linear-gradient(to right, #00c6ff, #0072ff)",
+    },
+    UpdateProfile: {
+        background: "linear-gradient(to right, #799f0c, #acbb78);",
     },
 };

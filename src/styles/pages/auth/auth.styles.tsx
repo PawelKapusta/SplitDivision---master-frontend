@@ -201,7 +201,7 @@ export const Select = styled.select`
     border: 1px solid #eaaf57;
     margin: 15px 0;
     border-radius: 4px;
-    color: #666;
+    color: white;
 
     &::-ms-expand {
         display: none;

@@ -6,7 +6,7 @@ import { AnyAction } from "@reduxjs/toolkit";
 import axios from "axios";
 import { Dispatch } from "redux";
 import authAxios from "../../api/axios/axios";
-import { User } from "../../types/user";
+import { UpdateUserFormValues, User } from "../../types/user";
 
 interface UserState {
     users: User[];
@@ -163,7 +163,7 @@ export const fetchUser =
     };
 
 export const createUser =
-    (user: User): AppThunk =>
+    (user: Omit<User, "id">): AppThunk =>
     async (dispatch: Dispatch) => {
         try {
             dispatch(createUserStart());
@@ -179,7 +179,7 @@ export const createUser =
     };
 
 export const updateUser =
-    (id: string, user: User): AppThunk =>
+    (id: string, user: UpdateUserFormValues): AppThunk =>
     async (dispatch: Dispatch) => {
         try {
             dispatch(updateUserStart());
