@@ -21,8 +21,8 @@ export const FormCard = styled.div`
     height: 550px;
     width: 1000px;
 
-    button:nth-child(6) {
-        margin-top: 50px;
+    button:nth-child(7) {
+        margin-top: 30px;
         width: 30%;
     }
 

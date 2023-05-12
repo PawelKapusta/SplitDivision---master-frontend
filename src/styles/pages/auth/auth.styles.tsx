@@ -22,9 +22,6 @@ export const Form = styled.div`
         margin-top: 50px;
         width: 100%;
     }
-
-    @media ${(props) => props.theme.breakpoints.sm} {
-    }
 `;
 
 export const Title = styled.div`

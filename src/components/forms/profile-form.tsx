@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, ChangeEvent } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import Image from "next/image";
@@ -15,13 +15,13 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { RegisterSchema } from "../../types/schema";
+import { UpdateProfileSchema } from "../../types/schema";
 import { UpdateUserFormValues } from "../../types/user";
 import { getFormattedDate } from "../../utils/date";
 import { selectUserState, updateUser } from "@redux/slices/userSlice";
 import Spinner from "@components/spinner";
 
-const schema = yup.object().shape(RegisterSchema);
+const schema = yup.object().shape(UpdateProfileSchema);
 
 const ProfileForm = (): JSX.Element => {
     const { isLoading, user } = useSelector(selectUserState);
@@ -29,11 +29,11 @@ const ProfileForm = (): JSX.Element => {
         register,
         handleSubmit,
         formState: { errors },
+        setValue,
     } = useForm<UpdateUserFormValues>({
         resolver: yupResolver(schema),
     });
     const dispatch = useDispatch();
-
     const [formState, setFormState] = useState({
         first_name: user?.first_name,
         last_name: user?.last_name,
@@ -42,18 +42,15 @@ const ProfileForm = (): JSX.Element => {
         gender: user?.gender,
         phone: user?.phone,
     });
+    const [selectedDate, setSelectedDate] = useState(new Date());
+    const [selectedFormattedDate, setSelectedFormattedDate] = useState<string>(
+        getFormattedDate(new Date()),
+    );
 
-    const handleInputChange = (event: {
-        target: { name: any; value: any };
-    }) => {
+    const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
         setFormState((prevState) => ({ ...prevState, [name]: value }));
     };
-
-    const [selectedDate, setSelectedDate] = useState<Date>(new Date());
-    const [selectedFormattedDate, setSelectedFormattedDate] = useState<string>(
-        getFormattedDate(new Date()), //user?.birth_dates
-    );
 
     const handleDateChange = (datePicked: Date) => {
         setSelectedDate(datePicked);
@@ -61,14 +58,16 @@ const ProfileForm = (): JSX.Element => {
     };
 
     const onSubmit: SubmitHandler<UpdateUserFormValues> = (data) => {
-        console.log("hehehehe");
         console.log("selectedDate", selectedDate);
         data.birth_date = selectedFormattedDate;
+        console.log(formState);
         console.log("data to update", data);
-        // dispatch(updateUser(user?.id, data));
+        //dispatch(updateUser(user?.id, data));
     };
 
     useEffect(() => {
+        console.log("selectedDate", selectedDate);
+        console.log(user?.first_name);
         setFormState({
             first_name: user?.first_name,
             last_name: user?.last_name,
@@ -77,7 +76,11 @@ const ProfileForm = (): JSX.Element => {
             gender: user?.gender,
             phone: user?.phone,
         });
-    }, [user]);
+        const date = new Date(user?.birth_date);
+        console.log(user?.birth_date);
+        console.log("date", date);
+        //setSelectedDate(date);
+    }, [isLoading]);
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -157,18 +160,21 @@ const ProfileForm = (): JSX.Element => {
                             <option value="">Select Gender</option>
                             <option
                                 value="male"
+                                defaultValue="male"
                                 selected={formState?.gender === "male"}
                             >
                                 Male
                             </option>
                             <option
                                 value="female"
+                                defaultValue="female"
                                 selected={formState?.gender === "female"}
                             >
                                 Female
                             </option>
                             <option
                                 value="other"
+                                defaultValue="other"
                                 selected={formState?.gender === "other"}
                             >
                                 Other

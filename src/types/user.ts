@@ -34,14 +34,14 @@ export interface RegisterFormValues {
 }
 
 export interface UpdateUserFormValues {
-    first_name: string;
-    last_name: string;
+    first_name?: string;
+    last_name?: string;
     password?: string;
     confirm_password?: string;
-    username: string;
-    gender: "male" | "female" | "other";
-    email: string;
-    phone: string;
-    birth_date: Date | string;
+    username?: string;
+    gender?: "male" | "female" | "other";
+    email?: string;
+    phone?: string;
+    birth_date?: Date | string;
     avatar_image?: string;
 }

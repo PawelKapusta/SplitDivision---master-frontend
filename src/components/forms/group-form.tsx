@@ -9,8 +9,8 @@ import {
     Error,
     FormCard,
     Input,
-    Title,
     InputDescription,
+    Title,
     UsersSelector,
 } from "@styles/pages/create/group.styles";
 import LoadingButton from "@components/loading-button";
@@ -80,16 +80,10 @@ const GroupForm = () => {
         );
 
     const onSubmit: SubmitHandler<GroupFormData> = (data) => {
-        console.log(
-            "__________________________________________________craete group data",
-            data,
-        );
-        console.log(selected.length);
         if (selected.length < 2) {
             showAlert("Please select at least 2 people", "error");
         } else {
-            const newArray = selected.map(({ value }) => ({ value }));
-
+            data.usersIdList = selected.map((obj) => obj.value);
             dispatch(createGroup(data));
         }
     };
@@ -146,6 +140,9 @@ const GroupForm = () => {
                         />
                     </UsersSelector>
                 )}
+                <Error>
+                    {errors.usersIdList && <p>{errors.usersIdList.message}</p>}
+                </Error>
                 <LoadingButton
                     loading={groupLoading}
                     disabled={false}

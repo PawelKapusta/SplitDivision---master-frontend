@@ -6,7 +6,7 @@ import { AnyAction } from "@reduxjs/toolkit";
 import axios from "axios";
 import { Dispatch } from "redux";
 import authAxios from "../../api/axios/axios";
-import { Group } from "../../types/group";
+import { Group, GroupFormData } from "../../types/group";
 
 interface GroupState {
     groups: Group[];
@@ -177,7 +177,7 @@ export const fetchGroup =
     };
 
 export const createGroup =
-    (group: Omit<Group, "id">): AppThunk =>
+    (group: Omit<GroupFormData, "id">): AppThunk =>
     async (dispatch: Dispatch) => {
         try {
             dispatch(createGroupStart());

@@ -47,6 +47,43 @@ export const RegisterSchema = {
         .max(1024, "Avatar image cannot exceed more than 1024 characters"),
 };
 
+export const UpdateProfileSchema = {
+    first_name: yup
+        .string()
+        .max(70, "First name cannot exceed more than 70 characters"),
+    last_name: yup
+        .string()
+        .max(70, "Last name cannot exceed more than 70 characters"),
+    password: yup
+        .string()
+        .min(4, "Password length should be at least 4 characters")
+        .max(70, "Password cannot exceed more than 70 characters"),
+    confirm_password: yup
+        .string()
+        .min(4, "Password length should be at least 4 characters")
+        .max(70, "Password cannot exceed more than 70 characters")
+        .oneOf([yup.ref("password")], "Passwords do not match"),
+    username: yup
+        .string()
+        .max(70, "Username cannot exceed more than 70 characters"),
+    gender: yup
+        .string()
+        .oneOf(["male", "female", "other"], "Choose one gender"),
+    service: yup
+        .string()
+        .oneOf(["website", "facebook", "google", "slack"])
+        .default("website"),
+    email: yup
+        .string()
+        .email()
+        .max(255, "Email cannot exceed more than 255 characters"),
+    phone: yup.string().max(20, "Phone cannot exceed more than 20 characters"),
+    birth_date: yup.string(),
+    avatar_image: yup
+        .string()
+        .max(1024, "Avatar image cannot exceed more than 1024 characters"),
+};
+
 export const GroupSchema = yup.object().shape({
     name: yup
         .string()
@@ -59,4 +96,5 @@ export const GroupSchema = yup.object().shape({
     data_created: yup
         .string()
         .required("Group date created is a required field"),
+    usersIdList: yup.array().of(yup.string().required("Value is required")),
 });

@@ -45,7 +45,11 @@ export const FormCard = styled.div`
 
     input:nth-child(2) {
         max-width: 20%;
-        margin-left: 200px;
+    }
+
+    .react-datepicker__input-container {
+        display: flex;
+        justify-content: center;
     }
 `;
 
