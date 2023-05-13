@@ -66,13 +66,7 @@ export const UpdateProfileSchema = {
     username: yup
         .string()
         .max(70, "Username cannot exceed more than 70 characters"),
-    gender: yup
-        .string()
-        .oneOf(["male", "female", "other"], "Choose one gender"),
-    service: yup
-        .string()
-        .oneOf(["website", "facebook", "google", "slack"])
-        .default("website"),
+    gender: yup.string(),
     email: yup
         .string()
         .email()

@@ -13,6 +13,8 @@ interface UserState {
     user: User | null;
     isLoading: boolean;
     error: string | null;
+    success: boolean;
+    successUpdate: boolean;
 }
 
 const initialState: UserState = {
@@ -20,6 +22,8 @@ const initialState: UserState = {
     user: null,
     isLoading: false,
     error: null,
+    success: false,
+    successUpdate: false,
 };
 
 const userSlice = createSlice({
@@ -33,10 +37,12 @@ const userSlice = createSlice({
         getUsersSuccess(state, action: PayloadAction<User[]>) {
             state.users = action.payload;
             state.isLoading = false;
+            state.success = true;
         },
         getUsersFailure(state, action: PayloadAction<string>) {
             state.isLoading = false;
             state.error = action.payload;
+            state.success = false;
         },
 
         getUserStart(state) {
@@ -46,10 +52,12 @@ const userSlice = createSlice({
         getUserSuccess(state, action: PayloadAction<User>) {
             state.user = action.payload;
             state.isLoading = false;
+            state.success = true;
         },
         getUserFailure(state, action: PayloadAction<string>) {
             state.isLoading = false;
             state.error = action.payload;
+            state.success = false;
         },
 
         createUserStart(state) {
@@ -59,10 +67,12 @@ const userSlice = createSlice({
         createUserSuccess(state, action: PayloadAction<User>) {
             state.users.push(action.payload);
             state.isLoading = false;
+            state.success = true;
         },
         createUserFailure(state, action: PayloadAction<string>) {
             state.isLoading = false;
             state.error = action.payload;
+            state.success = false;
         },
 
         updateUserStart(state) {
@@ -75,10 +85,12 @@ const userSlice = createSlice({
             );
             state.users[index] = action.payload;
             state.isLoading = false;
+            state.successUpdate = true;
         },
         updateUserFailure(state, action: PayloadAction<string>) {
             state.isLoading = false;
             state.error = action.payload;
+            state.successUpdate = false;
         },
 
         deleteUserStart(state) {
@@ -88,10 +100,12 @@ const userSlice = createSlice({
         deleteUserSuccess(state, action: PayloadAction<string>) {
             state.users = state.users.filter((u) => u.id !== action.payload);
             state.isLoading = false;
+            state.success = true;
         },
         deleteUserFailure(state, action: PayloadAction<string>) {
             state.isLoading = false;
             state.error = action.payload;
+            state.success = false;
         },
         userError: (state, action: PayloadAction<string>) => {
             console.log("auth state", state);
@@ -100,6 +114,7 @@ const userSlice = createSlice({
             state.user = null;
             state.isLoading = false;
             state.error = action.payload;
+            state.success = false;
             console.log("action", action.payload);
             console.log("error", state.error);
         },
@@ -109,7 +124,7 @@ const userSlice = createSlice({
             console.log("HYDRATE", action.payload);
             return {
                 ...state,
-                ...action.payload.auth,
+                ...action.payload.user,
             };
         });
     },
@@ -183,8 +198,8 @@ export const updateUser =
     async (dispatch: Dispatch) => {
         try {
             dispatch(updateUserStart());
-            const response = await axios.put(
-                `${process.env.NEXT_PUBLIC_API_GATEWAY_URL}/users/${id}`,
+            const response = await authAxios.put(
+                `${process.env.NEXT_PUBLIC_API_GATEWAY_URL}/users/profile/${id}`,
                 user,
             );
             const data = response.data;

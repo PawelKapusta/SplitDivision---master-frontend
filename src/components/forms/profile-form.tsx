@@ -1,6 +1,6 @@
 import { useEffect, useState, ChangeEvent } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import LoadingButton from "@components/loading-button";
 import {
     Error,
@@ -17,13 +17,19 @@ import "react-datepicker/dist/react-datepicker.css";
 import { UpdateProfileSchema } from "../../types/schema";
 import { UpdateUserFormValues } from "../../types/user";
 import { getFormattedDate } from "../../utils/date";
-import { selectUserState } from "@redux/slices/userSlice";
+import { selectUserState, updateUser } from "@redux/slices/userSlice";
 import Spinner from "@components/spinner";
+import useAlert from "../../hocs/useAlert";
 
 const schema = yup.object().shape(UpdateProfileSchema);
 
 const ProfileForm = (): JSX.Element => {
-    const { isLoading, user } = useSelector(selectUserState);
+    const {
+        isLoading,
+        user,
+        successUpdate,
+        error: userError,
+    } = useSelector(selectUserState);
     const {
         register,
         handleSubmit,
@@ -31,14 +37,15 @@ const ProfileForm = (): JSX.Element => {
     } = useForm<UpdateUserFormValues>({
         resolver: yupResolver(schema),
     });
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
+    const { showAlert, AlertWrapper } = useAlert();
     const [formState, setFormState] = useState({
-        first_name: user?.first_name,
-        last_name: user?.last_name,
-        username: user?.username,
-        email: user?.email,
-        gender: user?.gender,
-        phone: user?.phone,
+        first_name: user?.first_name || "",
+        last_name: user?.last_name || "",
+        username: user?.username || "",
+        email: user?.email || "",
+        gender: user?.gender || "",
+        phone: user?.phone || "",
     });
     const [selectedDate, setSelectedDate] = useState(new Date());
     const [selectedFormattedDate, setSelectedFormattedDate] = useState<string>(
@@ -56,16 +63,17 @@ const ProfileForm = (): JSX.Element => {
     };
 
     const onSubmit: SubmitHandler<UpdateUserFormValues> = (data) => {
-        console.log("selectedDate", selectedDate);
+        data.first_name = formState?.first_name || user?.first_name;
+        data.last_name = formState?.last_name || user?.last_name;
+        data.username = formState?.username || user?.username;
+        data.email = formState?.email || user?.email;
+        data.gender = formState?.gender || user?.gender;
+        data.phone = formState?.phone || user?.phone;
         data.birth_date = selectedFormattedDate;
-        console.log(formState);
-        console.log("data to update", data);
-        //dispatch(updateUser(user?.id, data));
+        dispatch(updateUser(user?.id, data));
     };
 
     useEffect(() => {
-        console.log("selectedDate", selectedDate);
-        console.log(user?.first_name);
         setFormState({
             first_name: user?.first_name,
             last_name: user?.last_name,
@@ -75,10 +83,16 @@ const ProfileForm = (): JSX.Element => {
             phone: user?.phone,
         });
         const date = new Date(user?.birth_date);
-        console.log(user?.birth_date);
-        console.log("date", date);
         //setSelectedDate(date);
-    }, [isLoading]);
+    }, [user]);
+
+    useEffect(() => {
+        if (successUpdate !== false) {
+            showAlert("Successfully updated user", "success");
+        } else if (userError) {
+            showAlert(userError.toString(), "error");
+        }
+    }, [successUpdate, userError]);
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -154,25 +168,31 @@ const ProfileForm = (): JSX.Element => {
                                 <p>{errors.username.message}</p>
                             )}
                         </Error>
-                        <Select {...register("gender")}>
+                        <Select
+                            {...register("gender")}
+                            value={formState?.gender}
+                            onChange={(e) =>
+                                setFormState({
+                                    ...formState,
+                                    gender: e.target.value,
+                                })
+                            }
+                        >
                             <option value="">Select Gender</option>
                             <option
                                 value="male"
-                                defaultValue="male"
                                 selected={formState?.gender === "male"}
                             >
                                 Male
                             </option>
                             <option
                                 value="female"
-                                defaultValue="female"
                                 selected={formState?.gender === "female"}
                             >
                                 Female
                             </option>
                             <option
                                 value="other"
-                                defaultValue="other"
                                 selected={formState?.gender === "other"}
                             >
                                 Other
@@ -228,6 +248,7 @@ const ProfileForm = (): JSX.Element => {
                     </FormCard>
                 </div>
             )}
+            <AlertWrapper />
         </form>
     );
 };

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import MaterialUIAlert from "@components/alert";
 import { TAlertProps } from "@components/alert";
-
 interface UseAlertResult {
     showAlert: (message: string, type: TAlertProps["type"]) => void;
     AlertWrapper: React.FC;
@@ -9,10 +8,9 @@ interface UseAlertResult {
 
 const useAlert = (): UseAlertResult => {
     const [alert, setAlert] = useState<TAlertProps | null>(null);
-
     const showAlert = (message: string, type: TAlertProps["type"]) => {
         setAlert({ message, type });
-        setTimeout(() => {
+        setTimeout(async () => {
             setAlert(null);
         }, 5000);
     };

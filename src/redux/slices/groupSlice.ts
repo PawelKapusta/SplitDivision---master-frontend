@@ -123,7 +123,7 @@ const groupSlice = createSlice({
             console.log("HYDRATE", action.payload);
             return {
                 ...state,
-                ...action.payload.auth,
+                ...action.payload.group,
             };
         });
     },
