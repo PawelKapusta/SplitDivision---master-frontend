@@ -91,6 +91,15 @@ export const UsersSelector = styled.div`
     margin-top: 20px;
     width: 500px;
 
+    .search input {
+        border: 1px solid white;
+    }
+
+    .search input:focus {
+        background: black;
+        color: white;
+    }
+
     .clear-selected-button {
         display: flex;
         justify-content: center;
@@ -103,35 +112,38 @@ export const UsersSelector = styled.div`
         border-radius: 50px;
     }
 
-    .dropdown-content {
-        border: 1px solid #eaaf57;
-        background-color: #eaaf57;
-        color: blue;
-        overflow: auto;
-        max-height: 200px;
-        padding: 5px;
+    .search-clear-button {
+        display: flex;
+        align-items: center;
+        margin-right: 10px;
+    }
 
-        div {
-            &:hover {
-                background-color: #eaaf57;
-            }
+    .search-clear-button:hover {
+        box-shadow: 0 0 20px white;
+        border-radius: 50px;
+    }
+
+    .select-item:hover {
+        background: #eaaf57;
+
+        & * {
+            background-color: #eaaf57;
+            color: black;
         }
     }
 
-    .dropdown-item {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0.5rem;
-        cursor: pointer;
+    .select-item.selected {
+        background: #eaaf57;
+        font-weight: bold;
+        border: 1px solid #b77d30;
 
-        &:hover {
+        & * {
             background-color: #eaaf57;
+            color: black;
         }
+    }
 
-        &.selected {
-            background-color: #eaaf57;
-            color: #eaaf57;
-        }
+    .no-options {
+        border: 4px solid #eaaf57;
     }
 `;
