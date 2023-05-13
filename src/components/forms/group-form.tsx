@@ -22,7 +22,7 @@ import Spinner from "@components/spinner";
 import useAlert from "../../hocs/useAlert";
 import { getFormattedDate } from "../../utils/date";
 
-const GroupForm = () => {
+const GroupForm = (): JSX.Element => {
     const {
         isLoading: usersLoading,
         user,

@@ -11,7 +11,7 @@ import {
 } from "@styles/pages/auth/auth.styles";
 import LoadingButton from "@components/loading-button";
 
-const LoginForm = () => {
+const LoginForm = (): JSX.Element => {
     const {
         register,
         handleSubmit,

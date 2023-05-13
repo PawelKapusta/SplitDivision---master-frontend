@@ -4,7 +4,7 @@ import { Box, Container, Grid } from "@mui/material";
 
 import { Link, Title, Column } from "./footer.styles";
 
-const FooterContainer = () => {
+const FooterContainer = (): JSX.Element => {
     return (
         <Box
             sx={{

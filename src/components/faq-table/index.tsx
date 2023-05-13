@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { selectFaqState } from "@redux/slices/faqSlice";
 import { FAQ } from "../../types/faq";
 
-const FaqTable = () => {
+const FaqTable = (): JSX.Element => {
     const { faqs } = useSelector(selectFaqState);
     return (
         <FAQTable>

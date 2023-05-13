@@ -18,7 +18,7 @@ import {
 import { useSelector } from "react-redux";
 import { selectAuthState } from "@redux/slices/authSlice";
 
-const Header = () => {
+const Header = (): JSX.Element => {
     const [showMenu, setShowMenu] = useState(false);
     const { isAuthenticated } = useSelector(selectAuthState);
     const toggleMenu = () => {

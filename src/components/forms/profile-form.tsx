@@ -1,7 +1,6 @@
 import { useEffect, useState, ChangeEvent } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
-import Image from "next/image";
+import { useSelector } from "react-redux";
 import LoadingButton from "@components/loading-button";
 import {
     Error,
@@ -18,7 +17,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { UpdateProfileSchema } from "../../types/schema";
 import { UpdateUserFormValues } from "../../types/user";
 import { getFormattedDate } from "../../utils/date";
-import { selectUserState, updateUser } from "@redux/slices/userSlice";
+import { selectUserState } from "@redux/slices/userSlice";
 import Spinner from "@components/spinner";
 
 const schema = yup.object().shape(UpdateProfileSchema);
@@ -29,11 +28,10 @@ const ProfileForm = (): JSX.Element => {
         register,
         handleSubmit,
         formState: { errors },
-        setValue,
     } = useForm<UpdateUserFormValues>({
         resolver: yupResolver(schema),
     });
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
     const [formState, setFormState] = useState({
         first_name: user?.first_name,
         last_name: user?.last_name,

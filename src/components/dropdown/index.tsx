@@ -9,7 +9,7 @@ import {
 import { useDispatch } from "react-redux";
 import { logoutUser } from "@redux/slices/authSlice";
 
-const Dropdown = () => {
+const Dropdown = (): JSX.Element => {
     const [isOpen, setIsOpen] = useState(false);
     const dispatch = useDispatch();
 

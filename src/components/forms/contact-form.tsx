@@ -11,7 +11,7 @@ import {
 import LoadingButton from "@components/loading-button";
 import useAlert from "../../hocs/useAlert";
 
-const ContactForm = () => {
+const ContactForm = (): JSX.Element => {
     const [formState, setFormState] = useState({
         topic: "",
         description: "",

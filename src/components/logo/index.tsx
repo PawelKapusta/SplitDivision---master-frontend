@@ -3,7 +3,7 @@ import Image from "next/image";
 
 import { LogoContainer } from "@components/logo/logo.styles";
 
-const Logo = () => {
+const Logo = (): JSX.Element => {
     return (
         <LogoContainer>
             <Image

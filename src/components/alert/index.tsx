@@ -7,7 +7,7 @@ export type TAlertProps = {
     type: keyof typeof alertTypes;
 };
 
-const AlertContainer = ({ message, type }: TAlertProps) => {
+const AlertContainer = ({ message, type }: TAlertProps): JSX.Element => {
     return (
         <Container type={type}>
             <AlertIcon type={type}>
