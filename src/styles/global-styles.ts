@@ -13,7 +13,7 @@ const GlobalStyles = createGlobalStyle`
        margin: 0;
        padding: 0;
        background-color: black;
-       color: ${(props) => props.theme.colors.primary};
+       color: #fff;
        font-family: 'Crimson Text', serif;
        animation: ${fadeIn} 0.5s ease-in-out;
      }
