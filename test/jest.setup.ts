@@ -2,8 +2,6 @@ import "isomorphic-unfetch";
 import * as nock from "nock";
 import * as dotenv from "dotenv";
 
-import axios from "axios";
-
 dotenv.config({ path: ".env.local.test" });
 
 afterAll(() => {
