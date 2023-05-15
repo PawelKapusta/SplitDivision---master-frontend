@@ -7,21 +7,30 @@ import axios from "axios";
 import { Dispatch } from "redux";
 import authAxios from "../../api/axios/axios";
 import { Group, GroupFormData } from "../../types/group";
+import { User } from "next-auth";
 
 interface GroupState {
     groups: Group[];
+    userGroups: Group[];
+    groupUsers: User[];
     group: Group | null;
     isLoading: boolean;
     error: string | null;
     success: boolean;
+    userGroupsSuccess: boolean;
+    groupUsersSuccess: boolean;
 }
 
 const initialState: GroupState = {
     groups: [],
+    userGroups: [],
+    groupUsers: [],
     group: null,
     isLoading: false,
     error: null,
     success: false,
+    userGroupsSuccess: false,
+    groupUsersSuccess: false,
 };
 
 const groupSlice = createSlice({
@@ -41,6 +50,34 @@ const groupSlice = createSlice({
             state.isLoading = false;
             state.error = action.payload;
             state.success = false;
+        },
+        getUserGroupsStart(state) {
+            state.isLoading = true;
+            state.error = null;
+        },
+        getUserGroupsSuccess(state, action: PayloadAction<Group[]>) {
+            state.userGroups = action.payload;
+            state.isLoading = false;
+            state.userGroupsSuccess = true;
+        },
+        getUserGroupsFailure(state, action: PayloadAction<string>) {
+            state.isLoading = false;
+            state.error = action.payload;
+            state.userGroupsSuccess = false;
+        },
+        getGroupUsersStart(state) {
+            state.isLoading = true;
+            state.error = null;
+        },
+        getGroupUsersSuccess(state, action: PayloadAction<Group[]>) {
+            state.groupUsers = action.payload;
+            state.isLoading = false;
+            state.groupUsersSuccess = true;
+        },
+        getGroupUsersFailure(state, action: PayloadAction<string>) {
+            state.isLoading = false;
+            state.error = action.payload;
+            state.groupUsersSuccess = false;
         },
 
         getGroupStart(state) {
@@ -133,6 +170,12 @@ export const {
     getGroupsStart,
     getGroupsSuccess,
     getGroupsFailure,
+    getUserGroupsStart,
+    getUserGroupsSuccess,
+    getUserGroupsFailure,
+    getGroupUsersStart,
+    getGroupUsersSuccess,
+    getGroupUsersFailure,
     getGroupStart,
     getGroupSuccess,
     getGroupFailure,
@@ -151,7 +194,7 @@ export const {
 export const fetchGroups = (): AppThunk => async (dispatch: Dispatch) => {
     try {
         dispatch(getGroupsStart());
-        const response = await axios.get(
+        const response = await authAxios.get(
             `${process.env.NEXT_PUBLIC_API_GATEWAY_URL}/groups`,
         );
         const data = response.data;
@@ -160,6 +203,36 @@ export const fetchGroups = (): AppThunk => async (dispatch: Dispatch) => {
         dispatch(getGroupsFailure(error as string));
     }
 };
+
+export const fetchUserGroups =
+    (userId: string): AppThunk =>
+    async (dispatch: Dispatch) => {
+        try {
+            dispatch(getUserGroupsStart());
+            const response = await authAxios.get(
+                `${process.env.NEXT_PUBLIC_API_GATEWAY_URL}/groups/user/${userId}`,
+            );
+            const data = response.data;
+            dispatch(getUserGroupsSuccess(data));
+        } catch (error) {
+            dispatch(getUserGroupsFailure(error as string));
+        }
+    };
+
+export const fetchGroupUsers =
+    (groupId: string): AppThunk =>
+    async (dispatch: Dispatch) => {
+        try {
+            dispatch(getGroupUsersStart());
+            const response = await authAxios.get(
+                `${process.env.NEXT_PUBLIC_API_GATEWAY_URL}/groups/${groupId}/users`,
+            );
+            const data = response.data;
+            dispatch(getGroupUsersSuccess(data));
+        } catch (error) {
+            dispatch(getGroupUsersFailure(error as string));
+        }
+    };
 
 export const fetchGroup =
     (id: string): AppThunk =>
