@@ -39,12 +39,17 @@ const RegisterForm = (): JSX.Element => {
     );
 
     const handleDateChange = (datePicked: Date) => {
+        console.log("date", datePicked);
+        const formattedDate = datePicked.toISOString().split("T")[0];
+        console.log("formattedDate", formattedDate);
+        console.log("formattedDate 2", getFormattedDate(datePicked));
         setSelectedDate(datePicked);
         setSelectedFormattedDate(getFormattedDate(datePicked));
     };
 
     const onSubmit: SubmitHandler<RegisterFormValues> = (data) => {
         data.birth_date = selectedFormattedDate;
+        console.log("data", data);
         dispatch(registerUser(data));
     };
 

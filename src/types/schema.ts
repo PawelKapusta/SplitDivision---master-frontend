@@ -92,3 +92,30 @@ export const GroupSchema = yup.object().shape({
         .required("Group date created is a required field"),
     usersIdList: yup.array().of(yup.string().required("Value is required")),
 });
+
+export const BillSchema = yup.object().shape({
+    name: yup
+        .string()
+        .max(50, "Bill name cannot exceed more than 50 characters")
+        .required("Bill name is a required field"),
+    description: yup
+        .string()
+        .max(1024, "Bill description cannot exceed more than 1024 characters")
+        .required("Description is a required field"),
+    dataCreated: yup.string().required("DataCreated is a required field"),
+    dataEnd: yup.string().required("DataEnd is a required field"),
+    bill_image: yup.string().required(),
+    currency_type: yup
+        .string()
+        .max(20, "Currency type cannot exceed more than 20 characters")
+        .required(),
+    currency_code: yup
+        .string()
+        .max(5, "Currency code cannot exceed more than 5 characters")
+        .required(),
+    debt: yup.number().required(),
+    code_qr: yup.string().required(),
+    owner_id: yup.string().required(),
+    group_id: yup.string().required(),
+    usersIdList: yup.array().of(yup.string().required()).required(),
+});

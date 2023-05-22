@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import {
     fetchGroup,
     fetchGroupUsers,
+    fetchUserGroups,
     selectGroupState,
 } from "@redux/slices/groupSlice";
 import {
@@ -27,14 +28,27 @@ import { getFormattedDate } from "../../utils/date";
 import Spinner from "@components/spinner";
 import Avatar from "@mui/material/Avatar";
 import { User } from "../../types/user";
+import Modal from "@components/modal";
+import BillForm from "@components/forms/bill-form";
+import { withAuth } from "../../hocs/withAuth";
 
 const Group = (): JSX.Element => {
     const [isLongDescription, setIsLongDescription] = useState(false);
+    const [modalOpen, setModalOpen] = useState(false);
+
     const dispatch = useDispatch();
     const { isLoading, group, groupUsers } = useSelector(selectGroupState);
     const router = useRouter();
     const { groupId } = router.query;
     console.log(groupId);
+
+    const handleOpenModal = () => {
+        setModalOpen(true);
+    };
+
+    const handleCloseModal = () => {
+        setModalOpen(false);
+    };
 
     useEffect(() => {
         dispatch(fetchGroup(groupId as string));
@@ -92,7 +106,7 @@ const Group = (): JSX.Element => {
                             />
                         </GroupCardImage>
                     </GroupCardContent>
-                    <CreateBillButton>
+                    <CreateBillButton onClick={handleOpenModal}>
                         <Image
                             src="/icons/plus-icon.svg"
                             width={30}
@@ -101,6 +115,9 @@ const Group = (): JSX.Element => {
                         />
                         Create a bill
                     </CreateBillButton>
+                    <Modal isOpen={modalOpen} onClose={handleCloseModal}>
+                        <BillForm groupId={group?.id} />
+                    </Modal>
                     <CenterTitle>Group members</CenterTitle>
                     <Container>
                         {groupUsers &&
@@ -186,4 +203,4 @@ const Group = (): JSX.Element => {
     );
 };
 
-export default Group;
+export default withAuth(Group);

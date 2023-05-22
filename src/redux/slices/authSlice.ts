@@ -40,12 +40,14 @@ export const authSlice = createSlice({
         setLoading: (state) => {
             state.isLoading = true;
         },
-        registerSuccess: (state, action: PayloadAction<string>) => {
-            if (typeof window !== "undefined") {
-                localStorage.setItem("token", action.payload);
-            }
-            state.token = action.payload;
-            state.isAuthenticated = true;
+        registerSuccess: (state, action: PayloadAction<{ JWT: string }>) => {
+            // if (typeof window !== "undefined") {
+            //     localStorage.setItem("token", action.payload.JWT);
+            // }
+            // console.log("action", action.payload);
+            // state.token = action.payload.JWT;
+            // state.isAuthenticated = true;
+            state.isAuthenticated = false;
             state.isLoading = false;
         },
         loginSuccess: (
@@ -106,7 +108,8 @@ export const registerUser =
                 `${process.env.NEXT_PUBLIC_API_GATEWAY_URL}/users/register`,
                 formData,
             );
-            dispatch(registerSuccess(res.data.token));
+            console.log("data", res);
+            dispatch(registerSuccess(res.data));
         } catch (err) {
             let errorMessage = "An error occurred while registering",
                 mappedValidationError = "";

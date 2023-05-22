@@ -161,6 +161,20 @@ export const CustomDatePicker = styled.div`
         border: 1px solid #eaaf57;
     }
 
+    .react-datepicker-time__header {
+        background-color: black;
+        color: #eaaf57;
+    }
+
+    .react-datepicker__time-list li {
+        background-color: black;
+        color: #eaaf57;
+    }
+
+    .react-datepicker__time-list li:hover {
+        color: black;
+    }
+
     .react-datepicker__day-names {
         background-color: black;
         color: #fff;

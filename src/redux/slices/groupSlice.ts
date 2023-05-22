@@ -7,7 +7,7 @@ import axios from "axios";
 import { Dispatch } from "redux";
 import authAxios from "../../api/axios/axios";
 import { Group, GroupFormData } from "../../types/group";
-import { User } from "next-auth";
+import { User } from "../../types/user";
 
 interface GroupState {
     groups: Group[];
@@ -69,7 +69,7 @@ const groupSlice = createSlice({
             state.isLoading = true;
             state.error = null;
         },
-        getGroupUsersSuccess(state, action: PayloadAction<Group[]>) {
+        getGroupUsersSuccess(state, action: PayloadAction<User[]>) {
             state.groupUsers = action.payload;
             state.isLoading = false;
             state.groupUsersSuccess = true;

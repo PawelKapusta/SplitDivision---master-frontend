@@ -12,12 +12,14 @@ import { authSlice } from "./slices/authSlice";
 import { userSlice } from "./slices/userSlice";
 import { faqSlice } from "@redux/slices/faqSlice";
 import { groupSlice } from "@redux/slices/groupSlice";
+import { billSlice } from "@redux/slices/billSlice";
 
 const rootReducer = combineReducers({
     [authSlice.name]: authSlice.reducer,
     [userSlice.name]: userSlice.reducer,
     [faqSlice.name]: faqSlice.reducer,
     [groupSlice.name]: groupSlice.reducer,
+    [billSlice.name]: billSlice.reducer,
 });
 
 const makeConfiguredStore = () =>

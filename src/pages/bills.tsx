@@ -1,54 +1,54 @@
 import React, { useEffect } from "react";
 import { NextPage } from "next";
-import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import { selectAuthState } from "@redux/slices/authSlice";
 import { TDecodedJWTToken } from "../types/jwt";
 import { getDecodedJWTToken } from "../utils/jwt";
-import { fetchUserGroups, selectGroupState } from "@redux/slices/groupSlice";
+import { fetchUserBills, selectBillState } from "@redux/slices/billSlice";
 import Spinner from "@components/spinner";
-import GroupCard from "@components/cards/group-card";
-import { Group } from "../types/group";
-import { GroupsContainer } from "@styles/pages/groups.styles";
+import { BillsContainer } from "@styles/pages/bills.styles";
+import Link from "next/link";
+import BillCard from "@components/cards/bill-card";
+import { Bill } from "../types/bill";
 import { withAuth } from "../hocs/withAuth";
 
-const Groups: NextPage = () => {
+const Bills: NextPage = () => {
     const dispatch = useDispatch();
     const { isAuthenticated, token } = useSelector(selectAuthState);
-    const { isLoading, userGroups } = useSelector(selectGroupState);
+    const { isLoading, userBills } = useSelector(selectBillState);
     let decodedToken: TDecodedJWTToken, userId: string;
     if (isAuthenticated) {
         decodedToken = getDecodedJWTToken(token);
         userId = decodedToken.id;
     }
     useEffect(() => {
-        dispatch(fetchUserGroups(userId));
+        dispatch(fetchUserBills(userId));
     }, []);
 
-    console.log(userGroups);
+    console.log(userBills);
     return (
         <div>
             {isLoading ? (
                 <Spinner />
             ) : (
-                <GroupsContainer>
-                    <h2>My groups</h2>
-                    {!!userGroups &&
-                        userGroups.map((group: Group) => {
-                            return <GroupCard group={group} />;
+                <BillsContainer>
+                    <h2>My bills</h2>
+                    {!!userBills &&
+                        userBills.map((bill: Bill) => {
+                            return <BillCard bill={bill} />;
                         })}
-                    {userGroups.length === 0 ? (
+                    {userBills.length === 0 ? (
                         <h4>
-                            You don't have any groups. Please click here{" "}
-                            <Link href="/create/group">
+                            You don't have any bills. Go to your groups{" "}
+                            <Link href="/groups">
                                 <span>Click here!</span>
                             </Link>
                         </h4>
                     ) : null}
-                </GroupsContainer>
+                </BillsContainer>
             )}
         </div>
     );
 };
 
-export default withAuth(Groups);
+export default withAuth(Bills);
