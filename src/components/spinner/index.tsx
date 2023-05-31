@@ -1,10 +1,16 @@
 import CircularProgress from "@mui/material/CircularProgress";
 import { Container } from "./spinner.styles";
 
-export const Spinner = (): JSX.Element => {
+export type TSpinnerProps = {
+    isSmall?: boolean;
+};
+export const Spinner = ({ isSmall = false }: TSpinnerProps): JSX.Element => {
     return (
-        <Container>
-            <CircularProgress style={{ color: "#eaaf57" }} size={120} />
+        <Container isSmall>
+            <CircularProgress
+                style={{ color: "#eaaf57" }}
+                size={isSmall ? 60 : 120}
+            />
         </Container>
     );
 };

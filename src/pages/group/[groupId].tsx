@@ -31,6 +31,9 @@ import { User } from "../../types/user";
 import Modal from "@components/modal";
 import BillForm from "@components/forms/bill-form";
 import { withAuth } from "../../hocs/withAuth";
+import { fetchGroupBills, selectBillState } from "@redux/slices/billSlice";
+import { Bill } from "../../types/bill";
+import BillCard from "@components/cards/bill-card";
 
 const Group = (): JSX.Element => {
     const [isLongDescription, setIsLongDescription] = useState(false);
@@ -38,9 +41,15 @@ const Group = (): JSX.Element => {
 
     const dispatch = useDispatch();
     const { isLoading, group, groupUsers } = useSelector(selectGroupState);
+    const {
+        isLoading: billsLoading,
+        groupBills,
+        groupBillsSuccess,
+    } = useSelector(selectBillState);
     const router = useRouter();
     const { groupId } = router.query;
     console.log(groupId);
+    console.log("groupBills", groupBills);
 
     const handleOpenModal = () => {
         setModalOpen(true);
@@ -53,6 +62,7 @@ const Group = (): JSX.Element => {
     useEffect(() => {
         dispatch(fetchGroup(groupId as string));
         dispatch(fetchGroupUsers(groupId as string));
+        dispatch(fetchGroupBills(groupId as string));
     }, [groupId]);
 
     useEffect(() => {
@@ -194,9 +204,18 @@ const Group = (): JSX.Element => {
                             })}
                     </Container>
                     <CenterTitle>Bills in this group</CenterTitle>
-                    <h4>
-                        Group doesn't have any bills yet. Please create a bill.
-                    </h4>
+                    {billsLoading ? (
+                        <Spinner isSmall />
+                    ) : groupBillsSuccess ? (
+                        groupBills.map((bill: Bill) => {
+                            return <BillCard key={bill?.id} bill={bill} />;
+                        })
+                    ) : (
+                        <h4>
+                            Group doesn't have any bills yet. Please create a
+                            bill.
+                        </h4>
+                    )}
                 </GroupContainer>
             )}
         </div>

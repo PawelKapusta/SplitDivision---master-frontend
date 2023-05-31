@@ -1,13 +1,14 @@
 import styled from "styled-components";
 
-export const GroupCardLink = styled.a`
+export const CardLink = styled.a`
     width: 100%;
 `;
 
-export const GroupCardContainer = styled.div`
+export const CardContainer = styled.div<{ isBill?: boolean }>`
     display: flex;
     margin: 40px;
     height: 150px;
+    justify-content: ${({ isBill }) => (isBill ? "space-around" : "none")};
     background-color: white;
     border-radius: 20px;
     padding: 10px;
@@ -21,13 +22,14 @@ export const GroupCardContainer = styled.div`
     }
 `;
 
-export const GroupCardTitle = styled.div`
+export const CardTitle = styled.div`
     display: flex;
     flex-direction: column;
     width: 250px;
     margin-left: 10px;
     p {
         color: black;
+        margin-bottom: 5px;
     }
 
     p:nth-child(1) {
@@ -37,8 +39,8 @@ export const GroupCardTitle = styled.div`
     }
 `;
 
-export const GroupCardImage = styled.div`
-    width: 90%;
+export const CardImage = styled.div<{ isBill?: boolean }>`
+    width: ${({ isBill }) => (isBill ? "70%" : "90%")};
     height: 80px;
 
     img {
@@ -49,11 +51,21 @@ export const GroupCardImage = styled.div`
         border-radius: 20px;
     }
 `;
-
-export const GroupCardDescription = styled.div`
+export const CardDescription = styled.div`
     margin: 10px 0 0 10px;
 
     span {
         color: black;
+    }
+`;
+
+export const CardCost = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    p {
+        color: black;
+        font-weight: bold;
+        font-size: 24px;
     }
 `;

@@ -25,7 +25,7 @@ const Bills: NextPage = () => {
         dispatch(fetchUserBills(userId));
     }, []);
 
-    console.log(userBills);
+    console.log("userBills", userBills);
     return (
         <div>
             {isLoading ? (
@@ -35,7 +35,7 @@ const Bills: NextPage = () => {
                     <h2>My bills</h2>
                     {!!userBills &&
                         userBills.map((bill: Bill) => {
-                            return <BillCard bill={bill} />;
+                            return <BillCard key={bill?.id} bill={bill} />;
                         })}
                     {userBills.length === 0 ? (
                         <h4>

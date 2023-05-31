@@ -10,6 +10,7 @@ interface AuthState {
     isLoading: boolean;
     error: string | null;
     userId?: string;
+    registerSuccess: boolean;
 }
 
 const getInitialState = (): AuthState => {
@@ -20,6 +21,7 @@ const getInitialState = (): AuthState => {
             isAuthenticated: Boolean(token),
             isLoading: false,
             error: null,
+            registerSuccess: false,
         };
     } else {
         return {
@@ -27,6 +29,7 @@ const getInitialState = (): AuthState => {
             isAuthenticated: false,
             isLoading: false,
             error: null,
+            registerSuccess: false,
         };
     }
 };
@@ -44,9 +47,10 @@ export const authSlice = createSlice({
             // if (typeof window !== "undefined") {
             //     localStorage.setItem("token", action.payload.JWT);
             // }
-            // console.log("action", action.payload);
+            console.log("action", action.payload);
             // state.token = action.payload.JWT;
             // state.isAuthenticated = true;
+            state.registerSuccess = true;
             state.isAuthenticated = false;
             state.isLoading = false;
         },

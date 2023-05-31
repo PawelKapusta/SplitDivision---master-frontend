@@ -13,24 +13,28 @@ import { BillFormData } from "../../types/bill";
 interface BillState {
     bills: Bill[];
     userBills: Bill[];
+    groupBills: Bill[];
     billUsers: User[];
     bill: Bill | null;
     isLoading: boolean;
     error: string | null;
     success: boolean;
     userBillsSuccess: boolean;
+    groupBillsSuccess: boolean;
     billUsersSuccess: boolean;
 }
 
 const initialState: BillState = {
     bills: [],
     userBills: [],
+    groupBills: [],
     billUsers: [],
     bill: null,
     isLoading: false,
     error: null,
     success: false,
     userBillsSuccess: false,
+    groupBillsSuccess: false,
     billUsersSuccess: false,
 };
 
@@ -65,6 +69,20 @@ const billSlice = createSlice({
             state.isLoading = false;
             state.error = action.payload;
             state.userBillsSuccess = false;
+        },
+        getGroupBillsStart(state) {
+            state.isLoading = true;
+            state.error = null;
+        },
+        getGroupBillsSuccess(state, action: PayloadAction<Bill[]>) {
+            state.groupBills = action.payload;
+            state.isLoading = false;
+            state.groupBillsSuccess = true;
+        },
+        getGroupBillsFailure(state, action: PayloadAction<string>) {
+            state.isLoading = false;
+            state.error = action.payload;
+            state.groupBillsSuccess = false;
         },
         getBillUsersStart(state) {
             state.isLoading = true;
@@ -174,6 +192,9 @@ export const {
     getUserBillsStart,
     getUserBillsSuccess,
     getUserBillsFailure,
+    getGroupBillsStart,
+    getGroupBillsSuccess,
+    getGroupBillsFailure,
     getBillUsersStart,
     getBillUsersSuccess,
     getBillUsersFailure,
@@ -217,6 +238,22 @@ export const fetchUserBills =
             dispatch(getUserBillsSuccess(data));
         } catch (error) {
             dispatch(getUserBillsFailure(error as string));
+        }
+    };
+
+export const fetchGroupBills =
+    (groupId: string): AppThunk =>
+    async (dispatch: Dispatch) => {
+        try {
+            dispatch(getGroupBillsStart());
+            const response = await authAxios.get(
+                `${process.env.NEXT_PUBLIC_API_GATEWAY_URL}/bills/group/${groupId}`,
+            );
+            console.log("data", response);
+            const data = response.data;
+            dispatch(getGroupBillsSuccess(data));
+        } catch (error) {
+            dispatch(getGroupBillsFailure(error as string));
         }
     };
 

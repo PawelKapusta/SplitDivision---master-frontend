@@ -9,6 +9,7 @@ export const GroupContainer = styled.div`
     h4 {
         margin-top: 20px;
         color: #808080;
+        margin-bottom: 30px;
 
         span {
             color: #eaaf57;

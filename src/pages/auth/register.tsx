@@ -15,10 +15,15 @@ import { useRouter } from "next/router";
 const RegisterPage = () => {
     const { showAlert, AlertWrapper } = useAlert();
     const router = useRouter();
-    const { error, isAuthenticated } = useSelector(selectAuthState);
+    const { error, isAuthenticated, registerSuccess } =
+        useSelector(selectAuthState);
 
     if (isAuthenticated) {
         router.push("/");
+    }
+
+    if (registerSuccess) {
+        router.push("/auth/login");
     }
 
     useEffect(() => {
@@ -28,10 +33,10 @@ const RegisterPage = () => {
     }, [error]);
 
     useEffect(() => {
-        if (isAuthenticated) {
+        if (registerSuccess) {
             showAlert("Successfully created account", "success");
         }
-    }, [isAuthenticated]);
+    }, [registerSuccess]);
 
     return (
         <AuthContainer>
