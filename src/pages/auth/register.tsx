@@ -22,10 +22,6 @@ const RegisterPage = () => {
         router.push("/");
     }
 
-    if (registerSuccess) {
-        router.push("/auth/login");
-    }
-
     useEffect(() => {
         if (error !== null) {
             showAlert(error, "error");
@@ -36,7 +32,7 @@ const RegisterPage = () => {
         if (registerSuccess) {
             showAlert("Successfully created account", "success");
         }
-    }, [registerSuccess]);
+    }, []);
 
     return (
         <AuthContainer>

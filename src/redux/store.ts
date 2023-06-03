@@ -13,6 +13,7 @@ import { userSlice } from "./slices/userSlice";
 import { faqSlice } from "@redux/slices/faqSlice";
 import { groupSlice } from "@redux/slices/groupSlice";
 import { billSlice } from "@redux/slices/billSlice";
+import { currencySlice } from "@redux/slices/currencySlice";
 
 const rootReducer = combineReducers({
     [authSlice.name]: authSlice.reducer,
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
     [faqSlice.name]: faqSlice.reducer,
     [groupSlice.name]: groupSlice.reducer,
     [billSlice.name]: billSlice.reducer,
+    [currencySlice.name]: currencySlice.reducer,
 });
 
 const makeConfiguredStore = () =>

@@ -14,8 +14,8 @@ import {
     UsersSelector,
     BillCardContainer,
     DateLabel,
+    BillCustomDatePicker,
 } from "@styles/pages/create/bill.styles";
-import { CustomDatePicker } from "@styles/pages/auth/auth.styles";
 import LoadingButton from "@components/loading-button";
 import { BillSchema } from "../../types/schema";
 import { createBill, selectBillState } from "@redux/slices/billSlice";
@@ -155,21 +155,21 @@ const BillForm = ({ groupId }: TBillFormProps): JSX.Element => {
                         )}
                     </Error>
                     <DateLabel>Date start:</DateLabel>
-                    <CustomDatePicker>
+                    <BillCustomDatePicker>
                         <DatePicker
                             dateFormat="yyyy-MM-dd"
                             selected={selectedStartDate}
                             onChange={handleStartDateChange}
                         />
-                    </CustomDatePicker>
+                    </BillCustomDatePicker>
                     <DateLabel>Date end:</DateLabel>
-                    <CustomDatePicker>
+                    <BillCustomDatePicker>
                         <DatePicker
                             dateFormat="yyyy-MM-dd"
                             selected={selectedEndDate}
                             onChange={handleEndDateChange}
                         />
-                    </CustomDatePicker>
+                    </BillCustomDatePicker>
 
                     {billLoading && usersLoading ? (
                         <Spinner />

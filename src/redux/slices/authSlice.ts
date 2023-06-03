@@ -44,15 +44,13 @@ export const authSlice = createSlice({
             state.isLoading = true;
         },
         registerSuccess: (state, action: PayloadAction<{ JWT: string }>) => {
-            // if (typeof window !== "undefined") {
-            //     localStorage.setItem("token", action.payload.JWT);
-            // }
-            console.log("action", action.payload);
-            // state.token = action.payload.JWT;
-            // state.isAuthenticated = true;
             state.registerSuccess = true;
             state.isAuthenticated = false;
             state.isLoading = false;
+
+            setTimeout(() => {
+                state.registerSuccess = false;
+            }, 5000);
         },
         loginSuccess: (
             state,
@@ -65,7 +63,7 @@ export const authSlice = createSlice({
             state.isAuthenticated = true;
             state.isLoading = false;
             state.userId = action.payload.userId;
-            console.log(action.payload);
+            state.registerSuccess = false;
         },
         logoutSuccess: (state) => {
             if (typeof window !== "undefined") {
@@ -75,19 +73,17 @@ export const authSlice = createSlice({
             state.isAuthenticated = false;
             state.isLoading = false;
             state.error = null;
+            state.registerSuccess = false;
         },
         authError: (state, action: PayloadAction<string>) => {
             if (typeof window !== "undefined") {
                 localStorage.removeItem("token");
             }
-            console.log("auth state", state);
-            console.log("auth eroror", state.error);
             state.token = null;
             state.isAuthenticated = false;
             state.isLoading = false;
             state.error = action.payload;
-            console.log("action", action.payload);
-            console.log("error", state.error);
+            state.registerSuccess = false;
         },
     },
 });
@@ -112,7 +108,6 @@ export const registerUser =
                 `${process.env.NEXT_PUBLIC_API_GATEWAY_URL}/users/register`,
                 formData,
             );
-            console.log("data", res);
             dispatch(registerSuccess(res.data));
         } catch (err) {
             let errorMessage = "An error occurred while registering",
@@ -146,7 +141,6 @@ export const loginUser =
     (formData: LoginFormData) => async (dispatch: Dispatch) => {
         try {
             dispatch(setLoading());
-            console.log("formData", formData);
             const res = await axios.post(
                 `${process.env.NEXT_PUBLIC_API_GATEWAY_URL}/users/login`,
                 formData,
