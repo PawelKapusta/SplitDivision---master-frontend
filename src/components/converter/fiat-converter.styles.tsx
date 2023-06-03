@@ -4,7 +4,6 @@ export const Container = styled.div`
     display: flex;
     align-items: flex-start;
     justify-content: center;
-    height: 100vh;
 `;
 
 export const Converter = styled.div`
