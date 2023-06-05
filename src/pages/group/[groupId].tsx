@@ -46,6 +46,7 @@ const Group = (): JSX.Element => {
         groupBills,
         groupBillsSuccess,
     } = useSelector(selectBillState);
+    const { createBillSuccess } = useSelector(selectBillState);
     const router = useRouter();
     const { groupId } = router.query;
     console.log(groupId);
@@ -64,6 +65,16 @@ const Group = (): JSX.Element => {
         dispatch(fetchGroupUsers(groupId as string));
         dispatch(fetchGroupBills(groupId as string));
     }, [groupId]);
+
+    useEffect(() => {
+        dispatch(fetchGroupBills(groupId as string));
+    }, [createBillSuccess]);
+
+    useEffect(() => {
+        if (groupBillsSuccess) {
+            handleCloseModal(); // Close the modal after bill creation
+        }
+    }, [groupBillsSuccess]);
 
     useEffect(() => {
         setIsLongDescription(group?.description.length > 800);
@@ -126,7 +137,10 @@ const Group = (): JSX.Element => {
                         Create a bill
                     </CreateBillButton>
                     <Modal isOpen={modalOpen} onClose={handleCloseModal}>
-                        <BillForm groupId={group?.id} />
+                        <BillForm
+                            groupId={group?.id}
+                            handleCloseModal={handleCloseModal}
+                        />
                     </Modal>
                     <CenterTitle>Group members</CenterTitle>
                     <Container>

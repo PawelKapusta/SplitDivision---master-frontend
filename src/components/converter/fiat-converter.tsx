@@ -12,7 +12,7 @@ import {
     ButtonsList,
 } from "@components/converter/fiat-converter.styles";
 import Flag from "react-world-flags";
-import { FiatCurrency } from "../../types/fiatCurrency";
+import { Currency } from "../../types/currency";
 import { useDispatch, useSelector } from "react-redux";
 import {
     fetchFiatConvertedAmount,
@@ -28,11 +28,11 @@ const FiatConverter = () => {
         fiatCurrencies,
     } = useSelector(selectCurrencyState);
     const dispatch = useDispatch();
-    const [fromCurrency, setFromCurrency] = useState<FiatCurrency | null>({
+    const [fromCurrency, setFromCurrency] = useState<Currency | null>({
         code: "PLN",
         name: "Polish Złoty",
     });
-    const [toCurrency, setToCurrency] = useState<FiatCurrency | null>({
+    const [toCurrency, setToCurrency] = useState<Currency | null>({
         code: "USD",
         name: "United States Dollar",
     });
@@ -91,7 +91,7 @@ const FiatConverter = () => {
                                     onChange={(e) => {
                                         const selectedCurrency =
                                             fiatCurrencies.find(
-                                                (currency: FiatCurrency) =>
+                                                (currency: Currency) =>
                                                     currency.code ===
                                                     e.target.value,
                                             );
@@ -102,7 +102,7 @@ const FiatConverter = () => {
                                 >
                                     {fiatCurrencies &&
                                         fiatCurrencies.map(
-                                            (currency: FiatCurrency) => (
+                                            (currency: Currency) => (
                                                 <option
                                                     key={currency.code}
                                                     value={currency.code}
@@ -140,7 +140,7 @@ const FiatConverter = () => {
                                     onChange={(e) => {
                                         const selectedCurrency =
                                             fiatCurrencies.find(
-                                                (currency: FiatCurrency) =>
+                                                (currency: Currency) =>
                                                     currency.code ===
                                                     e.target.value,
                                             );
@@ -149,7 +149,7 @@ const FiatConverter = () => {
                                 >
                                     {fiatCurrencies &&
                                         fiatCurrencies.map(
-                                            (currency: FiatCurrency) => (
+                                            (currency: Currency) => (
                                                 <option
                                                     key={currency.code}
                                                     value={currency.code}

@@ -2,10 +2,10 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 import { AppState, AppThunk } from "../store";
 import { Dispatch } from "redux";
-import { currencyNames, FiatCurrency } from "../../types/fiatCurrency";
+import { fiatCurrencyNames, Currency } from "../../types/currency";
 
 interface CurrencyState {
-    fiatCurrencies: FiatCurrency[];
+    fiatCurrencies: Currency[];
     convertedFiatAmount: number | null;
     isLoading: boolean;
     isFiatConvertLoading: boolean;
@@ -28,7 +28,7 @@ const currencySlice = createSlice({
             state.isLoading = true;
             state.error = null;
         },
-        getFiatCurrenciesSuccess(state, action: PayloadAction<FiatCurrency[]>) {
+        getFiatCurrenciesSuccess(state, action: PayloadAction<Currency[]>) {
             console.log("action", action, action.payload);
             state.fiatCurrencies = action.payload;
             state.isLoading = false;
@@ -74,8 +74,8 @@ export const {
 } = currencySlice.actions;
 
 const getCurrencyName = (code: string) => {
-    const currency = currencyNames.find(
-        (currency: FiatCurrency) => currency.code === code,
+    const currency = fiatCurrencyNames.find(
+        (currency: Currency) => currency.code === code,
     );
     return currency ? currency.name : "";
 };
@@ -88,7 +88,7 @@ export const fetchFiatCurrencies =
             );
             const rates = response.data.rates;
             const currencyCodes = Object.keys(rates);
-            const currenciesData: FiatCurrency[] = currencyCodes.map(
+            const currenciesData: Currency[] = currencyCodes.map(
                 (code: string) => ({
                     code,
                     name: getCurrencyName(code),
@@ -101,11 +101,7 @@ export const fetchFiatCurrencies =
     };
 
 export const fetchFiatConvertedAmount =
-    (
-        fromCurrency: FiatCurrency,
-        toCurrency: FiatCurrency,
-        amount: number,
-    ): AppThunk =>
+    (fromCurrency: Currency, toCurrency: Currency, amount: number): AppThunk =>
     async (dispatch: Dispatch) => {
         try {
             dispatch(getFiatCurrencyConvertStart());

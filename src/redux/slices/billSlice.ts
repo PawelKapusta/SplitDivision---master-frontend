@@ -19,6 +19,7 @@ interface BillState {
     isLoading: boolean;
     error: string | null;
     success: boolean;
+    createBillSuccess: boolean;
     userBillsSuccess: boolean;
     groupBillsSuccess: boolean;
     billUsersSuccess: boolean;
@@ -34,6 +35,7 @@ const initialState: BillState = {
     error: null,
     success: false,
     userBillsSuccess: false,
+    createBillSuccess: false,
     groupBillsSuccess: false,
     billUsersSuccess: false,
 };
@@ -121,12 +123,12 @@ const billSlice = createSlice({
         createBillSuccess(state, action: PayloadAction<Bill>) {
             state.bills.push(action.payload);
             state.isLoading = false;
-            state.success = true;
+            state.createBillSuccess = true;
         },
         createBillFailure(state, action: PayloadAction<string>) {
             state.isLoading = false;
             state.error = action.payload;
-            state.success = false;
+            state.createBillSuccess = false;
         },
 
         updateBillStart(state) {

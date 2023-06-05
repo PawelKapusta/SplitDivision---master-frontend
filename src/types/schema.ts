@@ -102,20 +102,52 @@ export const BillSchema = yup.object().shape({
         .string()
         .max(1024, "Bill description cannot exceed more than 1024 characters")
         .required("Description is a required field"),
-    dataCreated: yup.string().required("DataCreated is a required field"),
-    dataEnd: yup.string().required("DataEnd is a required field"),
-    bill_image: yup.string().required(),
+    data_created: yup.string().required("Data created is a required field"),
+    data_end: yup
+        .string()
+        .test(
+            "date-range-validation",
+            "Start date must be less than or equal to end date",
+            function (value) {
+                const startDate = this.parent.data_created
+                    ? new Date(this.parent.data_created)
+                    : null;
+                const endDate = value ? new Date(value) : null;
+                if (startDate && endDate) {
+                    return startDate <= endDate;
+                }
+                return true;
+            },
+        )
+        .test(
+            "date-today-validation",
+            "End date must at least must be from tomorrow",
+            function (value) {
+                const endDate = value ? new Date(value) : null;
+                const today = new Date();
+                if (endDate) {
+                    const endDateTimestamp = endDate.getTime();
+                    const todayTimestamp = today.getTime();
+                    return endDateTimestamp > todayTimestamp;
+                }
+                return true;
+            },
+        )
+        .required("Data end is a required field"),
+    bill_image: yup.string(),
     currency_type: yup
         .string()
-        .max(20, "Currency type cannot exceed more than 20 characters")
-        .required(),
+        .max(20, "Currency type cannot exceed more than 20 characters"),
     currency_code: yup
         .string()
-        .max(5, "Currency code cannot exceed more than 5 characters")
+        .max(5, "Currency code cannot exceed more than 5 characters"),
+    debt: yup
+        .number()
+        .typeError("Debt must be a valid number")
+        .min(0, "Debt must be at least 0")
         .required(),
-    debt: yup.number().required(),
-    code_qr: yup.string().required(),
-    owner_id: yup.string().required(),
-    group_id: yup.string().required(),
-    usersIdList: yup.array().of(yup.string().required()).required(),
+    code_qr: yup.string(),
+    owner_id: yup.string(),
+    group_id: yup.string(),
+    usersIdList: yup.array().of(yup.string()),
 });

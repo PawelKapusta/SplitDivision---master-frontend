@@ -32,7 +32,7 @@ const CryptoConverter = () => {
                 const response = await axios.get<any[]>(
                     "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false",
                 );
-                console.log("data", response.data);
+
                 const cryptoList = response.data.map((crypto) => crypto.id);
                 setCryptocurrencies(cryptoList);
                 console.log("cryptoList", cryptoList);

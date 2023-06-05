@@ -8,7 +8,7 @@ export const FormCard = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 550px;
+    height: 750px;
     width: 1000px;
 
     //button:nth-child(7) {
@@ -39,6 +39,15 @@ export const Input = styled.input`
     &:nth-child(1) {
         margin-top: 30px;
     }
+`;
+
+export const DebtInput = styled.input`
+    width: 100%;
+    border-radius: 5px;
+    height: 43px;
+    font-size: 20px;
+    border-color: #eaaf57;
+    padding: 10px;
 `;
 
 export const InputDescription = styled.textarea`
@@ -221,4 +230,28 @@ export const BillCustomDatePicker = styled.div`
     .react-datepicker__day--disabled {
         color: #ccc;
     }
+`;
+
+export const CurrencySelectorContainer = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+
+    img {
+        width: 50px;
+        margin-right: 10px;
+    }
+`;
+
+export const CurrencySelector = styled.select`
+    padding: 10px;
+    border: 1px solid #eaaf57;
+    border-radius: 4px;
+    font-size: 18px;
+    margin: 10px;
+`;
+
+export const CurrencyOption = styled.option`
+    font-size: 18px;
 `;

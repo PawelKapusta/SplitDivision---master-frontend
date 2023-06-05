@@ -35,7 +35,7 @@ const Groups: NextPage = () => {
                     <h2>My groups</h2>
                     {!!userGroups &&
                         userGroups.map((group: Group) => {
-                            return <GroupCard group={group} />;
+                            return <GroupCard key={group.id} group={group} />;
                         })}
                     {userGroups.length === 0 ? (
                         <h4>
