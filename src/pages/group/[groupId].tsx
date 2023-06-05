@@ -136,7 +136,11 @@ const Group = (): JSX.Element => {
                         />
                         Create a bill
                     </CreateBillButton>
-                    <Modal isOpen={modalOpen} onClose={handleCloseModal}>
+                    <Modal
+                        isOpen={modalOpen}
+                        onClose={handleCloseModal}
+                        isAdmin={false}
+                    >
                         <BillForm
                             groupId={group?.id}
                             handleCloseModal={handleCloseModal}

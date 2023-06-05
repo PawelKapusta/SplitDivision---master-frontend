@@ -19,6 +19,7 @@ interface GroupState {
     success: boolean;
     userGroupsSuccess: boolean;
     groupUsersSuccess: boolean;
+    deleteGroupSuccess: boolean;
 }
 
 const initialState: GroupState = {
@@ -31,6 +32,7 @@ const initialState: GroupState = {
     success: false,
     userGroupsSuccess: false,
     groupUsersSuccess: false,
+    deleteGroupSuccess: false,
 };
 
 const groupSlice = createSlice({
@@ -136,12 +138,12 @@ const groupSlice = createSlice({
         deleteGroupSuccess(state, action: PayloadAction<string>) {
             state.groups = state.groups.filter((u) => u.id !== action.payload);
             state.isLoading = false;
-            state.success = true;
+            state.deleteGroupSuccess = true;
         },
         deleteGroupFailure(state, action: PayloadAction<string>) {
             state.isLoading = false;
             state.error = action.payload;
-            state.success = false;
+            state.deleteGroupSuccess = false;
         },
         groupError: (state, action: PayloadAction<string>) => {
             console.log("auth state", state);
@@ -254,7 +256,7 @@ export const createGroup =
     async (dispatch: Dispatch) => {
         try {
             dispatch(createGroupStart());
-            const response = await axios.post(
+            const response = await authAxios.post(
                 `${process.env.NEXT_PUBLIC_API_GATEWAY_URL}/groups`,
                 group,
             );
@@ -270,7 +272,7 @@ export const updateGroup =
     async (dispatch: Dispatch) => {
         try {
             dispatch(updateGroupStart());
-            const response = await axios.put(
+            const response = await authAxios.put(
                 `${process.env.NEXT_PUBLIC_API_GATEWAY_URL}/groups/${id}`,
                 group,
             );
@@ -286,7 +288,7 @@ export const deleteGroup =
     async (dispatch: Dispatch) => {
         try {
             dispatch(deleteGroupStart());
-            await axios.delete(
+            await authAxios.delete(
                 `${process.env.NEXT_PUBLIC_API_GATEWAY_URL}/groups/${id}`,
             );
             dispatch(deleteGroupSuccess(id));

@@ -73,3 +73,9 @@ export const Avatar = styled.div`
         }
     }
 `;
+
+export const AdminLinks = styled.span`
+    a {
+        color: red;
+    }
+`;

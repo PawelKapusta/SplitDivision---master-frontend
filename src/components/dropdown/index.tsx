@@ -1,17 +1,32 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import {
     DropdownContainer,
     DropdownMenu,
     DropdownToggle,
     Avatar,
+    AdminLinks,
 } from "@components/dropdown/dropdown.styles";
-import { useDispatch } from "react-redux";
-import { logoutUser } from "@redux/slices/authSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { logoutUser, selectAuthState } from "@redux/slices/authSlice";
+import { useRouter } from "next/router";
+import { TDecodedJWTToken } from "../../types/jwt";
+import { getDecodedJWTToken } from "../../utils/jwt";
+import { fetchUser, selectUserState } from "@redux/slices/userSlice";
 
 const Dropdown = (): JSX.Element => {
     const [isOpen, setIsOpen] = useState(false);
     const dispatch = useDispatch();
+    const { isAuthenticated, token } = useSelector(selectAuthState);
+    let decodedToken: TDecodedJWTToken, userId: string;
+    if (isAuthenticated) {
+        decodedToken = getDecodedJWTToken(token);
+        userId = decodedToken.id;
+    }
+    const { user } = useSelector(selectUserState);
+    useEffect(() => {
+        dispatch(fetchUser(userId));
+    }, [isAuthenticated]);
 
     const logout = async () => {
         await dispatch(logoutUser());
@@ -40,6 +55,14 @@ const Dropdown = (): JSX.Element => {
                     <a href="/groups">Groups</a>
                     <a href="/bills">Bills</a>
                     <a href="/statistics">Statistics</a>
+                    {user && user?.is_admin ? (
+                        <AdminLinks>
+                            <a href="/admin/users">All users</a>
+                            <a href="/admin/groups">All groups</a>
+                            <a href="/admin/bills">All bills</a>
+                            <a href="/admin/faq">Create FAQ</a>
+                        </AdminLinks>
+                    ) : null}
                     <a href="" onClick={() => logout()}>
                         Logout
                     </a>

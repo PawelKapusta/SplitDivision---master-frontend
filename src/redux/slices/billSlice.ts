@@ -284,6 +284,7 @@ export const fetchBill =
                 `${process.env.NEXT_PUBLIC_API_GATEWAY_URL}/bills/${id}`,
             );
             const data = response.data;
+            console.log("data", data);
             dispatch(getBillSuccess(data));
         } catch (error) {
             dispatch(getBillFailure(error as string));

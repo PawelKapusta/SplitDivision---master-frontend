@@ -4,18 +4,21 @@ export const CardLink = styled.a`
     width: 100%;
 `;
 
-export const CardContainer = styled.div<{ isBill?: boolean }>`
+export const CardContainer = styled.div<{
+    isBill?: boolean;
+    isAdmin?: boolean;
+}>`
     display: flex;
     margin: 40px;
     height: 150px;
     justify-content: ${({ isBill }) => (isBill ? "space-around" : "none")};
-    background-color: white;
+    background-color: ${({ isAdmin }) => (isAdmin ? "#D3D3D3" : "white")};
     border-radius: 20px;
     padding: 10px;
     cursor: pointer;
     font-size: 20px;
     & * {
-        background-color: white;
+        background-color: ${({ isAdmin }) => (isAdmin ? "#D3D3D3" : "white")};
     }
     &:hover {
         box-shadow: 0 0 20px #fff;

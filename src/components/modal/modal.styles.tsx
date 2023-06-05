@@ -13,7 +13,7 @@ export const ModalContainer = styled.div<{ isOpen: boolean }>`
     z-index: 1;
 `;
 
-export const ModalContent = styled.div`
+export const ModalContent = styled.div<{ isAdmin?: boolean }>`
     display: flex;
     align-items: center;
     justify-content: center;
@@ -22,7 +22,7 @@ export const ModalContent = styled.div`
     border: 1px solid #b77d30;
     padding: 20px;
     border-radius: 8px;
-    max-width: 1500px;
+    max-width: ${({ isAdmin }) => (isAdmin ? "800px" : "1500px")};
     width: 100%;
     text-align: center;
 

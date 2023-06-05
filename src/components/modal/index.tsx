@@ -5,12 +5,18 @@ export type TModalProps = {
     isOpen: boolean;
     onClose: () => void;
     children: React.ReactNode;
+    isAdmin?: boolean;
 };
 
-const Modal = ({ isOpen, onClose, children }: TModalProps): JSX.Element => {
+const Modal = ({
+    isOpen,
+    onClose,
+    children,
+    isAdmin,
+}: TModalProps): JSX.Element => {
     return (
         <ModalContainer isOpen={isOpen}>
-            <ModalContent>
+            <ModalContent isAdmin={isAdmin}>
                 {children}
                 <button onClick={onClose}>
                     <Image
