@@ -15,6 +15,7 @@ interface UserState {
     error: string | null;
     success: boolean;
     successUpdate: boolean;
+    successDeleteUser: boolean;
 }
 
 const initialState: UserState = {
@@ -24,6 +25,7 @@ const initialState: UserState = {
     error: null,
     success: false,
     successUpdate: false,
+    successDeleteUser: false,
 };
 
 const userSlice = createSlice({
@@ -100,12 +102,12 @@ const userSlice = createSlice({
         deleteUserSuccess(state, action: PayloadAction<string>) {
             state.users = state.users.filter((u) => u.id !== action.payload);
             state.isLoading = false;
-            state.success = true;
+            state.successDeleteUser = true;
         },
         deleteUserFailure(state, action: PayloadAction<string>) {
             state.isLoading = false;
             state.error = action.payload;
-            state.success = false;
+            state.successDeleteUser = false;
         },
         userError: (state, action: PayloadAction<string>) => {
             console.log("auth state", state);
@@ -214,7 +216,7 @@ export const deleteUser =
     async (dispatch: Dispatch) => {
         try {
             dispatch(deleteUserStart());
-            await axios.delete(
+            await authAxios.delete(
                 `${process.env.NEXT_PUBLIC_API_GATEWAY_URL}/users/${id}`,
             );
             dispatch(deleteUserSuccess(id));

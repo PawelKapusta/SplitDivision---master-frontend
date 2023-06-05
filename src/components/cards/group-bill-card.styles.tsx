@@ -28,6 +28,7 @@ export const CardContainer = styled.div<{
 export const CardTitle = styled.div`
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
     width: 250px;
     margin-left: 10px;
     p {

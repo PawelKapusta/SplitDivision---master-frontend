@@ -22,7 +22,7 @@ export const DeleteIconButton = styled.button`
     width: 100px;
     border-color: red;
     cursor: pointer;
-    background-color: red;
+    background-color: red !important;
     margin-right: 10px;
 
     img {
@@ -41,7 +41,7 @@ export const GoIconButton = styled.button`
     width: 70px;
     border-color: dodgerblue;
     cursor: pointer;
-    background-color: dodgerblue;
+    background-color: dodgerblue !important;
 
     img {
         border-radius: 50%;
@@ -60,10 +60,10 @@ export const DeleteModalContent = styled.div`
     flex-direction: column;
     height: 200px;
     width: 100%;
-    background-color: black;
+    background-color: black !important;
 
     & > * {
-        background-color: black;
+        background-color: black !important;
     }
     button {
         position: absolute;

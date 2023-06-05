@@ -23,6 +23,7 @@ interface BillState {
     userBillsSuccess: boolean;
     groupBillsSuccess: boolean;
     billUsersSuccess: boolean;
+    deleteBillSuccess: boolean;
 }
 
 const initialState: BillState = {
@@ -38,6 +39,7 @@ const initialState: BillState = {
     createBillSuccess: false,
     groupBillsSuccess: false,
     billUsersSuccess: false,
+    deleteBillSuccess: false,
 };
 
 const billSlice = createSlice({
@@ -157,12 +159,12 @@ const billSlice = createSlice({
         deleteBillSuccess(state, action: PayloadAction<string>) {
             state.bills = state.bills.filter((u) => u.id !== action.payload);
             state.isLoading = false;
-            state.success = true;
+            state.deleteBillSuccess = true;
         },
         deleteBillFailure(state, action: PayloadAction<string>) {
             state.isLoading = false;
             state.error = action.payload;
-            state.success = false;
+            state.deleteBillSuccess = false;
         },
         billError: (state, action: PayloadAction<string>) => {
             console.log("auth state", state);
@@ -296,7 +298,7 @@ export const createBill =
     async (dispatch: Dispatch) => {
         try {
             dispatch(createBillStart());
-            const response = await axios.post(
+            const response = await authAxios.post(
                 `${process.env.NEXT_PUBLIC_API_GATEWAY_URL}/bills`,
                 bill,
             );
@@ -312,7 +314,7 @@ export const updateBill =
     async (dispatch: Dispatch) => {
         try {
             dispatch(updateBillStart());
-            const response = await axios.put(
+            const response = await authAxios.put(
                 `${process.env.NEXT_PUBLIC_API_GATEWAY_URL}/bills/${id}`,
                 bill,
             );
@@ -328,7 +330,7 @@ export const deleteBill =
     async (dispatch: Dispatch) => {
         try {
             dispatch(deleteBillStart());
-            await axios.delete(
+            await authAxios.delete(
                 `${process.env.NEXT_PUBLIC_API_GATEWAY_URL}/bills/${id}`,
             );
             dispatch(deleteBillSuccess(id));
