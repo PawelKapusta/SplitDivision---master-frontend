@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { ReactElement, useEffect } from "react";
 import { withAdmin } from "../../hocs/withAdmin";
 import { useDispatch, useSelector } from "react-redux";
 import Spinner from "@components/spinner";
@@ -8,7 +8,7 @@ import { fetchBills, selectBillState } from "@redux/slices/billSlice";
 import { Bill } from "../../types/bill";
 import BillCard from "@components/cards/bill-card";
 
-const Bills = () => {
+const Bills = (): ReactElement => {
     const dispatch = useDispatch();
     const { isLoading, bills } = useSelector(selectBillState);
     const { AlertWrapper } = useAlert();

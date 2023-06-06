@@ -20,36 +20,35 @@ const FooterContainer = (): JSX.Element => {
                     <Grid item lg={3} md={3} xs={6}>
                         <Column>
                             <Title>About Us</Title>
-                            <Link href="#">Story</Link>
-                            <Link href="#">Clients</Link>
-                            <Link href="#">Testimonials</Link>
+                            <Link href="#">Careers</Link>
+                            <Link href="#">Investors</Link>
+                            <Link href="#">Company Blog</Link>
+                        </Column>
+                    </Grid>
+                    <Grid item lg={3} md={3} xs={6}>
+                        <Column>
+                            <Title>Top Cities</Title>
+                            <Link href="#">Cracow</Link>
+                            <Link href="#">San Diego</Link>
+                            <Link href="#">London</Link>
+                            <Link href="#">Chicago</Link>
                         </Column>
                     </Grid>
                     <Grid item lg={3} md={3} xs={6}>
                         <Column>
                             <Title>Services</Title>
-                            <Link href="#">Marketing</Link>
-                            <Link href="#">Consulting</Link>
                             <Link href="#">Development</Link>
-                            <Link href="#">Design</Link>
-                        </Column>
-                    </Grid>
-                    <Grid item lg={3} md={3} xs={6}>
-                        <Column>
-                            <Title>Contact Us</Title>
-                            <Link href="#">United States</Link>
-                            <Link href="#">United Kingdom</Link>
-                            <Link href="#">Australia</Link>
-                            <Link href="#">Support</Link>
+                            <Link href="#">Stage</Link>
+                            <Link href="#">Production</Link>
                         </Column>
                     </Grid>
                     <Grid item lg={3} md={3} xs={6}>
                         <Column>
                             <Title>Social</Title>
-                            <Link href="#">Facebook</Link>
                             <Link href="#">Instagram</Link>
-                            <Link href="#">Youtube</Link>
                             <Link href="#">Twitter</Link>
+                            <Link href="#">Facebook</Link>
+                            <Link href="#">Linkedin</Link>
                         </Column>
                     </Grid>
                 </Grid>

@@ -11,8 +11,11 @@ import {
 } from "@styles/pages/auth/auth.styles";
 import { useEffect } from "react";
 import useAlert from "../../hocs/useAlert";
+import { NextPage } from "next";
 
-const LoginPage = () => {
+const LoginPage: NextPage & {
+    excludeLayout: boolean;
+} = () => {
     const { error, isAuthenticated } = useSelector(selectAuthState);
     const { showAlert, AlertWrapper } = useAlert();
     const router = useRouter();

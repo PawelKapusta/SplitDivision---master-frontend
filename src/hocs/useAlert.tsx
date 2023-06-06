@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { ReactElement, useState } from "react";
 import MaterialUIAlert from "@components/alert";
 import { TAlertProps } from "@components/alert";
 interface UseAlertResult {
@@ -15,7 +15,7 @@ const useAlert = (): UseAlertResult => {
         }, 5000);
     };
 
-    const AlertWrapper: React.FC = () => {
+    const AlertWrapper = (): ReactElement => {
         return (
             <div
                 style={{

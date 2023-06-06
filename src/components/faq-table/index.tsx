@@ -1,10 +1,10 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import { FAQTable, FAQList, FAQQuestion, FAQAnswer } from "./faq-table.styles";
 import { useSelector } from "react-redux";
 import { selectFaqState } from "@redux/slices/faqSlice";
 import { FAQ } from "../../types/faq";
 
-const FaqTable = (): JSX.Element => {
+const FaqTable = (): ReactElement => {
     const { faqs } = useSelector(selectFaqState);
     return (
         <FAQTable>

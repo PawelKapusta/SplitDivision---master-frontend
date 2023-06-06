@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { selectAuthState } from "@redux/slices/authSlice";
 
 interface WithAuthProps {
-    children: ReactElement;
+    children: ReactElement | null;
 }
 
 const WithAuthComponent: NextPage<WithAuthProps> = ({ children }) => {
@@ -20,9 +20,7 @@ const WithAuthComponent: NextPage<WithAuthProps> = ({ children }) => {
     return children;
 };
 
-export const withAuth = (
-    PageComponent: NextPage<any>,
-): NextPage<WithAuthProps> => {
+export const withAuth = (PageComponent: NextPage): NextPage<WithAuthProps> => {
     const WrappedComponent: NextPage<WithAuthProps> = (props) => {
         return (
             <WithAuthComponent>
@@ -31,12 +29,14 @@ export const withAuth = (
         );
     };
 
-    WrappedComponent.getInitialProps = async (ctx: NextPageContext) => {
+    WrappedComponent.getInitialProps = async (
+        context: NextPageContext,
+    ): Promise<WithAuthProps> => {
         const componentProps = PageComponent.getInitialProps
-            ? await PageComponent.getInitialProps(ctx)
+            ? await PageComponent.getInitialProps(context)
             : {};
 
-        return { ...componentProps };
+        return { ...componentProps, children: null };
     };
 
     return WrappedComponent;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import Image from "next/image";
 
 import { Card, CardText } from "@styles/pages/home.styles";
@@ -8,7 +8,7 @@ export type TCardContent = {
     text: string;
 };
 
-const CardContent = ({ src, text }: TCardContent): JSX.Element => {
+const CardContent = ({ src, text }: TCardContent): ReactElement => {
     return (
         <Card>
             <Image

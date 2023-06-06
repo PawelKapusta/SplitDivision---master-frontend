@@ -1,3 +1,4 @@
+import React, { ReactElement } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser, selectAuthState } from "@redux/slices/authSlice";
@@ -11,7 +12,7 @@ import {
 } from "@styles/pages/auth/auth.styles";
 import LoadingButton from "@components/loading-button";
 
-const LoginForm = (): JSX.Element => {
+const LoginForm = (): ReactElement => {
     const {
         register,
         handleSubmit,

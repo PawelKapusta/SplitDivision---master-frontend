@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, ReactElement } from "react";
 import styled from "styled-components";
 import axios from "axios";
 // Styled Components
@@ -38,7 +38,7 @@ const Result = styled.p`
     font-size: 18px;
 `;
 
-const CryptoConverter = () => {
+const CryptoConverter = (): ReactElement => {
     const [amount, setAmount] = useState<number>(0);
     const [fiatCurrency, setFiatCurrency] = useState<string>("usd");
     const [cryptoCurrency, setCryptoCurrency] = useState<string>("bitcoin");

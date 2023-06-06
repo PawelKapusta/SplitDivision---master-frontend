@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, ReactElement } from "react";
 import Image from "next/image";
 import {
     DropdownContainer,
@@ -14,7 +14,7 @@ import { TDecodedJWTToken } from "../../types/jwt";
 import { getDecodedJWTToken } from "../../utils/jwt";
 import { fetchUser, selectUserState } from "@redux/slices/userSlice";
 
-const Dropdown = (): JSX.Element => {
+const Dropdown = (): ReactElement => {
     const [isOpen, setIsOpen] = useState(false);
     const dispatch = useDispatch();
     const { isAuthenticated, token } = useSelector(selectAuthState);

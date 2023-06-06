@@ -11,8 +11,9 @@ import useAlert from "../../hocs/useAlert";
 import { useSelector } from "react-redux";
 import { selectAuthState } from "@redux/slices/authSlice";
 import { useRouter } from "next/router";
+import { NextPage } from "next";
 
-const RegisterPage = () => {
+const RegisterPage: NextPage & { excludeLayout: true } = () => {
     const { showAlert, AlertWrapper } = useAlert();
     const router = useRouter();
     const { error, isAuthenticated, registerSuccess } =

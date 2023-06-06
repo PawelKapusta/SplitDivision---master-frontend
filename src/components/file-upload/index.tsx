@@ -1,6 +1,6 @@
-import React, { useState, ChangeEvent } from "react";
+import React, { useState, ChangeEvent, ReactElement } from "react";
 
-const FileUpload: React.FC = () => {
+const FileUpload = (): ReactElement => {
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
     const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {

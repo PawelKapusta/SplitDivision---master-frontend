@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import Image from "next/image";
 import { ModalContainer, ModalContent } from "./modal.styles";
 export type TModalProps = {
@@ -13,7 +13,7 @@ const Modal = ({
     onClose,
     children,
     isAdmin,
-}: TModalProps): JSX.Element => {
+}: TModalProps): ReactElement => {
     return (
         <ModalContainer isOpen={isOpen}>
             <ModalContent isAdmin={isAdmin}>

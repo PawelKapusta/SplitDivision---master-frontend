@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { ReactElement, useEffect } from "react";
 import { withAdmin } from "../../hocs/withAdmin";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchGroups, selectGroupState } from "@redux/slices/groupSlice";
@@ -8,7 +8,7 @@ import GroupCard from "@components/cards/group-card";
 import { Title } from "@styles/pages/admin/admin.styles";
 import useAlert from "../../hocs/useAlert";
 
-const Groups = () => {
+const Groups = (): ReactElement => {
     const dispatch = useDispatch();
     const { isLoading, groups } = useSelector(selectGroupState);
     const { AlertWrapper } = useAlert();

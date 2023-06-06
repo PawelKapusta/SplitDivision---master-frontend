@@ -1,10 +1,11 @@
 import CircularProgress from "@mui/material/CircularProgress";
 import { Container } from "./spinner.styles";
+import { ReactElement } from "react";
 
 export type TSpinnerProps = {
     isSmall?: boolean;
 };
-export const Spinner = ({ isSmall = false }: TSpinnerProps): JSX.Element => {
+export const Spinner = ({ isSmall = false }: TSpinnerProps): ReactElement => {
     return (
         <Container isSmall>
             <CircularProgress

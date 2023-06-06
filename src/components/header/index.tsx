@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, ReactElement } from "react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import Dropdown from "@components/dropdown";
@@ -18,7 +18,7 @@ import {
 import { useSelector } from "react-redux";
 import { selectAuthState } from "@redux/slices/authSlice";
 
-const Header = (): JSX.Element => {
+const Header = (): ReactElement => {
     const [showMenu, setShowMenu] = useState(false);
     const { isAuthenticated } = useSelector(selectAuthState);
     const toggleMenu = () => {

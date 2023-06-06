@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import { AppProps } from "next/app";
 import Head from "next/head";
 import { SessionProvider } from "next-auth/react";
@@ -23,7 +23,7 @@ interface PageWithLayout<P = Record<string, never>> extends React.FC<P> {
 function MyApp({
     Component,
     pageProps: { session, ...pageProps },
-}: MyAppProps): JSX.Element {
+}: MyAppProps): ReactElement {
     const store: any = useStore();
 
     return (

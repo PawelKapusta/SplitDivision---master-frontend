@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import CircularProgress from "@mui/material/CircularProgress";
 import { TButton } from "../../types/button";
 import { Button } from "./loading-button.styles";
@@ -15,7 +15,7 @@ const LoadingButton = ({
     disabled,
     children,
     variety,
-}: TLoadingButtonProps): JSX.Element => {
+}: TLoadingButtonProps): ReactElement => {
     return (
         <Button
             disabled={loading || disabled}

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, ReactElement } from "react";
 import {
     Container,
     Converter,
@@ -20,7 +20,7 @@ import {
 } from "@redux/slices/currencySlice";
 import Spinner from "@components/spinner";
 
-const FiatConverter = () => {
+const FiatConverter = (): ReactElement => {
     const {
         isLoading,
         isFiatConvertLoading,

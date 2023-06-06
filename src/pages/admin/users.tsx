@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { ReactElement, useEffect, useState } from "react";
 import { withAdmin } from "../../hocs/withAdmin";
 import { useDispatch, useSelector } from "react-redux";
 import Spinner from "@components/spinner";
@@ -22,7 +22,7 @@ import styled from "styled-components";
 import Image from "next/image";
 import Modal from "@components/modal";
 
-const Users = () => {
+const Users = (): ReactElement => {
     const dispatch = useDispatch();
     const [modalOpen, setModalOpen] = useState(false);
     const [userIdToDelete, setUserIdToDelete] = useState<string>();

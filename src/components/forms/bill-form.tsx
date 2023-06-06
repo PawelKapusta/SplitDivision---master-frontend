@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, ReactElement } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { BillFormData } from "../../types/bill";
 import { useDispatch, useSelector } from "react-redux";
@@ -54,7 +54,7 @@ export type TBillFormProps = {
 const BillForm = ({
     groupId,
     handleCloseModal,
-}: TBillFormProps): JSX.Element => {
+}: TBillFormProps): ReactElement => {
     const dispatch = useDispatch();
     const { showAlert, AlertWrapper } = useAlert();
     const { isAuthenticated, token } = useSelector(selectAuthState);

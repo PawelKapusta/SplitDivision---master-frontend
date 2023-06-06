@@ -1,4 +1,4 @@
-import { useEffect, useState, ChangeEvent } from "react";
+import { useEffect, useState, ChangeEvent, ReactElement } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import LoadingButton from "@components/loading-button";
@@ -23,7 +23,7 @@ import useAlert from "../../hocs/useAlert";
 
 const schema = yup.object().shape(UpdateProfileSchema);
 
-const ProfileForm = (): JSX.Element => {
+const ProfileForm = (): ReactElement => {
     const {
         isLoading,
         user,

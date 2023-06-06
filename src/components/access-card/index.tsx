@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import Image from "next/image";
 
 import {
@@ -13,7 +13,7 @@ export type TAccessCard = {
     children: React.ReactNode;
 };
 
-const AccessCard = ({ imageSrc, children }: TAccessCard): JSX.Element => {
+const AccessCard = ({ imageSrc, children }: TAccessCard): ReactElement => {
     return (
         <Card>
             <ImageContainer>

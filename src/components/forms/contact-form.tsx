@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent, FormEvent } from "react";
+import React, { useState, ChangeEvent, FormEvent, ReactElement } from "react";
 import emailjs from "emailjs-com";
 import { useSelector } from "react-redux";
 import { selectUserState } from "@redux/slices/userSlice";
@@ -11,7 +11,7 @@ import {
 import LoadingButton from "@components/loading-button";
 import useAlert from "../../hocs/useAlert";
 
-const ContactForm = (): JSX.Element => {
+const ContactForm = (): ReactElement => {
     const [formState, setFormState] = useState({
         topic: "",
         description: "",

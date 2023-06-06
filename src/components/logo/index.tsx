@@ -1,9 +1,9 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import Image from "next/image";
 
 import { LogoContainer } from "@components/logo/logo.styles";
 
-const Logo = (): JSX.Element => {
+const Logo = (): ReactElement => {
     return (
         <LogoContainer>
             <Image

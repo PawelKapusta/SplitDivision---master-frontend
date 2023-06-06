@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import { Container, AlertIcon } from "./alert.styles";
 import { alertTypes } from "../../types/alert";
 
@@ -7,7 +7,7 @@ export type TAlertProps = {
     type: keyof typeof alertTypes;
 };
 
-const AlertContainer = ({ message, type }: TAlertProps): JSX.Element => {
+const AlertContainer = ({ message, type }: TAlertProps): ReactElement => {
     return (
         <Container type={type}>
             <AlertIcon type={type}>

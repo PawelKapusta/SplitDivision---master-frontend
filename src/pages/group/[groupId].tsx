@@ -34,8 +34,9 @@ import { withAuth } from "../../hocs/withAuth";
 import { fetchGroupBills, selectBillState } from "@redux/slices/billSlice";
 import { Bill } from "../../types/bill";
 import BillCard from "@components/cards/bill-card";
+import { NextPage } from "next";
 
-const Group = (): JSX.Element => {
+const Group: NextPage = () => {
     const [isLongDescription, setIsLongDescription] = useState(false);
     const [modalOpen, setModalOpen] = useState(false);
 

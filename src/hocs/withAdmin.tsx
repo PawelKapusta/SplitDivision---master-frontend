@@ -8,7 +8,7 @@ import { getDecodedJWTToken } from "../utils/jwt";
 import { fetchUser, selectUserState } from "@redux/slices/userSlice";
 
 interface WithAdminProps {
-    children: ReactElement;
+    children: ReactElement | null;
 }
 
 const WithAdminComponent: NextPage<WithAdminProps> = ({ children }) => {
@@ -41,7 +41,7 @@ const WithAdminComponent: NextPage<WithAdminProps> = ({ children }) => {
 };
 
 export const withAdmin = (
-    PageComponent: NextPage<any>,
+    PageComponent: NextPage,
 ): NextPage<WithAdminProps> => {
     const WrappedComponent: NextPage<WithAdminProps> = (props) => {
         return (
@@ -51,12 +51,14 @@ export const withAdmin = (
         );
     };
 
-    WrappedComponent.getInitialProps = async (ctx: NextPageContext) => {
+    WrappedComponent.getInitialProps = async (
+        context: NextPageContext,
+    ): Promise<WithAdminProps> => {
         const componentProps = PageComponent.getInitialProps
-            ? await PageComponent.getInitialProps(ctx)
+            ? await PageComponent.getInitialProps(context)
             : {};
 
-        return { ...componentProps };
+        return { ...componentProps, children: null };
     };
 
     return WrappedComponent;

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, ReactElement } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { GroupFormData } from "../../types/group";
 import { useDispatch, useSelector } from "react-redux";
@@ -22,7 +22,7 @@ import Spinner from "@components/spinner";
 import useAlert from "../../hocs/useAlert";
 import { getFormattedDate } from "../../utils/date";
 
-const GroupForm = (): JSX.Element => {
+const GroupForm = (): ReactElement => {
     const {
         isLoading: usersLoading,
         user,

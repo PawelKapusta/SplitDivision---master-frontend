@@ -71,7 +71,7 @@ export const NavbarMenu = styled.ul<{
         li:last-child:hover {
             display: flex;
             justify-content: center;
-            box-shadow: 0px 5px 10px 0px #fff;
+            box-shadow: 0 5px 10px 0 #fff;
             transition: transform 0.2s ease;
             transform: translateY(-5px);
         }

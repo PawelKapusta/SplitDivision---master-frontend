@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, ReactElement } from "react";
 import Image from "next/image";
 import {
     CardContainer,
@@ -32,7 +32,7 @@ export type TBillCardProps = {
     bill: Bill;
     isAdmin?: boolean;
 };
-const BillCard = ({ bill, isAdmin }: TBillCardProps): JSX.Element => {
+const BillCard = ({ bill, isAdmin }: TBillCardProps): ReactElement => {
     const billPath = `/bill/${bill.id}`;
     const [modalOpen, setModalOpen] = useState(false);
     const router = useRouter();

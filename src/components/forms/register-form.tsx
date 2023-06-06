@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, ReactElement } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import LoadingButton from "@components/loading-button";
@@ -22,7 +22,7 @@ import { getFormattedDate } from "../../utils/date";
 
 const schema = yup.object().shape(RegisterSchema);
 
-const RegisterForm = (): JSX.Element => {
+const RegisterForm = (): ReactElement => {
     const { isLoading } = useSelector(selectAuthState);
     const {
         register,
