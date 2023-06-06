@@ -30,7 +30,7 @@ export const DropdownMenu = styled.div`
     right: 5%;
     width: 200px;
     padding: 10px;
-    border: 1px solid #eaaf57;
+    border: 1px solid ${({ theme }) => theme.colors.gold};
     border-radius: 4px;
 
     a {
@@ -44,7 +44,7 @@ export const DropdownMenu = styled.div`
     }
 
     a:hover {
-        box-shadow: 0 0 20px #fff;
+        box-shadow: 0 0 20px ${({ theme }) => theme.colors.white};
     }
 
     @media ${(props) => props.theme.breakpoints.md} {
@@ -64,7 +64,7 @@ export const Avatar = styled.div`
     }
 
     img:hover {
-        box-shadow: 0px 5px 10px 0px #fff;
+        box-shadow: 0 5px 10px 0 ${({ theme }) => theme.colors.white};
     }
 
     @media ${(props) => props.theme.breakpoints.md} {

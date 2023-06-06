@@ -5,7 +5,7 @@ export const ContactCard = styled.div`
     justify-content: center;
     height: 60vh;
     border-radius: 20px;
-    box-shadow: 0px 5px 10px 0px #fff;
+    box-shadow: 0 5px 10px 0 ${({ theme }) => theme.colors.white};
     margin: 150px 100px;
 
     form {

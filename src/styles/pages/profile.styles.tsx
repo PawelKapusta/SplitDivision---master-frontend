@@ -59,7 +59,7 @@ export const Input = styled.input`
     border-radius: 5px;
     height: 55px;
     font-size: 20px;
-    border-color: #eaaf57;
+    border-color: ${({ theme }) => theme.colors.gold};
     padding: 10px;
 
     &:nth-child(1) {
@@ -83,6 +83,6 @@ export const BirthLabel = styled.label`
     margin: 20px 10px 10px 20px;
     width: 60%;
     font-weight: bold;
-    color: #eaaf57;
+    color: ${({ theme }) => theme.colors.gold};
     font-size: 20px;
 `;

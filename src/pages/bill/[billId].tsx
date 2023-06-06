@@ -127,7 +127,7 @@ const BillContainer = styled.div`
     width: 90%;
 
     & > * {
-        background-color: #eaaf57;
+        background-color: ${({ theme }) => theme.colors.gold};
     }
 `;
 
@@ -135,7 +135,7 @@ const BillCardContent = styled.div<{ isLongDescription: boolean }>`
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    background-color: #eaaf57;
+    background-color: ${({ theme }) => theme.colors.gold};
     margin-top: 30px;
     height: ${({ isLongDescription }) =>
         isLongDescription ? " 450px" : "400px"};
@@ -151,7 +151,7 @@ export const BillCardTitle = styled.div`
     margin-top: 20px;
     margin-left: 10px;
     padding: 20px;
-    background-color: #eaaf57;
+    background-color: ${({ theme }) => theme.colors.gold};
     text-align: center;
     border-radius: 20px;
 
@@ -174,7 +174,7 @@ export const BillCardTitle = styled.div`
         margin-top: 20px;
     }
     & * {
-        background-color: #eaaf57;
+        background-color: ${({ theme }) => theme.colors.gold};
     }
 `;
 
@@ -197,7 +197,7 @@ export const BillCardActions = styled.div`
 `;
 
 export const BillCardDescription = styled.div<{ isLongDescription: boolean }>`
-    background-color: #eaaf57;
+    background-color: ${({ theme }) => theme.colors.gold};
     padding: 20px;
     height: 300px;
     width: 50%;
@@ -206,12 +206,12 @@ export const BillCardDescription = styled.div<{ isLongDescription: boolean }>`
         isLongDescription ? "  1.1" : " 1.5"};
 
     & * {
-        background-color: #eaaf57;
+        background-color: ${({ theme }) => theme.colors.gold};
     }
 `;
 
 export const BillCardImage = styled.div`
-    background-color: #eaaf57;
+    background-color: ${({ theme }) => theme.colors.gold};
     border-radius: 20px;
     padding: 10px;
     width: 30%;
@@ -233,7 +233,7 @@ const BillAmount = styled.div`
     margin-top: 50px;
 
     & > * {
-        background-color: #eaaf57;
+        background-color: ${({ theme }) => theme.colors.gold};
     }
 
     h3 {
@@ -247,7 +247,7 @@ const BillAmount = styled.div`
         margin-bottom: 5px;
         text-align: center;
         & > * {
-            background-color: #eaaf57;
+            background-color: ${({ theme }) => theme.colors.gold};
         }
     }
 `;

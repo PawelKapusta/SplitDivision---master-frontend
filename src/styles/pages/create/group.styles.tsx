@@ -4,7 +4,7 @@ export const GroupContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0px 5px 10px 0px #fff;
+    box-shadow: 0 5px 10px 0 ${({ theme }) => theme.colors.white};
     height: 60vh;
     margin: 80px 150px 0 150px;
 
@@ -43,7 +43,7 @@ export const Input = styled.input`
     border-radius: 5px;
     height: 55px;
     font-size: 20px;
-    border-color: #eaaf57;
+    border-color: ${({ theme }) => theme.colors.gold};
     padding: 10px;
 
     &:nth-child(1) {
@@ -57,7 +57,7 @@ export const InputDescription = styled.textarea`
     border-radius: 5px;
     height: 155px;
     font-size: 20px;
-    border-color: #eaaf57;
+    border-color: ${({ theme }) => theme.colors.gold};
     padding: 10px;
 
     &:nth-child(1) {
@@ -79,7 +79,7 @@ export const Error = styled.span`
 
 export const Title = styled.div`
     margin-top: 30px;
-    color: #eaaf57;
+    color: ${({ theme }) => theme.colors.gold};
     font-size: 36px;
     font-weight: bold;
     height: 40px;
@@ -124,26 +124,26 @@ export const UsersSelector = styled.div`
     }
 
     .select-item:hover {
-        background: #eaaf57;
+        background: ${({ theme }) => theme.colors.gold};
 
         & * {
-            background-color: #eaaf57;
+            background-color: ${({ theme }) => theme.colors.gold};
             color: black;
         }
     }
 
     .select-item.selected {
-        background: #eaaf57;
+        background: ${({ theme }) => theme.colors.gold};
         font-weight: bold;
         border: 1px solid #b77d30;
 
         & * {
-            background-color: #eaaf57;
+            background-color: ${({ theme }) => theme.colors.gold};
             color: black;
         }
     }
 
     .no-options {
-        border: 4px solid #eaaf57;
+        border: 4px solid ${({ theme }) => theme.colors.gold};
     }
 `;

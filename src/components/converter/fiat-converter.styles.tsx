@@ -1,12 +1,12 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
+export const CurrencyContainer = styled.div`
     display: flex;
     align-items: flex-start;
     justify-content: center;
 `;
 
-export const Converter = styled.div`
+export const CurrencyConverter = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -36,7 +36,7 @@ export const Title = styled.div`
 export const TitleCurrencyName = styled.h2`
     color: #b77d30;
 `;
-export const InputWrapper = styled.div`
+export const CurrencyInputContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
@@ -45,16 +45,16 @@ export const InputWrapper = styled.div`
     margin-top: 30px;
 `;
 
-export const Input = styled.input`
+export const CurrencyInput = styled.input`
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
     margin-right: 10px;
 `;
 
-export const Button = styled.button`
+export const CurrencyButton = styled.button`
     padding: 8px 20px;
-    background-color: #eaaf57;
+    background-color: ${({ theme }) => theme.colors.gold};
     color: black;
     border: none;
     border-radius: 4px;
@@ -64,12 +64,12 @@ export const Button = styled.button`
     align-items: center;
 
     &:hover {
-        box-shadow: 0 0 10px white;
+        box-shadow: 0 0 10px ${({ theme }) => theme.colors.white};
     }
 
     img {
         width: 20px;
-        background-color: #eaaf57;
+        background-color: ${({ theme }) => theme.colors.gold};
         margin-left: 10px;
     }
 `;
@@ -99,6 +99,10 @@ export const CurrencySelect = styled.select`
 
     option:hover {
         color: black;
-        background-color: #eaaf57;
+        background-color: ${({ theme }) => theme.colors.gold};
     }
+`;
+
+export const CurrencyOutput = styled.div`
+    margin-top: 20px;
 `;

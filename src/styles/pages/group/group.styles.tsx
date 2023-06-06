@@ -12,7 +12,7 @@ export const GroupContainer = styled.div`
         margin-bottom: 30px;
 
         span {
-            color: #eaaf57;
+            color: ${({ theme }) => theme.colors.gold};
         }
     }
 `;
@@ -20,7 +20,7 @@ export const GroupCardContent = styled.div<{ isLongDescription: boolean }>`
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    background-color: #eaaf57;
+    background-color: ${({ theme }) => theme.colors.gold};
     margin-top: 30px;
     height: ${({ isLongDescription }) =>
         isLongDescription ? " 450px" : "400px"};
@@ -36,7 +36,7 @@ export const GroupCardTitle = styled.div`
     margin-top: 20px;
     margin-left: 10px;
     padding: 20px;
-    background-color: #eaaf57;
+    background-color: ${({ theme }) => theme.colors.gold};
     text-align: center;
     border-radius: 20px;
 
@@ -57,7 +57,7 @@ export const GroupCardTitle = styled.div`
         margin-top: 20px;
     }
     & * {
-        background-color: #eaaf57;
+        background-color: ${({ theme }) => theme.colors.gold};
     }
 `;
 
@@ -75,12 +75,12 @@ export const GroupCardActions = styled.div`
     }
 
     img:hover {
-        box-shadow: 0 5px 10px 0 #fff;
+        box-shadow: 0 5px 10px 0 ${({ theme }) => theme.colors.white};
     }
 `;
 
 export const GroupCardDescription = styled.div<{ isLongDescription: boolean }>`
-    background-color: #eaaf57;
+    background-color: ${({ theme }) => theme.colors.gold};
     padding: 20px;
     height: 300px;
     width: 50%;
@@ -89,12 +89,12 @@ export const GroupCardDescription = styled.div<{ isLongDescription: boolean }>`
         isLongDescription ? "  1.1" : " 1.5"};
 
     & * {
-        background-color: #eaaf57;
+        background-color: ${({ theme }) => theme.colors.gold};
     }
 `;
 
 export const GroupCardImage = styled.div`
-    background-color: #eaaf57;
+    background-color: ${({ theme }) => theme.colors.gold};
     border-radius: 20px;
     padding: 10px;
     width: 30%;
@@ -120,7 +120,7 @@ export const CreateBillButton = styled.button`
     font-size: 20px;
 
     &:hover {
-        box-shadow: 0 5px 10px 0 #eaaf57;
+        box-shadow: 0 5px 10px 0 ${({ theme }) => theme.colors.gold};
         transition: transform 0.5s ease-in-out;
         transform: translateY(-5px);
     }
@@ -133,7 +133,7 @@ export const CreateBillButton = styled.button`
 `;
 
 export const CenterTitle = styled.div`
-    color: #eaaf57;
+    color: ${({ theme }) => theme.colors.gold};
     margin-top: 80px;
     font-size: 26px;
     font-weight: bold;
@@ -150,10 +150,11 @@ export const ListItem = styled.div<{ isBlocked: boolean }>`
     align-items: center;
     padding: 8px 16px;
     border: 1px solid #b77d30;
-    background-color: ${({ isBlocked }) => (isBlocked ? "#cb2d3e" : "#eaaf57")};
+    background-color: ${({ isBlocked, theme }) =>
+        isBlocked ? "#cb2d3e" : theme.colors.gold}};
     & * {
-        background-color: ${({ isBlocked }) =>
-            isBlocked ? "#cb2d3e" : "#eaaf57"};
+        background-color: ${({ isBlocked, theme }) =>
+            isBlocked ? "#cb2d3e" : theme.colors.gold};
     }
 
     &:nth-child(1) {
@@ -174,7 +175,8 @@ export const ListItem = styled.div<{ isBlocked: boolean }>`
 export const ListItemText = styled.div<{ isBlocked: boolean }>`
     margin-left: 16px;
     width: 30%;
-    background-color: ${({ isBlocked }) => (isBlocked ? "#cb2d3e" : "#eaaf57")};
+    background-color: ${({ isBlocked, theme }) =>
+        isBlocked ? "#cb2d3e" : theme.colors.gold};
 `;
 
 export const PrimaryText = styled.div`

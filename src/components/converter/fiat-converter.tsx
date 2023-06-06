@@ -1,10 +1,10 @@
 import React, { useState, ReactElement } from "react";
 import {
-    Container,
-    Converter,
-    InputWrapper,
-    Input,
-    Button,
+    CurrencyContainer,
+    CurrencyConverter,
+    CurrencyInputContainer,
+    CurrencyInput,
+    CurrencyButton,
     CurrencyItem,
     Title,
     TitleCurrencyName,
@@ -28,26 +28,24 @@ const FiatConverter = (): ReactElement => {
         fiatCurrencies,
     } = useSelector(selectCurrencyState);
     const dispatch = useDispatch();
-    const [fromCurrency, setFromCurrency] = useState<Currency | null>({
+    const [fromFiat, setFromFiat] = useState<Currency | null>({
         code: "PLN",
         name: "Polish Złoty",
     });
-    const [toCurrency, setToCurrency] = useState<Currency | null>({
+    const [toFiat, setToFiat] = useState<Currency | null>({
         code: "USD",
         name: "United States Dollar",
     });
-    const [amount, setAmount] = useState<number>(1);
+    const [total, setTotal] = useState<number>(1);
 
     const handleSwapCurrencies = () => {
-        setFromCurrency(toCurrency);
-        setToCurrency(fromCurrency);
+        setFromFiat(toFiat);
+        setToFiat(fromFiat);
     };
 
     const handleConvert = async () => {
-        if (fromCurrency && toCurrency && amount) {
-            dispatch(
-                fetchFiatConvertedAmount(fromCurrency, toCurrency, amount),
-            );
+        if (fromFiat && toFiat && total) {
+            dispatch(fetchFiatConvertedAmount(fromFiat, toFiat, total));
         }
     };
 
@@ -56,8 +54,8 @@ const FiatConverter = (): ReactElement => {
             {isLoading ? (
                 <Spinner />
             ) : (
-                <Container>
-                    <Converter>
+                <CurrencyContainer>
+                    <CurrencyConverter>
                         <Title>
                             <h2>Currency Converter</h2>
                             <TitleCurrencyName>Fiat</TitleCurrencyName>
@@ -67,37 +65,34 @@ const FiatConverter = (): ReactElement => {
                             />
                             <TitleCurrencyName>Fiat</TitleCurrencyName>
                         </Title>
-                        <InputWrapper>
-                            <Input
+                        <CurrencyInputContainer>
+                            <CurrencyInput
                                 type="number"
-                                placeholder="Amount"
-                                value={amount}
+                                placeholder="Total"
+                                value={total}
                                 onChange={(e) =>
-                                    setAmount(parseFloat(e.target.value))
+                                    setTotal(parseFloat(e.target.value))
                                 }
                             />
                             <CurrencyItem>
-                                {fromCurrency && (
+                                {fromFiat && (
                                     <Flag
-                                        code={fromCurrency.code.substring(0, 2)}
-                                        alt={fromCurrency.code}
+                                        code={fromFiat.code.substring(0, 2)}
+                                        alt={fromFiat.code}
                                         height={50}
                                         width={50}
                                     />
                                 )}
 
                                 <CurrencySelect
-                                    value={fromCurrency?.code}
+                                    value={fromFiat?.code}
                                     onChange={(e) => {
-                                        const selectedCurrency =
-                                            fiatCurrencies.find(
-                                                (currency: Currency) =>
-                                                    currency.code ===
-                                                    e.target.value,
-                                            );
-                                        setFromCurrency(
-                                            selectedCurrency || null,
+                                        const selected = fiatCurrencies.find(
+                                            (currency: Currency) =>
+                                                currency.code ===
+                                                e.target.value,
                                         );
+                                        setFromFiat(selected || null);
                                     }}
                                 >
                                     {fiatCurrencies &&
@@ -114,11 +109,11 @@ const FiatConverter = (): ReactElement => {
                                         )}
                                 </CurrencySelect>
                             </CurrencyItem>
-                        </InputWrapper>
-                        <InputWrapper>
-                            <Input
+                        </CurrencyInputContainer>
+                        <CurrencyInputContainer>
+                            <CurrencyInput
                                 type="number"
-                                placeholder="Converted Amount"
+                                placeholder="Converted total"
                                 value={
                                     isFiatConvertLoading
                                         ? "Converting..."
@@ -127,24 +122,23 @@ const FiatConverter = (): ReactElement => {
                                 readOnly
                             />
                             <CurrencyItem>
-                                {toCurrency && (
+                                {toFiat && (
                                     <Flag
-                                        code={toCurrency.code.substring(0, 2)}
-                                        alt={toCurrency.code}
+                                        code={toFiat.code.substring(0, 2)}
+                                        alt={toFiat.code}
                                         height={50}
                                         width={50}
                                     />
                                 )}
                                 <CurrencySelect
-                                    value={toCurrency?.code}
+                                    value={toFiat?.code}
                                     onChange={(e) => {
-                                        const selectedCurrency =
-                                            fiatCurrencies.find(
-                                                (currency: Currency) =>
-                                                    currency.code ===
-                                                    e.target.value,
-                                            );
-                                        setToCurrency(selectedCurrency || null);
+                                        const selected = fiatCurrencies.find(
+                                            (currency: Currency) =>
+                                                currency.code ===
+                                                e.target.value,
+                                        );
+                                        setToFiat(selected || null);
                                     }}
                                 >
                                     {fiatCurrencies &&
@@ -161,19 +155,21 @@ const FiatConverter = (): ReactElement => {
                                         )}
                                 </CurrencySelect>
                             </CurrencyItem>
-                        </InputWrapper>
+                        </CurrencyInputContainer>
                         <ButtonsList>
-                            <Button onClick={handleConvert}>Convert</Button>
-                            <Button onClick={handleSwapCurrencies}>
+                            <CurrencyButton onClick={handleConvert}>
+                                Convert
+                            </CurrencyButton>
+                            <CurrencyButton onClick={handleSwapCurrencies}>
                                 Swap{" "}
                                 <img
                                     src="/icons/exchange-button-icon.svg"
                                     alt="ExchangeButtonIcon.gif"
                                 />{" "}
-                            </Button>
+                            </CurrencyButton>
                         </ButtonsList>
-                    </Converter>
-                </Container>
+                    </CurrencyConverter>
+                </CurrencyContainer>
             )}
         </div>
     );

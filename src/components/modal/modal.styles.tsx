@@ -44,6 +44,6 @@ export const ModalContent = styled.div<{ isAdmin?: boolean }>`
     }
 
     button:nth-child(2):hover {
-        box-shadow: 0 0 20px white;
+        box-shadow: 0 0 20px ${({ theme }) => theme.colors.white};
     }
 `;

@@ -73,7 +73,7 @@ export const MainRight = styled.div`
 export const Title = styled.span`
     display: flex;
     font-size: 50px;
-    color: #eaaf57;
+    color: ${({ theme }) => theme.colors.gold};
     font-weight: 700;
     height: 100px;
     width: 100%;
@@ -123,7 +123,7 @@ export const CardsTitle = styled.div`
     margin-bottom: 20px;
     font-size: 25px;
     font-weight: bold;
-    color: #eaaf57;
+    color: ${({ theme }) => theme.colors.gold};
 
     @media ${(props) => props.theme.breakpoints.md} {
         margin-top: 170px;
@@ -170,7 +170,7 @@ export const Card = styled.div`
     flex-direction: column;
 
     &:hover {
-        box-shadow: 0px 5px 10px 0px #fff;
+        box-shadow: 0 5px 10px 0 ${({ theme }) => theme.colors.white};
         transform: translateX(-50%);
         animation: jump 0.5s ease-in-out infinite alternate;
     }

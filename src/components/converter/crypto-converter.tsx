@@ -1,51 +1,26 @@
 import React, { useState, useEffect, ReactElement } from "react";
-import styled from "styled-components";
 import axios from "axios";
-// Styled Components
-const Container = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 100px;
-`;
-
-const Title = styled.h1`
-    font-size: 24px;
-    margin-bottom: 20px;
-`;
-
-const InputWrapper = styled.div`
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-`;
-
-const Input = styled.input`
-    padding: 5px;
-    margin-right: 10px;
-`;
-
-const Button = styled.button`
-    padding: 5px 10px;
-    background-color: #2196f3;
-    color: #fff;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-`;
-
-const Result = styled.p`
-    font-size: 18px;
-`;
+import { TCrypto } from "../../types/currency";
+import {
+    CurrencyContainer,
+    Title,
+    CurrencyConverter,
+    CurrencyInputContainer,
+    CurrencyInput,
+    CurrencyButton,
+    TitleCurrencyName,
+    CurrencySelect,
+    CurrencyOutput,
+} from "@components/converter/fiat-converter.styles";
 
 const CryptoConverter = (): ReactElement => {
-    const [amount, setAmount] = useState<number>(0);
-    const [fiatCurrency, setFiatCurrency] = useState<string>("usd");
-    const [cryptoCurrency, setCryptoCurrency] = useState<string>("bitcoin");
-    const [convertedAmount, setConvertedAmount] = useState<number | null>(null);
-    const [cryptoList, setCryptoList] = useState<any[]>([]);
-    const [fiatCurrencies, setFiatCurrencies] = useState<string[]>([]);
-    const [exchangeRates, setExchangeRates] = useState<any>({});
+    const [cryptoCurrencyList, setCryptoCurrencyList] = useState<TCrypto[]>([]);
+    const [allFiatCurrencies, setAllFiatCurrencies] = useState([]);
+    const [rates, setRates] = useState();
+    const [total, setTotal] = useState(1);
+    const [fiatCurrencyCode, setFiatCurrencyCode] = useState("usd");
+    const [cryptoCurrencyCode, setCryptoCurrencyCode] = useState("bitcoin");
+    const [totalConverted, setTotalConverted] = useState(0);
 
     useEffect(() => {
         const fetchCryptoList = async () => {
@@ -53,7 +28,7 @@ const CryptoConverter = (): ReactElement => {
                 const response = await axios.get(
                     "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1",
                 );
-                setCryptoList(response.data);
+                setCryptoCurrencyList(response.data);
             } catch (error) {
                 console.error("Error fetching cryptocurrency list:", error);
             }
@@ -68,8 +43,8 @@ const CryptoConverter = (): ReactElement => {
                 const response = await axios.get(
                     "https://api.coingecko.com/api/v3/simple/supported_vs_currencies",
                 );
-                const top100Fiats = response.data.slice(0, 100);
-                setFiatCurrencies(top100Fiats);
+                const data = response.data.slice(0, 100);
+                setAllFiatCurrencies(data);
             } catch (error) {
                 console.error("Error fetching fiat currencies:", error);
             }
@@ -81,75 +56,100 @@ const CryptoConverter = (): ReactElement => {
     useEffect(() => {
         const fetchExchangeRates = async () => {
             try {
-                const vsCurrencies = [
-                    ...fiatCurrencies,
-                    ...cryptoList.map((crypto) => crypto.id),
+                const currencies: string[] = [
+                    ...allFiatCurrencies,
+                    ...cryptoCurrencyList.map((crypto: TCrypto) => crypto.id),
                 ];
                 const response = await axios.get(
-                    `https://api.coingecko.com/api/v3/simple/price?ids=${cryptoList
-                        .map((crypto) => crypto.id)
-                        .join(",")}&vs_currencies=${vsCurrencies.join(",")}`,
+                    `https://api.coingecko.com/api/v3/simple/price?ids=${cryptoCurrencyList
+                        .map((crypto: TCrypto) => crypto.id)
+                        .join(",")}&vs_currencies=${currencies.join(",")}`,
                 );
-                setExchangeRates(response.data);
+                console.log("rate", response.data);
+                console.log("rate", typeof response.data);
+                setRates(response.data);
             } catch (error) {
                 console.error("Error fetching exchange rates:", error);
             }
         };
 
-        if (cryptoList.length > 0 && fiatCurrencies.length > 0) {
+        if (cryptoCurrencyList.length > 0 && allFiatCurrencies.length > 0) {
             fetchExchangeRates();
         }
-    }, [cryptoList, fiatCurrencies]);
+    }, [cryptoCurrencyList, allFiatCurrencies]);
 
     const handleConvert = () => {
-        const rate = exchangeRates[cryptoCurrency]?.[fiatCurrency];
+        let rate = 1;
+        if (rates && rates[cryptoCurrencyCode as string]?.[fiatCurrencyCode]) {
+            rate = rates[cryptoCurrencyCode]?.[fiatCurrencyCode];
+        }
+
+        console.log("rate", rate);
 
         if (rate) {
-            const converted = amount * rate;
-            setConvertedAmount(converted);
+            const converted = total * rate;
+            setTotalConverted(converted);
         } else {
             console.error(
-                `Exchange rate not found for ${cryptoCurrency}-${fiatCurrency}`,
+                `Exchange rate not found for ${cryptoCurrencyCode}-${fiatCurrencyCode}`,
             );
         }
     };
 
+    console.log("cryptoCurrencyList", cryptoCurrencyList);
+    const temp = false;
     return (
-        <Container>
-            <Title>Crypto Converter</Title>
-            <InputWrapper>
-                <Input
-                    type="number"
-                    step="any"
-                    value={amount}
-                    onChange={(e) => setAmount(parseFloat(e.target.value))}
-                />
-                <select
-                    value={fiatCurrency}
-                    onChange={(e) => setFiatCurrency(e.target.value)}
-                >
-                    <option value="usd">USD</option>
-                    {/* Add the other 99 most popular fiat currencies as options */}
-                </select>
-                <select
-                    value={cryptoCurrency}
-                    onChange={(e) => setCryptoCurrency(e.target.value)}
-                >
-                    {cryptoList.map((crypto) => (
-                        <option key={crypto.id} value={crypto.id}>
-                            {crypto.symbol.toUpperCase()}
-                        </option>
-                    ))}
-                </select>
-                <Button onClick={handleConvert}>Convert</Button>
-            </InputWrapper>
-            {convertedAmount !== null && (
-                <Result>
-                    Converted Amount: {convertedAmount.toFixed(6)}{" "}
-                    {fiatCurrency.toUpperCase()}
-                </Result>
-            )}
-        </Container>
+        <CurrencyContainer>
+            <CurrencyConverter>
+                <Title>
+                    <h2>Crypto Converter</h2>
+                    <TitleCurrencyName>Crypto</TitleCurrencyName>
+                    <img
+                        src="/icons/exchange-icon-animated.gif"
+                        alt="ExchangeIconAnimated.gif"
+                    />
+                    <TitleCurrencyName>Fiat</TitleCurrencyName>
+                </Title>
+                <CurrencyInputContainer>
+                    <CurrencyInput
+                        type="number"
+                        value={total}
+                        onChange={(e) => setTotal(parseFloat(e.target.value))}
+                    />
+                    <CurrencySelect
+                        value={cryptoCurrencyCode}
+                        onChange={(e) => setCryptoCurrencyCode(e.target.value)}
+                    >
+                        {cryptoCurrencyList.map((crypto) => (
+                            <option key={crypto.id} value={crypto.id}>
+                                {crypto.id.toUpperCase()}
+                            </option>
+                        ))}
+                    </CurrencySelect>
+                    <CurrencySelect
+                        value={fiatCurrencyCode}
+                        onChange={(e) => setFiatCurrencyCode(e.target.value)}
+                    >
+                        <option value="usd">USD</option>
+                        <option value="eur">Euro</option>
+                        <option value="gbp">GBP</option>
+                        <option value="pln">PLN</option>
+                    </CurrencySelect>
+                </CurrencyInputContainer>
+                <CurrencyOutput>
+                    <CurrencyInput
+                        type="number"
+                        placeholder="Converted total"
+                        value={
+                            temp ? "Converting..." : totalConverted.toFixed(4)
+                        }
+                        readOnly
+                    />
+                    {fiatCurrencyCode.toUpperCase()}
+                </CurrencyOutput>
+                <CurrencyButton onClick={handleConvert}>Convert</CurrencyButton>
+            </CurrencyConverter>
+        </CurrencyContainer>
     );
 };
 

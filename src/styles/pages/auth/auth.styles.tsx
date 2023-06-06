@@ -18,7 +18,7 @@ export const Form = styled.div`
     border-radius: 20px;
 
     @media ${(props) => props.theme.breakpoints.md} {
-        border: 1px solid #eaaf57;
+        border: 1px solid ${({ theme }) => theme.colors.gold};
         margin-top: 50px;
         width: 100%;
     }
@@ -26,7 +26,7 @@ export const Form = styled.div`
 
 export const Title = styled.div`
     margin-top: 30px;
-    color: #eaaf57;
+    color: ${({ theme }) => theme.colors.gold};
     font-size: 36px;
     font-weight: bold;
     height: 40px;
@@ -36,7 +36,7 @@ export const Title = styled.div`
 
 export const Description = styled.div`
     font-size: 20px;
-    color: #eaaf57;
+    color: ${({ theme }) => theme.colors.gold};
     text-align: center;
     margin-bottom: 20px;
 `;
@@ -65,12 +65,12 @@ export const FormCard = styled.div<{ isRegisterForm?: boolean }>`
 
     &::-webkit-scrollbar-track {
         margin-right: 13px;
-        background-color: #fff;
+        background-color: ${({ theme }) => theme.colors.white};
         border-radius: 5px;
     }
 
     &::-webkit-scrollbar-thumb {
-        background-color: #eaaf57;
+        background-color: ${({ theme }) => theme.colors.gold};
         border-radius: 5px;
     }
 `;
@@ -81,7 +81,7 @@ export const Input = styled.input`
     border-radius: 5px;
     height: 55px;
     font-size: 20px;
-    border-color: #eaaf57;
+    border-color: ${({ theme }) => theme.colors.gold};
     padding: 10px;
 
     &:nth-child(1) {
@@ -105,7 +105,7 @@ export const BirthLabel = styled.label`
     margin: 10px 10px 10px 20px;
     width: 80%;
     font-weight: bold;
-    color: #eaaf57;
+    color: ${({ theme }) => theme.colors.gold};
     font-size: 20px;
 `;
 
@@ -135,10 +135,10 @@ export const CustomDatePicker = styled.div`
 
     .react-datepicker__input-container {
         input {
-            background-color: #eaaf57;
+            background-color: ${({ theme }) => theme.colors.gold};
             text-align: center;
             color: #333;
-            border: 1px solid #eaaf57;
+            border: 1px solid ${({ theme }) => theme.colors.gold};
             width: 100%;
             font-weight: bold;
             cursor: pointer;
@@ -148,27 +148,27 @@ export const CustomDatePicker = styled.div`
     }
 
     .react-datepicker__calendar-container {
-        background-color: #eaaf57;
-        border: 1px solid #eaaf57;
+        background-color: ${({ theme }) => theme.colors.gold};
+        border: 1px solid ${({ theme }) => theme.colors.gold};
     }
 
     .react-datepicker__current-month {
-        color: #eaaf57;
+        color: ${({ theme }) => theme.colors.gold};
     }
     .react-datepicker__day-name {
         border-radius: 4px;
-        color: #fff;
-        border: 1px solid #eaaf57;
+        color: ${({ theme }) => theme.colors.white};
+        border: 1px solid ${({ theme }) => theme.colors.gold};
     }
 
     .react-datepicker-time__header {
         background-color: black;
-        color: #eaaf57;
+        color: ${({ theme }) => theme.colors.gold};
     }
 
     .react-datepicker__time-list li {
         background-color: black;
-        color: #eaaf57;
+        color: ${({ theme }) => theme.colors.gold};
     }
 
     .react-datepicker__time-list li:hover {
@@ -177,21 +177,21 @@ export const CustomDatePicker = styled.div`
 
     .react-datepicker__day-names {
         background-color: black;
-        color: #fff;
+        color: ${({ theme }) => theme.colors.white};
     }
 
     .react-datepicker__day {
         border-radius: 20px;
-        color: #eaaf57;
+        color: ${({ theme }) => theme.colors.gold};
     }
 
     .react-datepicker__day:hover {
-        background-color: #fff;
+        background-color: ${({ theme }) => theme.colors.white};
         color: black;
     }
 
     .react-datepicker__day--selected {
-        background-color: #eaaf57;
+        background-color: ${({ theme }) => theme.colors.gold};
         color: #333;
     }
 
@@ -209,7 +209,7 @@ export const Select = styled.select`
     width: 80%;
     height: 50px;
     padding: 12px;
-    border: 1px solid #eaaf57;
+    border: 1px solid ${({ theme }) => theme.colors.gold};
     margin: 15px 0;
     border-radius: 4px;
     color: white;
@@ -225,7 +225,7 @@ export const Select = styled.select`
         right: 10px;
         transform: translateY(-50%);
         pointer-events: none;
-        color: #eaaf57;
+        color: ${({ theme }) => theme.colors.gold};
     }
 
     &:disabled {
@@ -236,11 +236,11 @@ export const Select = styled.select`
     option {
         padding: 8px;
         background-color: black;
-        color: #eaaf57;
+        color: ${({ theme }) => theme.colors.gold};
     }
 
     option:checked {
-        color: #fff;
+        color: ${({ theme }) => theme.colors.white};
         font-weight: bold;
     }
 `;

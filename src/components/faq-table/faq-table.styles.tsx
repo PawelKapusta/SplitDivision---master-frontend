@@ -6,7 +6,7 @@ export const FAQTable = styled.div`
     h2 {
         text-align: center;
         font-weight: bold;
-        color: #eaaf57;
+        color: ${({ theme }) => theme.colors.gold};
     }
 `;
 

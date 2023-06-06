@@ -21,7 +21,7 @@ export const CardContainer = styled.div<{
         background-color: ${({ isAdmin }) => (isAdmin ? "#D3D3D3" : "white")};
     }
     &:hover {
-        box-shadow: 0 0 20px #fff;
+        box-shadow: 0 0 20px ${({ theme }) => theme.colors.white};
     }
 `;
 

@@ -2,8 +2,9 @@ import { DefaultTheme } from "styled-components";
 
 export const theme: DefaultTheme = {
     colors: {
-        primary: "#fff",
+        white: "#fff",
         background1: "#0F1624",
+        gold: "#eaaf57",
     },
     breakpoints: {
         sm: "screen and (max-width: 640px)",

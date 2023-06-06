@@ -79,40 +79,38 @@ const getCurrencyName = (code: string) => {
     );
     return currency ? currency.name : "";
 };
+
 export const fetchFiatCurrencies =
     (): AppThunk => async (dispatch: Dispatch) => {
         try {
             dispatch(getFiatCurrenciesStart());
             const response = await axios.get(
-                "https://api.exchangerate-api.com/v4/latest/USD",
+                `${process.env.NEXT_PUBLIC_FIAT_CURRENCY_ENPOINT}`,
             );
-            const rates = response.data.rates;
-            const currencyCodes = Object.keys(rates);
-            const currenciesData: Currency[] = currencyCodes.map(
-                (code: string) => ({
-                    code,
-                    name: getCurrencyName(code),
-                }),
-            );
-            dispatch(getFiatCurrenciesSuccess(currenciesData));
+            const allRates = response.data.rates;
+            const codes = Object.keys(allRates);
+            const data: Currency[] = codes.map((code: string) => ({
+                code,
+                name: getCurrencyName(code),
+            }));
+            dispatch(getFiatCurrenciesSuccess(data));
         } catch (error) {
             dispatch(getFiatCurrenciesFailure(error as string));
         }
     };
 
 export const fetchFiatConvertedAmount =
-    (fromCurrency: Currency, toCurrency: Currency, amount: number): AppThunk =>
+    (from: Currency, to: Currency, amount: number): AppThunk =>
     async (dispatch: Dispatch) => {
         try {
             dispatch(getFiatCurrencyConvertStart());
-            console.log(fromCurrency, toCurrency, amount);
             const response = await axios.get(
-                `https://api.exchangerate-api.com/v4/latest/${fromCurrency?.code}`,
+                `${process.env.NEXT_PUBLIC_FIAT_CURRENCY_AMOUNT_ENPOINT}${from?.code}`,
             );
-            const rates = response.data.rates;
-            const exchangeRate = rates[toCurrency?.code];
-            const converted = amount * exchangeRate;
-            dispatch(getFiatCurrencyConvertSuccess(converted));
+            const allRates = response.data.rates;
+            const rate = allRates[to?.code];
+            const currencyConverted = amount * rate;
+            dispatch(getFiatCurrencyConvertSuccess(currencyConverted));
         } catch (error) {
             dispatch(getFiatCurrencyConvertFailure(error as string));
         }

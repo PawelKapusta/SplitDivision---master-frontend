@@ -1,10 +1,10 @@
-import React from "react";
+import React, { ReactElement } from "react";
 
 import { Box, Container, Grid } from "@mui/material";
 
 import { Link, Title, Column } from "./footer.styles";
 
-const FooterContainer = (): JSX.Element => {
+const FooterContainer = (): ReactElement => {
     return (
         <Box
             sx={{

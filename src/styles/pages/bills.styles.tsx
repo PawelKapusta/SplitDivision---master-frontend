@@ -11,14 +11,14 @@ export const BillsContainer = styled.div`
     h2 {
         text-align: center;
         font-weight: bold;
-        color: #eaaf57;
+        color: ${({ theme }) => theme.colors.gold};
     }
 
     h4 {
         color: #808080;
         margin-top: 20px;
         span {
-            color: #eaaf57;
+            color: ${({ theme }) => theme.colors.gold};
         }
     }
 `;
