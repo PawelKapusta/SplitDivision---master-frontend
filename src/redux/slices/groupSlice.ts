@@ -42,6 +42,7 @@ const groupSlice = createSlice({
         getGroupsStart(state) {
             state.isLoading = true;
             state.error = null;
+            state.deleteGroupSuccess = false;
         },
         getGroupsSuccess(state, action: PayloadAction<Group[]>) {
             state.groups = action.payload;

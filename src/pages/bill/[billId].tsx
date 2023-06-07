@@ -1,24 +1,71 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { NextPage } from "next";
 import { withAuth } from "../../hocs/withAuth";
 import { useRouter } from "next/router";
-import { fetchBill, selectBillState } from "@redux/slices/billSlice";
+import {
+    deleteBill,
+    fetchBill,
+    selectBillState,
+} from "@redux/slices/billSlice";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import Spinner from "@components/spinner";
 import Image from "next/image";
 import { getFormattedDate } from "../../utils/date";
 import Flag from "react-world-flags";
+import Modal from "@components/modal";
+import {
+    DeleteButtonActions,
+    DeleteModalButton,
+    DeleteModalContent,
+    DeleteModalDescription,
+    DeleteModalTitle,
+} from "@styles/pages/admin/admin.styles";
+import useAlert from "../../hocs/useAlert";
+import {
+    DeleteGroupButton,
+    EditGroupButton,
+    GroupCardActions,
+} from "@styles/pages/group/group.styles";
 
 const Bill: NextPage = () => {
     const router = useRouter();
     const { billId } = router.query;
     const dispatch = useDispatch();
-    const { isLoading, bill } = useSelector(selectBillState);
+    const { isLoading, bill, error, deleteBillSuccess } =
+        useSelector(selectBillState);
+    const [deleteBillModalOpen, setDeleteBillModalOpen] = useState(false);
+    const { showAlert, AlertWrapper } = useAlert();
+
+    useEffect(() => {
+        if (deleteBillSuccess !== false) {
+            showAlert("Successfully deleted bill", "success");
+        } else if (error) {
+            showAlert(error.toString(), "error");
+        }
+    }, [error]);
+
     console.log("bill", bill);
     useEffect(() => {
         dispatch(fetchBill(billId as string));
     }, [billId]);
+
+    const handleDeleteBillOpenModal = () => {
+        setDeleteBillModalOpen(true);
+    };
+
+    const handleDeleteBillCloseModal = () => {
+        setDeleteBillModalOpen(false);
+    };
+
+    const handleBillModalDeleteClick = () => {
+        console.log("Delete");
+        dispatch(deleteBill(billId as string));
+        handleDeleteBillCloseModal();
+        if (!deleteBillSuccess && !error) {
+            router.replace("/bills");
+        }
+    };
 
     return (
         <Container>
@@ -70,24 +117,58 @@ const Bill: NextPage = () => {
                                     {bill?.currency_code}
                                 </p>
                             </BillAmount>
-                            <BillCardActions>
-                                <Image
-                                    src="/icons/edit-icon.svg"
-                                    width={30}
-                                    height={30}
-                                    alt="Edit-icon.svg"
-                                />
-                                <Image
-                                    src="/icons/delete_icon_white.svg"
-                                    width={30}
-                                    height={30}
-                                    alt="Delete-icon.svg"
-                                />
-                            </BillCardActions>
+                            <GroupCardActions>
+                                <EditGroupButton>
+                                    <Image
+                                        src="/icons/edit-icon.svg"
+                                        width={30}
+                                        height={30}
+                                        alt="Edit-icon.svg"
+                                    />
+                                </EditGroupButton>
+                                <DeleteGroupButton
+                                    onClick={handleDeleteBillOpenModal}
+                                >
+                                    <Image
+                                        src="/icons/delete_icon_white.svg"
+                                        width={30}
+                                        height={30}
+                                        alt="Delete-icon.svg"
+                                    />
+                                </DeleteGroupButton>
+                            </GroupCardActions>
                         </BillCardTitle>
                         <BillCardDescription isLongDescription={false}>
                             <p>{bill?.description}</p>
                         </BillCardDescription>
+                        <Modal
+                            isOpen={deleteBillModalOpen}
+                            onClose={handleDeleteBillCloseModal}
+                            isAdmin
+                        >
+                            <DeleteModalContent>
+                                <DeleteModalTitle>
+                                    Are you sure you want to delete this bill?
+                                </DeleteModalTitle>
+                                <DeleteModalDescription>
+                                    This will delete all comments and connected
+                                    with the bill data!
+                                </DeleteModalDescription>
+                                <DeleteButtonActions>
+                                    <DeleteModalButton
+                                        onClick={handleBillModalDeleteClick}
+                                    >
+                                        <Image
+                                            src="/icons/delete_icon_white.svg"
+                                            width={30}
+                                            height={30}
+                                            alt="Delete-icon.svg"
+                                        />{" "}
+                                        Yes please delete this bill
+                                    </DeleteModalButton>
+                                </DeleteButtonActions>
+                            </DeleteModalContent>
+                        </Modal>
                         <BillCardImage>
                             <Image
                                 src="/images/bill-content-image.png"
@@ -104,6 +185,7 @@ const Bill: NextPage = () => {
                     {/*<BillQRCode>*/}
                     {/*    <QRCode src={bill?.code_qr} alt="QR Code" />*/}
                     {/*</BillQRCode>*/}
+                    <AlertWrapper />
                 </BillContainer>
             )}
         </Container>
@@ -175,24 +257,6 @@ export const BillCardTitle = styled.div`
     }
     & * {
         background-color: ${({ theme }) => theme.colors.gold};
-    }
-`;
-
-export const BillCardActions = styled.div`
-    display: flex;
-    justify-content: space-evenly;
-    align-items: flex-end;
-    height: 100%;
-
-    img {
-        cursor: pointer;
-        border-radius: 30px;
-        height: 30px;
-        width: 50px;
-    }
-
-    img:hover {
-        box-shadow: 0 5px 10px 0 #fff;
     }
 `;
 

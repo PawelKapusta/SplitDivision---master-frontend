@@ -45,6 +45,7 @@ import {
     cryptoCurrencyNames,
 } from "../../types/currency";
 import Flag from "react-world-flags";
+import { fetchGroupUsers, selectGroupState } from "@redux/slices/groupSlice";
 
 export type TBillFormProps = {
     groupId: string;
@@ -68,6 +69,8 @@ const BillForm = ({
         user,
         users,
     } = useSelector(selectUserState);
+    const { isLoading: groupLoading, groupUsers } =
+        useSelector(selectGroupState);
     let decodedToken: TDecodedJWTToken;
     let userId = "";
     if (isAuthenticated) {
@@ -135,8 +138,11 @@ const BillForm = ({
     useEffect(() => {
         if (isAuthenticated) {
             dispatch(fetchUser(userId));
+            dispatch(fetchGroupUsers(groupId));
         }
     }, [dispatch, isAuthenticated, userId]);
+
+    console.log("groupUSers", groupUsers);
 
     useEffect(() => {
         if (isAuthenticated) {
@@ -158,8 +164,8 @@ const BillForm = ({
         }
     };
 
-    users &&
-        users?.map((user: User) =>
+    groupUsers &&
+        groupUsers?.map((user: User) =>
             options.push({
                 label: `${user?.first_name} ${user?.last_name}  email: ${user?.email}`,
                 value: `${user.id}`,

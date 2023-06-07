@@ -9,7 +9,7 @@ export const GroupContainer = styled.div`
     h4 {
         margin-top: 20px;
         color: #808080;
-        margin-bottom: 30px;
+        margin-bottom: 50px;
 
         span {
             color: ${({ theme }) => theme.colors.gold};
@@ -63,19 +63,14 @@ export const GroupCardTitle = styled.div`
 
 export const GroupCardActions = styled.div`
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
     align-items: flex-end;
     height: 100%;
 
     img {
         cursor: pointer;
-        border-radius: 30px;
         height: 30px;
         width: 50px;
-    }
-
-    img:hover {
-        box-shadow: 0 5px 10px 0 ${({ theme }) => theme.colors.white};
     }
 `;
 
@@ -193,4 +188,32 @@ export const SecondaryText = styled.div<{ isBlocked: boolean }>`
         isBlocked ? theme.colors.black : "#757575"};
     margin-top: 5px;
     text-align: center;
+`;
+
+export const EditGroupButton = styled.div`
+    background-color: dodgerblue;
+    border-radius: 30px;
+    padding: 5px;
+    img {
+        background-color: dodgerblue;
+        border-radius: 30px;
+    }
+
+    &:hover {
+        box-shadow: 0 5px 10px 0 ${({ theme }) => theme.colors.white};
+    }
+`;
+
+export const DeleteGroupButton = styled.div`
+    background-color: #cb2d3e;
+    border-radius: 30px;
+    padding: 5px;
+    img {
+        background-color: #cb2d3e;
+        border-radius: 30px;
+    }
+
+    &:hover {
+        box-shadow: 0 5px 10px 0 ${({ theme }) => theme.colors.white};
+    }
 `;

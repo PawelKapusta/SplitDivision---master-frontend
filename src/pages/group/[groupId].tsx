@@ -4,9 +4,9 @@ import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import {
+    deleteGroup,
     fetchGroup,
     fetchGroupUsers,
-    fetchUserGroups,
     selectGroupState,
 } from "@redux/slices/groupSlice";
 import {
@@ -23,6 +23,8 @@ import {
     ListItemText,
     PrimaryText,
     SecondaryText,
+    DeleteGroupButton,
+    EditGroupButton,
 } from "@styles/pages/group/group.styles";
 import { getFormattedDate } from "../../utils/date";
 import Spinner from "@components/spinner";
@@ -35,17 +37,29 @@ import { fetchGroupBills, selectBillState } from "@redux/slices/billSlice";
 import { Bill } from "../../types/bill";
 import BillCard from "@components/cards/bill-card";
 import { NextPage } from "next";
+import {
+    DeleteButtonActions,
+    DeleteModalButton,
+    DeleteModalContent,
+    DeleteModalDescription,
+    DeleteModalTitle,
+} from "@styles/pages/admin/admin.styles";
+import useAlert from "../../hocs/useAlert";
 
 const Group: NextPage = () => {
     const [isLongDescription, setIsLongDescription] = useState(false);
-    const [modalOpen, setModalOpen] = useState(false);
+    const [createBillModalOpen, setCreateBillModalOpen] = useState(false);
+    const [deleteGroupModalOpen, setDeleteGroupModalOpen] = useState(false);
+    const { showAlert, AlertWrapper } = useAlert();
 
     const dispatch = useDispatch();
-    const { isLoading, group, groupUsers } = useSelector(selectGroupState);
+    const { isLoading, group, groupUsers, deleteGroupSuccess } =
+        useSelector(selectGroupState);
     const {
         isLoading: billsLoading,
         groupBills,
         groupBillsSuccess,
+        error,
     } = useSelector(selectBillState);
     const { createBillSuccess } = useSelector(selectBillState);
     const router = useRouter();
@@ -53,34 +67,53 @@ const Group: NextPage = () => {
     console.log(groupId);
     console.log("groupBills", groupBills);
 
-    const handleOpenModal = () => {
-        setModalOpen(true);
+    useEffect(() => {
+        if (error) {
+            showAlert(error.toString(), "error");
+        }
+    }, [error]);
+
+    const handleCreateBillOpenModal = () => {
+        setCreateBillModalOpen(true);
     };
 
-    const handleCloseModal = () => {
-        setModalOpen(false);
+    const handleCreateBillCloseModal = () => {
+        setCreateBillModalOpen(false);
+    };
+
+    const handleDeleteGroupOpenModal = () => {
+        setDeleteGroupModalOpen(true);
+    };
+
+    const handleDeleteGroupCloseModal = () => {
+        setDeleteGroupModalOpen(false);
+    };
+
+    const handleGroupModalDeleteClick = () => {
+        console.log("Delete");
+        dispatch(deleteGroup(group.id));
+        handleDeleteGroupCloseModal();
+        if (!error) {
+            router.replace("/groups");
+        }
     };
 
     useEffect(() => {
         dispatch(fetchGroup(groupId as string));
         dispatch(fetchGroupUsers(groupId as string));
         dispatch(fetchGroupBills(groupId as string));
-    }, [groupId]);
-
-    useEffect(() => {
-        dispatch(fetchGroupBills(groupId as string));
-    }, [createBillSuccess]);
+    }, [groupId, createBillSuccess]);
 
     useEffect(() => {
         if (groupBillsSuccess) {
-            handleCloseModal();
+            handleCreateBillCloseModal();
         }
     }, [groupBillsSuccess]);
 
     useEffect(() => {
         setIsLongDescription(group?.description.length > 800);
     }, [group]);
-
+    console.log("groupBills", groupBills);
     return (
         <div>
             {isLoading ? (
@@ -100,18 +133,24 @@ const Group: NextPage = () => {
                                 {getFormattedDate(group?.data_created)}
                             </p>
                             <GroupCardActions>
-                                <Image
-                                    src="/icons/edit-icon.svg"
-                                    width={30}
-                                    height={30}
-                                    alt="Edit-icon.svg"
-                                />
-                                <Image
-                                    src="/icons/delete_icon_white.svg"
-                                    width={30}
-                                    height={30}
-                                    alt="Delete-icon.svg"
-                                />
+                                <EditGroupButton>
+                                    <Image
+                                        src="/icons/edit-icon.svg"
+                                        width={30}
+                                        height={30}
+                                        alt="Edit-icon.svg"
+                                    />
+                                </EditGroupButton>
+                                <DeleteGroupButton
+                                    onClick={handleDeleteGroupOpenModal}
+                                >
+                                    <Image
+                                        src="/icons/delete_icon_white.svg"
+                                        width={30}
+                                        height={30}
+                                        alt="Delete-icon.svg"
+                                    />
+                                </DeleteGroupButton>
                             </GroupCardActions>
                         </GroupCardTitle>
                         <GroupCardDescription
@@ -128,7 +167,7 @@ const Group: NextPage = () => {
                             />
                         </GroupCardImage>
                     </GroupCardContent>
-                    <CreateBillButton onClick={handleOpenModal}>
+                    <CreateBillButton onClick={handleCreateBillOpenModal}>
                         <Image
                             src="/icons/plus-icon.svg"
                             width={30}
@@ -138,14 +177,42 @@ const Group: NextPage = () => {
                         Create a bill
                     </CreateBillButton>
                     <Modal
-                        isOpen={modalOpen}
-                        onClose={handleCloseModal}
+                        isOpen={createBillModalOpen}
+                        onClose={handleCreateBillCloseModal}
                         isAdmin={false}
                     >
                         <BillForm
                             groupId={group?.id}
-                            handleCloseModal={handleCloseModal}
+                            handleCloseModal={handleCreateBillCloseModal}
                         />
+                    </Modal>
+                    <Modal
+                        isOpen={deleteGroupModalOpen}
+                        onClose={handleDeleteGroupCloseModal}
+                        isAdmin
+                    >
+                        <DeleteModalContent>
+                            <DeleteModalTitle>
+                                Are you sure you want to delete this group?
+                            </DeleteModalTitle>
+                            <DeleteModalDescription>
+                                This will delete all bills and connected with
+                                the group data!
+                            </DeleteModalDescription>
+                            <DeleteButtonActions>
+                                <DeleteModalButton
+                                    onClick={handleGroupModalDeleteClick}
+                                >
+                                    <Image
+                                        src="/icons/delete_icon_white.svg"
+                                        width={30}
+                                        height={30}
+                                        alt="Delete-icon.svg"
+                                    />{" "}
+                                    Yes please delete this group
+                                </DeleteModalButton>
+                            </DeleteButtonActions>
+                        </DeleteModalContent>
                     </Modal>
                     <CenterTitle>Group members</CenterTitle>
                     <Container>
@@ -225,7 +292,7 @@ const Group: NextPage = () => {
                     <CenterTitle>Bills in this group</CenterTitle>
                     {billsLoading ? (
                         <Spinner isSmall />
-                    ) : groupBillsSuccess ? (
+                    ) : groupBills?.length > 0 ? (
                         groupBills.map((bill: Bill) => {
                             return <BillCard key={bill?.id} bill={bill} />;
                         })
@@ -237,6 +304,7 @@ const Group: NextPage = () => {
                     )}
                 </GroupContainer>
             )}
+            <AlertWrapper />
         </div>
     );
 };

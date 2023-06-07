@@ -11,11 +11,13 @@ import Link from "next/link";
 import BillCard from "@components/cards/bill-card";
 import { Bill } from "../types/bill";
 import { withAuth } from "../hocs/withAuth";
+import useAlert from "../hocs/useAlert";
 
 const Bills: NextPage = () => {
     const dispatch = useDispatch();
     const { isAuthenticated, token } = useSelector(selectAuthState);
     const { isLoading, userBills } = useSelector(selectBillState);
+    const { AlertWrapper } = useAlert();
     let decodedToken: TDecodedJWTToken, userId: string;
     if (isAuthenticated) {
         decodedToken = getDecodedJWTToken(token);
@@ -47,6 +49,7 @@ const Bills: NextPage = () => {
                     ) : null}
                 </BillsContainer>
             )}
+            <AlertWrapper />
         </div>
     );
 };
