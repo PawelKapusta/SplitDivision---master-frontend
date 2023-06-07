@@ -73,7 +73,7 @@ const Group: NextPage = () => {
 
     useEffect(() => {
         if (groupBillsSuccess) {
-            handleCloseModal(); // Close the modal after bill creation
+            handleCloseModal();
         }
     }, [groupBillsSuccess]);
 

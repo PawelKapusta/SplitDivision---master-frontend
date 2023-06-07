@@ -30,7 +30,7 @@ const makeConfiguredStore = () =>
         devTools: true,
         middleware: (getDefaultMiddleware) =>
             getDefaultMiddleware({
-                serializableCheck: false, // disable the serializable check
+                serializableCheck: false,
             }),
     });
 

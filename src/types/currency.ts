@@ -301,3 +301,6 @@ export type TCrypto = {
 
 export const FIAT = "FIAT";
 export const CRYPTO = "CRYPTO";
+
+export const FIAT_DEFAULT_CODE_USD_SMALL = "usd";
+export const CRYPTO_DEFAULT_CODE_BITCOIN_SMALL = "bitcoin";
