@@ -91,7 +91,7 @@ export const DeleteButtonActions = styled.div`
     align-items: center;
 `;
 
-export const DeleteModalButton = styled.button`
+export const DeleteModalButton = styled.button<{ isBlock?: boolean }>`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -99,10 +99,101 @@ export const DeleteModalButton = styled.button`
     width: 300px;
     height: 50px;
     border-radius: 20px;
-    background-color: red;
+    background-color: ${({ isBlock }) => (isBlock ? "purple" : "red")};
     cursor: pointer;
 
     img {
-        background-color: red;
+        background-color: ${({ isBlock }) => (isBlock ? "purple" : "red")};
+        margin-right: 10px;
+    }
+`;
+
+export const AdminUsersPage = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+`;
+
+export const UserCard = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 150px;
+    flex-wrap: wrap;
+    width: 90%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    padding: 60px;
+`;
+
+export const UserColumn = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    p {
+        margin-bottom: 10px;
+    }
+`;
+
+export const UserTitle = styled.span`
+    color: ${({ theme }) => theme.palette.gold};
+    font-weight: bold;
+    margin-bottom: 5px;
+    margin-top: 10px;
+`;
+
+export const ButtonActions = styled.div`
+    display: flex;
+    justify-content: flex-end;
+`;
+
+export const BlockButton = styled.button`
+    background-color: purple;
+    color: #fff;
+    margin-right: 20px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+
+    &:hover {
+        box-shadow: 0 0 10px ${({ theme }) => theme.palette.white};
+    }
+`;
+
+export const DeleteButton = styled.button`
+    background-color: red;
+    color: #fff;
+    margin-right: 20px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+
+    &:hover {
+        box-shadow: 0 0 10px ${({ theme }) => theme.palette.white};
+    }
+`;
+
+export const Avatar = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+
+    img {
+        border-radius: 50%;
+    }
+
+    @media ${(props) => props.theme.breakpoints.md} {
+        img:hover {
+            box-shadow: none;
+        }
     }
 `;

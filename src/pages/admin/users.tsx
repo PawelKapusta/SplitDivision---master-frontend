@@ -9,6 +9,14 @@ import {
     DeleteModalDescription,
     DeleteModalTitle,
     Title,
+    UserCard,
+    UserTitle,
+    UserColumn,
+    Avatar,
+    AdminUsersPage,
+    ButtonActions,
+    BlockButton,
+    DeleteButton,
 } from "@styles/pages/admin/admin.styles";
 import useAlert from "../../hocs/useAlert";
 
@@ -18,14 +26,15 @@ import {
     selectUserState,
 } from "@redux/slices/userSlice";
 import { User } from "../../types/user";
-import styled from "styled-components";
 import Image from "next/image";
 import Modal from "@components/modal";
 
 const Users = (): ReactElement => {
     const dispatch = useDispatch();
     const [modalOpen, setModalOpen] = useState(false);
+    const [modalBlockUserOpen, setModalBlockUserOpen] = useState(false);
     const [userIdToDelete, setUserIdToDelete] = useState<string>();
+    const [userIdToBlock, setUserIdToBlock] = useState<string>();
     const { isLoading, users, successDeleteUser, error } =
         useSelector(selectUserState);
     const { showAlert, AlertWrapper } = useAlert();
@@ -46,6 +55,14 @@ const Users = (): ReactElement => {
         setModalOpen(false);
     };
 
+    const handleBlockUSerOpenModal = () => {
+        setModalBlockUserOpen(true);
+    };
+
+    const handleBlockUserCloseModal = () => {
+        setModalBlockUserOpen(false);
+    };
+
     useEffect(() => {
         dispatch(fetchUsers());
     }, []);
@@ -57,14 +74,25 @@ const Users = (): ReactElement => {
         setUserIdToDelete(id);
     };
 
-    const onBlock = () => {
+    const onBlock = (id: string) => {
         console.log("blocked");
+        console.log("id", id);
+        console.log("id", id);
+        handleBlockUSerOpenModal();
+        setUserIdToBlock(id);
     };
 
     const handleModalDeleteClick = () => {
         console.log("Delete");
         console.log("userIdToDelete", userIdToDelete);
         dispatch(deleteUser(userIdToDelete as string));
+        handleCloseModal();
+    };
+
+    const handleModalBlockUserClick = () => {
+        console.log("Block");
+        console.log("userIdToBlock", userIdToBlock);
+        // dispatch(deleteUser(userIdToDelete as string));
         handleCloseModal();
     };
 
@@ -78,29 +106,72 @@ const Users = (): ReactElement => {
                     {!!users &&
                         users.map((user: User) => {
                             return (
-                                <CardContainer key={user.id}>
-                                    <UserInfo>
-                                        <Label>First Name:</Label>
-                                        {user?.first_name}
-                                    </UserInfo>
-                                    <UserInfo>
-                                        <Label>Last Name:</Label>
-                                        {user?.last_name}
-                                    </UserInfo>
-                                    <UserInfo>
-                                        <Label>Email:</Label>
-                                        {user.email}
-                                    </UserInfo>
-                                    <UserInfo>
-                                        <Label>Phone:</Label>
-                                        {user.phone}
-                                    </UserInfo>
-                                    <UserInfo>
-                                        <Label>Gender:</Label>
-                                        {user.gender}
-                                    </UserInfo>
-                                    <ButtonContainer>
-                                        <BlockButton onClick={onBlock}>
+                                <UserCard key={user.id}>
+                                    <UserColumn>
+                                        <Avatar>
+                                            <Image
+                                                priority
+                                                src={
+                                                    (user &&
+                                                        user?.avatar_image) ||
+                                                    "/icons/avatar.svg"
+                                                }
+                                                height={80}
+                                                width={80}
+                                                alt="Avatar icon"
+                                            />
+                                        </Avatar>
+                                    </UserColumn>
+                                    <UserColumn>
+                                        <UserTitle>First Name:</UserTitle>
+                                        <p>{user?.first_name}</p>
+                                        <UserTitle>Last Name:</UserTitle>
+                                        <p> {user?.last_name}</p>
+                                    </UserColumn>
+                                    <UserColumn>
+                                        <UserTitle>Username:</UserTitle>
+                                        <p>{user?.username}</p>
+                                        <UserTitle>Email:</UserTitle>
+                                        <p>{user.email}</p>
+                                    </UserColumn>
+                                    <UserColumn>
+                                        <UserTitle>Phone:</UserTitle>
+                                        <p>{user.phone}</p>
+                                        <UserTitle>Gender:</UserTitle>
+                                        <p>{user.gender}</p>
+                                    </UserColumn>
+                                    <UserColumn>
+                                        <UserTitle>Birth Date:</UserTitle>
+                                        <p>{user.birth_date}</p>
+                                        <UserTitle>Service:</UserTitle>
+                                        <p>{user.service}</p>
+                                    </UserColumn>
+                                    <UserColumn>
+                                        <UserTitle>Is admin::</UserTitle>
+                                        <p>
+                                            {user && user?.is_admin ? (
+                                                <Image
+                                                    priority
+                                                    src="/icons/yes-icon.svg"
+                                                    height={40}
+                                                    width={40}
+                                                    alt="Yes icon"
+                                                />
+                                            ) : (
+                                                <Image
+                                                    priority
+                                                    src="/icons/no-icon.svg"
+                                                    height={40}
+                                                    width={40}
+                                                    alt="No icon"
+                                                />
+                                            )}
+                                        </p>
+                                    </UserColumn>
+                                    <ButtonActions>
+                                        <BlockButton
+                                            onClick={() => onBlock(user?.id)}
+                                        >
                                             Block
                                         </BlockButton>
                                         <DeleteButton
@@ -108,8 +179,8 @@ const Users = (): ReactElement => {
                                         >
                                             Delete
                                         </DeleteButton>
-                                    </ButtonContainer>
-                                </CardContainer>
+                                    </ButtonActions>
+                                </UserCard>
                             );
                         })}
                     <Modal
@@ -140,6 +211,34 @@ const Users = (): ReactElement => {
                             </DeleteButtonActions>
                         </DeleteModalContent>
                     </Modal>
+                    <Modal
+                        isOpen={modalBlockUserOpen}
+                        onClose={handleBlockUserCloseModal}
+                        isAdmin
+                    >
+                        <DeleteModalContent>
+                            <DeleteModalTitle>
+                                Are you sure you want to block this user?
+                            </DeleteModalTitle>
+                            <DeleteModalDescription>
+                                This will block user in application!
+                            </DeleteModalDescription>
+                            <DeleteButtonActions>
+                                <DeleteModalButton
+                                    onClick={handleModalBlockUserClick}
+                                    isBlock
+                                >
+                                    <Image
+                                        src="/icons/block-icon.svg"
+                                        width={30}
+                                        height={30}
+                                        alt="Block-icon.svg"
+                                    />{" "}
+                                    Yes please block this user
+                                </DeleteModalButton>
+                            </DeleteButtonActions>
+                        </DeleteModalContent>
+                    </Modal>
                     {users.length === 0 ? <h4>There are no users!</h4> : null}
                     <AlertWrapper />
                 </AdminUsersPage>
@@ -149,57 +248,3 @@ const Users = (): ReactElement => {
 };
 
 export default withAdmin(Users);
-
-const AdminUsersPage = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width: 90%;
-`;
-
-const CardContainer = styled.div`
-    //display: flex;
-    //flex-direction: column;
-    //align-items: flex-start;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    width: 100%;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-bottom: 20px;
-    margin-top: 20px;
-`;
-
-const UserInfo = styled.div`
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 0.5rem;
-`;
-
-const Label = styled.span`
-    font-weight: bold;
-    margin-bottom: 0.25rem;
-`;
-
-const ButtonContainer = styled.div`
-    display: flex;
-    justify-content: space-between;
-`;
-
-const Button = styled.button`
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
-    cursor: pointer;
-`;
-
-const BlockButton = styled(Button)`
-    background-color: purple;
-    color: #fff;
-`;
-
-const DeleteButton = styled(Button)`
-    background-color: red;
-    color: #fff;
-`;

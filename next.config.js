@@ -11,6 +11,15 @@ module.exports = withImages(
             compiler: {
                 styledComponents: true,
             },
+            images: {
+                remotePatterns: [
+                    {
+                        protocol: "https",
+                        hostname: "*",
+                    },
+                ],
+                minimumCacheTTL: 1500000,
+            },
         }),
     ),
 );

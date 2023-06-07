@@ -27,6 +27,6 @@ export const BackButton = styled.button`
     img {
         border-radius: 50%;
         width: 20px;
-        fill: ${({ theme }) => theme.colors.gold};
+        fill: ${({ theme }) => theme.palette.gold};
     }
 `;
