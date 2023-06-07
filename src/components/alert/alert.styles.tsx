@@ -19,6 +19,6 @@ export const AlertIcon = styled.span<{ type: keyof typeof alertTypes }>`
     img {
         all: unset;
         width: 30px;
-        fill: ${({ theme }) => theme.colors.white};
+        fill: ${({ theme }) => theme.palette.white};
     }
 `;

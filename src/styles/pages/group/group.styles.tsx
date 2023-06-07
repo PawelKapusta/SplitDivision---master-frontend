@@ -12,7 +12,7 @@ export const GroupContainer = styled.div`
         margin-bottom: 50px;
 
         span {
-            color: ${({ theme }) => theme.colors.gold};
+            color: ${({ theme }) => theme.palette.gold};
         }
     }
 `;
@@ -20,11 +20,11 @@ export const GroupCardContent = styled.div<{ isLongDescription: boolean }>`
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    background-color: ${({ theme }) => theme.colors.gold};
+    background-color: ${({ theme }) => theme.palette.gold};
     margin-top: 30px;
     height: ${({ isLongDescription }) =>
         isLongDescription ? " 450px" : "400px"};
-    color: ${({ theme }) => theme.colors.black};
+    color: ${({ theme }) => theme.palette.black};
     border-radius: 20px;
     width: 80%;
 `;
@@ -36,7 +36,7 @@ export const GroupCardTitle = styled.div`
     margin-top: 20px;
     margin-left: 10px;
     padding: 20px;
-    background-color: ${({ theme }) => theme.colors.gold};
+    background-color: ${({ theme }) => theme.palette.gold};
     text-align: center;
     border-radius: 20px;
 
@@ -57,7 +57,7 @@ export const GroupCardTitle = styled.div`
         margin-top: 20px;
     }
     & * {
-        background-color: ${({ theme }) => theme.colors.gold};
+        background-color: ${({ theme }) => theme.palette.gold};
     }
 `;
 
@@ -75,7 +75,7 @@ export const GroupCardActions = styled.div`
 `;
 
 export const GroupCardDescription = styled.div<{ isLongDescription: boolean }>`
-    background-color: ${({ theme }) => theme.colors.gold};
+    background-color: ${({ theme }) => theme.palette.gold};
     padding: 20px;
     height: 300px;
     width: 50%;
@@ -84,12 +84,12 @@ export const GroupCardDescription = styled.div<{ isLongDescription: boolean }>`
         isLongDescription ? "  1.1" : " 1.5"};
 
     & * {
-        background-color: ${({ theme }) => theme.colors.gold};
+        background-color: ${({ theme }) => theme.palette.gold};
     }
 `;
 
 export const GroupCardImage = styled.div`
-    background-color: ${({ theme }) => theme.colors.gold};
+    background-color: ${({ theme }) => theme.palette.gold};
     border-radius: 20px;
     padding: 10px;
     width: 30%;
@@ -115,7 +115,7 @@ export const CreateBillButton = styled.button`
     font-size: 20px;
 
     &:hover {
-        box-shadow: 0 5px 10px 0 ${({ theme }) => theme.colors.gold};
+        box-shadow: 0 5px 10px 0 ${({ theme }) => theme.palette.gold};
         transition: transform 0.5s ease-in-out;
         transform: translateY(-5px);
     }
@@ -128,7 +128,7 @@ export const CreateBillButton = styled.button`
 `;
 
 export const CenterTitle = styled.div`
-    color: ${({ theme }) => theme.colors.gold};
+    color: ${({ theme }) => theme.palette.gold};
     margin-top: 80px;
     font-size: 26px;
     font-weight: bold;
@@ -146,10 +146,10 @@ export const ListItem = styled.div<{ isBlocked: boolean }>`
     padding: 8px 16px;
     border: 1px solid #b77d30;
     background-color: ${({ isBlocked, theme }) =>
-        isBlocked ? "#cb2d3e" : theme.colors.gold}};
+        isBlocked ? "#cb2d3e" : theme.palette.gold}};
     & * {
         background-color: ${({ isBlocked, theme }) =>
-            isBlocked ? "#cb2d3e" : theme.colors.gold};
+            isBlocked ? "#cb2d3e" : theme.palette.gold};
     }
 
     &:nth-child(1) {
@@ -171,7 +171,7 @@ export const ListItemText = styled.div<{ isBlocked: boolean }>`
     margin-left: 16px;
     width: 30%;
     background-color: ${({ isBlocked, theme }) =>
-        isBlocked ? "#cb2d3e" : theme.colors.gold};
+        isBlocked ? "#cb2d3e" : theme.palette.gold};
 `;
 
 export const PrimaryText = styled.div`
@@ -179,13 +179,13 @@ export const PrimaryText = styled.div`
     text-align: center;
 
     a:hover {
-        color: ${({ theme }) => theme.colors.black};
+        color: ${({ theme }) => theme.palette.black};
     }
 `;
 
 export const SecondaryText = styled.div<{ isBlocked: boolean }>`
     color: ${({ isBlocked, theme }) =>
-        isBlocked ? theme.colors.black : "#757575"};
+        isBlocked ? theme.palette.black : "#757575"};
     margin-top: 5px;
     text-align: center;
 `;
@@ -200,7 +200,7 @@ export const EditGroupButton = styled.div`
     }
 
     &:hover {
-        box-shadow: 0 5px 10px 0 ${({ theme }) => theme.colors.white};
+        box-shadow: 0 5px 10px 0 ${({ theme }) => theme.palette.white};
     }
 `;
 
@@ -214,6 +214,6 @@ export const DeleteGroupButton = styled.div`
     }
 
     &:hover {
-        box-shadow: 0 5px 10px 0 ${({ theme }) => theme.colors.white};
+        box-shadow: 0 5px 10px 0 ${({ theme }) => theme.palette.white};
     }
 `;

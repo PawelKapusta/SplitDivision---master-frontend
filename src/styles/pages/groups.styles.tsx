@@ -11,14 +11,14 @@ export const GroupsContainer = styled.div`
     h2 {
         text-align: center;
         font-weight: bold;
-        color: ${({ theme }) => theme.colors.gold};
+        color: ${({ theme }) => theme.palette.gold};
     }
 
     h4 {
         color: #808080;
         margin-top: 20px;
         span {
-            color: ${({ theme }) => theme.colors.gold};
+            color: ${({ theme }) => theme.palette.gold};
         }
     }
 `;

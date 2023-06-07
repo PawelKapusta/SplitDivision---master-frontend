@@ -5,7 +5,7 @@ export const Title = styled.div`
     justify-content: center;
     font-size: 36px;
     font-weight: bold;
-    color: ${({ theme }) => theme.colors.gold};
+    color: ${({ theme }) => theme.palette.gold};
 `;
 
 export const Actions = styled.div`
@@ -30,7 +30,7 @@ export const DeleteIconButton = styled.button`
         background-color: red;
     }
     &:hover {
-        box-shadow: 0 0 10px ${({ theme }) => theme.colors.white};
+        box-shadow: 0 0 10px ${({ theme }) => theme.palette.white};
     }
 `;
 
@@ -52,7 +52,7 @@ export const GoIconButton = styled.button`
         background-color: dodgerblue;
     }
     &:hover {
-        box-shadow: 0 0 10px ${({ theme }) => theme.colors.white};
+        box-shadow: 0 0 10px ${({ theme }) => theme.palette.white};
     }
 `;
 
@@ -60,10 +60,10 @@ export const DeleteModalContent = styled.div`
     flex-direction: column;
     height: 200px;
     width: 100%;
-    background-color: ${({ theme }) => theme.colors.black} !important;
+    background-color: ${({ theme }) => theme.palette.black} !important;
 
     & > * {
-        background-color: ${({ theme }) => theme.colors.black} !important;
+        background-color: ${({ theme }) => theme.palette.black} !important;
     }
     button {
         position: absolute;
@@ -76,7 +76,7 @@ export const DeleteModalTitle = styled.div`
     justify-content: center;
     font-size: 24px;
     font-weight: bold;
-    color: ${({ theme }) => theme.colors.gold};
+    color: ${({ theme }) => theme.palette.gold};
 `;
 
 export const DeleteModalDescription = styled.div`

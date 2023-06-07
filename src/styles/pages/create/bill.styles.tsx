@@ -33,7 +33,7 @@ export const Input = styled.input`
     border-radius: 5px;
     height: 55px;
     font-size: 20px;
-    border-color: ${({ theme }) => theme.colors.gold};
+    border-color: ${({ theme }) => theme.palette.gold};
     padding: 10px;
 
     &:nth-child(1) {
@@ -46,7 +46,7 @@ export const DebtInput = styled.input`
     border-radius: 5px;
     height: 43px;
     font-size: 20px;
-    border-color: ${({ theme }) => theme.colors.gold};
+    border-color: ${({ theme }) => theme.palette.gold};
     padding: 10px;
 `;
 
@@ -56,7 +56,7 @@ export const InputDescription = styled.textarea`
     border-radius: 5px;
     height: 155px;
     font-size: 20px;
-    border-color: ${({ theme }) => theme.colors.gold};
+    border-color: ${({ theme }) => theme.palette.gold};
     padding: 10px;
 
     &:nth-child(1) {
@@ -78,7 +78,7 @@ export const Error = styled.span`
 
 export const Title = styled.div`
     margin-top: 30px;
-    color: ${({ theme }) => theme.colors.gold};
+    color: ${({ theme }) => theme.palette.gold};
     font-size: 36px;
     font-weight: bold;
     height: 40px;
@@ -91,12 +91,12 @@ export const UsersSelector = styled.div`
     width: 500px;
 
     .search input {
-        border: 1px solid ${({ theme }) => theme.colors.white};
+        border: 1px solid ${({ theme }) => theme.palette.white};
     }
 
     .search input:focus {
         background: black;
-        color: ${({ theme }) => theme.colors.white};
+        color: ${({ theme }) => theme.palette.white};
     }
 
     .clear-selected-button {
@@ -107,7 +107,7 @@ export const UsersSelector = styled.div`
     }
 
     .clear-selected-button:hover {
-        box-shadow: 0 0 20px ${({ theme }) => theme.colors.white};
+        box-shadow: 0 0 20px ${({ theme }) => theme.palette.white};
         border-radius: 50px;
     }
 
@@ -118,32 +118,32 @@ export const UsersSelector = styled.div`
     }
 
     .search-clear-button:hover {
-        box-shadow: 0 0 20px ${({ theme }) => theme.colors.white};
+        box-shadow: 0 0 20px ${({ theme }) => theme.palette.white};
         border-radius: 50px;
     }
 
     .select-item:hover {
-        background: ${({ theme }) => theme.colors.gold};
+        background: ${({ theme }) => theme.palette.gold};
 
         & * {
-            background-color: ${({ theme }) => theme.colors.gold};
+            background-color: ${({ theme }) => theme.palette.gold};
             color: black;
         }
     }
 
     .select-item.selected {
-        background: ${({ theme }) => theme.colors.gold};
+        background: ${({ theme }) => theme.palette.gold};
         font-weight: bold;
         border: 1px solid #b77d30;
 
         & * {
-            background-color: ${({ theme }) => theme.colors.gold};
+            background-color: ${({ theme }) => theme.palette.gold};
             color: black;
         }
     }
 
     .no-options {
-        border: 4px solid ${({ theme }) => theme.colors.gold};
+        border: 4px solid ${({ theme }) => theme.palette.gold};
     }
 `;
 
@@ -151,7 +151,7 @@ export const DateLabel = styled.label`
     margin: 20px 10px 10px 20px;
     width: 60%;
     font-weight: bold;
-    color: ${({ theme }) => theme.colors.gold};
+    color: ${({ theme }) => theme.palette.gold};
     font-size: 20px;
 `;
 
@@ -162,10 +162,10 @@ export const BillCustomDatePicker = styled.div`
 
     .react-datepicker__input-container {
         input {
-            background-color: ${({ theme }) => theme.colors.gold};
+            background-color: ${({ theme }) => theme.palette.gold};
             text-align: center;
             color: #333;
-            border: 1px solid ${({ theme }) => theme.colors.gold};
+            border: 1px solid ${({ theme }) => theme.palette.gold};
             width: 100%;
             font-weight: bold;
             cursor: pointer;
@@ -175,27 +175,27 @@ export const BillCustomDatePicker = styled.div`
     }
 
     .react-datepicker__calendar-container {
-        background-color: ${({ theme }) => theme.colors.gold};
-        border: 1px solid ${({ theme }) => theme.colors.gold};
+        background-color: ${({ theme }) => theme.palette.gold};
+        border: 1px solid ${({ theme }) => theme.palette.gold};
     }
 
     .react-datepicker__current-month {
-        color: ${({ theme }) => theme.colors.gold};
+        color: ${({ theme }) => theme.palette.gold};
     }
     .react-datepicker__day-name {
         border-radius: 4px;
-        color: ${({ theme }) => theme.colors.white};
-        border: 1px solid ${({ theme }) => theme.colors.gold};
+        color: ${({ theme }) => theme.palette.white};
+        border: 1px solid ${({ theme }) => theme.palette.gold};
     }
 
     .react-datepicker-time__header {
         background-color: black;
-        color: ${({ theme }) => theme.colors.gold};
+        color: ${({ theme }) => theme.palette.gold};
     }
 
     .react-datepicker__time-list li {
         background-color: black;
-        color: ${({ theme }) => theme.colors.gold};
+        color: ${({ theme }) => theme.palette.gold};
     }
 
     .react-datepicker__time-list li:hover {
@@ -204,27 +204,27 @@ export const BillCustomDatePicker = styled.div`
 
     .react-datepicker__day-names {
         background-color: black;
-        color: ${({ theme }) => theme.colors.white};
+        color: ${({ theme }) => theme.palette.white};
     }
 
     .react-datepicker__day {
         border-radius: 20px;
-        color: ${({ theme }) => theme.colors.gold};
+        color: ${({ theme }) => theme.palette.gold};
     }
 
     .react-datepicker__day:hover {
-        background-color: ${({ theme }) => theme.colors.white};
+        background-color: ${({ theme }) => theme.palette.white};
         color: black;
     }
 
     .react-datepicker__day--selected {
-        background-color: ${({ theme }) => theme.colors.gold};
+        background-color: ${({ theme }) => theme.palette.gold};
         color: #333;
     }
 
     .react-datepicker__day--hovered {
         background-color: black;
-        color: ${({ theme }) => theme.colors.white};
+        color: ${({ theme }) => theme.palette.white};
     }
 
     .react-datepicker__day--disabled {
@@ -246,7 +246,7 @@ export const CurrencySelectorContainer = styled.div`
 
 export const CurrencySelector = styled.select`
     padding: 10px;
-    border: 1px solid ${({ theme }) => theme.colors.gold};
+    border: 1px solid ${({ theme }) => theme.palette.gold};
     border-radius: 4px;
     font-size: 18px;
     margin: 10px;

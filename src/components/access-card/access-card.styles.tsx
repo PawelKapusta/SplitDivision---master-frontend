@@ -7,7 +7,7 @@ export const Card = styled.div`
     max-width: 1300px;
     height: 700px;
     border-radius: 20px;
-    box-shadow: 0 0 20px ${({ theme }) => theme.colors.gold};
+    box-shadow: 0 0 20px ${({ theme }) => theme.palette.gold};
 
     @media ${(props) => props.theme.breakpoints.lg} {
         width: 90%;

@@ -20,7 +20,7 @@ export const NavbarToggleIcon = styled.span`
     display: block;
     width: 20px;
     height: 2px;
-    background-color: ${({ theme }) => theme.colors.white};
+    background-color: ${({ theme }) => theme.palette.white};
     margin: 4px 0;
 `;
 
@@ -40,7 +40,7 @@ export const NavbarMenu = styled.ul<{
     }
 
     li:hover:not(:last-child) {
-        box-shadow: 0 5px 10px 0 ${({ theme }) => theme.colors.white};
+        box-shadow: 0 5px 10px 0 ${({ theme }) => theme.palette.white};
         transition: transform 0.2s ease;
         transform: translateY(-5px);
     }
@@ -71,7 +71,7 @@ export const NavbarMenu = styled.ul<{
         li:last-child:hover {
             display: flex;
             justify-content: center;
-            box-shadow: 0 5px 10px 0 ${({ theme }) => theme.colors.white};
+            box-shadow: 0 5px 10px 0 ${({ theme }) => theme.palette.white};
             transition: transform 0.2s ease;
             transform: translateY(-5px);
         }
@@ -95,7 +95,7 @@ type MenuLinkProps = {
 };
 
 export const MenuLink = styled.a<MenuLinkProps>`
-    color: ${({ theme }) => theme.colors.white};
+    color: ${({ theme }) => theme.palette.white};
     text-decoration: none;
     background: ${({ isAction }) =>
         isAction ? "linear-gradient(to right, #6a0dad, #330766)" : "none"};
@@ -121,7 +121,7 @@ export const Hamburger = styled.div<HamburgerProps>`
 
         ${NavbarToggleIcon} {
             background-color: ${({ active }) =>
-                active ? "red" : "${({ theme }) => theme.colors.white}"};
+                active ? "red" : "${({ theme }) => theme.palette.white}"};
             border: ${({ active }) => (active ? "2px solid red" : "")};
 
             &:hover {

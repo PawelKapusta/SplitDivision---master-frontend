@@ -11,7 +11,7 @@ export const DropdownContainer = styled.div`
 `;
 
 export const DropdownToggle = styled.button`
-    background-color: ${({ theme }) => theme.colors.black};
+    background-color: ${({ theme }) => theme.palette.black};
     border-radius: 50%;
     border: none;
     cursor: pointer;
@@ -30,7 +30,7 @@ export const DropdownMenu = styled.div`
     right: 5%;
     width: 200px;
     padding: 10px;
-    border: 1px solid ${({ theme }) => theme.colors.gold};
+    border: 1px solid ${({ theme }) => theme.palette.gold};
     border-radius: 4px;
 
     a {
@@ -39,12 +39,12 @@ export const DropdownMenu = styled.div`
         padding: 10px;
         text-decoration: none;
         text-align: center;
-        color: ${({ theme }) => theme.colors.white};
+        color: ${({ theme }) => theme.palette.white};
         width: 100%;
     }
 
     a:hover {
-        box-shadow: 0 0 20px ${({ theme }) => theme.colors.white};
+        box-shadow: 0 0 20px ${({ theme }) => theme.palette.white};
     }
 
     @media ${(props) => props.theme.breakpoints.md} {
@@ -64,7 +64,7 @@ export const Avatar = styled.div`
     }
 
     img:hover {
-        box-shadow: 0 5px 10px 0 ${({ theme }) => theme.colors.white};
+        box-shadow: 0 5px 10px 0 ${({ theme }) => theme.palette.white};
     }
 
     @media ${(props) => props.theme.breakpoints.md} {

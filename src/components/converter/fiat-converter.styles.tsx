@@ -54,8 +54,8 @@ export const CurrencyInput = styled.input`
 
 export const CurrencyButton = styled.button`
     padding: 8px 20px;
-    background-color: ${({ theme }) => theme.colors.gold};
-    color: ${({ theme }) => theme.colors.black};
+    background-color: ${({ theme }) => theme.palette.gold};
+    color: ${({ theme }) => theme.palette.black};
     border: none;
     border-radius: 4px;
     cursor: pointer;
@@ -64,12 +64,12 @@ export const CurrencyButton = styled.button`
     align-items: center;
 
     &:hover {
-        box-shadow: 0 0 10px ${({ theme }) => theme.colors.white};
+        box-shadow: 0 0 10px ${({ theme }) => theme.palette.white};
     }
 
     img {
         width: 20px;
-        background-color: ${({ theme }) => theme.colors.gold};
+        background-color: ${({ theme }) => theme.palette.gold};
         margin-left: 10px;
     }
 `;
@@ -98,8 +98,8 @@ export const CurrencySelect = styled.select`
     }
 
     option:hover {
-        color: ${({ theme }) => theme.colors.black};
-        background-color: ${({ theme }) => theme.colors.gold};
+        color: ${({ theme }) => theme.palette.black};
+        background-color: ${({ theme }) => theme.palette.gold};
     }
 `;
 

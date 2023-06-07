@@ -21,7 +21,7 @@ export const CardContainer = styled.div<{
         background-color: ${({ isAdmin }) => (isAdmin ? "#D3D3D3" : "white")};
     }
     &:hover {
-        box-shadow: 0 0 20px ${({ theme }) => theme.colors.white};
+        box-shadow: 0 0 20px ${({ theme }) => theme.palette.white};
     }
 `;
 
@@ -32,7 +32,7 @@ export const CardTitle = styled.div`
     width: 250px;
     margin-left: 10px;
     p {
-        color: ${({ theme }) => theme.colors.black};
+        color: ${({ theme }) => theme.palette.black};
         margin-bottom: 5px;
     }
 
@@ -59,7 +59,7 @@ export const CardDescription = styled.div`
     margin: 10px 0 0 10px;
 
     span {
-        color: ${({ theme }) => theme.colors.black};
+        color: ${({ theme }) => theme.palette.black};
     }
 `;
 
@@ -68,7 +68,7 @@ export const CardCost = styled.div`
     align-items: center;
     justify-content: center;
     p {
-        color: ${({ theme }) => theme.colors.black};
+        color: ${({ theme }) => theme.palette.black};
         font-weight: bold;
         font-size: 24px;
     }

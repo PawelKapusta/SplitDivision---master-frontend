@@ -4,7 +4,7 @@ export const GroupContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 5px 10px 0 ${({ theme }) => theme.colors.white};
+    box-shadow: 0 5px 10px 0 ${({ theme }) => theme.palette.white};
     height: 60vh;
     margin: 80px 150px 0 150px;
 
@@ -43,7 +43,7 @@ export const Input = styled.input`
     border-radius: 5px;
     height: 55px;
     font-size: 20px;
-    border-color: ${({ theme }) => theme.colors.gold};
+    border-color: ${({ theme }) => theme.palette.gold};
     padding: 10px;
 
     &:nth-child(1) {
@@ -57,7 +57,7 @@ export const InputDescription = styled.textarea`
     border-radius: 5px;
     height: 155px;
     font-size: 20px;
-    border-color: ${({ theme }) => theme.colors.gold};
+    border-color: ${({ theme }) => theme.palette.gold};
     padding: 10px;
 
     &:nth-child(1) {
@@ -79,7 +79,7 @@ export const Error = styled.span`
 
 export const Title = styled.div`
     margin-top: 30px;
-    color: ${({ theme }) => theme.colors.gold};
+    color: ${({ theme }) => theme.palette.gold};
     font-size: 36px;
     font-weight: bold;
     height: 40px;
@@ -124,26 +124,26 @@ export const UsersSelector = styled.div`
     }
 
     .select-item:hover {
-        background: ${({ theme }) => theme.colors.gold};
+        background: ${({ theme }) => theme.palette.gold};
 
         & * {
-            background-color: ${({ theme }) => theme.colors.gold};
+            background-color: ${({ theme }) => theme.palette.gold};
             color: black;
         }
     }
 
     .select-item.selected {
-        background: ${({ theme }) => theme.colors.gold};
+        background: ${({ theme }) => theme.palette.gold};
         font-weight: bold;
         border: 1px solid #b77d30;
 
         & * {
-            background-color: ${({ theme }) => theme.colors.gold};
+            background-color: ${({ theme }) => theme.palette.gold};
             color: black;
         }
     }
 
     .no-options {
-        border: 4px solid ${({ theme }) => theme.colors.gold};
+        border: 4px solid ${({ theme }) => theme.palette.gold};
     }
 `;
