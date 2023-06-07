@@ -40,7 +40,7 @@ export const NavbarMenu = styled.ul<{
     }
 
     li:hover:not(:last-child) {
-        box-shadow: 0px 5px 10px 0px ${({ theme }) => theme.colors.white};
+        box-shadow: 0 5px 10px 0 ${({ theme }) => theme.colors.white};
         transition: transform 0.2s ease;
         transform: translateY(-5px);
     }

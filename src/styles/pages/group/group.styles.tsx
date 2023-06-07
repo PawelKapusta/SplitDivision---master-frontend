@@ -24,7 +24,7 @@ export const GroupCardContent = styled.div<{ isLongDescription: boolean }>`
     margin-top: 30px;
     height: ${({ isLongDescription }) =>
         isLongDescription ? " 450px" : "400px"};
-    color: black;
+    color: ${({ theme }) => theme.colors.black};
     border-radius: 20px;
     width: 80%;
 `;
@@ -184,12 +184,13 @@ export const PrimaryText = styled.div`
     text-align: center;
 
     a:hover {
-        color: black;
+        color: ${({ theme }) => theme.colors.black};
     }
 `;
 
 export const SecondaryText = styled.div<{ isBlocked: boolean }>`
-    color: ${({ isBlocked }) => (isBlocked ? "black" : "#757575")};
+    color: ${({ isBlocked, theme }) =>
+        isBlocked ? theme.colors.black : "#757575"};
     margin-top: 5px;
     text-align: center;
 `;

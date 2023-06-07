@@ -60,10 +60,10 @@ export const DeleteModalContent = styled.div`
     flex-direction: column;
     height: 200px;
     width: 100%;
-    background-color: black !important;
+    background-color: ${({ theme }) => theme.colors.black} !important;
 
     & > * {
-        background-color: black !important;
+        background-color: ${({ theme }) => theme.colors.black} !important;
     }
     button {
         position: absolute;

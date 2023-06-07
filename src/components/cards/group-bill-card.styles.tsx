@@ -32,7 +32,7 @@ export const CardTitle = styled.div`
     width: 250px;
     margin-left: 10px;
     p {
-        color: black;
+        color: ${({ theme }) => theme.colors.black};
         margin-bottom: 5px;
     }
 
@@ -59,7 +59,7 @@ export const CardDescription = styled.div`
     margin: 10px 0 0 10px;
 
     span {
-        color: black;
+        color: ${({ theme }) => theme.colors.black};
     }
 `;
 
@@ -68,7 +68,7 @@ export const CardCost = styled.div`
     align-items: center;
     justify-content: center;
     p {
-        color: black;
+        color: ${({ theme }) => theme.colors.black};
         font-weight: bold;
         font-size: 24px;
     }

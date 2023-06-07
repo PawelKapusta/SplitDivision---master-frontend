@@ -139,7 +139,7 @@ const BillCardContent = styled.div<{ isLongDescription: boolean }>`
     margin-top: 30px;
     height: ${({ isLongDescription }) =>
         isLongDescription ? " 450px" : "400px"};
-    color: black;
+    color: ${({ theme }) => theme.colors.black};
     border-radius: 20px;
     width: 80%;
 `;
@@ -229,7 +229,7 @@ const BillAmount = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: black;
+    color: ${({ theme }) => theme.colors.black};
     margin-top: 50px;
 
     & > * {

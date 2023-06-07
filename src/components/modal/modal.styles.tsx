@@ -18,7 +18,7 @@ export const ModalContent = styled.div<{ isAdmin?: boolean }>`
     align-items: center;
     justify-content: center;
     position: relative;
-    background-color: black;
+    background-color: ${({ theme }) => theme.colors.black};
     border: 1px solid #b77d30;
     padding: 20px;
     border-radius: 8px;

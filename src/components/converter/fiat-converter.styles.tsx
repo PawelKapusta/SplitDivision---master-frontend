@@ -55,7 +55,7 @@ export const CurrencyInput = styled.input`
 export const CurrencyButton = styled.button`
     padding: 8px 20px;
     background-color: ${({ theme }) => theme.colors.gold};
-    color: black;
+    color: ${({ theme }) => theme.colors.black};
     border: none;
     border-radius: 4px;
     cursor: pointer;
@@ -98,7 +98,7 @@ export const CurrencySelect = styled.select`
     }
 
     option:hover {
-        color: black;
+        color: ${({ theme }) => theme.colors.black};
         background-color: ${({ theme }) => theme.colors.gold};
     }
 `;

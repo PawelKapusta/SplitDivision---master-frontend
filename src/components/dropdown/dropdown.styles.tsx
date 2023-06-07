@@ -11,7 +11,7 @@ export const DropdownContainer = styled.div`
 `;
 
 export const DropdownToggle = styled.button`
-    background-color: black;
+    background-color: ${({ theme }) => theme.colors.black};
     border-radius: 50%;
     border: none;
     cursor: pointer;
@@ -39,7 +39,7 @@ export const DropdownMenu = styled.div`
         padding: 10px;
         text-decoration: none;
         text-align: center;
-        color: white;
+        color: ${({ theme }) => theme.colors.white};
         width: 100%;
     }
 

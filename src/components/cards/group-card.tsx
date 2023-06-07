@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { ReactElement, useEffect, useState } from "react";
 import Image from "next/image";
 import {
     CardContainer,
@@ -30,7 +30,7 @@ export type TGroupCardProps = {
     group: Group;
     isAdmin?: boolean;
 };
-const GroupCard = ({ group, isAdmin }: TGroupCardProps): JSX.Element => {
+const GroupCard = ({ group, isAdmin }: TGroupCardProps): ReactElement => {
     const groupPath = `/group/${group.id}`;
     const router = useRouter();
     const dispatch = useDispatch();

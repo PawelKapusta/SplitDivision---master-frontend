@@ -212,7 +212,7 @@ export const Select = styled.select`
     border: 1px solid ${({ theme }) => theme.colors.gold};
     margin: 15px 0;
     border-radius: 4px;
-    color: white;
+    color: ${({ theme }) => theme.colors.white};
 
     &::-ms-expand {
         display: none;
@@ -235,7 +235,7 @@ export const Select = styled.select`
 
     option {
         padding: 8px;
-        background-color: black;
+        background-color: ${({ theme }) => theme.colors.black};
         color: ${({ theme }) => theme.colors.gold};
     }
 
