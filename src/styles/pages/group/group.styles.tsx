@@ -174,9 +174,14 @@ export const ListItemText = styled.div<{ isBlocked: boolean }>`
         isBlocked ? "#cb2d3e" : theme.palette.gold};
 `;
 
-export const PrimaryText = styled.div`
+export const PrimaryText = styled.div<{ isRegulated?: boolean }>`
     font-weight: 500;
     text-align: center;
+
+    span {
+        color: ${({ isRegulated }) => (isRegulated ? "green" : "red")};
+        font-weight: bold;
+    }
 
     a:hover {
         color: ${({ theme }) => theme.palette.black};
@@ -188,6 +193,15 @@ export const SecondaryText = styled.div<{ isBlocked: boolean }>`
         isBlocked ? theme.palette.black : "#757575"};
     margin-top: 5px;
     text-align: center;
+
+    img {
+        height: 20px;
+    }
+
+    span {
+        display: flex;
+        flex-direction: row;
+    }
 `;
 
 export const EditGroupButton = styled.div`

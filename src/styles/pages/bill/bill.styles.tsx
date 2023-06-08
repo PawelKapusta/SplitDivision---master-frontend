@@ -66,6 +66,19 @@ export const BillCardTitle = styled.div`
     }
 `;
 
+export const BillCardActions = styled.div`
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    margin-top: 15px;
+
+    img {
+        cursor: pointer;
+        height: 30px;
+        width: 50px;
+    }
+`;
+
 export const BillCardDescription = styled.div<{ isLongDescription: boolean }>`
     background-color: ${({ theme }) => theme.palette.gold};
     padding: 20px;
@@ -78,6 +91,21 @@ export const BillCardDescription = styled.div<{ isLongDescription: boolean }>`
     & * {
         background-color: ${({ theme }) => theme.palette.gold};
     }
+`;
+
+export const BillCenterTitle = styled.div`
+    color: ${({ theme }) => theme.palette.gold};
+    margin-top: 40px;
+    font-size: 26px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    background-color: ${({ theme }) => theme.palette.black};
+`;
+
+export const BillUsersContainer = styled.div`
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 `;
 
 export const BillCardImage = styled.div`
@@ -95,7 +123,7 @@ export const BillCardImage = styled.div`
     }
 `;
 
-export const BillAmount = styled.div`
+export const BillTotal = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -114,8 +142,9 @@ export const BillAmount = styled.div`
 
     p {
         font-size: 16px;
-        margin-bottom: 5px;
+        margin: 5px;
         text-align: center;
+        font-weight: bold;
         & > * {
             background-color: ${({ theme }) => theme.palette.gold};
         }
@@ -135,15 +164,18 @@ export const BillImage = styled.img`
     margin-bottom: 10px;
 `;
 
-export const BillQRCode = styled.div`
+export const QRCodeBox = styled.div`
     display: flex;
     justify-content: center;
-    margin-bottom: 20px;
+    margin: 20px;
 `;
 
-export const QRCode = styled.img`
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 10px;
+export const CodeQrDownloadLink = styled.div`
+    background-color: ${({ theme }) => theme.palette.black};
+    color: ${({ theme }) => theme.palette.gold};
+    cursor: pointer;
+
+    &:hover {
+        color: ${({ theme }) => theme.palette.white};
+    }
 `;

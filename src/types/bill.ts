@@ -13,6 +13,14 @@ export interface Bill {
     group_id: string;
 }
 
+export interface BillsUsers {
+    id: string;
+    debt: number;
+    is_regulated: boolean;
+    user_id: string;
+    bill_id: string;
+}
+
 export interface BillUsersDebt {
     id: string;
     debt: number;

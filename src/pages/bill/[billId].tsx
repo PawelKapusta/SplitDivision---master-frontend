@@ -15,6 +15,7 @@ import { getFormattedDate } from "../../utils/date";
 import Flag from "react-world-flags";
 import Modal from "@components/modal";
 import {
+    Avatar,
     DeleteButtonActions,
     DeleteModalButton,
     DeleteModalContent,
@@ -37,14 +38,22 @@ import {
     BillCardImage,
     BillCardTitle,
     BillContainer,
-    BillAmount,
+    BillTotal,
     Container,
     BillImageContainer,
     BillImage,
-    BillQRCode,
-    QRCode,
+    QRCodeBox,
+    BillUsersContainer,
+    BillCenterTitle,
+    BillCardActions,
+    CodeQrDownloadLink,
 } from "@styles/pages/bill/bill.styles";
 import { FIAT } from "../../types/currency";
+import { User } from "../../types/user";
+import Link from "next/link";
+import { BillsUsers } from "../../types/bill";
+import QRCode from "qrcode.react";
+import { saveAs } from "file-saver";
 
 const Bill: NextPage = () => {
     const router = useRouter();
@@ -54,6 +63,14 @@ const Bill: NextPage = () => {
         useSelector(selectBillState);
     const [deleteBillModalOpen, setDeleteBillModalOpen] = useState(false);
     const { showAlert, AlertWrapper } = useAlert();
+    const combinedUsersBills =
+        billUsers &&
+        billUsers?.users?.map((user: User) => {
+            const matchedItem = billUsers?.billUsers?.find(
+                (users_bills: BillsUsers) => users_bills.user_id === user.id,
+            );
+            return { ...user, ...matchedItem };
+        });
 
     useEffect(() => {
         if (deleteBillSuccess !== false) {
@@ -88,6 +105,20 @@ const Bill: NextPage = () => {
     };
 
     console.log("billUsers", billUsers);
+    console.log("combinedUsersBills", combinedUsersBills);
+
+    const downloadCodeQrClick = (
+        data: string,
+        filename = "bill_qr_code.png",
+    ) => {
+        const canvas = document.querySelector("canvas");
+        const url = (canvas && canvas?.toDataURL("image/png")) || "";
+        fetch(url)
+            .then((res) => res.blob())
+            .then((blob) => {
+                saveAs(blob, filename || "bill_qr_code.png");
+            });
+    };
 
     return (
         <Container>
@@ -117,7 +148,7 @@ const Bill: NextPage = () => {
                                 />
                                 End: {getFormattedDate(bill?.data_end)}
                             </p>
-                            <BillAmount>
+                            <BillTotal>
                                 {bill &&
                                     bill.currency_type
                                         .toLocaleString()
@@ -132,11 +163,10 @@ const Bill: NextPage = () => {
                                         />
                                     )}
                                 <p>
-                                    <strong>Debt:</strong> {bill?.debt}{" "}
-                                    {bill?.currency_code}
+                                    Debt: {bill?.debt} {bill?.currency_code}
                                 </p>
-                            </BillAmount>
-                            <GroupCardActions>
+                            </BillTotal>
+                            <BillCardActions>
                                 <EditGroupButton>
                                     <Image
                                         src="/icons/edit-icon.svg"
@@ -155,7 +185,7 @@ const Bill: NextPage = () => {
                                         alt="Delete-icon.svg"
                                     />
                                 </DeleteGroupButton>
-                            </GroupCardActions>
+                            </BillCardActions>
                         </BillCardTitle>
                         <BillCardDescription isLongDescription={false}>
                             <p>{bill?.description}</p>
@@ -197,90 +227,189 @@ const Bill: NextPage = () => {
                             />
                         </BillCardImage>
                     </BillCardContent>
-                    {/*<Container>*/}
-                    {/*    {isLoading ? (*/}
-                    {/*        <Spinner isSmall />*/}
-                    {/*    ) : (*/}
-                    {/*        groupUsers &&*/}
-                    {/*        groupUsers.map((user: User) => {*/}
-                    {/*            return (*/}
-                    {/*                <ListItem*/}
-                    {/*                    key={user?.id}*/}
-                    {/*                    isBlocked={user?.is_blocked}*/}
-                    {/*                >*/}
-                    {/*                    <Avatar>*/}
-                    {/*                        <img*/}
-                    {/*                            src={user?.avatar_image}*/}
-                    {/*                            alt="Avatar icon"*/}
-                    {/*                        />*/}
-                    {/*                    </Avatar>*/}
-                    {/*                    <ListItemText*/}
-                    {/*                        isBlocked={user?.is_blocked}*/}
-                    {/*                    >*/}
-                    {/*                        <PrimaryText>*/}
-                    {/*                            {user?.first_name}{" "}*/}
-                    {/*                            {user?.last_name}*/}
-                    {/*                        </PrimaryText>*/}
-                    {/*                        <SecondaryText*/}
-                    {/*                            isBlocked={user?.is_blocked}*/}
-                    {/*                        >*/}
-                    {/*                            {user?.email}*/}
-                    {/*                        </SecondaryText>*/}
-                    {/*                    </ListItemText>*/}
-                    {/*                    <ListItemText*/}
-                    {/*                        isBlocked={user?.is_blocked}*/}
-                    {/*                    >*/}
-                    {/*                        <PrimaryText>*/}
-                    {/*                            Username: {user?.username}*/}
-                    {/*                        </PrimaryText>*/}
-                    {/*                        <SecondaryText*/}
-                    {/*                            isBlocked={user?.is_blocked}*/}
-                    {/*                        >*/}
-                    {/*                            Phone: {user?.phone}*/}
-                    {/*                        </SecondaryText>*/}
-                    {/*                    </ListItemText>*/}
-                    {/*                    <ListItemText*/}
-                    {/*                        isBlocked={user?.is_blocked}*/}
-                    {/*                    >*/}
-                    {/*                        <PrimaryText>*/}
-                    {/*                            {user && user?.is_blocked ? (*/}
-                    {/*                                <span>*/}
-                    {/*                                    User has been blocked!*/}
-                    {/*                                    <p>*/}
-                    {/*                                        <Link href="/contact">*/}
-                    {/*                                            Contact us*/}
-                    {/*                                        </Link>*/}
-                    {/*                                    </p>*/}
-                    {/*                                </span>*/}
-                    {/*                            ) : (*/}
-                    {/*                                <span>*/}
-                    {/*                                    <PrimaryText>*/}
-                    {/*                                        {getFormattedDate(*/}
-                    {/*                                            user?.birth_date,*/}
-                    {/*                                        )}*/}
-                    {/*                                    </PrimaryText>*/}
-                    {/*                                    <SecondaryText*/}
-                    {/*                                        isBlocked={*/}
-                    {/*                                            user?.is_blocked*/}
-                    {/*                                        }*/}
-                    {/*                                    >*/}
-                    {/*                                        {user?.gender}*/}
-                    {/*                                    </SecondaryText>*/}
-                    {/*                                </span>*/}
-                    {/*                            )}*/}
-                    {/*                        </PrimaryText>*/}
-                    {/*                    </ListItemText>*/}
-                    {/*                </ListItem>*/}
-                    {/*            );*/}
-                    {/*        })*/}
-                    {/*    )}*/}
-                    {/*</Container>*/}
+                    <BillCenterTitle>Bill members</BillCenterTitle>
+                    <Container>
+                        {isLoading ? (
+                            <Spinner isSmall />
+                        ) : (
+                            <BillUsersContainer>
+                                {combinedUsersBills &&
+                                    combinedUsersBills.map(
+                                        (user: User & BillsUsers) => {
+                                            return (
+                                                <ListItem
+                                                    key={user?.id}
+                                                    isBlocked={user?.is_blocked}
+                                                >
+                                                    <Avatar>
+                                                        <img
+                                                            src={
+                                                                user?.avatar_image
+                                                            }
+                                                            alt="Avatar icon"
+                                                        />
+                                                    </Avatar>
+                                                    <ListItemText
+                                                        isBlocked={
+                                                            user?.is_blocked
+                                                        }
+                                                    >
+                                                        <PrimaryText>
+                                                            {user?.first_name}{" "}
+                                                            {user?.last_name}
+                                                        </PrimaryText>
+                                                        <SecondaryText
+                                                            isBlocked={
+                                                                user?.is_blocked
+                                                            }
+                                                        >
+                                                            {user?.email}
+                                                        </SecondaryText>
+                                                    </ListItemText>
+                                                    <ListItemText
+                                                        isBlocked={
+                                                            user?.is_blocked
+                                                        }
+                                                    >
+                                                        <PrimaryText>
+                                                            Username:{" "}
+                                                            {user?.username}
+                                                        </PrimaryText>
+                                                        <SecondaryText
+                                                            isBlocked={
+                                                                user?.is_blocked
+                                                            }
+                                                        >
+                                                            Phone: {user?.phone}
+                                                        </SecondaryText>
+                                                    </ListItemText>
+                                                    <ListItemText
+                                                        isBlocked={
+                                                            user?.is_blocked
+                                                        }
+                                                    >
+                                                        <PrimaryText>
+                                                            {user &&
+                                                            user?.is_blocked ? (
+                                                                <span>
+                                                                    User has
+                                                                    been
+                                                                    blocked!
+                                                                    <p>
+                                                                        <Link href="/contact">
+                                                                            Contact
+                                                                            us
+                                                                        </Link>
+                                                                    </p>
+                                                                </span>
+                                                            ) : (
+                                                                <span>
+                                                                    <PrimaryText>
+                                                                        {getFormattedDate(
+                                                                            user?.birth_date,
+                                                                        )}
+                                                                    </PrimaryText>
+                                                                    <SecondaryText
+                                                                        isBlocked={
+                                                                            user?.is_blocked
+                                                                        }
+                                                                    >
+                                                                        {
+                                                                            user?.gender
+                                                                        }
+                                                                    </SecondaryText>
+                                                                </span>
+                                                            )}
+                                                        </PrimaryText>
+                                                    </ListItemText>
+                                                    <ListItemText
+                                                        isBlocked={
+                                                            user?.is_blocked
+                                                        }
+                                                    >
+                                                        <PrimaryText
+                                                            isRegulated={
+                                                                user?.is_regulated
+                                                            }
+                                                        >
+                                                            <span>
+                                                                Debt:{" "}
+                                                                {parseFloat(
+                                                                    user &&
+                                                                        user?.debt.toString(),
+                                                                )}{" "}
+                                                                {
+                                                                    bill?.currency_code
+                                                                }
+                                                            </span>
+                                                        </PrimaryText>
+                                                        <SecondaryText
+                                                            isBlocked={
+                                                                user?.is_blocked
+                                                            }
+                                                        >
+                                                            <span>
+                                                                isRegulated:{" "}
+                                                                {user &&
+                                                                user?.is_regulated ? (
+                                                                    <Image
+                                                                        priority
+                                                                        src="/icons/yes-icon.svg"
+                                                                        height={
+                                                                            20
+                                                                        }
+                                                                        width={
+                                                                            20
+                                                                        }
+                                                                        alt="Yes icon"
+                                                                    />
+                                                                ) : (
+                                                                    <Image
+                                                                        priority
+                                                                        src="/icons/no-icon.svg"
+                                                                        height={
+                                                                            20
+                                                                        }
+                                                                        width={
+                                                                            20
+                                                                        }
+                                                                        alt="No icon"
+                                                                    />
+                                                                )}
+                                                            </span>
+                                                        </SecondaryText>
+                                                    </ListItemText>
+                                                </ListItem>
+                                            );
+                                        },
+                                    )}
+                            </BillUsersContainer>
+                        )}
+                    </Container>
                     {/*<BillImageContainer>*/}
                     {/*    <BillImage src={bill?.bill_image} alt="Bill Image" />*/}
                     {/*</BillImageContainer>*/}
-                    {/*<BillQRCode>*/}
-                    {/*    <QRCode src={bill?.code_qr} alt="QR Code" />*/}
-                    {/*</BillQRCode>*/}
+                    <QRCodeBox>
+                        <QRCode
+                            value={bill?.code_qr}
+                            size={290}
+                            level={"H"}
+                            includeMargin={true}
+                        />
+                    </QRCodeBox>
+                    <CodeQrDownloadLink>
+                        <a
+                            onClick={() =>
+                                downloadCodeQrClick(
+                                    bill?.code_qr,
+                                    `Bill-${bill?.id}-code-qr.png`,
+                                )
+                            }
+                        >
+                            {" "}
+                            Click here to download QR{" "}
+                        </a>
+                    </CodeQrDownloadLink>
                     <AlertWrapper />
                 </BillContainer>
             )}
