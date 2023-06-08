@@ -94,11 +94,12 @@ export const DeleteButtonActions = styled.div`
 export const DeleteModalButton = styled.button<{
     isBlock?: boolean;
     isAdmin?: boolean;
+    isWarningBlock?: boolean;
 }>`
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 100px;
+    margin-top: ${({ isWarningBlock }) => (isWarningBlock ? "120px" : "100px")};
     width: ${({ isAdmin }) => (isAdmin ? "350px" : "300px")};
     height: 50px;
     border-radius: 20px;
