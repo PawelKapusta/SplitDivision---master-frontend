@@ -6,7 +6,11 @@ import { AnyAction } from "@reduxjs/toolkit";
 import axios from "axios";
 import { Dispatch } from "redux";
 import authAxios from "../../api/axios/axios";
-import { UpdateUserFormValues, User } from "../../types/user";
+import {
+    AdminUpdateUserFormValues,
+    UpdateUserFormValues,
+    User,
+} from "../../types/user";
 
 interface UserState {
     users: User[];
@@ -16,6 +20,7 @@ interface UserState {
     success: boolean;
     successUpdate: boolean;
     successDeleteUser: boolean;
+    successAdminUpdate: boolean;
 }
 
 const initialState: UserState = {
@@ -26,6 +31,7 @@ const initialState: UserState = {
     success: false,
     successUpdate: false,
     successDeleteUser: false,
+    successAdminUpdate: false,
 };
 
 const userSlice = createSlice({
@@ -94,7 +100,23 @@ const userSlice = createSlice({
             state.error = action.payload;
             state.successUpdate = false;
         },
-
+        adminUpdateUserStart(state) {
+            state.isLoading = true;
+            state.error = null;
+        },
+        adminUpdateUserSuccess(state, action: PayloadAction<User>) {
+            const index = state.users.findIndex(
+                (u) => u.id === action.payload.id,
+            );
+            state.users[index] = action.payload;
+            state.isLoading = false;
+            state.successAdminUpdate = true;
+        },
+        adminUpdateUserFailure(state, action: PayloadAction<string>) {
+            state.isLoading = false;
+            state.error = action.payload;
+            state.successAdminUpdate = false;
+        },
         deleteUserStart(state) {
             state.isLoading = true;
             state.error = null;
@@ -148,6 +170,9 @@ export const {
     deleteUserStart,
     deleteUserSuccess,
     deleteUserFailure,
+    adminUpdateUserStart,
+    adminUpdateUserSuccess,
+    adminUpdateUserFailure,
     userError,
 } = userSlice.actions;
 
@@ -208,6 +233,22 @@ export const updateUser =
             dispatch(updateUserSuccess(data));
         } catch (error) {
             dispatch(updateUserFailure(error as string));
+        }
+    };
+
+export const adminUpdateUser =
+    (id: string, user: Partial<AdminUpdateUserFormValues>): AppThunk =>
+    async (dispatch: Dispatch) => {
+        try {
+            dispatch(adminUpdateUserStart());
+            const response = await authAxios.put(
+                `${process.env.NEXT_PUBLIC_API_GATEWAY_URL}/users/${id}`,
+                user,
+            );
+            const data = response.data;
+            dispatch(adminUpdateUserSuccess(data));
+        } catch (error) {
+            dispatch(adminUpdateUserFailure(error as string));
         }
     };
 

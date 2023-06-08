@@ -91,19 +91,24 @@ export const DeleteButtonActions = styled.div`
     align-items: center;
 `;
 
-export const DeleteModalButton = styled.button<{ isBlock?: boolean }>`
+export const DeleteModalButton = styled.button<{
+    isBlock?: boolean;
+    isAdmin?: boolean;
+}>`
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 100px;
-    width: 300px;
+    width: ${({ isAdmin }) => (isAdmin ? "350px" : "300px")};
     height: 50px;
     border-radius: 20px;
-    background-color: ${({ isBlock }) => (isBlock ? "purple" : "red")};
+    background-color: ${({ isBlock, isAdmin }) =>
+        isBlock ? "purple" : isAdmin ? "green" : "red"};
     cursor: pointer;
 
     img {
-        background-color: ${({ isBlock }) => (isBlock ? "purple" : "red")};
+        background-color: ${({ isBlock, isAdmin }) =>
+            isBlock ? "purple" : isAdmin ? "green" : "red"};
         margin-right: 10px;
     }
 `;
@@ -168,6 +173,19 @@ export const BlockButton = styled.button`
 
 export const DeleteButton = styled.button`
     background-color: red;
+    color: #fff;
+    margin-right: 20px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+
+    &:hover {
+        box-shadow: 0 0 10px ${({ theme }) => theme.palette.white};
+    }
+`;
+
+export const AdminButton = styled.button`
+    background-color: green;
     color: #fff;
     margin-right: 20px;
     padding: 5px 10px;

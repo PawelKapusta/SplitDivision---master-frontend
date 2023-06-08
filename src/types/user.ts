@@ -45,3 +45,8 @@ export interface UpdateUserFormValues {
     birth_date?: string;
     avatar_image?: string;
 }
+
+export interface AdminUpdateUserFormValues {
+    is_blocked: boolean;
+    is_admin: boolean;
+}
