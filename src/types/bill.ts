@@ -13,6 +13,11 @@ export interface Bill {
     group_id: string;
 }
 
+export interface BillUsersDebt {
+    id: string;
+    debt: number;
+}
+
 export interface BillFormData {
     name: string;
     description: string;
@@ -26,4 +31,9 @@ export interface BillFormData {
     owner_id: string;
     group_id: string;
     usersIdList: string[];
+    usersIdDebtList: BillUsersDebt[];
+}
+
+export interface UserSelectedDebts {
+    [key: string]: number | undefined;
 }

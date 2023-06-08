@@ -1,6 +1,6 @@
-import React, { useEffect, useState, ReactElement } from "react";
+import React, { useEffect, useState, ReactElement, ChangeEvent } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { BillFormData } from "../../types/bill";
+import { BillFormData, UserSelectedDebts } from "../../types/bill";
 import { useDispatch, useSelector } from "react-redux";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { MultiSelect } from "react-multi-select-component";
@@ -21,6 +21,10 @@ import {
     CurrencySelector,
     CurrencyOption,
     DebtInput,
+    SelectedUserDebtInput,
+    SelectedUserDebtBox,
+    SelectedUserDebtLabel,
+    DebtDivideEvenlyCheckbox,
 } from "@styles/pages/create/bill.styles";
 import LoadingButton from "@components/loading-button";
 import { BillSchema } from "../../types/schema";
@@ -77,6 +81,7 @@ const BillForm = ({
         decodedToken = getDecodedJWTToken(token);
         userId = decodedToken.id;
     }
+    const [isChecked, setIsChecked] = useState<boolean>(false);
     const [selectedStartDate, setSelectedStartDate] = useState<Date | null>(
         new Date(),
     );
@@ -86,6 +91,9 @@ const BillForm = ({
     const [selected, setSelected] = useState<
         { label: string; value: string }[]
     >([]);
+    const [selectedUserDebts, setSelectedUserDebts] =
+        useState<UserSelectedDebts>({});
+
     const [selectedType, setSelectedType] = useState(FIAT);
     const [selectedFiatCurrency, setSelectedFiatCurrency] = useState(
         fiatCurrencyNames
@@ -104,6 +112,7 @@ const BillForm = ({
                       name: "Bitcoin",
                   },
         );
+    const [debtEvenlyError, setDebtEvenlyError] = useState<string | null>(null);
 
     const {
         register,
@@ -137,18 +146,13 @@ const BillForm = ({
 
     useEffect(() => {
         if (isAuthenticated) {
+            dispatch(fetchUsers());
             dispatch(fetchUser(userId));
             dispatch(fetchGroupUsers(groupId));
         }
     }, [dispatch, isAuthenticated, userId]);
 
     console.log("groupUSers", groupUsers);
-
-    useEffect(() => {
-        if (isAuthenticated) {
-            dispatch(fetchUsers());
-        }
-    }, [dispatch, isAuthenticated]);
 
     const handleTypeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         setSelectedType(event.target.value);
@@ -165,11 +169,13 @@ const BillForm = ({
     };
 
     groupUsers &&
-        groupUsers?.map((user: User) =>
-            options.push({
-                label: `${user?.first_name} ${user?.last_name}  email: ${user?.email}`,
-                value: `${user.id}`,
-            }),
+        groupUsers?.map(
+            (user: User) =>
+                !user?.is_blocked &&
+                options.push({
+                    label: `${user?.first_name} ${user?.last_name}  email: ${user?.email}`,
+                    value: `${user.id}`,
+                }),
         );
 
     const onSubmit: SubmitHandler<BillFormData> = (data) => {
@@ -183,8 +189,26 @@ const BillForm = ({
                     : selectedCryptoCurrency?.code;
             data.owner_id = userId;
             data.group_id = groupId;
-            data.usersIdList = selected.map((obj) => obj.value);
-            dispatch(createBill(data));
+            if (selectedUserDebts) {
+                const sum = selectedUserDebts
+                    ? Object.values(selectedUserDebts).reduce(
+                          (total, value) => (total || 0) + (value || 0),
+                          0,
+                      )
+                    : -1;
+                if (sum && sum > data.debt) {
+                    setDebtEvenlyError(
+                        "You divided more money between users than is debt given",
+                    );
+                } else {
+                    console.log("TBC");
+                }
+                console.log("sum", sum);
+            }
+            console.log(data);
+            console.log(selectedUserDebts);
+            // data.usersIdDebtList = selected.map((obj) => obj.value);
+            // dispatch(createBill(data));
         }
     };
 
@@ -197,6 +221,21 @@ const BillForm = ({
         setSelectedEndDate(datePicked);
         setValue("data_end", getFormattedDate(datePicked));
     };
+
+    const handleSelectedUserDebtsChange = (
+        event: ChangeEvent<HTMLInputElement>,
+    ) => {
+        const { name, value } = event.target;
+        setSelectedUserDebts((prev: any) => ({
+            ...prev,
+            [name]: parseFloat(value),
+        }));
+    };
+
+    const handleDivideEvenlyDebt = () => {
+        setIsChecked(!isChecked);
+    };
+    console.log("selectedUserDebts", selectedUserDebts);
 
     return (
         <BillCardContainer>
@@ -282,7 +321,7 @@ const BillForm = ({
                         </CurrencySelector>
                         {selectedType === FIAT && selectedFiatCurrency && (
                             <Flag
-                                code={selectedFiatCurrency.code}
+                                code={selectedFiatCurrency.code.substring(0, 2)}
                                 alt="Currency Flag"
                                 height={50}
                                 width={50}
@@ -334,7 +373,7 @@ const BillForm = ({
                     </CurrencySelectorContainer>
                     <Error>{errors.debt && <p>{errors.debt.message}</p>}</Error>
                     {billLoading && usersLoading ? (
-                        <Spinner />
+                        <Spinner isSmall />
                     ) : (
                         <UsersSelector>
                             <MultiSelect
@@ -369,10 +408,40 @@ const BillForm = ({
                             <p>{errors.usersIdList.message}</p>
                         )}
                     </Error>
+                    <DebtDivideEvenlyCheckbox>
+                        Divide evenly debt?
+                        <input
+                            type="checkbox"
+                            checked={isChecked}
+                            onChange={handleDivideEvenlyDebt}
+                        />
+                    </DebtDivideEvenlyCheckbox>
+                    {usersLoading ? (
+                        <Spinner isSmall />
+                    ) : (
+                        !isChecked &&
+                        selected &&
+                        selected.map((user) => (
+                            <SelectedUserDebtBox key={user?.value}>
+                                <SelectedUserDebtLabel key={user?.value + 1}>
+                                    {user?.label}
+                                </SelectedUserDebtLabel>{" "}
+                                <SelectedUserDebtInput
+                                    key={user?.value + 2}
+                                    type="number"
+                                    name={user?.value}
+                                    value={selectedUserDebts[user?.value] || ""}
+                                    onChange={handleSelectedUserDebtsChange}
+                                />
+                            </SelectedUserDebtBox>
+                        ))
+                    )}
+                    <Error>{debtEvenlyError && <p>{debtEvenlyError}</p>}</Error>
                     <LoadingButton
                         loading={billLoading}
                         disabled={false}
                         variety="CreateGroup"
+                        isBillForm
                     >
                         {billLoading ? "Loading..." : "Create a bill"}
                     </LoadingButton>

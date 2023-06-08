@@ -124,26 +124,26 @@ export const UsersSelector = styled.div`
     }
 
     .select-item:hover {
-        background: ${({ theme }) => theme.palette.gold};
+        background: #eaaf57;
 
         & * {
-            background-color: ${({ theme }) => theme.palette.gold};
+            background-color: #eaaf57;
             color: black;
         }
     }
 
     .select-item.selected {
-        background: ${({ theme }) => theme.palette.gold};
+        background: #eaaf57;
         font-weight: bold;
         border: 1px solid #b77d30;
 
         & * {
-            background-color: ${({ theme }) => theme.palette.gold};
+            background-color: #eaaf57;
             color: black;
         }
     }
 
     .no-options {
-        border: 4px solid ${({ theme }) => theme.palette.gold};
+        border: 4px solid #eaaf57;
     }
 `;

@@ -50,3 +50,13 @@ export interface AdminUpdateUserFormValues {
     is_blocked: boolean;
     is_admin: boolean;
 }
+
+export type SortUserAttributeType =
+    | "first_name"
+    | "last_name"
+    | "gender"
+    | "email"
+    | "is_admin"
+    | "is_blocked"
+    | "phone"
+    | "service";

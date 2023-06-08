@@ -1,14 +1,12 @@
 import React, { useEffect } from "react";
 import { NextPage } from "next";
 import { useSelector, useDispatch } from "react-redux";
-import { AppState } from "@redux/store";
 import {
     fetchUser,
     fetchUsers,
     selectUserState,
 } from "@redux/slices/userSlice";
-import { logoutUser, selectAuthState } from "@redux/slices/authSlice";
-import { Layout } from "../../layout/layout";
+import { selectAuthState } from "@redux/slices/authSlice";
 import { useSession } from "next-auth/react";
 import { withAuth } from "../../hocs/withAuth";
 import GroupForm from "@components/forms/group-form";

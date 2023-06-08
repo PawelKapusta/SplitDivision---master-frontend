@@ -8,13 +8,25 @@ export const FormCard = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 750px;
-    width: 1000px;
 
-    //button:nth-child(7) {
-    //    margin-top: 30px;
-    //    width: 30%;
-    //}
+    width: 1300px;
+
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    &::-webkit-scrollbar-track {
+        margin-right: 13px;
+        background-color: ${({ theme }) => theme.palette.white};
+        border-radius: 5px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: ${({ theme }) => theme.palette.gold};
+        border-radius: 5px;
+    }
 
     @media ${(props) => props.theme.breakpoints.lg} {
         height: 400px;
@@ -254,4 +266,36 @@ export const CurrencySelector = styled.select`
 
 export const CurrencyOption = styled.option`
     font-size: 18px;
+`;
+
+export const SelectedUserDebtBox = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+`;
+
+export const SelectedUserDebtLabel = styled.label`
+    color: ${({ theme }) => theme.palette.gold};
+    font-weight: bold;
+`;
+
+export const SelectedUserDebtInput = styled.input`
+    border-radius: 5px;
+    height: 36px;
+    font-size: 20px;
+    border-color: ${({ theme }) => theme.palette.gold};
+    padding: 10px;
+    margin: 10px;
+`;
+
+export const DebtDivideEvenlyCheckbox = styled.p`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: ${({ theme }) => theme.palette.gold};
+
+    input {
+        margin-left: 10px;
+    }
 `;

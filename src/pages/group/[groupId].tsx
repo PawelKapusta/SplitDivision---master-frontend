@@ -216,7 +216,10 @@ const Group: NextPage = () => {
                     </Modal>
                     <CenterTitle>Group members</CenterTitle>
                     <Container>
-                        {groupUsers &&
+                        {isLoading ? (
+                            <Spinner isSmall />
+                        ) : (
+                            groupUsers &&
                             groupUsers.map((user: User) => {
                                 return (
                                     <ListItem
@@ -287,7 +290,8 @@ const Group: NextPage = () => {
                                         </ListItemText>
                                     </ListItem>
                                 );
-                            })}
+                            })
+                        )}
                     </Container>
                     <CenterTitle>Bills in this group</CenterTitle>
                     {billsLoading ? (

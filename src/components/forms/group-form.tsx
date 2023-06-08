@@ -72,11 +72,13 @@ const GroupForm = (): ReactElement => {
     }, [groupSuccess, groupError]);
 
     users &&
-        users?.map((user: User) =>
-            options.push({
-                label: `${user?.first_name} ${user?.last_name}  email: ${user?.email}`,
-                value: `${user.id}`,
-            }),
+        users?.map(
+            (user: User) =>
+                !user?.is_blocked &&
+                options.push({
+                    label: `${user?.first_name} ${user?.last_name}  email: ${user?.email}`,
+                    value: `${user.id}`,
+                }),
         );
 
     const onSubmit: SubmitHandler<GroupFormData> = (data) => {

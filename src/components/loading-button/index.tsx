@@ -8,6 +8,7 @@ type TLoadingButtonProps = {
     children: React.ReactNode;
     loading: boolean;
     variety: TButton;
+    isBillForm?: boolean;
 };
 
 const LoadingButton = ({
@@ -15,6 +16,7 @@ const LoadingButton = ({
     disabled,
     children,
     variety,
+    isBillForm = false,
 }: TLoadingButtonProps): ReactElement => {
     return (
         <Button
@@ -22,6 +24,7 @@ const LoadingButton = ({
             style={{ position: "relative" }}
             type="submit"
             variety={variety}
+            isBillForm={isBillForm}
         >
             {children}
             {loading && (
