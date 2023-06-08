@@ -1,6 +1,10 @@
 import React, { useEffect, useState, ReactElement, ChangeEvent } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { BillFormData, UserSelectedDebts } from "../../types/bill";
+import {
+    BillFormData,
+    BillUsersDebt,
+    UserSelectedDebts,
+} from "../../types/bill";
 import { useDispatch, useSelector } from "react-redux";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { MultiSelect } from "react-multi-select-component";
@@ -189,7 +193,7 @@ const BillForm = ({
                     : selectedCryptoCurrency?.code;
             data.owner_id = userId;
             data.group_id = groupId;
-            if (selectedUserDebts) {
+            if (Object.values(selectedUserDebts).length > 0) {
                 const sum = selectedUserDebts
                     ? Object.values(selectedUserDebts).reduce(
                           (total, value) => (total || 0) + (value || 0),
@@ -200,15 +204,37 @@ const BillForm = ({
                     setDebtEvenlyError(
                         "You divided more money between users than is debt given",
                     );
+                } else if (sum && sum < data.debt) {
+                    setDebtEvenlyError(
+                        "You divided less money between users than is debt given",
+                    );
                 } else {
-                    console.log("TBC");
+                    setDebtEvenlyError(null);
+                    data.usersIdDebtList =
+                        Object.entries(selectedUserDebts).map(([id, debt]) => ({
+                            id,
+                            debt,
+                        })) || {};
+
+                    console.log("array", data.usersIdDebtList);
+                    // data.usersIdDebtList =
                 }
                 console.log("sum", sum);
+            } else {
+                const howManyUsersInBill = selected.length;
+                const evenlyDebt = data.debt / howManyUsersInBill;
+                data.usersIdDebtList = selected.map((user) => ({
+                    id: user.value,
+                    debt: evenlyDebt,
+                }));
+                console.log("Selected", selected);
+                console.log("evenlyDebt", evenlyDebt);
             }
             console.log(data);
             console.log(selectedUserDebts);
             // data.usersIdDebtList = selected.map((obj) => obj.value);
-            // dispatch(createBill(data));
+            dispatch(createBill(data));
+            handleCloseModal();
         }
     };
 

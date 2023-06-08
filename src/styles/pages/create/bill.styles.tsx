@@ -9,7 +9,7 @@ export const FormCard = styled.div`
     flex-direction: column;
     align-items: center;
 
-    width: 1300px;
+    width: 1200px;
 
     overflow-y: auto;
 
@@ -41,7 +41,7 @@ export const FormCard = styled.div`
 
 export const Input = styled.input`
     margin-top: 15px;
-    width: 100%;
+    width: 95%;
     border-radius: 5px;
     height: 55px;
     font-size: 20px;
@@ -64,7 +64,7 @@ export const DebtInput = styled.input`
 
 export const InputDescription = styled.textarea`
     margin-top: 15px;
-    width: 100%;
+    width: 95%;
     border-radius: 5px;
     height: 155px;
     font-size: 20px;

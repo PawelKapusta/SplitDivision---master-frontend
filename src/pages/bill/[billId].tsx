@@ -27,6 +27,7 @@ import {
     EditGroupButton,
     GroupCardActions,
 } from "@styles/pages/group/group.styles";
+import { FIAT } from "../../types/currency";
 
 const Bill: NextPage = () => {
     const router = useRouter();
@@ -101,7 +102,7 @@ const Bill: NextPage = () => {
                                     {bill &&
                                         bill.currency_type
                                             .toLocaleString()
-                                            .toUpperCase() && (
+                                            .toUpperCase() === FIAT && (
                                             <Flag
                                                 code={bill?.currency_code.substring(
                                                     0,
@@ -209,7 +210,7 @@ const BillContainer = styled.div`
     width: 90%;
 
     & > * {
-        background-color: ${({ theme }) => theme.colors.gold};
+        background-color: ${({ theme }) => theme.palette.gold};
     }
 `;
 
@@ -217,11 +218,11 @@ const BillCardContent = styled.div<{ isLongDescription: boolean }>`
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    background-color: ${({ theme }) => theme.colors.gold};
+    background-color: ${({ theme }) => theme.palette.gold};
     margin-top: 30px;
     height: ${({ isLongDescription }) =>
         isLongDescription ? " 450px" : "400px"};
-    color: ${({ theme }) => theme.colors.black};
+    color: ${({ theme }) => theme.palette.black};
     border-radius: 20px;
     width: 80%;
 `;
@@ -233,7 +234,7 @@ export const BillCardTitle = styled.div`
     margin-top: 20px;
     margin-left: 10px;
     padding: 20px;
-    background-color: ${({ theme }) => theme.colors.gold};
+    background-color: ${({ theme }) => theme.palette.gold};
     text-align: center;
     border-radius: 20px;
 
@@ -256,12 +257,12 @@ export const BillCardTitle = styled.div`
         margin-top: 20px;
     }
     & * {
-        background-color: ${({ theme }) => theme.colors.gold};
+        background-color: ${({ theme }) => theme.palette.gold};
     }
 `;
 
 export const BillCardDescription = styled.div<{ isLongDescription: boolean }>`
-    background-color: ${({ theme }) => theme.colors.gold};
+    background-color: ${({ theme }) => theme.palette.gold};
     padding: 20px;
     height: 300px;
     width: 50%;
@@ -270,12 +271,12 @@ export const BillCardDescription = styled.div<{ isLongDescription: boolean }>`
         isLongDescription ? "  1.1" : " 1.5"};
 
     & * {
-        background-color: ${({ theme }) => theme.colors.gold};
+        background-color: ${({ theme }) => theme.palette.gold};
     }
 `;
 
 export const BillCardImage = styled.div`
-    background-color: ${({ theme }) => theme.colors.gold};
+    background-color: ${({ theme }) => theme.palette.gold};
     border-radius: 20px;
     padding: 10px;
     width: 30%;
@@ -293,11 +294,11 @@ const BillAmount = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: ${({ theme }) => theme.colors.black};
+    color: ${({ theme }) => theme.palette.black};
     margin-top: 50px;
 
     & > * {
-        background-color: ${({ theme }) => theme.colors.gold};
+        background-color: ${({ theme }) => theme.palette.gold};
     }
 
     h3 {
@@ -311,7 +312,7 @@ const BillAmount = styled.div`
         margin-bottom: 5px;
         text-align: center;
         & > * {
-            background-color: ${({ theme }) => theme.colors.gold};
+            background-color: ${({ theme }) => theme.palette.gold};
         }
     }
 `;

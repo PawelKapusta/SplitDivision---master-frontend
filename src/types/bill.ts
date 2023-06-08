@@ -35,5 +35,5 @@ export interface BillFormData {
 }
 
 export interface UserSelectedDebts {
-    [key: string]: number | undefined;
+    [key: string]: number;
 }
