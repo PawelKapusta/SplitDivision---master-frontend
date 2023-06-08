@@ -116,6 +116,7 @@ const GroupCard = ({ group, isAdmin }: TGroupCardProps): ReactElement => {
                 </Modal>
                 <CardImage>
                     <Image
+                        priority
                         src="/images/group-image.png"
                         width={1000}
                         height={100}

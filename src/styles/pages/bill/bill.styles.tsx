@@ -100,7 +100,7 @@ export const BillAmount = styled.div`
     flex-direction: column;
     align-items: center;
     color: ${({ theme }) => theme.palette.black};
-    margin-top: 50px;
+    margin-top: 15px;
 
     & > * {
         background-color: ${({ theme }) => theme.palette.gold};

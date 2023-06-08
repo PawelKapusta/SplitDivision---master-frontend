@@ -32,6 +32,7 @@ export const GroupCardContent = styled.div<{ isLongDescription: boolean }>`
 export const GroupCardTitle = styled.div`
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
     width: 20%;
     margin-top: 20px;
     margin-left: 10px;
@@ -65,7 +66,6 @@ export const GroupCardActions = styled.div`
     display: flex;
     justify-content: space-around;
     align-items: flex-end;
-    height: 100%;
 
     img {
         cursor: pointer;

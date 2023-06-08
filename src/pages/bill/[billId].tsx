@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import {
     deleteBill,
     fetchBill,
+    fetchBillUsers,
     selectBillState,
 } from "@redux/slices/billSlice";
 import { useDispatch, useSelector } from "react-redux";
@@ -25,6 +26,10 @@ import {
     DeleteGroupButton,
     EditGroupButton,
     GroupCardActions,
+    ListItem,
+    ListItemText,
+    PrimaryText,
+    SecondaryText,
 } from "@styles/pages/group/group.styles";
 import {
     BillCardContent,
@@ -45,7 +50,7 @@ const Bill: NextPage = () => {
     const router = useRouter();
     const { billId } = router.query;
     const dispatch = useDispatch();
-    const { isLoading, bill, error, deleteBillSuccess } =
+    const { isLoading, bill, error, deleteBillSuccess, billUsers } =
         useSelector(selectBillState);
     const [deleteBillModalOpen, setDeleteBillModalOpen] = useState(false);
     const { showAlert, AlertWrapper } = useAlert();
@@ -59,8 +64,10 @@ const Bill: NextPage = () => {
     }, [error]);
 
     console.log("bill", bill);
+    console.log("billId", billId);
     useEffect(() => {
         dispatch(fetchBill(billId as string));
+        dispatch(fetchBillUsers(billId as string));
     }, [billId]);
 
     const handleDeleteBillOpenModal = () => {
@@ -79,6 +86,8 @@ const Bill: NextPage = () => {
             router.replace("/bills");
         }
     };
+
+    console.log("billUsers", billUsers);
 
     return (
         <Container>
@@ -109,22 +118,19 @@ const Bill: NextPage = () => {
                                 End: {getFormattedDate(bill?.data_end)}
                             </p>
                             <BillAmount>
-                                <p>
-                                    {" "}
-                                    {bill &&
-                                        bill.currency_type
-                                            .toLocaleString()
-                                            .toUpperCase() === FIAT && (
-                                            <Flag
-                                                code={bill?.currency_code.substring(
-                                                    0,
-                                                    2,
-                                                )}
-                                                height={30}
-                                                width={45}
-                                            />
-                                        )}
-                                </p>
+                                {bill &&
+                                    bill.currency_type
+                                        .toLocaleString()
+                                        .toUpperCase() === FIAT && (
+                                        <Flag
+                                            code={bill?.currency_code.substring(
+                                                0,
+                                                2,
+                                            )}
+                                            height={30}
+                                            width={45}
+                                        />
+                                    )}
                                 <p>
                                     <strong>Debt:</strong> {bill?.debt}{" "}
                                     {bill?.currency_code}
@@ -191,7 +197,84 @@ const Bill: NextPage = () => {
                             />
                         </BillCardImage>
                     </BillCardContent>
-
+                    {/*<Container>*/}
+                    {/*    {isLoading ? (*/}
+                    {/*        <Spinner isSmall />*/}
+                    {/*    ) : (*/}
+                    {/*        groupUsers &&*/}
+                    {/*        groupUsers.map((user: User) => {*/}
+                    {/*            return (*/}
+                    {/*                <ListItem*/}
+                    {/*                    key={user?.id}*/}
+                    {/*                    isBlocked={user?.is_blocked}*/}
+                    {/*                >*/}
+                    {/*                    <Avatar>*/}
+                    {/*                        <img*/}
+                    {/*                            src={user?.avatar_image}*/}
+                    {/*                            alt="Avatar icon"*/}
+                    {/*                        />*/}
+                    {/*                    </Avatar>*/}
+                    {/*                    <ListItemText*/}
+                    {/*                        isBlocked={user?.is_blocked}*/}
+                    {/*                    >*/}
+                    {/*                        <PrimaryText>*/}
+                    {/*                            {user?.first_name}{" "}*/}
+                    {/*                            {user?.last_name}*/}
+                    {/*                        </PrimaryText>*/}
+                    {/*                        <SecondaryText*/}
+                    {/*                            isBlocked={user?.is_blocked}*/}
+                    {/*                        >*/}
+                    {/*                            {user?.email}*/}
+                    {/*                        </SecondaryText>*/}
+                    {/*                    </ListItemText>*/}
+                    {/*                    <ListItemText*/}
+                    {/*                        isBlocked={user?.is_blocked}*/}
+                    {/*                    >*/}
+                    {/*                        <PrimaryText>*/}
+                    {/*                            Username: {user?.username}*/}
+                    {/*                        </PrimaryText>*/}
+                    {/*                        <SecondaryText*/}
+                    {/*                            isBlocked={user?.is_blocked}*/}
+                    {/*                        >*/}
+                    {/*                            Phone: {user?.phone}*/}
+                    {/*                        </SecondaryText>*/}
+                    {/*                    </ListItemText>*/}
+                    {/*                    <ListItemText*/}
+                    {/*                        isBlocked={user?.is_blocked}*/}
+                    {/*                    >*/}
+                    {/*                        <PrimaryText>*/}
+                    {/*                            {user && user?.is_blocked ? (*/}
+                    {/*                                <span>*/}
+                    {/*                                    User has been blocked!*/}
+                    {/*                                    <p>*/}
+                    {/*                                        <Link href="/contact">*/}
+                    {/*                                            Contact us*/}
+                    {/*                                        </Link>*/}
+                    {/*                                    </p>*/}
+                    {/*                                </span>*/}
+                    {/*                            ) : (*/}
+                    {/*                                <span>*/}
+                    {/*                                    <PrimaryText>*/}
+                    {/*                                        {getFormattedDate(*/}
+                    {/*                                            user?.birth_date,*/}
+                    {/*                                        )}*/}
+                    {/*                                    </PrimaryText>*/}
+                    {/*                                    <SecondaryText*/}
+                    {/*                                        isBlocked={*/}
+                    {/*                                            user?.is_blocked*/}
+                    {/*                                        }*/}
+                    {/*                                    >*/}
+                    {/*                                        {user?.gender}*/}
+                    {/*                                    </SecondaryText>*/}
+                    {/*                                </span>*/}
+                    {/*                            )}*/}
+                    {/*                        </PrimaryText>*/}
+                    {/*                    </ListItemText>*/}
+                    {/*                </ListItem>*/}
+                    {/*            );*/}
+                    {/*        })*/}
+                    {/*    )}*/}
+                    {/*</Container>*/}
                     {/*<BillImageContainer>*/}
                     {/*    <BillImage src={bill?.bill_image} alt="Bill Image" />*/}
                     {/*</BillImageContainer>*/}

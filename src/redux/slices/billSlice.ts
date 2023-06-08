@@ -265,10 +265,12 @@ export const fetchBillUsers =
     async (dispatch: Dispatch) => {
         try {
             dispatch(getBillUsersStart());
-            const response = await authAxios.get(
-                `${process.env.NEXT_PUBLIC_API_GATEWAY_URL}/bills
-               /${billId}/users`,
-            );
+            const path =
+                process.env.NEXT_PUBLIC_API_GATEWAY_URL +
+                "/bills/" +
+                billId +
+                "/users";
+            const response = await authAxios.get(`${path}`);
             const data = response.data;
             dispatch(getBillUsersSuccess(data));
         } catch (error) {

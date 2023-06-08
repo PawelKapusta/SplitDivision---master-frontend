@@ -9,10 +9,10 @@ import {
 } from "@components/dropdown/dropdown.styles";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutUser, selectAuthState } from "@redux/slices/authSlice";
-import { useRouter } from "next/router";
 import { TDecodedJWTToken } from "../../types/jwt";
 import { getDecodedJWTToken } from "../../utils/jwt";
 import { fetchUser, selectUserState } from "@redux/slices/userSlice";
+import Spinner from "@components/spinner";
 
 const Dropdown = (): ReactElement => {
     const [isOpen, setIsOpen] = useState(false);
@@ -23,7 +23,7 @@ const Dropdown = (): ReactElement => {
         decodedToken = getDecodedJWTToken(token);
         userId = decodedToken.id;
     }
-    const { user } = useSelector(selectUserState);
+    const { isLoading, user } = useSelector(selectUserState);
     useEffect(() => {
         dispatch(fetchUser(userId));
     }, [isAuthenticated]);
@@ -55,7 +55,9 @@ const Dropdown = (): ReactElement => {
                     <a href="/groups">Groups</a>
                     <a href="/bills">Bills</a>
                     <a href="/statistics">Statistics</a>
-                    {user && user?.is_admin ? (
+                    {isLoading ? (
+                        <Spinner isSmall />
+                    ) : user && user?.is_admin ? (
                         <AdminLinks>
                             <a href="/admin/users">All users</a>
                             <a href="/admin/groups">All groups</a>

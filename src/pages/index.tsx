@@ -36,11 +36,11 @@ const Home: React.FC = () => {
             <MainBox>
                 <MainLeft>
                     <Image
+                        priority
                         src="/images/main-image.png"
                         alt="main-image.png"
                         width={500}
                         height={500}
-                        loading="lazy"
                     />
                 </MainLeft>
                 <MainRight>

@@ -119,6 +119,7 @@ const BillCard = ({ bill, isAdmin }: TBillCardProps): ReactElement => {
                 </Modal>
                 <CardImage isBill>
                     <Image
+                        priority
                         src="/images/bill-image.png"
                         width={1000}
                         height={100}
