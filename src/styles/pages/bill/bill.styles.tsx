@@ -151,17 +151,16 @@ export const BillTotal = styled.div`
     }
 `;
 
-export const BillImageContainer = styled.div`
+export const BillImageBox = styled.div`
     display: flex;
     justify-content: center;
 `;
 
-export const BillImage = styled.img`
+export const BillImageCard = styled.img`
     width: 200px;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 10px;
     margin-bottom: 10px;
+    height: 200px;
+    border-radius: 20px;
 `;
 
 export const QRCodeBox = styled.div`

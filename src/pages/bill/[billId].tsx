@@ -40,8 +40,6 @@ import {
     BillContainer,
     BillTotal,
     Container,
-    BillImageContainer,
-    BillImage,
     QRCodeBox,
     BillUsersContainer,
     BillCenterTitle,
@@ -54,6 +52,13 @@ import Link from "next/link";
 import { BillsUsers } from "../../types/bill";
 import QRCode from "qrcode.react";
 import { saveAs } from "file-saver";
+import CommentsCard from "@components/comments-card";
+import {
+    fetchBillComments,
+    fetchBillSubcomments,
+    selectCommentState,
+} from "@redux/slices/commentSlice";
+import { fetchUsers } from "@redux/slices/userSlice";
 
 const Bill: NextPage = () => {
     const router = useRouter();
@@ -61,6 +66,7 @@ const Bill: NextPage = () => {
     const dispatch = useDispatch();
     const { isLoading, bill, error, deleteBillSuccess, billUsers } =
         useSelector(selectBillState);
+    const { isLoading: commentLoading } = useSelector(selectCommentState);
     const [deleteBillModalOpen, setDeleteBillModalOpen] = useState(false);
     const { showAlert, AlertWrapper } = useAlert();
     const combinedUsersBills =
@@ -85,6 +91,8 @@ const Bill: NextPage = () => {
     useEffect(() => {
         dispatch(fetchBill(billId as string));
         dispatch(fetchBillUsers(billId as string));
+        dispatch(fetchBillComments(billId as string));
+        dispatch(fetchUsers());
     }, [billId]);
 
     const handleDeleteBillOpenModal = () => {
@@ -406,10 +414,14 @@ const Bill: NextPage = () => {
                                 )
                             }
                         >
-                            {" "}
-                            Click here to download QR{" "}
+                            Click here to download QR
                         </a>
                     </CodeQrDownloadLink>
+                    {commentLoading ? (
+                        <Spinner isSmall />
+                    ) : (
+                        <CommentsCard billId={billId as string} />
+                    )}
                     <AlertWrapper />
                 </BillContainer>
             )}
