@@ -55,7 +55,6 @@ import { saveAs } from "file-saver";
 import CommentsCard from "@components/comments-card";
 import {
     fetchBillComments,
-    fetchBillSubcomments,
     selectCommentState,
 } from "@redux/slices/commentSlice";
 import { fetchUsers } from "@redux/slices/userSlice";
@@ -66,7 +65,8 @@ const Bill: NextPage = () => {
     const dispatch = useDispatch();
     const { isLoading, bill, error, deleteBillSuccess, billUsers } =
         useSelector(selectBillState);
-    const { isLoading: commentLoading } = useSelector(selectCommentState);
+    const { error: commentsError, isLoading: commentsLoading } =
+        useSelector(selectCommentState);
     const [deleteBillModalOpen, setDeleteBillModalOpen] = useState(false);
     const { showAlert, AlertWrapper } = useAlert();
     const combinedUsersBills =
@@ -83,8 +83,10 @@ const Bill: NextPage = () => {
             showAlert("Successfully deleted bill", "success");
         } else if (error) {
             showAlert(error.toString(), "error");
+        } else if (commentsError) {
+            showAlert(commentsError.toString(), "error");
         }
-    }, [error]);
+    }, [error, commentsError]);
 
     console.log("bill", bill);
     console.log("billId", billId);
@@ -93,7 +95,7 @@ const Bill: NextPage = () => {
         dispatch(fetchBillUsers(billId as string));
         dispatch(fetchBillComments(billId as string));
         dispatch(fetchUsers());
-    }, [billId]);
+    }, [billId, isLoading]);
 
     const handleDeleteBillOpenModal = () => {
         setDeleteBillModalOpen(true);
@@ -417,11 +419,12 @@ const Bill: NextPage = () => {
                             Click here to download QR
                         </a>
                     </CodeQrDownloadLink>
-                    {commentLoading ? (
+                    {commentsLoading ? (
                         <Spinner isSmall />
                     ) : (
                         <CommentsCard billId={billId as string} />
                     )}
+
                     <AlertWrapper />
                 </BillContainer>
             )}

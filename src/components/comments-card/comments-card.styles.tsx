@@ -9,6 +9,10 @@ export const CommentsCardBox = styled.div`
     width: 100%;
     min-height: 300px;
 
+    & > * {
+        ${({ theme }) => theme.palette.black};
+    }
+
     h2 {
         margin: 20px;
         display: flex;
@@ -47,7 +51,7 @@ export const CommentsCardTextEditArea = styled.textarea`
 
 export const CommentsCardTextArea = styled.textarea`
     border-radius: 20px;
-    padding: 10px;
+    padding: 20px;
     height: 100px;
     width: 100%;
 `;
@@ -159,4 +163,10 @@ export const CommentReplyBox = styled.div`
         margin-bottom: 30px;
         background-color: grey;
     }
+`;
+
+export const CommentCardRepliesBox = styled.div`
+    margin-top: 20px;
+    width: 80%;
+    margin-left: 60px;
 `;
