@@ -69,6 +69,9 @@ const CommentsCard = ({ billId }: TCommentsCardProps): ReactElement => {
     const [isUserVoted, setIsUserVoted] = useState<{
         [commentId: string]: boolean;
     }>({});
+    const [isUserVotedSubComment, setIsUserVotedSubcomment] = useState<{
+        [subcommentId: string]: boolean;
+    }>({});
     const [commentEditId, setCommentEditId] = useState<string | null>(null);
     const [editedContent, setEditedContent] = useState("");
     const dispatch = useDispatch();
@@ -104,15 +107,6 @@ const CommentsCard = ({ billId }: TCommentsCardProps): ReactElement => {
             setCommentReplyContent("");
         }
     };
-
-    useEffect(() => {
-        dispatch(fetchBillComments(billId as string));
-    }, [
-        billId,
-        createCommentSuccess,
-        createSubcommentSuccess,
-        updateSubcommentSuccess,
-    ]);
 
     console.log("billComments", billComments);
     console.log("comments", allComments);
@@ -166,7 +160,7 @@ const CommentsCard = ({ billId }: TCommentsCardProps): ReactElement => {
 
     const handleLikeSubcommentClick = (subcommentId: string) => {
         let commentLikesNumber = 0;
-        if (!isUserVoted[subcommentId]) {
+        if (!isUserVotedSubComment[subcommentId]) {
             const updatedComments = allSubcomments.map(
                 (subcomment: Subcomment) => {
                     if (subcomment.id === subcommentId) {
@@ -180,7 +174,10 @@ const CommentsCard = ({ billId }: TCommentsCardProps): ReactElement => {
                 },
             );
             setAllSubcomments(updatedComments);
-            setIsUserVoted({ ...isUserVoted, [subcommentId]: true });
+            setIsUserVotedSubcomment({
+                ...isUserVotedSubComment,
+                [subcommentId]: true,
+            });
             dispatch(
                 updateSubcomment(subcommentId, {
                     likes_number: commentLikesNumber + 1,
@@ -190,7 +187,7 @@ const CommentsCard = ({ billId }: TCommentsCardProps): ReactElement => {
     };
     const handleDislikeSubcommentClick = (subcommentId: string) => {
         let commentDislikesNumber = 0;
-        if (!isUserVoted[subcommentId]) {
+        if (!isUserVotedSubComment[subcommentId]) {
             const updatedComments = allSubcomments.map(
                 (subcomment: Subcomment) => {
                     if (subcomment.id === subcommentId) {
@@ -204,7 +201,10 @@ const CommentsCard = ({ billId }: TCommentsCardProps): ReactElement => {
                 },
             );
             setAllSubcomments(updatedComments);
-            setIsUserVoted({ ...isUserVoted, [subcommentId]: true });
+            setIsUserVotedSubcomment({
+                ...isUserVotedSubComment,
+                [subcommentId]: true,
+            });
             dispatch(
                 updateSubcomment(subcommentId, {
                     dislikes_number: commentDislikesNumber + 1,

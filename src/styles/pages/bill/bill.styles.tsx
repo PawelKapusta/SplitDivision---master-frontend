@@ -106,6 +106,11 @@ export const BillUsersContainer = styled.div`
     display: flex;
     justify-content: center;
     flex-direction: column;
+    width: 800px;
+
+    img {
+        width: 60px;
+    }
 `;
 
 export const BillCardImage = styled.div`
@@ -154,6 +159,7 @@ export const BillTotal = styled.div`
 export const BillImageBox = styled.div`
     display: flex;
     justify-content: center;
+    margin: 30px;
 `;
 
 export const BillImageCard = styled.img`

@@ -27,6 +27,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectGroupState } from "@redux/slices/groupSlice";
 import useAlert from "../../hocs/useAlert";
 import { deleteBill, selectBillState } from "@redux/slices/billSlice";
+import { FIAT } from "../../types/currency";
 
 export type TBillCardProps = {
     bill: Bill;
@@ -120,7 +121,11 @@ const BillCard = ({ bill, isAdmin }: TBillCardProps): ReactElement => {
                 <CardImage isBill>
                     <Image
                         priority
-                        src="/images/bill-image.png"
+                        src={
+                            bill?.currency_type.toUpperCase() === FIAT
+                                ? "/images/bill_image_fiat.png"
+                                : "/images/bill_image_crypto.png"
+                        }
                         width={1000}
                         height={100}
                         alt="Bill-image.png"

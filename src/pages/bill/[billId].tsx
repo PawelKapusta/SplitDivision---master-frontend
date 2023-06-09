@@ -45,6 +45,8 @@ import {
     BillCenterTitle,
     BillCardActions,
     CodeQrDownloadLink,
+    BillImageBox,
+    BillImageCard,
 } from "@styles/pages/bill/bill.styles";
 import { FIAT } from "../../types/currency";
 import { User } from "../../types/user";
@@ -65,8 +67,13 @@ const Bill: NextPage = () => {
     const dispatch = useDispatch();
     const { isLoading, bill, error, deleteBillSuccess, billUsers } =
         useSelector(selectBillState);
-    const { error: commentsError, isLoading: commentsLoading } =
-        useSelector(selectCommentState);
+    const {
+        error: commentsError,
+        isLoading: commentsLoading,
+        createCommentSuccess,
+        createSubcommentSuccess,
+        updateSubcommentSuccess,
+    } = useSelector(selectCommentState);
     const [deleteBillModalOpen, setDeleteBillModalOpen] = useState(false);
     const { showAlert, AlertWrapper } = useAlert();
     const combinedUsersBills =
@@ -93,9 +100,12 @@ const Bill: NextPage = () => {
     useEffect(() => {
         dispatch(fetchBill(billId as string));
         dispatch(fetchBillUsers(billId as string));
-        dispatch(fetchBillComments(billId as string));
         dispatch(fetchUsers());
-    }, [billId, isLoading]);
+    }, [billId]);
+
+    useEffect(() => {
+        dispatch(fetchBillComments(billId as string));
+    }, [billId, createCommentSuccess, createSubcommentSuccess]);
 
     const handleDeleteBillOpenModal = () => {
         setDeleteBillModalOpen(true);
@@ -396,9 +406,14 @@ const Bill: NextPage = () => {
                             </BillUsersContainer>
                         )}
                     </Container>
-                    {/*<BillImageContainer>*/}
-                    {/*    <BillImage src={bill?.bill_image} alt="Bill Image" />*/}
-                    {/*</BillImageContainer>*/}
+                    {bill && bill?.bill_image ? (
+                        <BillImageBox>
+                            <BillImageCard
+                                src={bill?.bill_image}
+                                alt="Bill Image"
+                            />
+                        </BillImageBox>
+                    ) : null}
                     <QRCodeBox>
                         <QRCode
                             value={bill?.code_qr}
