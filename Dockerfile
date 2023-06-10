@@ -1,15 +1,17 @@
-FROM node:12-alpine
+FROM node:14
 
-WORKDIR /opt/app
-
-ENV NODE_ENV production
+WORKDIR /app
 
 COPY package*.json ./
+RUN npm install
 
-RUN npm ci 
+COPY . .
 
-COPY . /opt/app
+ENV NODE_ENV production
+ENV PORT 3000
 
-RUN npm install --dev && npm run build
+RUN npm run build
+
+EXPOSE ${PORT}
 
 CMD [ "npm", "start" ]
