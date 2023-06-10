@@ -12,12 +12,14 @@ import BillCard from "@components/cards/bill-card";
 import { Bill } from "../types/bill";
 import { withAuth } from "../hocs/withAuth";
 import useAlert from "../hocs/useAlert";
+import { useTranslation } from "react-i18next";
 
 const Bills: NextPage = () => {
     const dispatch = useDispatch();
     const { isAuthenticated, token } = useSelector(selectAuthState);
     const { isLoading, userBills } = useSelector(selectBillState);
     const { AlertWrapper } = useAlert();
+    const { t } = useTranslation();
     let decodedToken: TDecodedJWTToken, userId: string;
     if (isAuthenticated) {
         decodedToken = getDecodedJWTToken(token);
@@ -34,16 +36,16 @@ const Bills: NextPage = () => {
                 <Spinner />
             ) : (
                 <BillsContainer>
-                    <h2>My bills</h2>
+                    <h2>{t("screens.bills.title")}</h2>
                     {!!userBills &&
                         userBills.map((bill: Bill) => {
                             return <BillCard key={bill?.id} bill={bill} />;
                         })}
                     {userBills.length === 0 ? (
                         <h4>
-                            You don't have any bills. Go to your groups{" "}
+                            {t("screens.bills.noBillsText")}
                             <Link href="/groups">
-                                <span>Click here!</span>
+                                <span>{t("screens.bills.buttonText")}</span>
                             </Link>
                         </h4>
                     ) : null}

@@ -12,6 +12,7 @@ import {
 import { useEffect } from "react";
 import useAlert from "../../hocs/useAlert";
 import { NextPage } from "next";
+import { useTranslation } from "react-i18next";
 
 const LoginPage: NextPage & {
     excludeLayout: boolean;
@@ -19,6 +20,7 @@ const LoginPage: NextPage & {
     const { error, isAuthenticated } = useSelector(selectAuthState);
     const { showAlert, AlertWrapper } = useAlert();
     const router = useRouter();
+    const { t } = useTranslation();
 
     if (isAuthenticated) {
         router.push("/");
@@ -34,8 +36,8 @@ const LoginPage: NextPage & {
         <AuthContainer>
             <AccessCard imageSrc="/icons/auth_image.svg">
                 <Form>
-                    <Title>Explore</Title>
-                    <Description>Sign in and enjoy our platform!</Description>
+                    <Title>{t("screens.login.title")}</Title>
+                    <Description>{t("screens.login.description")}</Description>
                     <LoginForm />
                 </Form>
             </AccessCard>

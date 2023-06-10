@@ -229,31 +229,67 @@ const Users = (): ReactElement => {
                                         </Avatar>
                                     </UserColumn>
                                     <UserColumn>
-                                        <UserTitle>First Name:</UserTitle>
+                                        <UserTitle>
+                                            {t(
+                                                "screens.admin.users.labels.firstName",
+                                            )}
+                                        </UserTitle>
                                         <p>{user?.first_name}</p>
-                                        <UserTitle>Last Name:</UserTitle>
+                                        <UserTitle>
+                                            {t(
+                                                "screens.admin.users.labels.lastName",
+                                            )}
+                                        </UserTitle>
                                         <p> {user?.last_name}</p>
                                     </UserColumn>
                                     <UserColumn>
-                                        <UserTitle>Username:</UserTitle>
+                                        <UserTitle>
+                                            {t(
+                                                "screens.admin.users.labels.username",
+                                            )}
+                                        </UserTitle>
                                         <p>{user?.username}</p>
-                                        <UserTitle>Email:</UserTitle>
+                                        <UserTitle>
+                                            {t(
+                                                "screens.admin.users.labels.email",
+                                            )}
+                                        </UserTitle>
                                         <p>{user.email}</p>
                                     </UserColumn>
                                     <UserColumn>
-                                        <UserTitle>Phone:</UserTitle>
+                                        <UserTitle>
+                                            {t(
+                                                "screens.admin.users.labels.phone",
+                                            )}
+                                        </UserTitle>
                                         <p>{user.phone}</p>
-                                        <UserTitle>Gender:</UserTitle>
+                                        <UserTitle>
+                                            {t(
+                                                "screens.admin.users.labels.gender",
+                                            )}
+                                        </UserTitle>
                                         <p>{user.gender}</p>
                                     </UserColumn>
                                     <UserColumn>
-                                        <UserTitle>Birth Date:</UserTitle>
+                                        <UserTitle>
+                                            {t(
+                                                "screens.admin.users.labels.birthDate",
+                                            )}
+                                        </UserTitle>
                                         <p>{user.birth_date}</p>
-                                        <UserTitle>Service:</UserTitle>
+                                        <UserTitle>
+                                            {t(
+                                                "screens.admin.users.labels.service",
+                                            )}
+                                        </UserTitle>
                                         <p>{user.service}</p>
                                     </UserColumn>
                                     <UserColumn>
-                                        <UserTitle>Is admin::</UserTitle>
+                                        <UserTitle>
+                                            {t(
+                                                "screens.admin.users.labels.isAdmin",
+                                            )}
+                                        </UserTitle>
                                         <p>
                                             {user && user?.is_admin ? (
                                                 <Image
@@ -275,7 +311,11 @@ const Users = (): ReactElement => {
                                         </p>
                                     </UserColumn>
                                     <UserColumn>
-                                        <UserTitle>Is blocked::</UserTitle>
+                                        <UserTitle>
+                                            {t(
+                                                "screens.admin.users.labels.isBlocked",
+                                            )}
+                                        </UserTitle>
                                         <p>
                                             {user && user?.is_blocked ? (
                                                 <Image
@@ -308,8 +348,12 @@ const Users = (): ReactElement => {
                                                     }
                                                 >
                                                     {user && user?.is_admin
-                                                        ? "Remove Admin"
-                                                        : "Make Admin"}
+                                                        ? t(
+                                                              "screens.admin.users.buttons.admin.remove",
+                                                          )
+                                                        : t(
+                                                              "screens.admin.users.buttons.admin.add",
+                                                          )}
                                                 </AdminButton>
                                                 <BlockButton
                                                     onClick={() =>
@@ -317,15 +361,21 @@ const Users = (): ReactElement => {
                                                     }
                                                 >
                                                     {user && user?.is_blocked
-                                                        ? "Unblock"
-                                                        : "Block"}
+                                                        ? t(
+                                                              "screens.admin.users.buttons.block.remove",
+                                                          )
+                                                        : t(
+                                                              "screens.admin.users.buttons.block.add",
+                                                          )}
                                                 </BlockButton>
                                                 <DeleteButton
                                                     onClick={() =>
                                                         onDelete(user?.id)
                                                     }
                                                 >
-                                                    Delete
+                                                    {t(
+                                                        "screens.admin.users.buttons.delete",
+                                                    )}
                                                 </DeleteButton>
                                             </div>
                                         ) : null}
@@ -340,11 +390,12 @@ const Users = (): ReactElement => {
                     >
                         <DeleteModalContent>
                             <DeleteModalTitle>
-                                Are you sure you want to delete this user?
+                                {t("screens.admin.users.modal.delete.title")}
                             </DeleteModalTitle>
                             <DeleteModalDescription>
-                                This will delete all groups and connected with
-                                the user data!
+                                {t(
+                                    "screens.admin.users.modal.delete.description",
+                                )}
                             </DeleteModalDescription>
                             <DeleteButtonActions>
                                 <DeleteModalButton
@@ -355,8 +406,10 @@ const Users = (): ReactElement => {
                                         width={30}
                                         height={30}
                                         alt="Delete-icon.svg"
-                                    />{" "}
-                                    Yes please delete this user
+                                    />
+                                    {t(
+                                        "screens.admin.users.modal.delete.buttonText",
+                                    )}
                                 </DeleteModalButton>
                             </DeleteButtonActions>
                         </DeleteModalContent>

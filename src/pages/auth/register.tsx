@@ -12,9 +12,11 @@ import { useSelector } from "react-redux";
 import { selectAuthState } from "@redux/slices/authSlice";
 import { useRouter } from "next/router";
 import { NextPage } from "next";
+import { useTranslation } from "react-i18next";
 
 const RegisterPage: NextPage & { excludeLayout: true } = () => {
     const { showAlert, AlertWrapper } = useAlert();
+    const { t } = useTranslation();
     const router = useRouter();
     const { error, isAuthenticated, registerSuccess } =
         useSelector(selectAuthState);
@@ -31,7 +33,10 @@ const RegisterPage: NextPage & { excludeLayout: true } = () => {
 
     useEffect(() => {
         if (registerSuccess) {
-            showAlert("Successfully created account", "success");
+            showAlert(
+                t("components.alert.messages.successCreateUser"),
+                "success",
+            );
         }
     }, []);
 
@@ -39,8 +44,10 @@ const RegisterPage: NextPage & { excludeLayout: true } = () => {
         <AuthContainer>
             <AccessCard imageSrc="/icons/auth_image.svg">
                 <Form>
-                    <Title>Explore</Title>
-                    <Description>Sign up and enjoy our platform!</Description>
+                    <Title>{t("screens.register.title")}</Title>
+                    <Description>
+                        {t("screens.register.description")}
+                    </Description>
                     <RegisterForm />
                 </Form>
             </AccessCard>

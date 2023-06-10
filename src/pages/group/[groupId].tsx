@@ -45,12 +45,14 @@ import {
     DeleteModalTitle,
 } from "@styles/pages/admin/admin.styles";
 import useAlert from "../../hocs/useAlert";
+import { useTranslation } from "react-i18next";
 
 const Group: NextPage = () => {
     const [isLongDescription, setIsLongDescription] = useState(false);
     const [createBillModalOpen, setCreateBillModalOpen] = useState(false);
     const [deleteGroupModalOpen, setDeleteGroupModalOpen] = useState(false);
     const { showAlert, AlertWrapper } = useAlert();
+    const { t } = useTranslation();
 
     const dispatch = useDispatch();
     const { isLoading, group, groupUsers, deleteGroupSuccess } =
@@ -174,7 +176,7 @@ const Group: NextPage = () => {
                             height={30}
                             alt="Plus-icon.svg"
                         />
-                        Create a bill
+                        {t("screens.group.createBillButtonText")}
                     </CreateBillButton>
                     <Modal
                         isOpen={createBillModalOpen}
@@ -193,11 +195,10 @@ const Group: NextPage = () => {
                     >
                         <DeleteModalContent>
                             <DeleteModalTitle>
-                                Are you sure you want to delete this group?
+                                {t("screens.group.modal.title")}
                             </DeleteModalTitle>
                             <DeleteModalDescription>
-                                This will delete all bills and connected with
-                                the group data!
+                                {t("screens.group.modal.description")}
                             </DeleteModalDescription>
                             <DeleteButtonActions>
                                 <DeleteModalButton
@@ -208,13 +209,15 @@ const Group: NextPage = () => {
                                         width={30}
                                         height={30}
                                         alt="Delete-icon.svg"
-                                    />{" "}
-                                    Yes please delete this group
+                                    />
+                                    {t("screens.group.modal.buttonText")}
                                 </DeleteModalButton>
                             </DeleteButtonActions>
                         </DeleteModalContent>
                     </Modal>
-                    <CenterTitle>Group members</CenterTitle>
+                    <CenterTitle>
+                        {t("screens.group.groupMemberTitle")}
+                    </CenterTitle>
                     <Container>
                         {isLoading ? (
                             <Spinner isSmall />
@@ -249,12 +252,18 @@ const Group: NextPage = () => {
                                             isBlocked={user?.is_blocked}
                                         >
                                             <PrimaryText>
-                                                Username: {user?.username}
+                                                {t(
+                                                    "screens.group.labels.username",
+                                                )}
+                                                {user?.username}
                                             </PrimaryText>
                                             <SecondaryText
                                                 isBlocked={user?.is_blocked}
                                             >
-                                                Phone: {user?.phone}
+                                                {t(
+                                                    "screens.group.labels.phone",
+                                                )}
+                                                {user?.phone}
                                             </SecondaryText>
                                         </ListItemText>
                                         <ListItemText
@@ -263,10 +272,14 @@ const Group: NextPage = () => {
                                             <PrimaryText>
                                                 {user && user?.is_blocked ? (
                                                     <span>
-                                                        User has been blocked!
+                                                        {t(
+                                                            "screens.group.labels.userBlocked",
+                                                        )}
                                                         <p>
                                                             <Link href="/contact">
-                                                                Contact us
+                                                                {t(
+                                                                    "screens.group.labels.contactUs",
+                                                                )}
                                                             </Link>
                                                         </p>
                                                     </span>
@@ -293,7 +306,10 @@ const Group: NextPage = () => {
                             })
                         )}
                     </Container>
-                    <CenterTitle>Bills in this group</CenterTitle>
+                    <CenterTitle>
+                        {" "}
+                        {t("screens.group.labels.billsTitle")}
+                    </CenterTitle>
                     {billsLoading ? (
                         <Spinner isSmall />
                     ) : groupBills?.length > 0 ? (
@@ -301,10 +317,7 @@ const Group: NextPage = () => {
                             return <BillCard key={bill?.id} bill={bill} />;
                         })
                     ) : (
-                        <h4>
-                            Group doesn't have any bills yet. Please create a
-                            bill.
-                        </h4>
+                        <h4>{t("screens.group.labels.noBillsText")}</h4>
                     )}
                 </GroupContainer>
             )}

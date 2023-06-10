@@ -15,11 +15,13 @@ import {
     DeleteModalTitle,
 } from "@styles/pages/admin/admin.styles";
 import Image from "next/image";
+import { useTranslation } from "react-i18next";
 
 const Contact: NextPage = () => {
     const dispatch = useDispatch();
     const { isAuthenticated, token } = useSelector(selectAuthState);
     const [modalOpen, setModalOpen] = useState(false);
+    const { t } = useTranslation();
     let decodedToken: TDecodedJWTToken, userId: string;
     if (isAuthenticated) {
         decodedToken = getDecodedJWTToken(token);
@@ -50,13 +52,11 @@ const Contact: NextPage = () => {
             <ContactForm />
             <Modal isOpen={modalOpen} onClose={handleCloseModal} isAdmin>
                 <DeleteModalContent>
-                    <DeleteModalTitle>***WARNING***</DeleteModalTitle>
+                    <DeleteModalTitle>
+                        {t("screens.contact.modal.title")}
+                    </DeleteModalTitle>
                     <DeleteModalDescription>
-                        Your account has been blocked due to your activity in
-                        the service. If you think that that this is an unfair
-                        decision, please contact our customer service via this
-                        contact form! We wish you a nice day. Split Division
-                        team
+                        {t("screens.contact.modal.description")}
                     </DeleteModalDescription>
                     <DeleteButtonActions>
                         <DeleteModalButton
@@ -68,8 +68,8 @@ const Contact: NextPage = () => {
                                 width={30}
                                 height={30}
                                 alt="Delete-icon.svg"
-                            />{" "}
-                            OK, thank you for the information
+                            />
+                            {t("screens.contact.modal.buttonText")}
                         </DeleteModalButton>
                     </DeleteButtonActions>
                 </DeleteModalContent>

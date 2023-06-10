@@ -11,11 +11,13 @@ import GroupCard from "@components/cards/group-card";
 import { Group } from "../types/group";
 import { GroupsContainer } from "@styles/pages/groups.styles";
 import { withAuth } from "../hocs/withAuth";
+import { useTranslation } from "react-i18next";
 
 const Groups: NextPage = () => {
     const dispatch = useDispatch();
     const { isAuthenticated, token } = useSelector(selectAuthState);
     const { isLoading, userGroups } = useSelector(selectGroupState);
+    const { t } = useTranslation();
     let decodedToken: TDecodedJWTToken, userId: string;
     if (isAuthenticated) {
         decodedToken = getDecodedJWTToken(token);
@@ -32,16 +34,16 @@ const Groups: NextPage = () => {
                 <Spinner />
             ) : (
                 <GroupsContainer>
-                    <h2>My groups</h2>
+                    <h2>{t("screens.groups.title")}</h2>
                     {!!userGroups &&
                         userGroups.map((group: Group) => {
                             return <GroupCard key={group.id} group={group} />;
                         })}
                     {userGroups.length === 0 ? (
                         <h4>
-                            You don't have any groups. Please click here{" "}
+                            {t("screens.groups.noGroupsText")}
                             <Link href="/create/group">
-                                <span>Click here!</span>
+                                <span>{t("screens.groups.buttonText")}</span>
                             </Link>
                         </h4>
                     ) : null}

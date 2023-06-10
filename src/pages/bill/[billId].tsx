@@ -60,9 +60,11 @@ import {
     selectCommentState,
 } from "@redux/slices/commentSlice";
 import { fetchUsers } from "@redux/slices/userSlice";
+import { useTranslation } from "react-i18next";
 
 const Bill: NextPage = () => {
     const router = useRouter();
+    const { t } = useTranslation();
     const { billId } = router.query;
     const dispatch = useDispatch();
     const { isLoading, bill, error, deleteBillSuccess, billUsers } =
@@ -87,7 +89,10 @@ const Bill: NextPage = () => {
 
     useEffect(() => {
         if (deleteBillSuccess !== false) {
-            showAlert("Successfully deleted bill", "success");
+            showAlert(
+                t("components.alert.messages.successDeleteBill"),
+                "success",
+            );
         } else if (error) {
             showAlert(error.toString(), "error");
         } else if (commentsError) {
@@ -161,7 +166,8 @@ const Bill: NextPage = () => {
                                     height={30}
                                     alt="Calendar-icon.svg"
                                 />
-                                Start: {getFormattedDate(bill?.data_created)}
+                                {t("screens.bill.startDate")}
+                                {getFormattedDate(bill?.data_created)}
                             </p>
 
                             <p>
@@ -171,7 +177,8 @@ const Bill: NextPage = () => {
                                     height={30}
                                     alt="Calendar-icon.svg"
                                 />
-                                End: {getFormattedDate(bill?.data_end)}
+                                {t("screens.bill.endDate")}
+                                {getFormattedDate(bill?.data_end)}
                             </p>
                             <BillTotal>
                                 {bill &&
@@ -188,7 +195,8 @@ const Bill: NextPage = () => {
                                         />
                                     )}
                                 <p>
-                                    Debt: {bill?.debt} {bill?.currency_code}
+                                    {t("screens.bill.debt")}
+                                    {bill?.debt} {bill?.currency_code}
                                 </p>
                             </BillTotal>
                             <BillCardActions>
@@ -222,11 +230,10 @@ const Bill: NextPage = () => {
                         >
                             <DeleteModalContent>
                                 <DeleteModalTitle>
-                                    Are you sure you want to delete this bill?
+                                    {t("screens.bill.modal.title")}
                                 </DeleteModalTitle>
                                 <DeleteModalDescription>
-                                    This will delete all comments and connected
-                                    with the bill data!
+                                    {t("screens.bill.modal.description")}
                                 </DeleteModalDescription>
                                 <DeleteButtonActions>
                                     <DeleteModalButton
@@ -237,8 +244,8 @@ const Bill: NextPage = () => {
                                             width={30}
                                             height={30}
                                             alt="Delete-icon.svg"
-                                        />{" "}
-                                        Yes please delete this bill
+                                        />
+                                        {t("screens.bill.modal.buttonText")}
                                     </DeleteModalButton>
                                 </DeleteButtonActions>
                             </DeleteModalContent>
@@ -252,7 +259,9 @@ const Bill: NextPage = () => {
                             />
                         </BillCardImage>
                     </BillCardContent>
-                    <BillCenterTitle>Bill members</BillCenterTitle>
+                    <BillCenterTitle>
+                        {t("screens.bill.billMembersTitle")}
+                    </BillCenterTitle>
                     <Container>
                         {isLoading ? (
                             <Spinner isSmall />
@@ -297,7 +306,9 @@ const Bill: NextPage = () => {
                                                         }
                                                     >
                                                         <PrimaryText>
-                                                            Username:{" "}
+                                                            {t(
+                                                                "screens.bill.labels.username",
+                                                            )}
                                                             {user?.username}
                                                         </PrimaryText>
                                                         <SecondaryText
@@ -305,7 +316,10 @@ const Bill: NextPage = () => {
                                                                 user?.is_blocked
                                                             }
                                                         >
-                                                            Phone: {user?.phone}
+                                                            {t(
+                                                                "screens.bill.labels.phone",
+                                                            )}
+                                                            {user?.phone}
                                                         </SecondaryText>
                                                     </ListItemText>
                                                     <ListItemText
@@ -317,13 +331,14 @@ const Bill: NextPage = () => {
                                                             {user &&
                                                             user?.is_blocked ? (
                                                                 <span>
-                                                                    User has
-                                                                    been
-                                                                    blocked!
+                                                                    {t(
+                                                                        "screens.bill.labels.userBlocked",
+                                                                    )}
                                                                     <p>
                                                                         <Link href="/contact">
-                                                                            Contact
-                                                                            us
+                                                                            {t(
+                                                                                "screens.bill.labels.contactUs",
+                                                                            )}
                                                                         </Link>
                                                                     </p>
                                                                 </span>
@@ -358,7 +373,9 @@ const Bill: NextPage = () => {
                                                             }
                                                         >
                                                             <span>
-                                                                Debt:{" "}
+                                                                {t(
+                                                                    "screens.bill.labels.debt",
+                                                                )}
                                                                 {parseFloat(
                                                                     user &&
                                                                         user?.debt.toString(),
@@ -374,7 +391,9 @@ const Bill: NextPage = () => {
                                                             }
                                                         >
                                                             <span>
-                                                                isRegulated:{" "}
+                                                                {t(
+                                                                    "screens.bill.labels.isRegulated",
+                                                                )}
                                                                 {user &&
                                                                 user?.is_regulated ? (
                                                                     <Image
@@ -436,7 +455,7 @@ const Bill: NextPage = () => {
                                 )
                             }
                         >
-                            Click here to download QR
+                            {t("screens.bill.codeQrDownloadText")}
                         </a>
                     </CodeQrDownloadLink>
                     {isLoading || commentsLoading ? (

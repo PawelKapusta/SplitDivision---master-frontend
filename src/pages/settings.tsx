@@ -8,7 +8,7 @@ const Settings = () => {
     const { t } = useTranslation();
     return (
         <SettingsPage>
-            <h1>Settings Page</h1>
+            <h1>{t("screens.settings.title")}</h1>
             <SettingRow>
                 <Image
                     src="/icons/language-icon.svg"
@@ -16,10 +16,9 @@ const Settings = () => {
                     height={50}
                     alt="Language-icon.svg"
                 />
-                <h3>Choose website language</h3>
+                <h3>{t("screens.settings.chooseLanguageText")}</h3>
                 <Translation />
             </SettingRow>
-            <h4>{t("test")}</h4>
             <SettingRow>
                 <Image
                     src="/icons/premium-diamond-icon.svg"
@@ -27,8 +26,8 @@ const Settings = () => {
                     height={50}
                     alt="Premium-diamond--icon.svg"
                 />
-                <h3>Buy premium</h3>
-                <button>Buy</button>
+                <h3>{t("screens.settings.buyPremium")}</h3>
+                <button>{t("screens.settings.buttonBuyText")}</button>
             </SettingRow>
         </SettingsPage>
     );
