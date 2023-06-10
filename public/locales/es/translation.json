@@ -1,39 +1,39 @@
 {
   "screens":{
     "home":{
-      "mainTitle":"¿Qué es {{name}}",
-      "description":"Este es un sitio web para personas que buscan una forma moderna de dividir el dinero entre sí. Aquí puede liquidar su deuda por moneda fiduciaria y criptográfica.",
-      "cardsTitle":"¿Qué características puedes encontrar en nuestro sitio web?",
+      "mainTitle":"¿Qué es?",
+      "description":"Este es un sitio web para personas que buscan una forma moderna de dividir el dinero entre sí. Aquí usted puede resolver su deuda por moneda fiat e cripto.",
+      "cardsTitle":"¿Qué características puede encontrar en nuestro sitio web?",
       "cards":{
         "freeAccount":"Crear cuenta gratuita",
-        "settle":"Liquidar en diferentes monedas del mundo",
-        "crypto":"Posibilidad de liquidación en criptomonedas",
-        "expenses":"Toma el control de tus gastos",
-        "stocks":"Vista previa de la bolsa de valores",
-        "groupsAndBills":"Crear grupos y facturas",
-        "statistics":"Mira las estadísticas",
-        "comment":"Comenta en tus facturas"
+        "settle":"Posibilidad en diferentes monedas del mundo",
+        "crypto":"Posibilidad de asentamiento en criptomonedas",
+        "expenses":"Tome el control de sus gastos",
+        "stocks":"Stocks exchange vista previa",
+        "groupsAndBills":"Crear cuentas de grupos",
+        "statistics":"Consultar estadísticas",
+        "comment":"Comentar en sus cuentas"
       }
     },
     "calculator":{
       "cryptoConverter":{
-        "title":"Convertidor de cifrado",
-        "crypto":"Cripto",
+        "title":"Crypto Converter",
+        "crypto":"Crypto",
         "fiat":"Fiat",
-        "inputConvertingText":"Convertir...",
+        "inputConvertingText":"Convertir.",
         "buttonText":"Convertir"
       },
       "fiatConverter":{
         "title":"Conversor de divisas",
         "fiat":"Fiat",
-        "inputConvertingText":"Convertir...",
+        "inputConvertingText":"Convertir.",
         "convertButton":"Convertir",
-        "swapButton":"Swap de divisas"
+        "swapButton":"Cifras de los gastos"
       }
     },
     "login":{
       "title":"Explorar",
-      "description":"¡Regístrate y disfruta de nuestra plataforma!"
+      "description":"¡Inicie sesión y disfrute de nuestra plataforma!"
     },
     "register":{
       "title":"Explorar",
@@ -43,63 +43,63 @@
       "title":"Preguntas frecuentes"
     },
     "bills":{
-      "title":"Mis facturas",
-      "noBillsText":"No tienes facturas. Ve a tus grupos",
-      "buttonText":"¡Haga clic aquí!"
+      "title":"Mis cuentas",
+      "noBillsText":"No tienes ninguna factura. Vaya a sus grupos",
+      "buttonText":"¡Haz clic aquí!"
     },
     "groups":{
       "title":"Mis grupos",
-      "noGroupsText":"--",
-      "buttonText":"¡Haga clic aquí!"
+      "noGroupsText":"No tienes grupos. Por favor haga clic aquí",
+      "buttonText":"¡Haz clic aquí!"
     },
     "contact":{
       "modal":{
-        "title":"ADVERTENCIA***",
-        "description":"Su cuenta ha sido bloqueada debido a su actividad en el servicio. Si cree que se trata de una decisión injusta, póngase en contacto con nuestro servicio de atención al cliente a través de este formulario de contacto. Le deseamos un buen día. Equipo de la División Split",
+        "title":"WARNING",
+        "description":"Su cuenta ha sido bloqueada debido a su actividad en el servicio. Si usted piensa que esto es una decisión injusta, por favor contacte con nuestro servicio al cliente a través de este formulario de contacto! Te deseamos un buen día. Equipo de división",
         "buttonText":"OK, gracias por la información"
       }
     },
     "settings":{
       "title":"Página de configuración",
-      "chooseLanguageText":"--",
-      "buyPremium":"Comprar premium",
+      "chooseLanguageText":"Elija el idioma del sitio web",
+      "buyPremium":"Comprar prima",
       "buttonBuyText":"Comprar"
     },
     "bill":{
-      "startDate":"Empezar:",
+      "startDate":"Comienzo:",
       "endDate":"Fin:",
-      "debt":"Deuda:",
+      "debt":"Debt:",
       "modal":{
-        "title":"¿Está seguro de que desea eliminar este proyecto de ley?",
-        "description":"¡Esto eliminará todos los comentarios y se conectará con los datos de la factura!",
-        "buttonText":"Sí, por favor elimine este proyecto de ley"
+        "title":"¿Estás seguro de que quieres eliminar esta cuenta?",
+        "description":"Esto eliminará todos los comentarios y se conectará con los datos de la factura!",
+        "buttonText":"Sí, por favor borre esta factura"
       },
-      "billMembersTitle":"Miembros del proyecto de ley",
+      "billMembersTitle":"Miembros de proyectos",
       "labels":{
         "username":"Nombre de usuario:",
         "phone":"Teléfono:",
         "userBlocked":"¡El usuario ha sido bloqueado!",
-        "contactUs":"Contáctenos",
-        "debt":"Deuda:",
-        "isRegulated":"--"
+        "contactUs":"Contacta con nosotros",
+        "debt":"Debt:",
+        "isRegulated":"isRegulated:"
       },
       "codeQrDownloadText":"Haga clic aquí para descargar QR"
     },
     "group":{
-      "createBillButtonText":"--",
+      "createBillButtonText":"Crear una cuenta",
       "modal":{
-        "title":"¿Está seguro de que desea eliminar este grupo?",
-        "description":"¡Esto eliminará todas las facturas y se conectará con los datos del grupo!",
-        "buttonText":"--"
+        "title":"¿Estás seguro de que quieres eliminar este grupo?",
+        "description":"Esto eliminará todas las facturas y se conectará con los datos del grupo!",
+        "buttonText":"Sí, por favor borre este grupo"
       },
-      "groupMemberTitle":"Miembros del grupo",
+      "groupMemberTitle":"Miembros de grupos",
       "labels":{
-        "username":"--",
+        "username":"Nombre de usuario:",
         "phone":"Teléfono:",
         "userBlocked":"¡El usuario ha sido bloqueado!",
-        "contactUs":"--",
-        "billsTitle":"Facturas en este grupo",
-        "noBillsText":"El grupo aún no tiene facturas. Por favor, cree una factura."
+        "contactUs":"Contacta con nosotros",
+        "billsTitle":"Bills in this group",
+        "noBillsText":"El grupo aún no tiene facturas. Por favor, crea una factura."
       }
     },
     "admin":{
@@ -109,7 +109,7 @@
       },
       "groups":{
         "title":"Todos los grupos",
-        "noGroupsText":"--"
+        "noGroupsText":"¡No hay grupos!"
       },
       "users":{
         "title":"Todos los usuarios",
@@ -117,32 +117,32 @@
         "modal":{
           "admin":{
             "remove":{
-              "title":"¿Está seguro de que desea quitar el rol de administrador a este usuario?",
-              "description":"¡Esto eliminará todas las funcionalidades de administrador del usuario en la aplicación!",
-              "textButton":"Sí, elimine el administrador de este usuario"
+              "title":"¿Estás seguro de que quieres eliminar el papel de administrador a este usuario?",
+              "description":"¡Esto eliminará todas las funcionalidades de administrador en la aplicación!",
+              "textButton":"Sí, por favor, retire el administrador este usuario"
             },
             "add":{
-              "title":"--",
-              "description":"¡Esto agregará al usuario todas las funcionalidades en la aplicación!",
-              "textButton":"Sí, agregue administrador a este usuario"
+              "title":"¿Estás seguro de que quieres añadir el papel de administrador a este usuario?",
+              "description":"Esto agregará todas las funcionalidades de usuario en la aplicación!",
+              "textButton":"Sí, por favor agregue administrador este usuario"
             }
           },
           "block":{
             "remove":{
-              "title":"¿Está seguro de que desea desbloquear este usuario?",
+              "title":"¿Seguro que quieres desbloquear a este usuario?",
               "description":"¡Esto devolverá todas las características a este usuario!",
               "textButton":"Sí, por favor desbloquee este usuario"
             },
             "add":{
-              "title":"¿Está seguro de que desea bloquear a este usuario?",
+              "title":"¿Seguro que quieres bloquear a este usuario?",
               "description":"¡Esto bloqueará al usuario en la aplicación!",
-              "textButton":"--"
+              "textButton":"Sí, por favor bloquee este usuario"
             }
           },
           "delete":{
-            "title":"--",
-            "description":"¡Esto eliminará todos los grupos y se conectará con los datos del usuario!",
-            "buttonText":"Sí, elimine este usuario"
+            "title":"¿Estás seguro de que quieres borrar este usuario?",
+            "description":"Esto eliminará todos los grupos y se conectará con los datos del usuario!",
+            "buttonText":"Sí, por favor borra este usuario"
           }
         },
         "labels":{
@@ -152,21 +152,21 @@
           "email":"Correo electrónico:",
           "phone":"Teléfono:",
           "gender":"Género:",
-          "birthDate":"Fecha de Nacimiento:",
+          "birthDate":"Fecha de nacimiento:",
           "service":"Servicio:",
           "isAdmin":"Es admin:",
           "isBlocked":"Está bloqueado:"
         },
         "buttons":{
           "admin":{
-            "remove":"Eliminar administrador",
-            "add":"Hacer administrador"
+            "remove":"Remove Admin",
+            "add":"Hacer Admin"
           },
           "block":{
-            "remove":"Desbloquear",
-            "add":"Bloquear"
+            "remove":"Desbloqueo",
+            "add":"Bloque"
           },
-          "delete":"Borrar"
+          "delete":"Suprimir"
         }
       }
     }
@@ -174,76 +174,76 @@
   "components":{
     "alert":{
       "messages":{
-        "successDeleteBill":"--",
-        "successDeleteGroup":"--",
-        "successDeleteUser":"Usuario eliminado correctamente",
-        "successCreateBill":"Se ha creado correctamente una factura",
-        "successCreateGroup":"Se ha creado correctamente un grupo",
-        "successCreateUser":"--",
-        "noEnoughPeopleError":"--",
-        "successSentEmailToAdministrator":"Correo electrónico enviado correctamente al administrador",
+        "successDeleteBill":"Billete eliminado con éxito",
+        "successDeleteGroup":"Grupo eliminado con éxito",
+        "successDeleteUser":"Usuario eliminado con éxito",
+        "successCreateBill":"Con éxito creó un proyecto de ley",
+        "successCreateGroup":"Con éxito creó un grupo",
+        "successCreateUser":"Cuenta creada con éxito",
+        "noEnoughPeopleError":"Por favor seleccione al menos 2 personas",
+        "successSentEmailToAdministrator":"Correo electrónico enviado con éxito al administrador",
         "errorSentEmailToAdministrator":"Correo electrónico no enviado",
-        "successUpdateUser":"Usuario actualizado correctamente"
+        "successUpdateUser":"Usuario actualizado con éxito"
       }
     },
     "billForm":{
       "errors":{
-        "evenlyMoreError":"Dividiste más dinero entre usuarios que la deuda dada",
-        "evenlyLessError":"Dividiste menos dinero entre usuarios que la deuda dada"
+        "evenlyMoreError":"Usted dividió más dinero entre los usuarios que la deuda dada",
+        "evenlyLessError":"Usted dividió menos dinero entre los usuarios que la deuda dada"
       },
-      "title":"Crear una factura",
+      "title":"Crear una cuenta",
       "inputs":{
         "name":{
-          "name":"Nombre de la factura",
-          "nameRequired":"--"
+          "name":"Nombre de Bill",
+          "nameRequired":"Se requiere la factura de nombre"
         },
         "description":{
-          "name":"Descripción de la factura",
-          "nameRequired":"Se requiere descripción de la factura"
+          "name":"Descripción del proyecto",
+          "nameRequired":"Se requiere una descripción de la factura"
         },
         "debt":{
-          "name":"Deuda",
+          "name":"Debt",
           "nameRequired":"Se requiere deuda"
         }
       },
       "dateStart":"Fecha de inicio:",
-      "dateEnd":"Fecha de finalización:",
+      "dateEnd":"Fecha final:",
       "fiat":"Fiat",
-      "crypto":"Criptomoneda",
+      "crypto":"Cryptocurrency",
       "select":{
-        "label":"Seleccionar usuarios"
+        "label":"Seleccione usuarios"
       },
-      "debtEvenlyCheckbox":"¿Dividir la deuda en partes iguales?",
+      "debtEvenlyCheckbox":"¿Dividir la deuda uniforme?",
       "createButton":{
-        "text":"Crear una factura",
-        "loadingButton":"Carga..."
+        "text":"Crear una cuenta",
+        "loadingButton":"Carga."
       }
     },
     "groupForm":{
-      "title":"--",
+      "title":"Crear un grupo",
       "inputs":{
         "name":{
           "name":"Nombre del grupo",
-          "nameRequired":"El grupo de nombres es obligatorio"
+          "nameRequired":"El grupo de nombre es necesario"
         },
         "description":{
-          "name":"--",
-          "nameRequired":"La descripción del grupo es obligatoria"
+          "name":"Descripción del grupo",
+          "nameRequired":"Se requiere una descripción del grupo"
         }
       },
       "select":{
-        "label":"Seleccionar usuarios"
+        "label":"Seleccione usuarios"
       },
       "createButton":{
         "text":"Crear un grupo",
-        "loadingButton":"Carga..."
+        "loadingButton":"Carga."
       }
     },
     "loginForm":{
       "inputs":{
         "email":{
-          "name":"Correo electrónico",
-          "nameRequired":"--"
+          "name":"Email",
+          "nameRequired":"Se requiere correo electrónico"
         },
         "password":{
           "name":"Contraseña",
@@ -252,11 +252,11 @@
       },
       "loginButton":{
         "text":"Iniciar sesión",
-        "loadingButton":"Carga..."
+        "loadingButton":"Carga."
       },
       "textToRegister":{
-        "text":"--",
-        "linkText":"Únete"
+        "text":"¿No tienes cuenta todavía?",
+        "linkText":"Regístrate"
       }
     },
     "registerForm":{
@@ -267,122 +267,122 @@
         },
         "confirmPassword":{
           "name":"Confirmar contraseña",
-          "nameRequired":"--"
+          "nameRequired":"Confirmar contraseña es necesario"
         }
       },
       "registerButton":{
         "text":"Registro",
-        "loadingButton":"--"
+        "loadingButton":"Carga."
       },
       "textToLogin":{
-        "text":"--",
-        "linkText":"--"
+        "text":"¿Ya tiene cuenta?",
+        "linkText":"Ingresar"
       }
     },
     "profileForm":{
       "inputs":{
         "firstName":{
           "name":"Nombre",
-          "nameRequired":"El nombre es obligatorio"
+          "nameRequired":"Se requiere el nombre"
         },
         "lastName":{
-          "name":"--",
-          "nameRequired":"El apellido es obligatorio"
+          "name":"Apellido",
+          "nameRequired":"Se requiere el apellido."
         },
         "username":{
-          "name":"--",
-          "nameRequired":"El nombre de usuario es obligatorio"
+          "name":"Nombre de usuario",
+          "nameRequired":"Se requiere el nombre de usuario"
         },
         "email":{
-          "name":"--",
+          "name":"Email",
           "nameRequired":"Se requiere correo electrónico"
         },
         "phone":{
           "name":"Teléfono",
-          "nameRequired":"Se requiere teléfono"
+          "nameRequired":"El teléfono es necesario"
         }
       },
       "select":{
         "title":"Seleccionar género",
-        "male":"Masculino",
-        "female":"Hembra",
-        "other":"Otro"
+        "male":"Hombre",
+        "female":"Mujer",
+        "other":"Otros"
       },
       "birthDate":"Fecha de nacimiento:",
       "createButton":{
-        "text":"--",
-        "loadingButton":"Carga..."
+        "text":"Perfil de actualización",
+        "loadingButton":"Carga."
       }
     },
     "contactForm":{
-      "title":"Contactar con el administrador",
+      "title":"Contacto con administrador",
       "topic":"Tema:",
       "description":"Descripción:",
       "button":{
         "text":"Enviar",
-        "loadingText":"--"
+        "loadingText":"Carga."
       }
     },
     "billCard":{
       "dateCreated":"Creado:",
-      "dateEnd":"Termina:",
-      "deleteButton":"Borrar",
-      "goButton":"Ir"
+      "dateEnd":"Fin:",
+      "deleteButton":"Suprimir",
+      "goButton":"Vamos."
     },
     "groupCard":{
       "dateCreated":"Creado:",
-      "deleteButton":"Borrar",
-      "goButton":"--"
+      "deleteButton":"Suprimir",
+      "goButton":"Vamos."
     },
     "modal":{
       "adminDeleteBill":{
-        "title":"¿Está seguro de que desea eliminar este proyecto de ley?",
-        "description":"¡Esto eliminará todos los comentarios y se conectará con los datos de la factura!",
-        "deleteButtonText":"--"
+        "title":"¿Estás seguro de que quieres eliminar esta cuenta?",
+        "description":"Esto eliminará todos los comentarios y se conectará con los datos de la factura!",
+        "deleteButtonText":"Sí, por favor borre esta factura"
       },
       "adminDeleteGroup":{
-        "title":"--",
-        "description":"--",
-        "deleteButtonText":"Sí, elimine este grupo"
+        "title":"¿Estás seguro de que quieres eliminar este grupo?",
+        "description":"su borrará todas las facturas y conectado con los datos del grupo!",
+        "deleteButtonText":"Sí, por favor borre este grupo"
       }
     },
     "commentsCard":{
       "title":"Comentarios",
       "addCommentButton":{
-        "text":"--",
-        "textLoading":"Carga..."
+        "text":"Agregar un comentario",
+        "textLoading":"Carga."
       },
       "buttons":{
-        "save":"Salvar",
-        "cancel":"--",
-        "like":"--",
-        "dislike":"Aversión",
-        "edit":"--",
+        "save":"Guardar",
+        "cancel":"Cancelar",
+        "like":"Como",
+        "dislike":"No me gusta",
+        "edit":"Editar",
         "reply":"Respuesta",
-        "addReply":"--",
-        "cancelReply":"--"
+        "addReply":"Respuesta",
+        "cancelReply":"Cancelar respuesta"
       },
-      "noRepliesText":"No hay respuestas"
+      "noRepliesText":"Número de respuestas"
     },
     "header":{
       "links":{
-        "createGroup":"--",
+        "createGroup":"Crear grupo",
         "contact":"Contacto",
-        "converter":"Conversor de divisas",
-        "faq":"Preguntas más frecuentes",
-        "login":"--"
+        "converter":"Moneda convertidor",
+        "faq":"FAQ",
+        "login":"Iniciar sesión"
       }
     },
     "dropdown":{
-      "profile":"--",
+      "profile":"Perfil",
       "groups":"Grupos",
-      "bills":"Cuentas",
-      "statistics":"Estadística",
+      "bills":"Bills",
+      "statistics":"Estadísticas",
       "adminUsers":"Todos los usuarios",
       "adminGroups":"Todos los grupos",
-      "adminBills":"--",
-      "adminFaq":"--",
-      "settings":"Configuración",
+      "adminBills":"Todas las facturas",
+      "adminFaq":"Crear FAQ",
+      "settings":"Ajustes",
       "logout":"Cerrar sesión"
     },
     "layout":{
@@ -390,16 +390,16 @@
     },
     "footer":{
       "aboutUs":{
-        "title":"--",
+        "title":"Sobre nosotros",
         "careers":"Carreras",
         "investors":"Inversores",
-        "blog":"Blog de la empresa"
+        "blog":"Empresa Blog"
       },
       "topCities":{
-        "title":"Ciudades principales",
-        "cracow":"--",
-        "sanDiego":"--",
-        "london":"--",
+        "title":"Ciudades Top",
+        "cracow":"Cracovia",
+        "sanDiego":"San Diego",
+        "london":"Londres",
         "chicago":"Chicago"
       },
       "services":{
@@ -411,7 +411,7 @@
       "social":{
         "title":"Social",
         "instagram":"{{instagram}}",
-        "twitter":"--",
+        "twitter":"{{twitter}}",
         "facebook":"{{facebook}}",
         "linkedin":"{{linkedin}}"
       }
