@@ -47,10 +47,6 @@ export const authSlice = createSlice({
             state.registerSuccess = true;
             state.isAuthenticated = false;
             state.isLoading = false;
-
-            setTimeout(() => {
-                state.registerSuccess = false;
-            }, 5000);
         },
         loginSuccess: (
             state,

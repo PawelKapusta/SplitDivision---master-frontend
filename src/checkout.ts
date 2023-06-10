@@ -1,15 +1,17 @@
 import {
     loadStripe,
-    Stripe,
     RedirectToCheckoutOptions,
+    Stripe,
 } from "@stripe/stripe-js";
+
 let stripePromise: Promise<Stripe | null> | null = null;
-export async function checkout({
-    lineItems,
+
+export async function goToCheckout({
+    subscriptions,
 }: {
-    lineItems: any[];
+    subscriptions: { price: string; quantity: number }[];
 }): Promise<void> {
-    const getStripe = (): Promise<Stripe | null> => {
+    const getStripeClient = (): Promise<Stripe | null> => {
         if (!stripePromise) {
             stripePromise = loadStripe(
                 process.env.NEXT_PUBLIC_STRIPE_API_KEY || "Secret",
@@ -17,14 +19,14 @@ export async function checkout({
         }
         return stripePromise;
     };
-    const stripe: Stripe | null = await getStripe();
-    if (stripe) {
-        const options: RedirectToCheckoutOptions = {
+    const stripeClient: Stripe | null = await getStripeClient();
+    if (stripeClient) {
+        const checkoutOptions: RedirectToCheckoutOptions = {
             mode: "payment",
-            lineItems,
-            successUrl: `${window.location.origin}?session_id={CHECKOUT_SESSION_ID}`,
+            lineItems: subscriptions,
+            successUrl: `${window.location.origin}/success?session_id={CHECKOUT_SESSION_ID}`,
             cancelUrl: window.location.origin,
         };
-        await stripe.redirectToCheckout(options);
+        await stripeClient.redirectToCheckout(checkoutOptions);
     }
 }

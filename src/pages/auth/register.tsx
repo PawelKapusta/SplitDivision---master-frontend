@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import {
+    AuthContainer,
     Description,
     Form,
-    AuthContainer,
     Title,
 } from "@styles/pages/auth/auth.styles";
 import AccessCard from "@components/access-card";
@@ -23,6 +23,10 @@ const RegisterPage: NextPage & { excludeLayout: true } = () => {
 
     if (isAuthenticated) {
         router.push("/");
+    }
+
+    if (registerSuccess) {
+        router.push("/auth/login");
     }
 
     useEffect(() => {

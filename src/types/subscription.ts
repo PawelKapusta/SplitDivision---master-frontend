@@ -5,3 +5,16 @@ export interface Subscription {
     currency_code: string;
     features: Record<string, unknown>;
 }
+
+export interface SubscriptionsUsers {
+    id: string;
+    subscription_id: string;
+    user_id: string;
+}
+
+export interface UserSubscriptionFormData {
+    user_id: string;
+    subscription_id: string;
+}
+
+export const ALL_ACCESS = "ALL_ACCESS";

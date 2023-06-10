@@ -15,6 +15,20 @@
         "comment": "Comment in your bills"
       }
     },
+    "success": {
+      "pending": {
+        "title": "Payment is pending...",
+        "description": "Processing of your payment is underway. I implore you to wait for the confirmation..."
+      },
+      "error": {
+        "title": "Payment Error!",
+        "description": "Your payment was processed incorrectly. Please give it another go at a later time :("
+      },
+      "success": {
+        "title": "Payment Successful!",
+        "description": "We appreciate your purchase. Your payment was accepted and processed without any issues. Now you will be redirected..."
+      }
+    },
     "calculator": {
       "cryptoConverter": {
         "title": "Crypto Converter",
@@ -63,7 +77,9 @@
       "title": "Settings Page",
       "chooseLanguageText": "Choose website language",
       "buyPremium": "Buy premium",
-      "buttonBuyText": "Buy"
+      "buttonBuyText": "Buy",
+      "moreFeaturesText": " More features will be added soon",
+      "messageForNotPremiumUsers": "When you buy a subscription you will get access to change a language in the application: English, Polish, French, German, Spanish. You will also have access to statistics, charts and other premium features that will be available soon. For more information please contact with Us with the Contact form :)"
     },
     "bill": {
       "startDate": "Start: ",
@@ -129,7 +145,7 @@
           },
           "block": {
             "remove": {
-              "title":  "Are you sure you want to unblock this user?",
+              "title": "Are you sure you want to unblock this user?",
               "description": "This will give back all features to this user!",
               "textButton": "Yes please unblock this user"
             },
@@ -258,13 +274,12 @@
         "text": "Don't have account yet? ",
         "linkText": "Sign Up"
       }
-
     },
     "registerForm": {
       "inputs": {
         "password": {
           "name": "Password",
-          "nameRequired":  "Password is required"
+          "nameRequired": "Password is required"
         },
         "confirmPassword": {
           "name": "Confirm password",
@@ -379,6 +394,7 @@
       "groups": "Groups",
       "bills": "Bills",
       "statistics": "Statistics",
+      "charts": "Charts",
       "adminUsers": "All users",
       "adminGroups": "All groups",
       "adminBills": "All bills",

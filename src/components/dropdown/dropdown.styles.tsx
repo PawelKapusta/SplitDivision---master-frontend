@@ -79,3 +79,9 @@ export const AdminLinks = styled.span`
         color: red;
     }
 `;
+
+export const PremiumLinks = styled.span`
+    a {
+        color: ${({ theme }) => theme.palette.gold};
+    }
+`;

@@ -2,25 +2,37 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 import { AppState, AppThunk } from "../store";
 import { Dispatch } from "redux";
-import { Subscription } from "../../types/subscription";
+import {
+    Subscription,
+    SubscriptionsUsers,
+    UserSubscriptionFormData,
+} from "../../types/subscription";
 import authAxios from "../../api/axios/axios";
 
 interface SubscriptionState {
     subscriptions: Subscription[];
     userSubscription: Subscription[];
+    subscriptionsUsers: SubscriptionsUsers[];
     isLoading: boolean;
     isUserSubscriptionsLoading: boolean;
+    isCreateUserSubscriptionLoading: boolean;
     userSubscriptionsSuccess: boolean;
+    createUsersSubscriptionSuccess: boolean;
     error: string | null;
+    createUsersSubscriptionError: string | null;
 }
 
 const initialState: SubscriptionState = {
     subscriptions: [],
     userSubscription: [],
+    subscriptionsUsers: [],
     isLoading: false,
     isUserSubscriptionsLoading: false,
+    isCreateUserSubscriptionLoading: false,
     userSubscriptionsSuccess: false,
+    createUsersSubscriptionSuccess: false,
     error: null,
+    createUsersSubscriptionError: null,
 };
 
 const subscriptionSlice = createSlice({
@@ -69,6 +81,25 @@ const subscriptionSlice = createSlice({
         createSubscriptionFailure(state, action: PayloadAction<string>) {
             state.isLoading = false;
             state.error = action.payload;
+        },
+
+        createUserSubscriptionStart(state) {
+            state.isCreateUserSubscriptionLoading = true;
+            state.createUsersSubscriptionSuccess = false;
+            state.createUsersSubscriptionError = null;
+        },
+        createUserSubscriptionSuccess(
+            state,
+            action: PayloadAction<SubscriptionsUsers>,
+        ) {
+            state.subscriptionsUsers.push(action.payload);
+            state.isCreateUserSubscriptionLoading = false;
+            state.createUsersSubscriptionSuccess = true;
+        },
+        createUserSubscriptionFailure(state, action: PayloadAction<string>) {
+            state.isCreateUserSubscriptionLoading = false;
+            state.createUsersSubscriptionError = action.payload;
+            state.createUsersSubscriptionSuccess = false;
         },
 
         updateSubscriptionStart(state) {
@@ -120,6 +151,9 @@ export const {
     getUserSubscriptionsStart,
     getUserSubscriptionsSuccess,
     getUserSubscriptionsFailure,
+    createUserSubscriptionStart,
+    createUserSubscriptionSuccess,
+    createUserSubscriptionFailure,
     createSubscriptionStart,
     createSubscriptionSuccess,
     createSubscriptionFailure,
@@ -158,6 +192,22 @@ export const fetchUserSubscriptions =
             dispatch(getUserSubscriptionsSuccess(data));
         } catch (error) {
             dispatch(getUserSubscriptionsFailure(error as string));
+        }
+    };
+
+export const createUserSubscription =
+    (userSubscription: Omit<UserSubscriptionFormData, "id">): AppThunk =>
+    async (dispatch: Dispatch) => {
+        try {
+            dispatch(createUserSubscriptionStart());
+            const response = await authAxios.post(
+                `${process.env.NEXT_PUBLIC_API_GATEWAY_URL}/subscriptions/user`,
+                userSubscription,
+            );
+            const data = response.data;
+            dispatch(createUserSubscriptionSuccess(data));
+        } catch (error) {
+            dispatch(createUserSubscriptionFailure(error as string));
         }
     };
 
