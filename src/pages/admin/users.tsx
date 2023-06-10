@@ -30,9 +30,11 @@ import {
 import { AdminUpdateUserFormValues, User } from "../../types/user";
 import Image from "next/image";
 import Modal from "@components/modal";
+import { useTranslation } from "react-i18next";
 
 const Users = (): ReactElement => {
     const dispatch = useDispatch();
+    const { t } = useTranslation();
     const [modalOpen, setModalOpen] = useState(false);
     const [modalBlockUserOpen, setModalBlockUserOpen] = useState(false);
     const [modalAdminUserOpen, setModalAdminUserOpen] = useState(false);
@@ -54,9 +56,15 @@ const Users = (): ReactElement => {
 
     useEffect(() => {
         if (successDeleteUser !== false) {
-            showAlert("Successfully deleted user", "success");
+            showAlert(
+                t("components.alert.messages.successDeleteUser"),
+                "success",
+            );
         } else if (successAdminUpdate) {
-            showAlert("Successfully updated user", "success");
+            showAlert(
+                t("components.alert.messages.successUpdateUser"),
+                "success",
+            );
         } else if (error) {
             showAlert(error.toString(), "error");
         }
@@ -103,18 +111,26 @@ const Users = (): ReactElement => {
         const user = findUserById(id);
         setAdminUserTextTitle(
             user && user?.is_admin
-                ? "Are you sure you want to remove administrator role to this user?"
-                : "Are you sure you want to add administrator role to this user?",
+                ? (t("screens.admin.users.modal.admin.remove.title") as string)
+                : (t("screens.admin.users.modal.admin.add.title") as string),
         );
         setAdminUserTextDescription(
             user && user?.is_admin
-                ? "This will remove user all administrator functionalities in application!"
-                : "This will add user all functionalities in application!",
+                ? (t(
+                      "screens.admin.users.modal.admin.remove.description",
+                  ) as string)
+                : (t(
+                      "screens.admin.users.modal.admin.add.description",
+                  ) as string),
         );
         setAdminUserTextButton(
             user && user?.is_admin
-                ? "Yes please remove administrator this user"
-                : "Yes please add administrator this user",
+                ? (t(
+                      "screens.admin.users.modal.admin.remove.textButton",
+                  ) as string)
+                : (t(
+                      "screens.admin.users.modal.admin.add.textButton",
+                  ) as string),
         );
         handleAdminUserOpenModal();
         setUserIdToAdmin(id);
@@ -124,18 +140,26 @@ const Users = (): ReactElement => {
         const user = findUserById(id);
         setBlockUserTextTitle(
             user && user?.is_blocked
-                ? "Are you sure you want to unblock this user?"
-                : "Are you sure you want to block this user?",
+                ? (t("screens.admin.users.modal.block.remove.title") as string)
+                : (t("screens.admin.users.modal.block.add.title") as string),
         );
         setBlockUserTextDescription(
             user && user?.is_blocked
-                ? "This will give back all features to this user!"
-                : "This will block user in application!",
+                ? (t(
+                      "screens.admin.users.modal.block.remove.description",
+                  ) as string)
+                : (t(
+                      "screens.admin.users.modal.block.add.description",
+                  ) as string),
         );
         setBlockUserTextButton(
             user && user?.is_blocked
-                ? "Yes please unblock this user"
-                : "Yes please block this user",
+                ? (t(
+                      "screens.admin.users.modal.block.remove.textButton",
+                  ) as string)
+                : (t(
+                      "screens.admin.users.modal.block.add.textButton",
+                  ) as string),
         );
         handleBlockUserOpenModal();
         setUserIdToBlock(id);
@@ -184,7 +208,7 @@ const Users = (): ReactElement => {
                 <Spinner />
             ) : (
                 <AdminUsersPage>
-                    <Title>All users</Title>
+                    <Title>{t("screens.admin.users.title")}</Title>
                     {!!users &&
                         users.map((user: User) => {
                             return (
@@ -394,7 +418,9 @@ const Users = (): ReactElement => {
                             </DeleteButtonActions>
                         </DeleteModalContent>
                     </Modal>
-                    {users.length === 0 ? <h4>There are no users!</h4> : null}
+                    {users.length === 0 ? (
+                        <h4>{t("screens.admin.users.noUsersText")}</h4>
+                    ) : null}
                     <AlertWrapper />
                 </AdminUsersPage>
             )}

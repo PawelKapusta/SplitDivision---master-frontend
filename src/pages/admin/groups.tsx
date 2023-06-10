@@ -7,9 +7,11 @@ import { Group } from "../../types/group";
 import GroupCard from "@components/cards/group-card";
 import { Title } from "@styles/pages/admin/admin.styles";
 import useAlert from "../../hocs/useAlert";
+import { useTranslation } from "react-i18next";
 
 const Groups = (): ReactElement => {
     const dispatch = useDispatch();
+    const { t } = useTranslation();
     const { isLoading, groups } = useSelector(selectGroupState);
     const { AlertWrapper } = useAlert();
     useEffect(() => {
@@ -24,7 +26,7 @@ const Groups = (): ReactElement => {
                 <Spinner />
             ) : (
                 <div>
-                    <Title>All groups</Title>
+                    <Title>{t("screens.admin.groups.title")}</Title>
                     {!!groups &&
                         groups.map((group: Group) => {
                             return (
@@ -35,7 +37,9 @@ const Groups = (): ReactElement => {
                                 />
                             );
                         })}
-                    {groups.length === 0 ? <h4>There are no groups!</h4> : null}
+                    {groups.length === 0 ? (
+                        <h4>{t("screens.admin.groups.noGroupsText")}</h4>
+                    ) : null}
                     <AlertWrapper />
                 </div>
             )}

@@ -33,13 +33,198 @@
     },
     "faq": {
       "title": "Frequently Asked Questions"
+    },
+    "admin": {
+      "bills": {
+        "title": "All bills",
+        "noBillsText": "There are no bills!"
+      },
+      "groups": {
+        "title": "All groups",
+        "noGroupsText": "There are no groups!"
+      },
+      "users": {
+        "title": "All users",
+        "noUsersText": "There are no users!",
+        "modal": {
+          "admin": {
+            "remove": {
+              "title": "Are you sure you want to remove administrator role to this user?",
+              "description": "This will remove user all administrator functionalities in application!",
+              "textButton": "Yes please remove administrator this user"
+            },
+            "add": {
+              "title": "Are you sure you want to add administrator role to this user?",
+              "description": "This will add user all functionalities in application!",
+              "textButton": "Yes please add administrator this user"
+            }
+          },
+          "block": {
+            "remove": {
+              "title":  "Are you sure you want to unblock this user?",
+              "description": "This will give back all features to this user!",
+              "textButton": "Yes please unblock this user"
+            },
+            "add": {
+              "title": "Are you sure you want to block this user?",
+              "description": "This will block user in application!",
+              "textButton": "Yes please block this user"
+            }
+          }
+        }
+      }
     }
   },
   "components": {
     "alert": {
       "messages": {
         "successDeleteBill": "Successfully deleted bill",
-        "successDeleteGroup": "Successfully deleted group"
+        "successDeleteGroup": "Successfully deleted group",
+        "successDeleteUser": "Successfully deleted user",
+        "successCreateBill": "Successfully created a bill",
+        "successCreateGroup": "Successfully created a group",
+        "noEnoughPeopleError": "Please select at least 2 people",
+        "successSentEmailToAdministrator": "Successfully sent email to administrator",
+        "errorSentEmailToAdministrator": "Email not sent",
+        "successUpdateUser": "Successfully updated user"
+      }
+    },
+    "billForm": {
+      "errors": {
+        "evenlyMoreError": "You divided more money between users than is debt given",
+        "evenlyLessError": "You divided less money between users than is debt given"
+      },
+      "title": "Create a bill",
+      "inputs": {
+        "name": {
+          "name": "Bill name",
+          "nameRequired": "Name bill is required"
+        },
+        "description": {
+          "name": "Bill description",
+          "nameRequired": "Bill description is required"
+        },
+        "debt": {
+          "name": "Debt",
+          "nameRequired": "Debt is required"
+        }
+      },
+      "dateStart": "Date start:",
+      "dateEnd": "Date end:",
+      "fiat": "Fiat",
+      "crypto": "Cryptocurrency",
+      "select": {
+        "label": "Select users"
+      },
+      "debtEvenlyCheckbox": "Divide evenly debt?",
+      "createButton": {
+        "text": "Create a bill",
+        "loadingButton": "Loading..."
+      }
+    },
+    "groupForm": {
+      "title": "Create a group",
+      "inputs": {
+        "name": {
+          "name": "Group name",
+          "nameRequired": "Name group is required"
+        },
+        "description": {
+          "name": "Group description",
+          "nameRequired": "Group description is required"
+        }
+      },
+      "select": {
+        "label": "Select users"
+      },
+      "createButton": {
+        "text": "Create a group",
+        "loadingButton": "Loading..."
+      }
+    },
+    "loginForm": {
+      "inputs": {
+        "email": {
+          "name": "Email",
+          "nameRequired": "Email is required"
+        },
+        "password": {
+          "name": "Password",
+          "nameRequired": "Password is required"
+        }
+      },
+      "loginButton": {
+        "text": "Login",
+        "loadingButton": "Loading..."
+      },
+      "textToRegister": {
+        "text": "Don't have account yet? ",
+        "linkText": "Sign Up"
+      }
+
+    },
+    "registerForm": {
+      "inputs": {
+        "password": {
+          "name": "Password",
+          "nameRequired":  "Password is required"
+        },
+        "confirmPassword": {
+          "name": "Confirm password",
+          "nameRequired": "Confirm Password is required"
+        }
+      },
+      "registerButton": {
+        "text": "Register",
+        "loadingButton": "Loading..."
+      },
+      "textToLogin": {
+        "text": "Already have account yet? ",
+        "linkText": "Sign In"
+      }
+    },
+    "profileForm": {
+      "inputs": {
+        "firstName": {
+          "name": "First name",
+          "nameRequired": "First name is required"
+        },
+        "lastName": {
+          "name": "Last name",
+          "nameRequired": "Last name is required"
+        },
+        "username": {
+          "name": "Username",
+          "nameRequired": "Username is required"
+        },
+        "email": {
+          "name": "Email",
+          "nameRequired": "Email is required"
+        },
+        "phone": {
+          "name": "Phone",
+          "nameRequired": "Phone is required"
+        }
+      },
+      "select": {
+        "title": "Select Gender",
+        "male": "Male",
+        "female": "Female",
+        "other": "Other"
+      },
+      "birthDate": "Birth date:",
+      "createButton": {
+        "text": "Update profile",
+        "loadingButton": "Loading..."
+      }
+    },
+    "contactForm": {
+      "title": "Contact with administrator",
+      "topic": "Topic:",
+      "description": "Description:",
+      "button": {
+        "text": "Send",
+        "loadingText": "Loading..."
       }
     },
     "billCard": {
@@ -103,6 +288,9 @@
       "adminFaq": "Create FAQ",
       "settings": "Settings",
       "logout": "Logout"
+    },
+    "layout": {
+      "backButtonText": "Back"
     },
     "footer": {
       "aboutUs": {

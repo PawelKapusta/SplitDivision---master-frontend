@@ -20,10 +20,12 @@ import { getFormattedDate } from "../../utils/date";
 import { selectUserState, updateUser } from "@redux/slices/userSlice";
 import Spinner from "@components/spinner";
 import useAlert from "../../hocs/useAlert";
+import { useTranslation } from "react-i18next";
 
 const schema = yup.object().shape(UpdateProfileSchema);
 
 const ProfileForm = (): ReactElement => {
+    const { t } = useTranslation();
     const {
         isLoading,
         user,
@@ -88,7 +90,10 @@ const ProfileForm = (): ReactElement => {
 
     useEffect(() => {
         if (successUpdate !== false) {
-            showAlert("Successfully updated user", "success");
+            showAlert(
+                t("components.alert.messages.successUpdateUser"),
+                "success",
+            );
         } else if (userError) {
             showAlert(userError.toString(), "error");
         }
@@ -101,15 +106,21 @@ const ProfileForm = (): ReactElement => {
             ) : (
                 <div>
                     <AvatarCard>
-                        <img src={user?.avatar_image} alt="USer avatar image" />
+                        <img src={user?.avatar_image} alt="User avatar image" />
                     </AvatarCard>
                     <FormCard>
                         <Input
                             type="text"
                             {...register("first_name", {
-                                required: "First name is required",
+                                required: t(
+                                    "components.profileForm.inputs.firstName.nameRequired",
+                                ) as string,
                             })}
-                            placeholder="First name"
+                            placeholder={
+                                t(
+                                    "components.profileForm.inputs.firstName.name",
+                                ) as string
+                            }
                             value={formState?.first_name}
                             onChange={handleInputChange}
                         />
@@ -121,9 +132,15 @@ const ProfileForm = (): ReactElement => {
                         <Input
                             type="text"
                             {...register("last_name", {
-                                required: "Last name is required",
+                                required: t(
+                                    "components.profileForm.inputs.lastName.nameRequired",
+                                ) as string,
                             })}
-                            placeholder="Last name"
+                            placeholder={
+                                t(
+                                    "components.profileForm.inputs.lastName.name",
+                                ) as string
+                            }
                             value={formState?.last_name}
                             onChange={handleInputChange}
                         />
@@ -157,9 +174,15 @@ const ProfileForm = (): ReactElement => {
                         <Input
                             type="text"
                             {...register("username", {
-                                required: "Username is required",
+                                required: t(
+                                    "components.profileForm.inputs.username.nameRequired",
+                                ) as string,
                             })}
-                            placeholder="Username"
+                            placeholder={
+                                t(
+                                    "components.profileForm.inputs.username.name",
+                                ) as string
+                            }
                             value={formState?.username}
                             onChange={handleInputChange}
                         />
@@ -178,24 +201,26 @@ const ProfileForm = (): ReactElement => {
                                 })
                             }
                         >
-                            <option value="">Select Gender</option>
+                            <option value="">
+                                {t("components.profileForm.select.title")}
+                            </option>
                             <option
                                 value="male"
                                 selected={formState?.gender === "male"}
                             >
-                                Male
+                                {t("components.profileForm.select.male")}
                             </option>
                             <option
                                 value="female"
                                 selected={formState?.gender === "female"}
                             >
-                                Female
+                                {t("components.profileForm.select.female")}
                             </option>
                             <option
                                 value="other"
                                 selected={formState?.gender === "other"}
                             >
-                                Other
+                                {t("components.profileForm.select.other")}
                             </option>
                         </Select>
                         <Error>
@@ -204,9 +229,15 @@ const ProfileForm = (): ReactElement => {
                         <Input
                             type="email"
                             {...register("email", {
-                                required: "Email is required",
+                                required: t(
+                                    "components.profileForm.inputs.email.nameRequired",
+                                ) as string,
                             })}
-                            placeholder="Email"
+                            placeholder={
+                                t(
+                                    "components.profileForm.inputs.email.name",
+                                ) as string
+                            }
                             value={formState?.email}
                             onChange={handleInputChange}
                         />
@@ -216,16 +247,24 @@ const ProfileForm = (): ReactElement => {
                         <Input
                             type="text"
                             {...register("phone", {
-                                required: "Phone is required",
+                                required: t(
+                                    "components.profileForm.inputs.phone.nameRequired",
+                                ) as string,
                             })}
-                            placeholder="Phone"
+                            placeholder={
+                                t(
+                                    "components.profileForm.inputs.phone.name",
+                                ) as string
+                            }
                             value={formState?.phone}
                             onChange={handleInputChange}
                         />
                         <Error>
                             {errors.phone && <p>{errors.phone.message}</p>}
                         </Error>
-                        <BirthLabel>Birth date:</BirthLabel>
+                        <BirthLabel>
+                            {t("components.profileForm.birthDate")}
+                        </BirthLabel>
                         <CustomDatePicker>
                             <DatePicker
                                 dateFormat="yyyy-MM-dd"
@@ -243,7 +282,11 @@ const ProfileForm = (): ReactElement => {
                             disabled={false}
                             variety="UpdateProfile"
                         >
-                            {isLoading ? "Loading..." : "Update profile"}
+                            {isLoading
+                                ? t(
+                                      "components.profileForm.createButton.loadingButton",
+                                  )
+                                : t("components.profileForm.createButton.text")}
                         </LoadingButton>
                     </FormCard>
                 </div>

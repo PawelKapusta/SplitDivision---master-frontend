@@ -26,6 +26,7 @@
     "@mui/lab": "^5.0.0-alpha.129",
     "@mui/material": "^5.12.0",
     "@mui/styles": "^5.12.3",
+    "@parvineyvazov/json-translator": "^1.6.4",
     "@types/react-text-truncate": "^0.14.1",
     "@types/styled-components": "^5.1.26",
     "@zeit/next-css": "^1.0.1",

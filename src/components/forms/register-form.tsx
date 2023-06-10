@@ -19,10 +19,12 @@ import "react-datepicker/dist/react-datepicker.css";
 import { RegisterSchema } from "../../types/schema";
 import { RegisterFormValues } from "../../types/user";
 import { getFormattedDate } from "../../utils/date";
+import { useTranslation } from "react-i18next";
 
 const schema = yup.object().shape(RegisterSchema);
 
 const RegisterForm = (): ReactElement => {
+    const { t } = useTranslation();
     const { isLoading } = useSelector(selectAuthState);
     const {
         register,
@@ -59,9 +61,15 @@ const RegisterForm = (): ReactElement => {
                 <Input
                     type="text"
                     {...register("first_name", {
-                        required: "First name is required",
+                        required: t(
+                            "components.profileForm.inputs.firstName.nameRequired",
+                        ) as string,
                     })}
-                    placeholder="First name"
+                    placeholder={
+                        t(
+                            "components.profileForm.inputs.firstName.name",
+                        ) as string
+                    }
                 />
                 <Error>
                     {errors.first_name && <p>{errors.first_name.message}</p>}
@@ -69,9 +77,15 @@ const RegisterForm = (): ReactElement => {
                 <Input
                     type="text"
                     {...register("last_name", {
-                        required: "Last name is required",
+                        required: t(
+                            "components.profileForm.inputs.lastName.nameRequired",
+                        ) as string,
                     })}
-                    placeholder="Last name"
+                    placeholder={
+                        t(
+                            "components.profileForm.inputs.lastName.name",
+                        ) as string
+                    }
                 />
                 <Error>
                     {errors.last_name && <p>{errors.last_name.message}</p>}
@@ -79,9 +93,15 @@ const RegisterForm = (): ReactElement => {
                 <Input
                     type="password"
                     {...register("password", {
-                        required: "Password is required",
+                        required: t(
+                            "components.registerForm.inputs.password.nameRequired",
+                        ) as string,
                     })}
-                    placeholder="Password"
+                    placeholder={
+                        t(
+                            "components.registerForm.inputs.password.name",
+                        ) as string
+                    }
                 />
                 <Error>
                     {errors.password && <p>{errors.password.message}</p>}
@@ -89,9 +109,15 @@ const RegisterForm = (): ReactElement => {
                 <Input
                     type="password"
                     {...register("confirm_password", {
-                        required: "Confirm Password is required",
+                        required: t(
+                            "components.registerForm.inputs.confirmPassword.nameRequired",
+                        ) as string,
                     })}
-                    placeholder="Confirm password"
+                    placeholder={
+                        t(
+                            "components.registerForm.inputs.confirmPassword.name",
+                        ) as string
+                    }
                 />
                 <Error>
                     {errors.confirm_password && (
@@ -101,37 +127,59 @@ const RegisterForm = (): ReactElement => {
                 <Input
                     type="text"
                     {...register("username", {
-                        required: "Username is required",
+                        required: t(
+                            "components.profileForm.inputs.username.nameRequired",
+                        ) as string,
                     })}
-                    placeholder="Username"
+                    placeholder={
+                        t(
+                            "components.profileForm.inputs.username.name",
+                        ) as string
+                    }
                 />
                 <Error>
                     {errors.username && <p>{errors.username.message}</p>}
                 </Error>
                 <Select {...register("gender")}>
-                    <option value="">Select Gender</option>
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
-                    <option value="other">Other</option>
+                    <option value="">
+                        {t("components.profileForm.select.title")}
+                    </option>
+                    <option value="male">
+                        {t("components.profileForm.select.male")}
+                    </option>
+                    <option value="female">
+                        {t("components.profileForm.select.female")}
+                    </option>
+                    <option value="other">
+                        {t("components.profileForm.select.other")}
+                    </option>
                 </Select>
                 <Error>{errors.gender && <p>{errors.gender.message}</p>}</Error>
                 <Input
                     type="email"
                     {...register("email", {
-                        required: "Email is required",
+                        required: t(
+                            "components.profileForm.inputs.email.nameRequired",
+                        ) as string,
                     })}
-                    placeholder="Email"
+                    placeholder={
+                        t("components.profileForm.inputs.email.name") as string
+                    }
                 />
                 <Error>{errors.email && <p>{errors.email.message}</p>}</Error>
                 <Input
                     type="text"
                     {...register("phone", {
-                        required: "Phone is required",
+                        required: t(
+                            "components.profileForm.inputs.phone.nameRequired",
+                        ) as string,
                     })}
-                    placeholder="Phone"
+                    placeholder={
+                        t("components.profileForm.inputs.phone.name") as string
+                    }
                 />
                 <Error>{errors.phone && <p>{errors.phone.message}</p>}</Error>
-                <BirthLabel>Birth date:</BirthLabel>
+                <BirthLabel>{t("components.profileForm.birthDate")}</BirthLabel>
                 <CustomDatePicker>
                     <DatePicker
                         dateFormat="yyyy-MM-dd"
@@ -147,12 +195,19 @@ const RegisterForm = (): ReactElement => {
                     disabled={false}
                     variety="Register"
                 >
-                    {isLoading ? "Loading..." : "Register"}
+                    {isLoading
+                        ? t(
+                              "components.registerForm.registerButton.loadingButton",
+                          )
+                        : t("components.registerForm.registerButton.text")}
                 </LoadingButton>
                 <RegisterDescription>
                     <p>
-                        Already have account yet?{" "}
-                        <a href="/auth/login">Sign In</a>.
+                        {t("components.registerForm.textToLogin.text")}
+                        <a href="/auth/login">
+                            {t("components.registerForm.textToLogin.linkText")}
+                        </a>
+                        .
                     </p>
                 </RegisterDescription>
             </FormCard>

@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import FooterContainer from "@components/footer";
 import Header from "@components/header";
 import { Container, BackButton } from "./layout.styles";
+import { useTranslation } from "react-i18next";
 
 export type TLayoutProps = {
     excludeLayout?: boolean;
@@ -13,6 +14,7 @@ export const Layout = ({
     excludeLayout,
     children,
 }: TLayoutProps): ReactElement => {
+    const { t } = useTranslation();
     const { back } = useRouter();
     if (excludeLayout) {
         return (
@@ -26,7 +28,7 @@ export const Layout = ({
             <Header />
             <BackButton onClick={() => back()}>
                 <img src="/icons/back-arrow.svg" alt="Back icon" />
-                Back
+                {t("components.layout.backButtonText")}
             </BackButton>
             <main>{children}</main>
             <FooterContainer />

@@ -1,3 +1,136 @@
 {
-  "test": "Test Spanish"
+  "screens": {
+    "home": {
+      "mainTitle": "What is {{name}}",
+      "description": "This is a website for people who are looking for modern way of splitting money between each other. Here you can settle your debt by fiat and crypto currency.",
+      "cardsTitle": "What features you can find in our website?",
+      "cards": {
+        "freeAccount": "Create free account",
+        "settle": "Settle in different world currencies",
+        "crypto": "Possibility of settlement in cryptocurrencies",
+        "expenses": "Take control of your expenses",
+        "stocks": "Stocks exchange preview",
+        "groupsAndBills": "Create groups & bills",
+        "statistics": "Look into statistics",
+        "comment": "Comment in your bills"
+      }
+    },
+    "calculator": {
+      "cryptoConverter": {
+        "title": "Crypto Converter",
+        "crypto": "Crypto",
+        "fiat": "Fiat",
+        "inputConvertingText": "Converting...",
+        "buttonText": "Convert"
+      },
+      "fiatConverter": {
+        "title": "Currency Converter",
+        "fiat": "Fiat",
+        "inputConvertingText": "Converting...",
+        "convertButton": "Convert",
+        "swapButton": "Swap currencies "
+      }
+    },
+    "faq": {
+      "title": "Frequently Asked Questions"
+    }
+  },
+  "components": {
+    "alert": {
+      "messages": {
+        "successDeleteBill": "Successfully deleted bill",
+        "successDeleteGroup": "Successfully deleted group"
+      }
+    },
+    "billCard": {
+      "dateCreated": "Created: ",
+      "dateEnd": "Ends: ",
+      "deleteButton": "Delete",
+      "goButton": "Go"
+    },
+    "groupCard": {
+      "dateCreated": "Created: ",
+      "deleteButton": "Delete",
+      "goButton": "Go"
+    },
+    "modal": {
+      "adminDeleteBill": {
+        "title": "Are you sure you want to delete this bill?",
+        "description": "This will delete all comments and connected with the bill data!",
+        "deleteButtonText": "Yes please delete this bill"
+      },
+      "adminDeleteGroup": {
+        "title": "Are you sure you want to delete this group?",
+        "description": "his will delete all bills and connected with the group data!",
+        "deleteButtonText": "Yes please delete this group"
+      }
+    },
+    "commentsCard": {
+      "title": "Comments",
+      "addCommentButton": {
+        "text": "Add a comment",
+        "textLoading": "Loading..."
+      },
+      "buttons": {
+        "save": "Save",
+        "cancel": "Cancel",
+        "like": "Like ",
+        "dislike": "Dislike ",
+        "edit": "Edit",
+        "reply": "Reply",
+        "addReply": "Add reply",
+        "cancelReply": "Cancel reply"
+      },
+      "noRepliesText": "No replies"
+    },
+    "header": {
+      "links": {
+        "createGroup": "Create group",
+        "contact": "Contact",
+        "converter": "Currency converter",
+        "faq": "FAQ",
+        "login": "Login"
+      }
+    },
+    "dropdown": {
+      "profile": "Profile",
+      "groups": "Groups",
+      "bills": "Bills",
+      "statistics": "Statistics",
+      "adminUsers": "All users",
+      "adminGroups": "All groups",
+      "adminBills": "All bills",
+      "adminFaq": "Create FAQ",
+      "settings": "Settings",
+      "logout": "Logout"
+    },
+    "footer": {
+      "aboutUs": {
+        "title": "About Us",
+        "careers": "Careers",
+        "investors": "Investors",
+        "blog": "Company Blog"
+      },
+      "topCities": {
+        "title": "Top Cities",
+        "cracow": "Cracow",
+        "sanDiego": "San Diego",
+        "london": "London",
+        "chicago": "Chicago"
+      },
+      "services": {
+        "title": "Services",
+        "development": "Development",
+        "stage": "Stage",
+        "production": "Production"
+      },
+      "social": {
+        "title": "Social",
+        "instagram": "{{instagram}}",
+        "twitter": "{{twitter}}",
+        "facebook": "{{facebook}}",
+        "linkedin": "{{linkedin}}"
+      }
+    }
+  }
 }

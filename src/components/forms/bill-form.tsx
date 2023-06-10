@@ -54,6 +54,7 @@ import {
 } from "../../types/currency";
 import Flag from "react-world-flags";
 import { fetchGroupUsers, selectGroupState } from "@redux/slices/groupSlice";
+import { useTranslation } from "react-i18next";
 
 export type TBillFormProps = {
     groupId: string;
@@ -64,6 +65,7 @@ const BillForm = ({
     groupId,
     handleCloseModal,
 }: TBillFormProps): ReactElement => {
+    const { t } = useTranslation();
     const dispatch = useDispatch();
     const { showAlert, AlertWrapper } = useAlert();
     const { isAuthenticated, token } = useSelector(selectAuthState);
@@ -141,7 +143,10 @@ const BillForm = ({
 
     useEffect(() => {
         if (createBillSuccess) {
-            showAlert("Successfully created a bill", "success");
+            showAlert(
+                t("components.alert.messages.successCreateBill"),
+                "success",
+            );
             handleCloseModal();
         } else if (billError) {
             showAlert(billError, "error");
@@ -184,7 +189,10 @@ const BillForm = ({
 
     const onSubmit: SubmitHandler<BillFormData> = (data) => {
         if (selected.length < 2) {
-            showAlert("Please select at least 2 people", "error");
+            showAlert(
+                t("components.alert.messages.noEnoughPeopleError"),
+                "error",
+            );
         } else {
             data.currency_type = selectedType.toLowerCase();
             data.currency_code =
@@ -202,11 +210,11 @@ const BillForm = ({
                     : -1;
                 if (sum && sum > data.debt) {
                     setDebtEvenlyError(
-                        "You divided more money between users than is debt given",
+                        t("components.billForm.errors.evenlyMoreError"),
                     );
                 } else if (sum && sum < data.debt) {
                     setDebtEvenlyError(
-                        "You divided less money between users than is debt given",
+                        t("components.billForm.errors.evenlyLessError"),
                     );
                 } else {
                     setDebtEvenlyError(null);
@@ -266,28 +274,38 @@ const BillForm = ({
     return (
         <BillCardContainer>
             <form onSubmit={handleSubmit(onSubmit)}>
-                <Title>Create a bill</Title>
+                <Title>{t("components.billForm.title")}</Title>
                 <FormCard>
                     <Input
                         type="text"
                         {...register("name", {
-                            required: "Name bill is required",
+                            required: t(
+                                "components.billForm.inputs.name.nameRequired",
+                            ) as string,
                         })}
-                        placeholder="Bill name"
+                        placeholder={
+                            t("components.billForm.inputs.name.name") as string
+                        }
                     />
                     <Error>{errors.name && <p>{errors.name.message}</p>}</Error>
                     <InputDescription
                         {...register("description", {
-                            required: "Bill description is required",
+                            required: t(
+                                "components.billForm.inputs.description.nameRequired",
+                            ) as string,
                         })}
-                        placeholder="Bill description"
+                        placeholder={
+                            t(
+                                "components.billForm.inputs.description.name",
+                            ) as string
+                        }
                     />
                     <Error>
                         {errors.description && (
                             <p>{errors.description.message}</p>
                         )}
                     </Error>
-                    <DateLabel>Date start:</DateLabel>
+                    <DateLabel>{t("components.billForm.dateStart")}</DateLabel>
                     <BillCustomDatePicker>
                         <DatePicker
                             dateFormat="yyyy-MM-dd"
@@ -300,7 +318,7 @@ const BillForm = ({
                             <p>{errors.data_created.message}</p>
                         )}
                     </Error>
-                    <DateLabel>Date end:</DateLabel>
+                    <DateLabel>{t("components.billForm.dateEnd")}</DateLabel>
                     <BillCustomDatePicker>
                         <DatePicker
                             dateFormat="yyyy-MM-dd"
@@ -326,9 +344,15 @@ const BillForm = ({
                         <DebtInput
                             type="number"
                             {...register("debt", {
-                                required: "Debt is required",
+                                required: t(
+                                    "components.billForm.inputs.debt.nameRequired",
+                                ) as string,
                             })}
-                            placeholder="Debt"
+                            placeholder={
+                                t(
+                                    "components.billForm.inputs.debt.name",
+                                ) as string
+                            }
                         />
                         <CurrencySelector
                             id="selector1"
@@ -336,13 +360,13 @@ const BillForm = ({
                             onChange={handleTypeChange}
                         >
                             <CurrencyOption value={FIAT} data-icon="icon-fiat">
-                                Fiat
+                                {t("components.billForm.fiat")}
                             </CurrencyOption>
                             <CurrencyOption
                                 value={CRYPTO}
                                 data-icon="icon-crypto"
                             >
-                                Cryptocurrency
+                                {t("components.billForm.crypto")}
                             </CurrencyOption>
                         </CurrencySelector>
                         {selectedType === FIAT && selectedFiatCurrency && (
@@ -407,7 +431,9 @@ const BillForm = ({
                                 value={selected}
                                 onChange={setSelected}
                                 isLoading={usersLoading}
-                                labelledBy="Select users"
+                                labelledBy={t(
+                                    "components.billForm.select.label",
+                                )}
                                 ClearIcon={
                                     <Image
                                         src="/icons/search_icon.svg"
@@ -435,7 +461,7 @@ const BillForm = ({
                         )}
                     </Error>
                     <DebtDivideEvenlyCheckbox>
-                        Divide evenly debt?
+                        {t("components.billForm.debtEvenlyCheckbox")}
                         <input
                             type="checkbox"
                             checked={isChecked}
@@ -469,7 +495,11 @@ const BillForm = ({
                         variety="CreateGroup"
                         isBillForm
                     >
-                        {billLoading ? "Loading..." : "Create a bill"}
+                        {billLoading
+                            ? t(
+                                  "components.billForm.createButton.loadingButton",
+                              )
+                            : t("components.billForm.createButton.text")}
                     </LoadingButton>
                 </FormCard>
                 <AlertWrapper />

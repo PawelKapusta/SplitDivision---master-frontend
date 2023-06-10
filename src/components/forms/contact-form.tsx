@@ -10,8 +10,10 @@ import {
 } from "@styles/pages/contact.styles";
 import LoadingButton from "@components/loading-button";
 import useAlert from "../../hocs/useAlert";
+import { useTranslation } from "react-i18next";
 
 const ContactForm = (): ReactElement => {
+    const { t } = useTranslation();
     const [formState, setFormState] = useState({
         topic: "",
         description: "",
@@ -52,14 +54,21 @@ const ContactForm = (): ReactElement => {
                     setFormState({ topic: "", description: "" });
                     setLoading(false);
                     showAlert(
-                        "Successfully sent email to administrator",
+                        t(
+                            "components.alert.messages.successSentEmailToAdministrator",
+                        ),
                         "success",
                     );
                 },
                 (error) => {
                     console.error(error.text);
                     setLoading(false);
-                    showAlert("Email not sent", "error");
+                    showAlert(
+                        t(
+                            "components.alert.messages.errorSentEmailToAdministrator",
+                        ),
+                        "error",
+                    );
                 },
             );
     };
@@ -68,10 +77,12 @@ const ContactForm = (): ReactElement => {
         <ContactCard>
             <form onSubmit={handleSubmit}>
                 <Title>
-                    <h1>Contact with administrator</h1>
+                    <h1>{t("components.contactForm.title")}</h1>
                 </Title>
                 <ContactRow>
-                    <label htmlFor="topic">Topic:</label>
+                    <label htmlFor="topic">
+                        {t("components.contactForm.topic")}
+                    </label>
                     <input
                         type="text"
                         id="topic"
@@ -82,7 +93,9 @@ const ContactForm = (): ReactElement => {
                     />
                 </ContactRow>
                 <ContactRow>
-                    <label htmlFor="description">Description:</label>
+                    <label htmlFor="description">
+                        {t("components.contactForm.description")}
+                    </label>
                     <textarea
                         id="description"
                         name="description"
@@ -97,7 +110,9 @@ const ContactForm = (): ReactElement => {
                         loading={loading}
                         variety="Contact"
                     >
-                        {loading ? "Loading..." : "Send"}
+                        {loading
+                            ? t("components.contactForm.button.loadingText")
+                            : t("components.contactForm.button.text")}
                     </LoadingButton>
                 </ContactButtonRow>
             </form>

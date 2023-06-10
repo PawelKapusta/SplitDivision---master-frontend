@@ -21,8 +21,10 @@ import { User } from "../../types/user";
 import Spinner from "@components/spinner";
 import useAlert from "../../hocs/useAlert";
 import { getFormattedDate } from "../../utils/date";
+import { useTranslation } from "react-i18next";
 
 const GroupForm = (): ReactElement => {
+    const { t } = useTranslation();
     const {
         isLoading: usersLoading,
         user,
@@ -65,7 +67,10 @@ const GroupForm = (): ReactElement => {
 
     useEffect(() => {
         if (groupSuccess) {
-            showAlert("Successfully created a group", "success");
+            showAlert(
+                t("components.alert.messages.successCreateGroup"),
+                "success",
+            );
         } else if (groupError) {
             showAlert(groupError, "error");
         }
@@ -83,7 +88,10 @@ const GroupForm = (): ReactElement => {
 
     const onSubmit: SubmitHandler<GroupFormData> = (data) => {
         if (selected.length < 2) {
-            showAlert("Please select at least 2 people", "error");
+            showAlert(
+                t("components.alert.messages.noEnoughPeopleError"),
+                "error",
+            );
         } else {
             data.usersIdList = selected.map((obj) => obj.value);
             dispatch(createGroup(data));
@@ -92,21 +100,31 @@ const GroupForm = (): ReactElement => {
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
-            <Title>Create a group</Title>
+            <Title>{t("components.groupForm.title")}</Title>
             <FormCard>
                 <Input
                     type="text"
                     {...register("name", {
-                        required: "Name group is required",
+                        required: t(
+                            "components.groupForm.inputs.name.nameRequired",
+                        ) as string,
                     })}
-                    placeholder="Group name"
+                    placeholder={
+                        t("components.groupForm.inputs.name.name") as string
+                    }
                 />
                 <Error>{errors.name && <p>{errors.name.message}</p>}</Error>
                 <InputDescription
                     {...register("description", {
-                        required: "Group description is required",
+                        required: t(
+                            "components.groupForm.inputs.description.nameRequired",
+                        ) as string,
                     })}
-                    placeholder="Group description"
+                    placeholder={
+                        t(
+                            "components.groupForm.inputs.description.name",
+                        ) as string
+                    }
                 />
                 <Error>
                     {errors.description && <p>{errors.description.message}</p>}
@@ -120,7 +138,7 @@ const GroupForm = (): ReactElement => {
                             value={selected}
                             onChange={setSelected}
                             isLoading={usersLoading}
-                            labelledBy="Select users"
+                            labelledBy={t("components.groupForm.select.label")}
                             ClearIcon={
                                 <Image
                                     src="/icons/search_icon.svg"
@@ -150,7 +168,9 @@ const GroupForm = (): ReactElement => {
                     disabled={false}
                     variety="CreateGroup"
                 >
-                    {groupLoading ? "Loading..." : "Create a group"}
+                    {groupLoading
+                        ? t("components.groupForm.createButton.loadingButton")
+                        : t("components.groupForm.createButton.text")}
                 </LoadingButton>
             </FormCard>
             <AlertWrapper />

@@ -7,8 +7,10 @@ import useAlert from "../../hocs/useAlert";
 import { fetchBills, selectBillState } from "@redux/slices/billSlice";
 import { Bill } from "../../types/bill";
 import BillCard from "@components/cards/bill-card";
+import { useTranslation } from "react-i18next";
 
 const Bills = (): ReactElement => {
+    const { t } = useTranslation();
     const dispatch = useDispatch();
     const { isLoading, bills } = useSelector(selectBillState);
     const { AlertWrapper } = useAlert();
@@ -24,14 +26,16 @@ const Bills = (): ReactElement => {
                 <Spinner />
             ) : (
                 <div>
-                    <Title>All bills</Title>
+                    <Title>{t("screens.admin.bills.title")}</Title>
                     {!!bills &&
                         bills.map((bill: Bill) => {
                             return (
                                 <BillCard key={bill?.id} bill={bill} isAdmin />
                             );
                         })}
-                    {bills.length === 0 ? <h4>There are no bills!</h4> : null}
+                    {bills.length === 0 ? (
+                        <h4>{t("screens.admin.bills.noBillsText")}</h4>
+                    ) : null}
                     <AlertWrapper />
                 </div>
             )}

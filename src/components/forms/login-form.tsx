@@ -11,8 +11,10 @@ import {
     RegisterDescription,
 } from "@styles/pages/auth/auth.styles";
 import LoadingButton from "@components/loading-button";
+import { useTranslation } from "react-i18next";
 
 const LoginForm = (): ReactElement => {
+    const { t } = useTranslation();
     const {
         register,
         handleSubmit,
@@ -31,17 +33,25 @@ const LoginForm = (): ReactElement => {
                 <Input
                     type="email"
                     {...register("email", {
-                        required: "Email is required",
+                        required: t(
+                            "components.loginForm.inputs.email.nameRequired",
+                        ) as string,
                     })}
-                    placeholder="Email"
+                    placeholder={
+                        t("components.loginForm.inputs.email.name") as string
+                    }
                 />
                 <Error>{errors.email && <p>{errors.email.message}</p>}</Error>
                 <Input
                     type="password"
                     {...register("password", {
-                        required: "Password is required",
+                        required: t(
+                            "components.loginForm.inputs.password.nameRequired",
+                        ) as string,
                     })}
-                    placeholder="Password"
+                    placeholder={
+                        t("components.loginForm.inputs.password.name") as string
+                    }
                 />
                 <Error>
                     {errors.password && <p>{errors.password.message}</p>}
@@ -51,14 +61,19 @@ const LoginForm = (): ReactElement => {
                     disabled={false}
                     variety="Login"
                 >
-                    {isLoading ? "Loading..." : "Login"}
+                    {isLoading
+                        ? t("components.loginForm.loginButton.loadingButton")
+                        : t("components.loginForm.loginButton.text")}
                 </LoadingButton>
                 <OAuthLoginButton>Placeholder 1</OAuthLoginButton>
                 <OAuthLoginButton>Placeholder 2</OAuthLoginButton>
                 <RegisterDescription>
                     <p>
-                        Don't have account yet?{" "}
-                        <a href="/auth/register">Sign Up</a>.
+                        {t("components.loginForm.textToRegister.text")}
+                        <a href="/auth/register">
+                            {t("components.loginForm.textToRegister.linkText")}
+                        </a>
+                        .
                     </p>
                 </RegisterDescription>
             </FormCard>

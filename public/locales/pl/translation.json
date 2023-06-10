@@ -1,15 +1,136 @@
 {
-  "screens": {
-    "home": {
-      "mainTitle":
+  "screens":{
+    "home":{
+      "mainTitle":"Co to jest {{name}}",
+      "description":"To strona dla osób, które poszukują nowoczesnego sposobu na dzielenie pieniędzy między sobą. Tutaj możesz uregulować swój dług za pomocą waluty fiducjarnej i kryptowalutowej.",
+      "cardsTitle":"Jakie funkcje można znaleźć na naszej stronie internetowej?",
+      "cards":{
+        "freeAccount":"Załóż darmowe konto",
+        "settle":"Osiedlaj się w różnych walutach świata",
+        "crypto":"Możliwość rozliczenia w kryptowalutach",
+        "expenses":"Przejmij kontrolę nad swoimi wydatkami",
+        "stocks":"Podgląd giełdy papierów wartościowych",
+        "groupsAndBills":"Tworzenie grup i rachunków",
+        "statistics":"Zajrzyj do statystyk",
+        "comment":"Komentuj na rachunkach"
+      }
     },
-    "faq": {
-      "title": "Często zadawane pytania"
+    "calculator":{
+      "cryptoConverter":{
+        "title":"Konwerter kryptowalut",
+        "crypto":"Krypto",
+        "fiat":"Fiat",
+        "inputConvertingText":"Konwersji...",
+        "buttonText":"Nawrócić"
+      },
+      "fiatConverter":{
+        "title":"Przelicznik walut",
+        "fiat":"Fiat",
+        "inputConvertingText":"Konwersji...",
+        "convertButton":"Nawrócić",
+        "swapButton":"Waluty swap"
+      }
+    },
+    "faq":{
+      "title":"Najczęściej zadawane pytania"
     }
   },
- "components": {
-   "header": {
-
-   }
- }
+  "components":{
+    "alert":{
+      "messages":{
+        "successDeleteBill":"Pomyślnie usunięty rachunek",
+        "successDeleteGroup":"Grupa została pomyślnie usunięta"
+      }
+    },
+    "billCard":{
+      "dateCreated":"Utworzono:",
+      "dateEnd":"Kończy się:",
+      "deleteButton":"Usunąć",
+      "goButton":"Iść"
+    },
+    "groupCard":{
+      "dateCreated":"Utworzono:",
+      "deleteButton":"Usunąć",
+      "goButton":"Iść"
+    },
+    "modal":{
+      "adminDeleteBill":{
+        "title":"Czy na pewno chcesz usunąć ten rachunek?",
+        "description":"Spowoduje to usunięcie wszystkich komentarzy i związanych z danymi rachunku!",
+        "deleteButtonText":"Tak, proszę usunąć ten rachunek"
+      },
+      "adminDeleteGroup":{
+        "title":"Czy na pewno chcesz usunąć tę grupę?",
+        "description":"Jego usunie wszystkie rachunki i związane z grupą dane!",
+        "deleteButtonText":"Tak, proszę usunąć tę grupę"
+      }
+    },
+    "commentsCard":{
+      "title":"Komentarze",
+      "addCommentButton":{
+        "text":"Dodaj komentarz",
+        "textLoading":"Ładowania..."
+      },
+      "buttons":{
+        "save":"Zapisać",
+        "cancel":"Anuluj",
+        "like":"Lubić",
+        "dislike":"Niechęć",
+        "edit":"Redagować",
+        "reply":"Odpowiedź",
+        "addReply":"Dodaj odpowiedź",
+        "cancelReply":"Anuluj odpowiadanie"
+      },
+      "noRepliesText":"Brak odpowiedzi"
+    },
+    "header":{
+      "links":{
+        "createGroup":"Utwórz grupę",
+        "contact":"Kontakt",
+        "converter":"Przelicznik walut",
+        "faq":"FAQ",
+        "login":"Login"
+      }
+    },
+    "dropdown":{
+      "profile":"Profil",
+      "groups":"Grupy",
+      "bills":"Rachunki",
+      "statistics":"Statystyka",
+      "adminUsers":"Wszyscy użytkownicy",
+      "adminGroups":"Wszystkie grupy",
+      "adminBills":"Wszystkie rachunki",
+      "adminFaq":"Utwórz FAQ",
+      "settings":"Ustawienia",
+      "logout":"Wyloguj"
+    },
+    "footer":{
+      "aboutUs":{
+        "title":"O nas",
+        "careers":"Kariery",
+        "investors":"Inwestorów",
+        "blog":"Blog firmowy"
+      },
+      "topCities":{
+        "title":"Najpopularniejsze miasta",
+        "cracow":"Kraków",
+        "sanDiego":"San Diego",
+        "london":"Londyn",
+        "chicago":"Chicago"
+      },
+      "services":{
+        "title":"Usługi",
+        "development":"Rozwój",
+        "stage":"Scena",
+        "production":"Produkcja"
+      },
+      "social":{
+        "title":"Społeczny",
+        "instagram":"{{instagram}}",
+        "twitter":"{{twitter}}",
+        "facebook":"{{facebook}}",
+        "linkedin":"{{linkedin}}"
+      }
+    }
+  }
 }
