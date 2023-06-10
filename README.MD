@@ -4,6 +4,12 @@
 
 ### Running the development server.
 
+### To install
+```bash
+    npm install
+```
+### And run:
+
 ```bash
     npm run dev
 ```
@@ -14,18 +20,12 @@
     npm run build
 ```
 
-### Running the production server.
-
-```bash
-    npm run start
-```
-
 ### To run project
 
 #### Build docker image
 
 ```bash
-    docker build -t master-frontend
+    docker build -t master-frontend .
 ```
 
 #### Run a container on port 3000
