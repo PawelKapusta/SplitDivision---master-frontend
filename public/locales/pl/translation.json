@@ -31,15 +31,296 @@
         "swapButton":"Waluty swap"
       }
     },
+    "login":{
+      "title":"Badać",
+      "description":"Zaloguj się i ciesz się naszą platformą!"
+    },
+    "register":{
+      "title":"Badać",
+      "description":"Zarejestruj się i ciesz się naszą platformą!"
+    },
     "faq":{
       "title":"Najczęściej zadawane pytania"
+    },
+    "bills":{
+      "title":"Moje rachunki",
+      "noBillsText":"Nie masz żadnych rachunków. Przejdź do swoich grup",
+      "buttonText":"Kliknij tutaj!"
+    },
+    "groups":{
+      "title":"Moje grupy",
+      "noGroupsText":"Nie masz żadnych grup. Kliknij tutaj",
+      "buttonText":"Kliknij tutaj!"
+    },
+    "contact":{
+      "modal":{
+        "title":"OSTRZEŻENIE***",
+        "description":"Twoje konto zostało zablokowane z powodu Twojej aktywności w usłudze. Jeśli uważasz, że jest to niesprawiedliwa decyzja, skontaktuj się z naszym działem obsługi klienta za pośrednictwem tego formularza kontaktowego! Życzymy miłego dnia. Zespół Dywizji Split",
+        "buttonText":"OK, dziękuję za informacje"
+      }
+    },
+    "settings":{
+      "title":"Strona Ustawienia",
+      "chooseLanguageText":"Wybierz język strony",
+      "buyPremium":"Kup premię",
+      "buttonBuyText":"Kupić"
+    },
+    "bill":{
+      "startDate":"Początek:",
+      "endDate":"Koniec:",
+      "debt":"Dług:",
+      "modal":{
+        "title":"Czy na pewno chcesz usunąć ten rachunek?",
+        "description":"Spowoduje to usunięcie wszystkich komentarzy i związanych z danymi rachunku!",
+        "buttonText":"Tak, proszę usunąć ten rachunek"
+      },
+      "billMembersTitle":"Członkowie Bill",
+      "labels":{
+        "username":"Nazwa użytkownika:",
+        "phone":"Telefon:",
+        "userBlocked":"Użytkownik został zablokowany!",
+        "contactUs":"Skontaktuj się z nami",
+        "debt":"Dług:",
+        "isRegulated":"jestRegulowane:"
+      },
+      "codeQrDownloadText":"Kliknij tutaj, aby pobrać QR"
+    },
+    "group":{
+      "createBillButtonText":"Tworzenie rachunku",
+      "modal":{
+        "title":"Czy na pewno chcesz usunąć tę grupę?",
+        "description":"Spowoduje to usunięcie wszystkich rachunków i powiązanych z danymi grupy!",
+        "buttonText":"Tak, proszę usunąć tę grupę"
+      },
+      "groupMemberTitle":"Członkowie grupy",
+      "labels":{
+        "username":"Nazwa użytkownika:",
+        "phone":"Telefon:",
+        "userBlocked":"Użytkownik został zablokowany!",
+        "contactUs":"Skontaktuj się z nami",
+        "billsTitle":"Rachunki w tej grupie",
+        "noBillsText":"Grupa nie ma jeszcze żadnych rachunków. Utwórz rachunek."
+      }
+    },
+    "admin":{
+      "bills":{
+        "title":"Wszystkie rachunki",
+        "noBillsText":"Nie ma rachunków!"
+      },
+      "groups":{
+        "title":"Wszystkie grupy",
+        "noGroupsText":"Nie ma grup!"
+      },
+      "users":{
+        "title":"Wszyscy użytkownicy",
+        "noUsersText":"Nie ma użytkowników!",
+        "modal":{
+          "admin":{
+            "remove":{
+              "title":"Czy na pewno chcesz usunąć rolę administratora dla tego użytkownika?",
+              "description":"Spowoduje to usunięcie wszystkich funkcji administratora w aplikacji!",
+              "textButton":"Tak proszę usunąć administratora tego użytkownika"
+            },
+            "add":{
+              "title":"Czy na pewno chcesz dodać rolę administratora do tego użytkownika?",
+              "description":"To doda użytkownikowi wszystkie funkcjonalności w aplikacji!",
+              "textButton":"Tak proszę dodać administratora tego użytkownika"
+            }
+          },
+          "block":{
+            "remove":{
+              "title":"Czy na pewno chcesz odblokować tego użytkownika?",
+              "description":"To zwróci wszystkie funkcje temu użytkownikowi!",
+              "textButton":"Tak, odblokuj tego użytkownika"
+            },
+            "add":{
+              "title":"Czy na pewno chcesz zablokować tego użytkownika?",
+              "description":"Spowoduje to zablokowanie użytkownika w aplikacji!",
+              "textButton":"Tak, proszę zablokować tego użytkownika"
+            }
+          },
+          "delete":{
+            "title":"Czy na pewno chcesz usunąć tego użytkownika?",
+            "description":"Spowoduje to usunięcie wszystkich grup i powiązanych z danymi użytkownika!",
+            "buttonText":"Tak, proszę usunąć tego użytkownika"
+          }
+        },
+        "labels":{
+          "firstName":"Imię:",
+          "lastName":"Nazwisko:",
+          "username":"Nazwa użytkownika:",
+          "email":"E-mail:",
+          "phone":"Telefon:",
+          "gender":"Płeć:",
+          "birthDate":"Data urodzenia:",
+          "service":"Usługa:",
+          "isAdmin":"Jest adminem:",
+          "isBlocked":"Jest zablokowany:"
+        },
+        "buttons":{
+          "admin":{
+            "remove":"Usuń administratora",
+            "add":"Uczyń administratora"
+          },
+          "block":{
+            "remove":"Odblokować",
+            "add":"Blok"
+          },
+          "delete":"Usunąć"
+        }
+      }
     }
   },
   "components":{
     "alert":{
       "messages":{
         "successDeleteBill":"Pomyślnie usunięty rachunek",
-        "successDeleteGroup":"Grupa została pomyślnie usunięta"
+        "successDeleteGroup":"Grupa została pomyślnie usunięta",
+        "successDeleteUser":"Pomyślnie usunięty użytkownik",
+        "successCreateBill":"Pomyślnie utworzono rachunek",
+        "successCreateGroup":"Pomyślnie utworzono grupę",
+        "successCreateUser":"Pomyślnie utworzone konto",
+        "noEnoughPeopleError":"Wybierz co najmniej 2 osoby",
+        "successSentEmailToAdministrator":"Pomyślnie wysłano wiadomość e-mail do administratora",
+        "errorSentEmailToAdministrator":"Wiadomość e-mail nie została wysłana",
+        "successUpdateUser":"Pomyślnie zaktualizowany użytkownik"
+      }
+    },
+    "billForm":{
+      "errors":{
+        "evenlyMoreError":"Podzieliłeś więcej pieniędzy między użytkowników niż jest dług dany",
+        "evenlyLessError":"Podzieliłeś mniej pieniędzy między użytkowników niż jest dług dany"
+      },
+      "title":"Tworzenie rachunku",
+      "inputs":{
+        "name":{
+          "name":"Nazwa rachunku",
+          "nameRequired":"Wymagany jest rachunek za imię i nazwisko"
+        },
+        "description":{
+          "name":"Opis rachunku",
+          "nameRequired":"Opis rachunku jest wymagany"
+        },
+        "debt":{
+          "name":"Dług",
+          "nameRequired":"Dług jest wymagany"
+        }
+      },
+      "dateStart":"Data rozpoczęcia:",
+      "dateEnd":"Data zakończenia:",
+      "fiat":"Fiat",
+      "crypto":"Kryptowaluta",
+      "select":{
+        "label":"Wybierz użytkowników"
+      },
+      "debtEvenlyCheckbox":"Podzielić równo dług?",
+      "createButton":{
+        "text":"Tworzenie rachunku",
+        "loadingButton":"Ładowania..."
+      }
+    },
+    "groupForm":{
+      "title":"Tworzenie grupy",
+      "inputs":{
+        "name":{
+          "name":"Nazwa grupy",
+          "nameRequired":"Grupa nazw jest wymagana"
+        },
+        "description":{
+          "name":"Opis grupy",
+          "nameRequired":"Opis grupy jest wymagany"
+        }
+      },
+      "select":{
+        "label":"Wybierz użytkowników"
+      },
+      "createButton":{
+        "text":"Tworzenie grupy",
+        "loadingButton":"Ładowania..."
+      }
+    },
+    "loginForm":{
+      "inputs":{
+        "email":{
+          "name":"E-mail",
+          "nameRequired":"E-mail jest wymagany"
+        },
+        "password":{
+          "name":"Hasło",
+          "nameRequired":"Hasło jest wymagane"
+        }
+      },
+      "loginButton":{
+        "text":"Login",
+        "loadingButton":"Ładowania..."
+      },
+      "textToRegister":{
+        "text":"Nie masz jeszcze konta?",
+        "linkText":"Zarejestruj się"
+      }
+    },
+    "registerForm":{
+      "inputs":{
+        "password":{
+          "name":"Hasło",
+          "nameRequired":"Hasło jest wymagane"
+        },
+        "confirmPassword":{
+          "name":"Potwierdź hasło",
+          "nameRequired":"Potwierdź hasło jest wymagane"
+        }
+      },
+      "registerButton":{
+        "text":"Rejestrować",
+        "loadingButton":"Ładowania..."
+      },
+      "textToLogin":{
+        "text":"Masz już konto?",
+        "linkText":"Rejestrowanie"
+      }
+    },
+    "profileForm":{
+      "inputs":{
+        "firstName":{
+          "name":"Imię",
+          "nameRequired":"Imię jest wymagane"
+        },
+        "lastName":{
+          "name":"Nazwisko",
+          "nameRequired":"Nazwisko jest wymagane"
+        },
+        "username":{
+          "name":"Nazwa użytkownika",
+          "nameRequired":"Nazwa użytkownika jest wymagana"
+        },
+        "email":{
+          "name":"E-mail",
+          "nameRequired":"E-mail jest wymagany"
+        },
+        "phone":{
+          "name":"Telefon",
+          "nameRequired":"Wymagany jest telefon"
+        }
+      },
+      "select":{
+        "title":"Wybierz płeć",
+        "male":"Mężczyzna",
+        "female":"Kobieta",
+        "other":"Inny"
+      },
+      "birthDate":"Data urodzenia:",
+      "createButton":{
+        "text":"Aktualizowanie profilu",
+        "loadingButton":"Ładowania..."
+      }
+    },
+    "contactForm":{
+      "title":"Kontakt z administratorem",
+      "topic":"Temat:",
+      "description":"Opis:",
+      "button":{
+        "text":"Wyślij",
+        "loadingText":"Ładowania..."
       }
     },
     "billCard":{
@@ -103,6 +384,9 @@
       "adminFaq":"Utwórz FAQ",
       "settings":"Ustawienia",
       "logout":"Wyloguj"
+    },
+    "layout":{
+      "backButtonText":"Wstecz"
     },
     "footer":{
       "aboutUs":{

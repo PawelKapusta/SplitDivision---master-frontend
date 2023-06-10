@@ -1,135 +1,419 @@
 {
-  "screens": {
-    "home": {
-      "mainTitle": "What is {{name}}",
-      "description": "This is a website for people who are looking for modern way of splitting money between each other. Here you can settle your debt by fiat and crypto currency.",
-      "cardsTitle": "What features you can find in our website?",
-      "cards": {
-        "freeAccount": "Create free account",
-        "settle": "Settle in different world currencies",
-        "crypto": "Possibility of settlement in cryptocurrencies",
-        "expenses": "Take control of your expenses",
-        "stocks": "Stocks exchange preview",
-        "groupsAndBills": "Create groups & bills",
-        "statistics": "Look into statistics",
-        "comment": "Comment in your bills"
+  "screens":{
+    "home":{
+      "mainTitle":"Was ist {{name}}",
+      "description":"Dies ist eine Website für Menschen, die nach einer modernen Möglichkeit suchen, Geld untereinander aufzuteilen. Hier können Sie Ihre Schulden per Fiat und Kryptowährung begleichen.",
+      "cardsTitle":"Welche Funktionen finden Sie auf unserer Website?",
+      "cards":{
+        "freeAccount":"Kostenloses Konto erstellen",
+        "settle":"Abrechnung in verschiedenen Weltwährungen",
+        "crypto":"Möglichkeit der Abrechnung in Kryptowährungen",
+        "expenses":"Übernehmen Sie die Kontrolle über Ihre Ausgaben",
+        "stocks":"Vorschau auf die Börse",
+        "groupsAndBills":"Gruppen & Rechnungen erstellen",
+        "statistics":"Werfen Sie einen Blick in die Statistik",
+        "comment":"Kommentieren Sie Ihre Rechnungen"
       }
     },
-    "calculator": {
-      "cryptoConverter": {
-        "title": "Crypto Converter",
-        "crypto": "Crypto",
-        "fiat": "Fiat",
-        "inputConvertingText": "Converting...",
-        "buttonText": "Convert"
+    "calculator":{
+      "cryptoConverter":{
+        "title":"Krypto-Konverter",
+        "crypto":"Krypto",
+        "fiat":"Fiat",
+        "inputConvertingText":"Verwandelnd...",
+        "buttonText":"Umwandeln"
       },
-      "fiatConverter": {
-        "title": "Currency Converter",
-        "fiat": "Fiat",
-        "inputConvertingText": "Converting...",
-        "convertButton": "Convert",
-        "swapButton": "Swap currencies "
+      "fiatConverter":{
+        "title":"Währungsrechner",
+        "fiat":"Fiat",
+        "inputConvertingText":"Verwandelnd...",
+        "convertButton":"Umwandeln",
+        "swapButton":"Währungen tauschen"
       }
     },
-    "faq": {
-      "title": "Frequently Asked Questions"
+    "login":{
+      "title":"Erforschen",
+      "description":"Melden Sie sich an und genießen Sie unsere Plattform!"
+    },
+    "register":{
+      "title":"Erforschen",
+      "description":"Melden Sie sich an und genießen Sie unsere Plattform!"
+    },
+    "faq":{
+      "title":"Häufig gestellte Fragen"
+    },
+    "bills":{
+      "title":"Meine Rechnungen",
+      "noBillsText":"Sie haben keine Rechnungen. Gehen Sie zu Ihren Gruppen",
+      "buttonText":"Klicken Sie hier!"
+    },
+    "groups":{
+      "title":"Meine Gruppen",
+      "noGroupsText":"Sie haben keine Gruppen. Bitte klicken Sie hier",
+      "buttonText":"Klicken Sie hier!"
+    },
+    "contact":{
+      "modal":{
+        "title":"WARNUNG***",
+        "description":"Ihr Konto wurde aufgrund Ihrer Aktivitäten im Dienst gesperrt. Wenn Sie der Meinung sind, dass dies eine unfaire Entscheidung ist, wenden Sie sich bitte über dieses Kontaktformular an unseren Kundenservice! Wir wünschen Ihnen einen schönen Tag. Mannschaft der geteilten Division",
+        "buttonText":"OK, danke für die Informationen"
+      }
+    },
+    "settings":{
+      "title":"Seite \"Einstellungen\"",
+      "chooseLanguageText":"Wählen Sie die Sprache der Website",
+      "buyPremium":"Premium kaufen",
+      "buttonBuyText":"Kaufen"
+    },
+    "bill":{
+      "startDate":"Anfangen:",
+      "endDate":"Ende:",
+      "debt":"Schuld:",
+      "modal":{
+        "title":"Sind Sie sicher, dass Sie diese Rechnung löschen möchten?",
+        "description":"Dadurch werden alle Kommentare gelöscht und mit den Rechnungsdaten verbunden!",
+        "buttonText":"Ja, bitte löschen Sie diese Rechnung"
+      },
+      "billMembersTitle":"Mitglieder des Gesetzentwurfs",
+      "labels":{
+        "username":"Nutzername:",
+        "phone":"Telefon:",
+        "userBlocked":"Benutzer wurde gesperrt!",
+        "contactUs":"Kontaktieren Sie uns",
+        "debt":"Schuld:",
+        "isRegulated":"isRegulated:"
+      },
+      "codeQrDownloadText":"Klicken Sie hier, um QR herunterzuladen"
+    },
+    "group":{
+      "createBillButtonText":"Erstellen einer Rechnung",
+      "modal":{
+        "title":"Sind Sie sicher, dass Sie diese Gruppe löschen möchten?",
+        "description":"Dadurch werden alle Rechnungen gelöscht und mit den Gruppendaten verbunden!",
+        "buttonText":"Ja, bitte löschen Sie diese Gruppe"
+      },
+      "groupMemberTitle":"Gruppenmitglieder",
+      "labels":{
+        "username":"Nutzername:",
+        "phone":"Telefon:",
+        "userBlocked":"Benutzer wurde gesperrt!",
+        "contactUs":"Kontaktieren Sie uns",
+        "billsTitle":"Rechnungen in dieser Gruppe",
+        "noBillsText":"Die Gruppe hat noch keine Rechnungen. Bitte erstellen Sie eine Rechnung."
+      }
+    },
+    "admin":{
+      "bills":{
+        "title":"Alle Rechnungen",
+        "noBillsText":"Es gibt keine Rechnungen!"
+      },
+      "groups":{
+        "title":"Alle Gruppen",
+        "noGroupsText":"Es gibt keine Gruppen!"
+      },
+      "users":{
+        "title":"Alle Benutzer",
+        "noUsersText":"Es gibt keine Benutzer!",
+        "modal":{
+          "admin":{
+            "remove":{
+              "title":"Sind Sie sicher, dass Sie die Administratorrolle für diesen Benutzer entfernen möchten?",
+              "description":"Dadurch werden alle Administratorfunktionen in der Anwendung entfernt!",
+              "textButton":"Ja, bitte entfernen Sie den Administrator dieses Benutzers"
+            },
+            "add":{
+              "title":"Sind Sie sicher, dass Sie diesem Benutzer die Administratorrolle hinzufügen möchten?",
+              "description":"Dadurch werden dem Benutzer alle Funktionen in der Anwendung hinzugefügt!",
+              "textButton":"Ja, bitte fügen Sie diesen Benutzer als Administrator hinzu"
+            }
+          },
+          "block":{
+            "remove":{
+              "title":"Sind Sie sicher, dass Sie diesen Benutzer entsperren möchten?",
+              "description":"Dadurch werden alle Funktionen an diesen Benutzer zurückgegeben!",
+              "textButton":"Ja, bitte entsperren Sie diesen Benutzer"
+            },
+            "add":{
+              "title":"Sind Sie sicher, dass Sie diesen Benutzer blockieren möchten?",
+              "description":"Dadurch wird der Benutzer in der Anwendung blockiert!",
+              "textButton":"Ja, bitte sperren Sie diesen Benutzer"
+            }
+          },
+          "delete":{
+            "title":"Sind Sie sicher, dass Sie diesen Benutzer löschen möchten?",
+            "description":"Dadurch werden alle Gruppen gelöscht und mit den Benutzerdaten verbunden!",
+            "buttonText":"Ja, bitte löschen Sie diesen Benutzer"
+          }
+        },
+        "labels":{
+          "firstName":"Vorname:",
+          "lastName":"Nachname:",
+          "username":"Nutzername:",
+          "email":"E-Mail:",
+          "phone":"Telefon:",
+          "gender":"Geschlecht:",
+          "birthDate":"Geburtsdatum:",
+          "service":"Dienst:",
+          "isAdmin":"Ist Admin:",
+          "isBlocked":"Ist gesperrt:"
+        },
+        "buttons":{
+          "admin":{
+            "remove":"Admin entfernen",
+            "add":"Zum Admin machen"
+          },
+          "block":{
+            "remove":"Entblocken",
+            "add":"Block"
+          },
+          "delete":"Löschen"
+        }
+      }
     }
   },
-  "components": {
-    "alert": {
-      "messages": {
-        "successDeleteBill": "Successfully deleted bill",
-        "successDeleteGroup": "Successfully deleted group"
+  "components":{
+    "alert":{
+      "messages":{
+        "successDeleteBill":"Erfolgreich gelöschte Rechnung",
+        "successDeleteGroup":"Erfolgreich gelöschte Gruppe",
+        "successDeleteUser":"Erfolgreich gelöschter Benutzer",
+        "successCreateBill":"Erfolgreich eine Rechnung erstellt",
+        "successCreateGroup":"Erfolgreich eine Gruppe erstellt",
+        "successCreateUser":"Erfolgreich erstelltes Konto",
+        "noEnoughPeopleError":"Bitte wählen Sie mindestens 2 Personen aus",
+        "successSentEmailToAdministrator":"E-Mail erfolgreich an Administrator gesendet",
+        "errorSentEmailToAdministrator":"E-Mail nicht gesendet",
+        "successUpdateUser":"Erfolgreich aktualisierter Benutzer"
       }
     },
-    "billCard": {
-      "dateCreated": "Created: ",
-      "dateEnd": "Ends: ",
-      "deleteButton": "Delete",
-      "goButton": "Go"
-    },
-    "groupCard": {
-      "dateCreated": "Created: ",
-      "deleteButton": "Delete",
-      "goButton": "Go"
-    },
-    "modal": {
-      "adminDeleteBill": {
-        "title": "Are you sure you want to delete this bill?",
-        "description": "This will delete all comments and connected with the bill data!",
-        "deleteButtonText": "Yes please delete this bill"
+    "billForm":{
+      "errors":{
+        "evenlyMoreError":"Sie haben mehr Geld zwischen den Benutzern aufgeteilt, als Schulden gegeben sind",
+        "evenlyLessError":"Sie haben weniger Geld zwischen den Benutzern aufgeteilt, als Schulden gegeben sind"
       },
-      "adminDeleteGroup": {
-        "title": "Are you sure you want to delete this group?",
-        "description": "his will delete all bills and connected with the group data!",
-        "deleteButtonText": "Yes please delete this group"
+      "title":"Erstellen einer Rechnung",
+      "inputs":{
+        "name":{
+          "name":"Name der Rechnung",
+          "nameRequired":"Namensrechnung ist erforderlich"
+        },
+        "description":{
+          "name":"Beschreibung der Rechnung",
+          "nameRequired":"Rechnungsbeschreibung ist erforderlich"
+        },
+        "debt":{
+          "name":"Schuld",
+          "nameRequired":"Schulden sind erforderlich"
+        }
+      },
+      "dateStart":"Datum Beginn:",
+      "dateEnd":"Datum Ende:",
+      "fiat":"Fiat",
+      "crypto":"Kryptowährung",
+      "select":{
+        "label":"Benutzer auswählen"
+      },
+      "debtEvenlyCheckbox":"Schulden gleichmäßig aufteilen?",
+      "createButton":{
+        "text":"Erstellen einer Rechnung",
+        "loadingButton":"Laden..."
       }
     },
-    "commentsCard": {
-      "title": "Comments",
-      "addCommentButton": {
-        "text": "Add a comment",
-        "textLoading": "Loading..."
+    "groupForm":{
+      "title":"Erstellen einer Gruppe",
+      "inputs":{
+        "name":{
+          "name":"Name der Gruppe",
+          "nameRequired":"Namensgruppe ist erforderlich"
+        },
+        "description":{
+          "name":"Gruppenbeschreibung",
+          "nameRequired":"Gruppenbeschreibung ist erforderlich"
+        }
       },
-      "buttons": {
-        "save": "Save",
-        "cancel": "Cancel",
-        "like": "Like ",
-        "dislike": "Dislike ",
-        "edit": "Edit",
-        "reply": "Reply",
-        "addReply": "Add reply",
-        "cancelReply": "Cancel reply"
+      "select":{
+        "label":"Benutzer auswählen"
       },
-      "noRepliesText": "No replies"
-    },
-    "header": {
-      "links": {
-        "createGroup": "Create group",
-        "contact": "Contact",
-        "converter": "Currency converter",
-        "faq": "FAQ",
-        "login": "Login"
+      "createButton":{
+        "text":"Erstellen einer Gruppe",
+        "loadingButton":"Laden..."
       }
     },
-    "dropdown": {
-      "profile": "Profile",
-      "groups": "Groups",
-      "bills": "Bills",
-      "statistics": "Statistics",
-      "adminUsers": "All users",
-      "adminGroups": "All groups",
-      "adminBills": "All bills",
-      "adminFaq": "Create FAQ",
-      "settings": "Settings",
-      "logout": "Logout"
+    "loginForm":{
+      "inputs":{
+        "email":{
+          "name":"E-Mail",
+          "nameRequired":"E-Mail-Adresse ist erforderlich"
+        },
+        "password":{
+          "name":"Passwort",
+          "nameRequired":"Passwort ist erforderlich"
+        }
+      },
+      "loginButton":{
+        "text":"Einloggen",
+        "loadingButton":"Laden..."
+      },
+      "textToRegister":{
+        "text":"Sie haben noch kein Konto?",
+        "linkText":"Anmelden"
+      }
     },
-    "footer": {
-      "aboutUs": {
-        "title": "About Us",
-        "careers": "Careers",
-        "investors": "Investors",
-        "blog": "Company Blog"
+    "registerForm":{
+      "inputs":{
+        "password":{
+          "name":"Passwort",
+          "nameRequired":"Passwort ist erforderlich"
+        },
+        "confirmPassword":{
+          "name":"Passwort bestätigen",
+          "nameRequired":"Bestätigen Sie, dass das Passwort erforderlich ist"
+        }
       },
-      "topCities": {
-        "title": "Top Cities",
-        "cracow": "Cracow",
-        "sanDiego": "San Diego",
-        "london": "London",
-        "chicago": "Chicago"
+      "registerButton":{
+        "text":"Registrieren",
+        "loadingButton":"Laden..."
       },
-      "services": {
-        "title": "Services",
-        "development": "Development",
-        "stage": "Stage",
-        "production": "Production"
+      "textToLogin":{
+        "text":"Haben Sie bereits ein Konto?",
+        "linkText":"Anmelden"
+      }
+    },
+    "profileForm":{
+      "inputs":{
+        "firstName":{
+          "name":"Vorname",
+          "nameRequired":"Vorname ist erforderlich"
+        },
+        "lastName":{
+          "name":"Nachname",
+          "nameRequired":"Nachname ist erforderlich"
+        },
+        "username":{
+          "name":"Nutzername",
+          "nameRequired":"Benutzername ist erforderlich"
+        },
+        "email":{
+          "name":"E-Mail",
+          "nameRequired":"E-Mail-Adresse ist erforderlich"
+        },
+        "phone":{
+          "name":"Telefon",
+          "nameRequired":"Telefon ist erforderlich"
+        }
       },
-      "social": {
-        "title": "Social",
-        "instagram": "{{instagram}}",
-        "twitter": "{{twitter}}",
-        "facebook": "{{facebook}}",
-        "linkedin": "{{linkedin}}"
+      "select":{
+        "title":"Geschlecht auswählen",
+        "male":"Männlich",
+        "female":"Weiblich",
+        "other":"Andere"
+      },
+      "birthDate":"Geburtsdatum:",
+      "createButton":{
+        "text":"Profil aktualisieren",
+        "loadingButton":"Laden..."
+      }
+    },
+    "contactForm":{
+      "title":"Kontakt mit dem Administrator",
+      "topic":"Thema:",
+      "description":"Beschreibung:",
+      "button":{
+        "text":"Senden",
+        "loadingText":"Laden..."
+      }
+    },
+    "billCard":{
+      "dateCreated":"Erstellt:",
+      "dateEnd":"Enden:",
+      "deleteButton":"Löschen",
+      "goButton":"Los"
+    },
+    "groupCard":{
+      "dateCreated":"Erstellt:",
+      "deleteButton":"Löschen",
+      "goButton":"Los"
+    },
+    "modal":{
+      "adminDeleteBill":{
+        "title":"Sind Sie sicher, dass Sie diese Rechnung löschen möchten?",
+        "description":"Dadurch werden alle Kommentare gelöscht und mit den Rechnungsdaten verbunden!",
+        "deleteButtonText":"Ja, bitte löschen Sie diese Rechnung"
+      },
+      "adminDeleteGroup":{
+        "title":"Sind Sie sicher, dass Sie diese Gruppe löschen möchten?",
+        "description":"Er löscht alle Rechnungen und verknüpften mit den Konzerndaten!",
+        "deleteButtonText":"Ja, bitte löschen Sie diese Gruppe"
+      }
+    },
+    "commentsCard":{
+      "title":"Kommentare",
+      "addCommentButton":{
+        "text":"Einen Kommentar hinzufügen",
+        "textLoading":"Laden..."
+      },
+      "buttons":{
+        "save":"Retten",
+        "cancel":"Abbrechen",
+        "like":"Mögen",
+        "dislike":"Abneigung",
+        "edit":"Redigieren",
+        "reply":"Antwort",
+        "addReply":"Antwort hinzufügen",
+        "cancelReply":"Antworten abbrechen"
+      },
+      "noRepliesText":"Keine Antworten"
+    },
+    "header":{
+      "links":{
+        "createGroup":"Gruppe erstellen",
+        "contact":"Kontakt",
+        "converter":"Währungsrechner",
+        "faq":"Häufig gestellte Fragen",
+        "login":"Einloggen"
+      }
+    },
+    "dropdown":{
+      "profile":"Profil",
+      "groups":"Gruppen",
+      "bills":"Rechnungen",
+      "statistics":"Statistik",
+      "adminUsers":"Alle Benutzer",
+      "adminGroups":"Alle Gruppen",
+      "adminBills":"Alle Rechnungen",
+      "adminFaq":"FAQ erstellen",
+      "settings":"Einstellungen",
+      "logout":"Abmeldung"
+    },
+    "layout":{
+      "backButtonText":"Zurück"
+    },
+    "footer":{
+      "aboutUs":{
+        "title":"Über uns",
+        "careers":"Karrieren",
+        "investors":"Anleger",
+        "blog":"Unternehmens-Blog"
+      },
+      "topCities":{
+        "title":"Top-Städte",
+        "cracow":"Krakau",
+        "sanDiego":"San Diego",
+        "london":"London",
+        "chicago":"Chicago"
+      },
+      "services":{
+        "title":"Dienste",
+        "development":"Entwicklung",
+        "stage":"Bühne",
+        "production":"Produktion"
+      },
+      "social":{
+        "title":"Sozial",
+        "instagram":"{{instagram}}",
+        "twitter":"{{twitter}}",
+        "facebook":"{{facebook}}",
+        "linkedin":"{{linkedin}}"
       }
     }
   }
