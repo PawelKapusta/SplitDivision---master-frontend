@@ -46,6 +46,7 @@ export const GoIconButton = styled.button`
     img {
         border-radius: 50%;
         background-color: dodgerblue;
+        margin-right: 4px;
     }
 
     a {

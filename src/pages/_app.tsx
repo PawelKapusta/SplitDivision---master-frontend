@@ -10,7 +10,8 @@ import { PersistGate } from "redux-persist/integration/react";
 import { useStore } from "react-redux";
 import { Layout } from "../layout/layout";
 import Spinner from "@components/spinner";
-import { appWithTranslation } from "@i18n";
+import { I18nextProvider } from "react-i18next";
+import i18n from "../i18n";
 import { withBlock } from "../hocs/withBlock";
 
 interface MyAppProps extends AppProps {
@@ -32,22 +33,24 @@ function MyApp({
             <PersistGate persistor={store.__persistor} loading={<Spinner />}>
                 <ThemeProvider theme={theme}>
                     <GlobalStyles />
-                    <Head>
-                        <title>Split Division</title>
-                        <meta
-                            property="og:title"
-                            content="My page title"
-                            key="title"
-                        />
-                        <link
-                            rel="preconnect"
-                            href="https://fonts.googleapis.com"
-                        />
-                        <link rel="icon" href="/icons/website-icon.svg" />
-                    </Head>
-                    <Layout excludeLayout={Component.excludeLayout}>
-                        <Wrapped {...pageProps} />
-                    </Layout>
+                    <I18nextProvider i18n={i18n}>
+                        <Head>
+                            <title>Split Division</title>
+                            <meta
+                                property="og:title"
+                                content="My page title"
+                                key="title"
+                            />
+                            <link
+                                rel="preconnect"
+                                href="https://fonts.googleapis.com"
+                            />
+                            <link rel="icon" href="/icons/website-icon.svg" />
+                        </Head>
+                        <Layout excludeLayout={Component.excludeLayout}>
+                            <Wrapped {...pageProps} />
+                        </Layout>
+                    </I18nextProvider>
                 </ThemeProvider>
             </PersistGate>
         </SessionProvider>

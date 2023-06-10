@@ -25,6 +25,7 @@ import Modal from "@components/modal";
 import { deleteGroup, selectGroupState } from "@redux/slices/groupSlice";
 import { useDispatch, useSelector } from "react-redux";
 import useAlert from "../../hocs/useAlert";
+import { useTranslation } from "react-i18next";
 
 export type TGroupCardProps = {
     group: Group;
@@ -33,6 +34,7 @@ export type TGroupCardProps = {
 const GroupCard = ({ group, isAdmin }: TGroupCardProps): ReactElement => {
     const groupPath = `/group/${group.id}`;
     const router = useRouter();
+    const { t } = useTranslation();
     const dispatch = useDispatch();
     const [modalOpen, setModalOpen] = useState(false);
     const { isLoading, deleteGroupSuccess, error } =
@@ -41,7 +43,10 @@ const GroupCard = ({ group, isAdmin }: TGroupCardProps): ReactElement => {
 
     useEffect(() => {
         if (deleteGroupSuccess !== false) {
-            showAlert("Successfully deleted group", "success");
+            showAlert(
+                t("components.alert.messages.successDeleteGroup"),
+                "success",
+            );
         } else if (error) {
             showAlert(error.toString(), "error");
         }
@@ -68,7 +73,10 @@ const GroupCard = ({ group, isAdmin }: TGroupCardProps): ReactElement => {
             <CardContainer isAdmin={isAdmin}>
                 <CardTitle>
                     <p>{group.name}</p>
-                    <p>Created: {getFormattedDate(group.data_created)}</p>
+                    <p>
+                        {t("components.groupCard.dateCreated")}
+                        {getFormattedDate(group.data_created)}
+                    </p>
                     {isAdmin ? (
                         <Actions>
                             <DeleteIconButton onClick={handleOpenModal}>
@@ -77,8 +85,8 @@ const GroupCard = ({ group, isAdmin }: TGroupCardProps): ReactElement => {
                                     width={30}
                                     height={30}
                                     alt="Delete-icon.svg"
-                                />{" "}
-                                Delete
+                                />
+                                {t("components.groupCard.deleteButton")}
                             </DeleteIconButton>
                             <GoIconButton onClick={handleAdminGoClick}>
                                 <Image
@@ -86,20 +94,25 @@ const GroupCard = ({ group, isAdmin }: TGroupCardProps): ReactElement => {
                                     width={30}
                                     height={30}
                                     alt="Go-icon.svg"
-                                />{" "}
-                                <a href={groupPath}>Go</a>
+                                />
+                                <a href={groupPath}>
+                                    {t("components.groupCard.goButton")}
+                                </a>
                             </GoIconButton>
                         </Actions>
                     ) : null}
                 </CardTitle>
-                <Modal isOpen={modalOpen} onClose={handleCloseModal} isAdmin>
+                <Modal
+                    isOpen={modalOpen}
+                    onClose={handleCloseModal}
+                    isAdmin={isAdmin}
+                >
                     <DeleteModalContent>
                         <DeleteModalTitle>
-                            Are you sure you want to delete this group?
+                            {t("components.modal.adminDeleteGroup.title")}
                         </DeleteModalTitle>
                         <DeleteModalDescription>
-                            This will delete all bills and connected with the
-                            group data!
+                            {t("components.modal.adminDeleteGroup.description")}
                         </DeleteModalDescription>
                         <DeleteButtonActions>
                             <DeleteModalButton onClick={handleModalDeleteClick}>
@@ -108,8 +121,10 @@ const GroupCard = ({ group, isAdmin }: TGroupCardProps): ReactElement => {
                                     width={30}
                                     height={30}
                                     alt="Delete-icon.svg"
-                                />{" "}
-                                Yes please delete this group
+                                />
+                                {t(
+                                    "components.modal.adminDeleteGroup.deleteButtonText",
+                                )}
                             </DeleteModalButton>
                         </DeleteButtonActions>
                     </DeleteModalContent>

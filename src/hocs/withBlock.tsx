@@ -30,6 +30,7 @@ const WithBlockComponent: NextPage<WithBlockProps> = ({ children }) => {
         "/contact",
         "/calculator",
         "/faq",
+        "/settings",
     ];
 
     useEffect(() => {

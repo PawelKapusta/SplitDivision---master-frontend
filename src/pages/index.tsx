@@ -16,9 +16,11 @@ import { fetchUser, selectUserState } from "@redux/slices/userSlice";
 import { selectAuthState } from "@redux/slices/authSlice";
 import { getDecodedJWTToken } from "../utils/jwt";
 import { TDecodedJWTToken } from "../types/jwt";
+import { useTranslation } from "react-i18next";
 
 const Home: React.FC = () => {
     const dispatch = useDispatch();
+    const { t } = useTranslation();
     const { user, users } = useSelector(selectUserState);
     const { isAuthenticated, token } = useSelector(selectAuthState);
     let decodedToken: TDecodedJWTToken, userId: string;
@@ -44,50 +46,50 @@ const Home: React.FC = () => {
                     />
                 </MainLeft>
                 <MainRight>
-                    <Title>What is Split Division?</Title>
-                    <Description>
-                        This is a website for people who are looking for modern
-                        way of splitting money between each other. Here you can
-                        settle your debt by fiat and crypto currency.
-                    </Description>
+                    <Title>
+                        {t("screens.home.mainTitle", {
+                            name: "Split Division?",
+                        })}
+                    </Title>
+                    <Description>{t("screens.home.description")}</Description>
                 </MainRight>
             </MainBox>
-            <CardsTitle>What features you can find in our website?</CardsTitle>
+            <CardsTitle>{t("screens.home.cardsTitle")}</CardsTitle>
             <Cards>
                 <CardsRow>
                     <CardContent
                         src="/icons/home-page-account.svg"
-                        text="Create free account"
+                        text={t("screens.home.cards.freeAccount")}
                     />
                     <CardContent
                         src="/icons/home-page-currency-exchange.svg"
-                        text="Settle in different world currencies"
+                        text={t("screens.home.cards.settle")}
                     />
                     <CardContent
                         src="/icons/home-page-dollar-bitcoin-exchange.svg"
-                        text="Possibility of settlement in cryptocurrencies"
+                        text={t("screens.home.cards.crypto")}
                     />
                     <CardContent
                         src="/icons/home-page-subscriptions.svg"
-                        text="Take control of your expenses"
+                        text={t("screens.home.cards.expenses")}
                     />
                 </CardsRow>
                 <CardsRow>
                     <CardContent
                         src="/icons/home-page-stocks.svg"
-                        text="Stocks exchange preview"
+                        text={t("screens.home.cards.stocks")}
                     />
                     <CardContent
                         src="/icons/home-page-create.svg"
-                        text="Create groups & bills"
+                        text={t("screens.home.cards.groupsAndBills")}
                     />
                     <CardContent
                         src="/icons/home-page-statistics.svg"
-                        text="Look into statistics"
+                        text={t("screens.home.cards.statistics")}
                     />
                     <CardContent
                         src="/icons/home-page-expenses.svg"
-                        text="Take control of your expenses"
+                        text={t("screens.home.cards.comment")}
                     />
                 </CardsRow>
             </Cards>

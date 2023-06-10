@@ -22,6 +22,7 @@ import {
 } from "@redux/slices/currencySlice";
 import Spinner from "@components/spinner";
 import useAlert from "../../hocs/useAlert";
+import { useTranslation } from "react-i18next";
 
 const CryptoConverter = (): ReactElement => {
     const {
@@ -34,6 +35,7 @@ const CryptoConverter = (): ReactElement => {
         error,
     } = useSelector(selectCurrencyState);
     const dispatch = useDispatch();
+    const { t } = useTranslation();
     const [total, setTotal] = useState(1);
     const [fiatCurrencyCode, setFiatCurrencyCode] = useState(
         FIAT_DEFAULT_CODE_USD_SMALL,
@@ -98,13 +100,19 @@ const CryptoConverter = (): ReactElement => {
                 <CurrencyContainer>
                     <CurrencyConverter>
                         <Title>
-                            <h2>Crypto Converter</h2>
-                            <TitleCurrencyName>Crypto</TitleCurrencyName>
+                            <h2>
+                                {t("screens.calculator.cryptoConverter.title")}
+                            </h2>
+                            <TitleCurrencyName>
+                                {t("screens.calculator.cryptoConverter.crypto")}
+                            </TitleCurrencyName>
                             <img
                                 src="/icons/exchange-icon-animated.gif"
                                 alt="ExchangeIconAnimated.gif"
                             />
-                            <TitleCurrencyName>Fiat</TitleCurrencyName>
+                            <TitleCurrencyName>
+                                {t("screens.calculator.cryptoConverter.fiat")}
+                            </TitleCurrencyName>
                         </Title>
                         <CurrencyInputContainer>
                             <CurrencyInput
@@ -150,7 +158,9 @@ const CryptoConverter = (): ReactElement => {
                                 placeholder="Converted total"
                                 value={
                                     isCryptoCurrenciesRatesToFiatCurrenciesLoading
-                                        ? "Converting..."
+                                        ? (t(
+                                              "screens.calculator.cryptoConverter.inputConvertingText",
+                                          ) as string)
                                         : totalConverted.toFixed(4) || ""
                                 }
                                 readOnly
@@ -158,7 +168,7 @@ const CryptoConverter = (): ReactElement => {
                             {fiatCurrencyCode.toUpperCase()}
                         </CurrencyOutput>
                         <CurrencyButton onClick={handleConvertClick}>
-                            Convert
+                            {t("screens.calculator.cryptoConverter.buttonText")}
                         </CurrencyButton>
                     </CurrencyConverter>
                 </CurrencyContainer>

@@ -105,7 +105,12 @@ const Bill: NextPage = () => {
 
     useEffect(() => {
         dispatch(fetchBillComments(billId as string));
-    }, [billId, createCommentSuccess, createSubcommentSuccess]);
+    }, [
+        billId,
+        createCommentSuccess,
+        createSubcommentSuccess,
+        updateSubcommentSuccess,
+    ]);
 
     const handleDeleteBillOpenModal = () => {
         setDeleteBillModalOpen(true);
@@ -434,7 +439,7 @@ const Bill: NextPage = () => {
                             Click here to download QR
                         </a>
                     </CodeQrDownloadLink>
-                    {commentsLoading ? (
+                    {isLoading || commentsLoading ? (
                         <Spinner isSmall />
                     ) : (
                         <CommentsCard billId={billId as string} />

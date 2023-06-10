@@ -20,6 +20,7 @@ import {
 } from "@redux/slices/currencySlice";
 import Spinner from "@components/spinner";
 import useAlert from "../../hocs/useAlert";
+import { useTranslation } from "react-i18next";
 
 const FiatConverter = (): ReactElement => {
     const {
@@ -30,6 +31,7 @@ const FiatConverter = (): ReactElement => {
         error,
     } = useSelector(selectCurrencyState);
     const dispatch = useDispatch();
+    const { t } = useTranslation();
     const { showAlert } = useAlert();
     const [fromFiat, setFromFiat] = useState<Currency | null>({
         code: "PLN",
@@ -66,13 +68,19 @@ const FiatConverter = (): ReactElement => {
                 <CurrencyContainer>
                     <CurrencyConverter>
                         <Title>
-                            <h2>Currency Converter</h2>
-                            <TitleCurrencyName>Fiat</TitleCurrencyName>
+                            <h2>
+                                {t("screens.calculator.fiatConverter.title")}
+                            </h2>
+                            <TitleCurrencyName>
+                                {t("screens.calculator.fiatConverter.fiat")}
+                            </TitleCurrencyName>
                             <img
                                 src="/icons/exchange-icon-animated.gif"
                                 alt="ExchangeIconAnimated.gif"
                             />
-                            <TitleCurrencyName>Fiat</TitleCurrencyName>
+                            <TitleCurrencyName>
+                                {t("screens.calculator.fiatConverter.fiat")}
+                            </TitleCurrencyName>
                         </Title>
                         <CurrencyInputContainer>
                             <CurrencyInput
@@ -125,7 +133,9 @@ const FiatConverter = (): ReactElement => {
                                 placeholder="Converted total"
                                 value={
                                     isFiatConvertLoading
-                                        ? "Converting..."
+                                        ? (t(
+                                              "screens.calculator.fiatConverter.inputConvertingText",
+                                          ) as string)
                                         : convertedFiatTotal || ""
                                 }
                                 readOnly
@@ -167,14 +177,18 @@ const FiatConverter = (): ReactElement => {
                         </CurrencyInputContainer>
                         <ButtonsList>
                             <CurrencyButton onClick={handleConvertClick}>
-                                Convert
+                                {t(
+                                    "screens.calculator.fiatConverter.convertButton",
+                                )}
                             </CurrencyButton>
                             <CurrencyButton onClick={handleSwapCurrenciesClick}>
-                                Swap currencies{" "}
+                                {t(
+                                    "screens.calculator.fiatConverter.swapButton",
+                                )}
                                 <img
                                     src="/icons/exchange-button-icon.svg"
                                     alt="ExchangeButtonIcon.gif"
-                                />{" "}
+                                />
                             </CurrencyButton>
                         </ButtonsList>
                     </CurrencyConverter>

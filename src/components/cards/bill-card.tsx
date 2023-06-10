@@ -24,10 +24,10 @@ import {
 import { useRouter } from "next/router";
 import Modal from "@components/modal";
 import { useDispatch, useSelector } from "react-redux";
-import { selectGroupState } from "@redux/slices/groupSlice";
 import useAlert from "../../hocs/useAlert";
 import { deleteBill, selectBillState } from "@redux/slices/billSlice";
 import { FIAT } from "../../types/currency";
+import { useTranslation } from "react-i18next";
 
 export type TBillCardProps = {
     bill: Bill;
@@ -37,6 +37,7 @@ const BillCard = ({ bill, isAdmin }: TBillCardProps): ReactElement => {
     const billPath = `/bill/${bill.id}`;
     const [modalOpen, setModalOpen] = useState(false);
     const router = useRouter();
+    const { t } = useTranslation();
     const dispatch = useDispatch();
     const { isLoading, deleteBillSuccess, error } =
         useSelector(selectBillState);
@@ -44,7 +45,10 @@ const BillCard = ({ bill, isAdmin }: TBillCardProps): ReactElement => {
 
     useEffect(() => {
         if (deleteBillSuccess !== false) {
-            showAlert("Successfully deleted bill", "success");
+            showAlert(
+                t("components.alert.messages.successDeleteBill"),
+                "success",
+            );
         } else if (error) {
             showAlert(error.toString(), "error");
         }
@@ -71,8 +75,14 @@ const BillCard = ({ bill, isAdmin }: TBillCardProps): ReactElement => {
             <CardContainer isBill isAdmin={isAdmin}>
                 <CardTitle>
                     <p>{bill.name}</p>
-                    <p>Created: {getFormattedDate(bill.data_created)}</p>
-                    <p>Ends: {getFormattedDate(bill.data_end)}</p>
+                    <p>
+                        {t("components.billCard.dateCreated")}
+                        {getFormattedDate(bill.data_created)}
+                    </p>
+                    <p>
+                        {t("components.billCard.dateEnd")}
+                        {getFormattedDate(bill.data_end)}
+                    </p>
                     {isAdmin ? (
                         <Actions>
                             <DeleteIconButton onClick={handleOpenModal}>
@@ -81,8 +91,8 @@ const BillCard = ({ bill, isAdmin }: TBillCardProps): ReactElement => {
                                     width={30}
                                     height={30}
                                     alt="Delete-icon.svg"
-                                />{" "}
-                                Delete
+                                />
+                                {t("components.billCard.deleteButton")}
                             </DeleteIconButton>
                             <GoIconButton onClick={handleAdminGoClick}>
                                 <Image
@@ -90,8 +100,10 @@ const BillCard = ({ bill, isAdmin }: TBillCardProps): ReactElement => {
                                     width={30}
                                     height={30}
                                     alt="Go-icon.svg"
-                                />{" "}
-                                <a href={billPath}>Go</a>
+                                />
+                                <a href={billPath}>
+                                    {t("components.billCard.goButton")}
+                                </a>
                             </GoIconButton>
                         </Actions>
                     ) : null}
@@ -99,11 +111,10 @@ const BillCard = ({ bill, isAdmin }: TBillCardProps): ReactElement => {
                 <Modal isOpen={modalOpen} onClose={handleCloseModal} isAdmin>
                     <DeleteModalContent>
                         <DeleteModalTitle>
-                            Are you sure you want to delete this bill?
+                            {t("components.modal.adminDeleteBill.title")}
                         </DeleteModalTitle>
                         <DeleteModalDescription>
-                            This will delete all comments and connected with the
-                            bill data!
+                            {t("components.modal.adminDeleteBill.description")}
                         </DeleteModalDescription>
                         <DeleteButtonActions>
                             <DeleteModalButton onClick={handleModalDeleteClick}>
@@ -112,8 +123,10 @@ const BillCard = ({ bill, isAdmin }: TBillCardProps): ReactElement => {
                                     width={30}
                                     height={30}
                                     alt="Delete-icon.svg"
-                                />{" "}
-                                Yes please delete this bill
+                                />
+                                {t(
+                                    "components.modal.adminDeleteBill.deleteButtonText",
+                                )}
                             </DeleteModalButton>
                         </DeleteButtonActions>
                     </DeleteModalContent>

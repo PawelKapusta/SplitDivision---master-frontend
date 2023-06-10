@@ -36,6 +36,7 @@ import Image from "next/image";
 import { selectAuthState } from "@redux/slices/authSlice";
 import { TDecodedJWTToken } from "../../types/jwt";
 import { getDecodedJWTToken } from "../../utils/jwt";
+import { useTranslation } from "react-i18next";
 
 export type TCommentsCardProps = {
     billId: string;
@@ -52,6 +53,7 @@ const CommentsCard = ({ billId }: TCommentsCardProps): ReactElement => {
         updateSubcommentSuccess,
     } = useSelector(selectCommentState);
     const { isLoading: usersLoading, users } = useSelector(selectUserState);
+    const { t } = useTranslation();
     const [allComments, setAllComments] = useState<Comment[]>(
         billComments && billComments?.commentsBill,
     );
@@ -292,13 +294,19 @@ const CommentsCard = ({ billId }: TCommentsCardProps): ReactElement => {
                 <Spinner isSmall />
             ) : (
                 <CommentsCardBox>
-                    <h2>Comments</h2>
+                    <h2>{t("components.commentsCard.title")}</h2>
                     <CommentsCardTextArea
                         value={newCommentContent}
                         onChange={(e) => setNewCommentContent(e.target.value)}
                     />
                     <CreateCommentButton onClick={addCommentClick}>
-                        {isLoading ? "Loading..." : "Add a comment"}
+                        {isLoading
+                            ? t(
+                                  "components.commentsCard.addCommentButton.textLoading",
+                              )
+                            : t(
+                                  "components.commentsCard.addCommentButton.text",
+                              )}
                     </CreateCommentButton>
                     {!isLoading &&
                         !usersLoading &&
@@ -317,10 +325,14 @@ const CommentsCard = ({ billId }: TCommentsCardProps): ReactElement => {
                                                 handleSaveComment(comment.id)
                                             }
                                         >
-                                            Save
+                                            {t(
+                                                "components.commentsCard.buttons.save",
+                                            )}
                                         </button>
                                         <button onClick={handleCancelEdit}>
-                                            Cancel
+                                            {t(
+                                                "components.commentsCard.buttons.cancel",
+                                            )}
                                         </button>
                                     </CommentsCardTextEdiBox>
                                 ) : (
@@ -358,7 +370,10 @@ const CommentsCard = ({ billId }: TCommentsCardProps): ReactElement => {
                                                     )
                                                 }
                                             >
-                                                Like ({comment.likes_number})
+                                                {t(
+                                                    "components.commentsCard.buttons.like",
+                                                )}{" "}
+                                                ({comment.likes_number})
                                             </button>
                                             <button
                                                 onClick={() =>
@@ -367,8 +382,10 @@ const CommentsCard = ({ billId }: TCommentsCardProps): ReactElement => {
                                                     )
                                                 }
                                             >
-                                                Dislike (
-                                                {comment.dislikes_number})
+                                                {t(
+                                                    "components.commentsCard.buttons.dislike",
+                                                )}{" "}
+                                                ({comment.dislikes_number})
                                             </button>
                                             <button
                                                 onClick={() =>
@@ -377,7 +394,9 @@ const CommentsCard = ({ billId }: TCommentsCardProps): ReactElement => {
                                                     )
                                                 }
                                             >
-                                                Edit
+                                                {t(
+                                                    "components.commentsCard.buttons.edit",
+                                                )}
                                             </button>
                                             <button
                                                 onClick={() =>
@@ -386,7 +405,9 @@ const CommentsCard = ({ billId }: TCommentsCardProps): ReactElement => {
                                                     )
                                                 }
                                             >
-                                                Reply
+                                                {t(
+                                                    "components.commentsCard.buttons.reply",
+                                                )}
                                             </button>
                                         </CommentCardContentButtons>
                                     </CommentCardContent>
@@ -406,10 +427,14 @@ const CommentsCard = ({ billId }: TCommentsCardProps): ReactElement => {
                                                 addSuncommentClick(comment.id)
                                             }
                                         >
-                                            Add reply
+                                            {t(
+                                                "components.commentsCard.buttons.addReply",
+                                            )}
                                         </button>
                                         <button onClick={handleCancelReply}>
-                                            Cancel reply
+                                            {t(
+                                                "components.commentsCard.buttons.cancelReply",
+                                            )}
                                         </button>
                                     </CommentReplyBox>
                                 )}
@@ -443,14 +468,18 @@ const CommentsCard = ({ billId }: TCommentsCardProps): ReactElement => {
                                                                     )
                                                                 }
                                                             >
-                                                                Save
+                                                                {t(
+                                                                    "components.commentsCard.buttons.save",
+                                                                )}
                                                             </button>
                                                             <button
                                                                 onClick={
                                                                     handleCancelSubcommentEdit
                                                                 }
                                                             >
-                                                                Cancel
+                                                                {t(
+                                                                    "components.commentsCard.buttons.cancel",
+                                                                )}
                                                             </button>
                                                         </CommentsCardTextEdiBox>
                                                     ) : (
@@ -498,7 +527,10 @@ const CommentsCard = ({ billId }: TCommentsCardProps): ReactElement => {
                                                                         )
                                                                     }
                                                                 >
-                                                                    Like (
+                                                                    {t(
+                                                                        "components.commentsCard.buttons.like",
+                                                                    )}{" "}
+                                                                    (
                                                                     {
                                                                         subcomment?.likes_number
                                                                     }
@@ -511,7 +543,10 @@ const CommentsCard = ({ billId }: TCommentsCardProps): ReactElement => {
                                                                         )
                                                                     }
                                                                 >
-                                                                    Dislike (
+                                                                    {t(
+                                                                        "components.commentsCard.buttons.dislike",
+                                                                    )}{" "}
+                                                                    (
                                                                     {
                                                                         subcomment?.dislikes_number
                                                                     }
@@ -524,7 +559,9 @@ const CommentsCard = ({ billId }: TCommentsCardProps): ReactElement => {
                                                                         )
                                                                     }
                                                                 >
-                                                                    Edit
+                                                                    {t(
+                                                                        "components.commentsCard.buttons.edit",
+                                                                    )}
                                                                 </button>
                                                             </CommentCardContentButtons>
                                                         </CommentCardContent>
@@ -538,14 +575,15 @@ const CommentsCard = ({ billId }: TCommentsCardProps): ReactElement => {
                                             marginBottom: "10px",
                                         }}
                                     >
-                                        {" "}
                                         {allComments &&
                                         !(
                                             findSubcommentsForThisComment(
                                                 comment?.id,
                                             )?.length > 0
                                         )
-                                            ? "No replies"
+                                            ? t(
+                                                  "components.commentsCard.noRepliesText",
+                                              )
                                             : null}
                                     </p>
                                 </CommentCardRepliesBox>

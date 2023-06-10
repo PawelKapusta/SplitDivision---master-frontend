@@ -1,0 +1,15 @@
+{
+  "screens": {
+    "home": {
+      "mainTitle":
+    },
+    "faq": {
+      "title": "Często zadawane pytania"
+    }
+  },
+ "components": {
+   "header": {
+
+   }
+ }
+}

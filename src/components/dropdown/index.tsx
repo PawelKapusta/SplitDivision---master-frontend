@@ -13,11 +13,13 @@ import { TDecodedJWTToken } from "../../types/jwt";
 import { getDecodedJWTToken } from "../../utils/jwt";
 import { fetchUser, selectUserState } from "@redux/slices/userSlice";
 import Spinner from "@components/spinner";
+import { useTranslation } from "react-i18next";
 
 const Dropdown = (): ReactElement => {
     const [isOpen, setIsOpen] = useState(false);
     const dispatch = useDispatch();
     const { isAuthenticated, token } = useSelector(selectAuthState);
+    const { t } = useTranslation();
     let decodedToken: TDecodedJWTToken, userId: string;
     if (isAuthenticated) {
         decodedToken = getDecodedJWTToken(token);
@@ -51,22 +53,33 @@ const Dropdown = (): ReactElement => {
             </DropdownToggle>
             {isOpen && (
                 <DropdownMenu>
-                    <a href="/profile">Profile</a>
-                    <a href="/groups">Groups</a>
-                    <a href="/bills">Bills</a>
-                    <a href="/statistics">Statistics</a>
+                    <a href="/profile">{t("components.dropdown.profile")}</a>
+                    <a href="/groups">{t("components.dropdown.groups")}</a>
+                    <a href="/bills">{t("components.dropdown.bills")}</a>
+                    <a href="/statistics">
+                        {t("components.dropdown.statistics")}
+                    </a>
                     {isLoading ? (
                         <Spinner isSmall />
                     ) : user && user?.is_admin ? (
                         <AdminLinks>
-                            <a href="/admin/users">All users</a>
-                            <a href="/admin/groups">All groups</a>
-                            <a href="/admin/bills">All bills</a>
-                            <a href="/admin/faq">Create FAQ</a>
+                            <a href="/admin/users">
+                                {t("components.dropdown.adminUsers")}
+                            </a>
+                            <a href="/admin/groups">
+                                {t("components.dropdown.adminGroups")}
+                            </a>
+                            <a href="/admin/bills">
+                                {t("components.dropdown.adminBills")}
+                            </a>
+                            <a href="/admin/faq">
+                                {t("components.dropdown.adminFaq")}
+                            </a>
                         </AdminLinks>
                     ) : null}
+                    <a href="/settings">{t("components.dropdown.settings")}</a>
                     <a href="" onClick={() => logout()}>
-                        Logout
+                        {t("components.dropdown.logout")}
                     </a>
                 </DropdownMenu>
             )}
