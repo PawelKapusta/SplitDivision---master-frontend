@@ -3,7 +3,6 @@ import { AppThunk } from "../store";
 import { HYDRATE } from "next-redux-wrapper";
 import { AppState } from "../store";
 import { AnyAction } from "@reduxjs/toolkit";
-import axios from "axios";
 import { Dispatch } from "redux";
 import authAxios from "../../api/axios/axios";
 import { Group, GroupFormData } from "../../types/group";
