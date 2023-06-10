@@ -1,419 +1,436 @@
 {
-  "screens":{
-    "home":{
-      "mainTitle":"Co to jest {{name}}",
-      "description":"To strona dla osób, które poszukują nowoczesnego sposobu na dzielenie pieniędzy między sobą. Tutaj możesz uregulować swój dług za pomocą waluty fiducjarnej i kryptowalutowej.",
-      "cardsTitle":"Jakie funkcje można znaleźć na naszej stronie internetowej?",
-      "cards":{
-        "freeAccount":"Załóż darmowe konto",
-        "settle":"Osiedlaj się w różnych walutach świata",
-        "crypto":"Możliwość rozliczenia w kryptowalutach",
-        "expenses":"Przejmij kontrolę nad swoimi wydatkami",
-        "stocks":"Podgląd giełdy papierów wartościowych",
-        "groupsAndBills":"Tworzenie grup i rachunków",
-        "statistics":"Zajrzyj do statystyk",
-        "comment":"Komentuj na rachunkach"
+  "screens": {
+    "home": {
+      "mainTitle": "Co jest w przypadku {{name}} } {\\displaystyle {0}} .",
+      "description": "Jest to strona internetowa dla osób, które szukają nowoczesnego sposobu rozszczepiania pieniędzy między sobą. Możesz spłacić zadłużenie przez fiat i kryptonim.",
+      "cardsTitle": "Co można znaleźć na stronie internetowej?",
+      "cards": {
+        "freeAccount": "Wolne konto",
+        "settle": "Szczegóły w różnych krajach świata",
+        "crypto": "Pozycja osadnictwa w kryptokurencjach",
+        "expenses": "Pozbawić się o swoje koszty.",
+        "stocks": "Stock exchange previews",
+        "groupsAndBills": "Grupy stworzenia i ustawy",
+        "statistics": "Zobaczmywanie statystyki",
+        "comment": "Wpis w twojej rachunku"
       }
     },
-    "calculator":{
-      "cryptoConverter":{
-        "title":"Konwerter kryptowalut",
-        "crypto":"Krypto",
-        "fiat":"Fiat",
-        "inputConvertingText":"Konwersji...",
-        "buttonText":"Nawrócić"
+    "success": {
+      "pending": {
+        "title": "Pokuty są karane.",
+        "description": "Przetwarzanie ciebie jest w drodze. Zaleca się, by czekać na potwierdzenie."
       },
-      "fiatConverter":{
-        "title":"Przelicznik walut",
-        "fiat":"Fiat",
-        "inputConvertingText":"Konwersji...",
-        "convertButton":"Nawrócić",
-        "swapButton":"Waluty swap"
+      "error": {
+        "title": "Recenzja biletu.",
+        "description": "Jego opłata została nieprawidłowo przetwarzana. W późniejszym czasie dochodzi do kolejnego:(...)"
+      },
+      "success": {
+        "title": "Recenzent naśladujący.",
+        "description": "Wykorzystuje swój zakup. Wypłata została przyjęta i wprowadzona bez żadnych problemów. Teraz będziesz przekierować."
       }
     },
-    "login":{
-      "title":"Badać",
-      "description":"Zaloguj się i ciesz się naszą platformą!"
-    },
-    "register":{
-      "title":"Badać",
-      "description":"Zarejestruj się i ciesz się naszą platformą!"
-    },
-    "faq":{
-      "title":"Najczęściej zadawane pytania"
-    },
-    "bills":{
-      "title":"Moje rachunki",
-      "noBillsText":"Nie masz żadnych rachunków. Przejdź do swoich grup",
-      "buttonText":"Kliknij tutaj!"
-    },
-    "groups":{
-      "title":"Moje grupy",
-      "noGroupsText":"Nie masz żadnych grup. Kliknij tutaj",
-      "buttonText":"Kliknij tutaj!"
-    },
-    "contact":{
-      "modal":{
-        "title":"OSTRZEŻENIE***",
-        "description":"Twoje konto zostało zablokowane z powodu Twojej aktywności w usłudze. Jeśli uważasz, że jest to niesprawiedliwa decyzja, skontaktuj się z naszym działem obsługi klienta za pośrednictwem tego formularza kontaktowego! Życzymy miłego dnia. Zespół Dywizji Split",
-        "buttonText":"OK, dziękuję za informacje"
+    "calculator": {
+      "cryptoConverter": {
+        "title": "Crypto Converter",
+        "crypto": "Crypto",
+        "fiat": "Fiat",
+        "inputConvertingText": "Przekształcenie.",
+        "buttonText": "Convert"
+      },
+      "fiatConverter": {
+        "title": "Currency Converter",
+        "fiat": "Fiat",
+        "inputConvertingText": "Przekształcenie.",
+        "convertButton": "Convert",
+        "swapButton": "kurort Swap"
       }
     },
-    "settings":{
-      "title":"Strona Ustawienia",
-      "chooseLanguageText":"Wybierz język strony",
-      "buyPremium":"Kup premię",
-      "buttonBuyText":"Kupić"
+    "login": {
+      "title": "Explore (ang.).",
+      "description": "Znajduje się na naszym platformie."
     },
-    "bill":{
-      "startDate":"Początek:",
-      "endDate":"Koniec:",
-      "debt":"Dług:",
-      "modal":{
-        "title":"Czy na pewno chcesz usunąć ten rachunek?",
-        "description":"Spowoduje to usunięcie wszystkich komentarzy i związanych z danymi rachunku!",
-        "buttonText":"Tak, proszę usunąć ten rachunek"
-      },
-      "billMembersTitle":"Członkowie Bill",
-      "labels":{
-        "username":"Nazwa użytkownika:",
-        "phone":"Telefon:",
-        "userBlocked":"Użytkownik został zablokowany!",
-        "contactUs":"Skontaktuj się z nami",
-        "debt":"Dług:",
-        "isRegulated":"jestRegulowane:"
-      },
-      "codeQrDownloadText":"Kliknij tutaj, aby pobrać QR"
+    "register": {
+      "title": "Explore (ang.).",
+      "description": "Znajduje się na naszym platformie."
     },
-    "group":{
-      "createBillButtonText":"Tworzenie rachunku",
-      "modal":{
-        "title":"Czy na pewno chcesz usunąć tę grupę?",
-        "description":"Spowoduje to usunięcie wszystkich rachunków i powiązanych z danymi grupy!",
-        "buttonText":"Tak, proszę usunąć tę grupę"
-      },
-      "groupMemberTitle":"Członkowie grupy",
-      "labels":{
-        "username":"Nazwa użytkownika:",
-        "phone":"Telefon:",
-        "userBlocked":"Użytkownik został zablokowany!",
-        "contactUs":"Skontaktuj się z nami",
-        "billsTitle":"Rachunki w tej grupie",
-        "noBillsText":"Grupa nie ma jeszcze żadnych rachunków. Utwórz rachunek."
+    "faq": {
+      "title": "Często kwestionowane pytania"
+    },
+    "bills": {
+      "title": "mój rachunek",
+      "noBillsText": "Nie posiadają żadnych ustaw. Zajmuje się tymi grupami.",
+      "buttonText": "Click here!"
+    },
+    "groups": {
+      "title": "Grupa My",
+      "noGroupsText": "Nie ma żadnych grup. proszę o kliknięcie!",
+      "buttonText": "Click here!"
+    },
+    "contact": {
+      "modal": {
+        "title": "WARNING (ang.).",
+        "description": "Jego relacja została zablokowana z powodu swojej działalności w służbie. Jeśli myślesz, że jest to niesprawiedliwa decyzja, zaspokoi naszą obsługę klientów poprzez tę formę kontaktową. Chcesz, że będziecie szczęśliwy dzień. Split Division",
+        "buttonText": "OK, dziękuję za informację."
       }
     },
-    "admin":{
-      "bills":{
-        "title":"Wszystkie rachunki",
-        "noBillsText":"Nie ma rachunków!"
+    "settings": {
+      "title": "Setting Page (ang.).",
+      "chooseLanguageText": "Strona internetowa",
+      "buyPremium": "Buy premium",
+      "buttonBuyText": "Buy",
+      "moreFeaturesText": "Dodano również kolejne możliwości wkrótce po dodaniu się.",
+      "messageForNotPremiumUsers": "Kiedy kupujesz subskrypcję, otrzymasz dostęp do zmiany języka w aplikacji: angielskiego, polskiego, francuskiego, niemieckiego, hiszpańskiego. Będziesz również miał dostęp do statystyk, map i innych funkcji premium, które wkrótce będą dostępne. Dla większej liczby informacji kontaktuje się z nami z formą kontaktową (pol.)."
+    },
+    "bill": {
+      "startDate": "Start:",
+      "endDate": "Koniec:",
+      "debt": "Debt:",
+      "modal": {
+        "title": "Czy chcesz usunąć ten projekt?",
+        "description": "Wynika to z wszystkich komentarzy i powiązanych z danymi ustaw.",
+        "buttonText": "usunąć ten projekt"
       },
-      "groups":{
-        "title":"Wszystkie grupy",
-        "noGroupsText":"Nie ma grup!"
+      "billMembersTitle": "członek Partii Billa",
+      "labels": {
+        "username": "Username:",
+        "phone": "Phone:",
+        "userBlocked": "User został zablokowany.",
+        "contactUs": "Kontakt nas.",
+        "debt": "Debt:",
+        "isRegulated": "Regulatek:"
       },
-      "users":{
-        "title":"Wszyscy użytkownicy",
-        "noUsersText":"Nie ma użytkowników!",
-        "modal":{
-          "admin":{
-            "remove":{
-              "title":"Czy na pewno chcesz usunąć rolę administratora dla tego użytkownika?",
-              "description":"Spowoduje to usunięcie wszystkich funkcji administratora w aplikacji!",
-              "textButton":"Tak proszę usunąć administratora tego użytkownika"
+      "codeQrDownloadText": "Click here to download"
+    },
+    "group": {
+      "createBillButtonText": "Utworzył projekt ustawy",
+      "modal": {
+        "title": "Czy chcesz usunąć tę grupę?",
+        "description": "Uwolnić wszystkie projekty i uakceptować dane z grupy.",
+        "buttonText": "usunąć tę grupę"
+      },
+      "groupMemberTitle": "członek grupy",
+      "labels": {
+        "username": "Username:",
+        "phone": "Phone:",
+        "userBlocked": "User został zablokowany.",
+        "contactUs": "Kontakt nas.",
+        "billsTitle": "Bills in this group",
+        "noBillsText": "Grupa nie posiada żadnych ustaw. Proszę stworzyć rachunek."
+      }
+    },
+    "admin": {
+      "bills": {
+        "title": "wszystkie ustawy",
+        "noBillsText": "Nie ma żadnych ustaw!"
+      },
+      "groups": {
+        "title": "grupa wszystkich grup",
+        "noGroupsText": "Nie ma grup."
+      },
+      "users": {
+        "title": "wszyscy użytkownicy",
+        "noUsersText": "Nie ma użytkowników!",
+        "modal": {
+          "admin": {
+            "remove": {
+              "title": "Czy chcesz usunąć rolę administratora dla tego użytkownika?",
+              "description": "Pozwoliło to na usunięcie wszystkich funkcji administratora w aplikacji.",
+              "textButton": "Czy usunąć administratora?"
             },
-            "add":{
-              "title":"Czy na pewno chcesz dodać rolę administratora do tego użytkownika?",
-              "description":"To doda użytkownikowi wszystkie funkcjonalności w aplikacji!",
-              "textButton":"Tak proszę dodać administratora tego użytkownika"
+            "add": {
+              "title": "Czy chcesz dodać się do roli administratora?",
+              "description": "Dostarczy to do wszystkich funkcjonalności w aplikacji.",
+              "textButton": "Wystarczymy do tego, że administrator ten jest odpowiedzialny za ten system."
             }
           },
-          "block":{
-            "remove":{
-              "title":"Czy na pewno chcesz odblokować tego użytkownika?",
-              "description":"To zwróci wszystkie funkcje temu użytkownikowi!",
-              "textButton":"Tak, odblokuj tego użytkownika"
+          "block": {
+            "remove": {
+              "title": "Czy chcesz, aby ten użytkownik nie mógł zablokować?",
+              "description": "Pozwoli to na powrót wszystkich funkcji do tego użytkownika.",
+              "textButton": "Nie zablokuje tego użytkownika."
             },
-            "add":{
-              "title":"Czy na pewno chcesz zablokować tego użytkownika?",
-              "description":"Spowoduje to zablokowanie użytkownika w aplikacji!",
-              "textButton":"Tak, proszę zablokować tego użytkownika"
+            "add": {
+              "title": "Czy chcesz zablokować ten użytkownik?",
+              "description": "To będzieblokować użytkownika w aplikacji.",
+              "textButton": "Niech będziemy tak sprostać temu użytkownikowi."
             }
           },
-          "delete":{
-            "title":"Czy na pewno chcesz usunąć tego użytkownika?",
-            "description":"Spowoduje to usunięcie wszystkich grup i powiązanych z danymi użytkownika!",
-            "buttonText":"Tak, proszę usunąć tego użytkownika"
+          "delete": {
+            "title": "Czy chcesz usunąć ten użytkownik?",
+            "description": "Uwolnić wszystkie grupy i podłączają się do danych użytkownika.",
+            "buttonText": "usunąć ten użytkownik"
           }
         },
-        "labels":{
-          "firstName":"Imię:",
-          "lastName":"Nazwisko:",
-          "username":"Nazwa użytkownika:",
-          "email":"E-mail:",
-          "phone":"Telefon:",
-          "gender":"Płeć:",
-          "birthDate":"Data urodzenia:",
-          "service":"Usługa:",
-          "isAdmin":"Jest adminem:",
-          "isBlocked":"Jest zablokowany:"
+        "labels": {
+          "firstName": "Pierwsza nazwa:",
+          "lastName": "Nazwisko:",
+          "username": "Username:",
+          "email": "Email: email:",
+          "phone": "Phone:",
+          "gender": "Gender:",
+          "birthDate": "Birth Date (ang.).",
+          "service": ": usługa:",
+          "isAdmin": "Jest adminem.",
+          "isBlocked": "Niech będzie blokować:"
         },
-        "buttons":{
-          "admin":{
-            "remove":"Usuń administratora",
-            "add":"Uczyń administratora"
+        "buttons": {
+          "admin": {
+            "remove": "Remove Admin",
+            "add": "Admin"
           },
-          "block":{
-            "remove":"Odblokować",
-            "add":"Blok"
+          "block": {
+            "remove": "Unblock",
+            "add": "Block"
           },
-          "delete":"Usunąć"
+          "delete": "Delete"
         }
       }
     }
   },
-  "components":{
-    "alert":{
-      "messages":{
-        "successDeleteBill":"Pomyślnie usunięty rachunek",
-        "successDeleteGroup":"Grupa została pomyślnie usunięta",
-        "successDeleteUser":"Pomyślnie usunięty użytkownik",
-        "successCreateBill":"Pomyślnie utworzono rachunek",
-        "successCreateGroup":"Pomyślnie utworzono grupę",
-        "successCreateUser":"Pomyślnie utworzone konto",
-        "noEnoughPeopleError":"Wybierz co najmniej 2 osoby",
-        "successSentEmailToAdministrator":"Pomyślnie wysłano wiadomość e-mail do administratora",
-        "errorSentEmailToAdministrator":"Wiadomość e-mail nie została wysłana",
-        "successUpdateUser":"Pomyślnie zaktualizowany użytkownik"
+  "components": {
+    "alert": {
+      "messages": {
+        "successDeleteBill": "Sukcesowo usunął projekt ustawy",
+        "successDeleteGroup": "Sukcesowo usunąć grupę",
+        "successDeleteUser": "Sukcesowo usunął użytkownikowi.",
+        "successCreateBill": "Sukcesowo stworzyło projekt ustawy.",
+        "successCreateGroup": "Sukcesowo stworzył grupę.",
+        "successCreateUser": "Sukces",
+        "noEnoughPeopleError": "Wybranie przynajmniej 2 osób.",
+        "successSentEmailToAdministrator": "e-mail do administratora",
+        "errorSentEmailToAdministrator": "Email nie wysyłał poczty.",
+        "successUpdateUser": "Sukcesowo aktualizowany użytkownik"
       }
     },
-    "billForm":{
-      "errors":{
-        "evenlyMoreError":"Podzieliłeś więcej pieniędzy między użytkowników niż jest dług dany",
-        "evenlyLessError":"Podzieliłeś mniej pieniędzy między użytkowników niż jest dług dany"
+    "billForm": {
+      "errors": {
+        "evenlyMoreError": "Podzielenie pieniędzy między użytkownikami, niż zadłużenie, jest zadłużone.",
+        "evenlyLessError": "Podzieliło się na nie mniej pieniędzy między użytkownikami niż zadłużenie."
       },
-      "title":"Tworzenie rachunku",
-      "inputs":{
-        "name":{
-          "name":"Nazwa rachunku",
-          "nameRequired":"Wymagany jest rachunek za imię i nazwisko"
+      "title": "Utworzył projekt ustawy",
+      "inputs": {
+        "name": {
+          "name": "Nazwę Bill",
+          "nameRequired": "Wymuszanie przepisów nazw"
         },
-        "description":{
-          "name":"Opis rachunku",
-          "nameRequired":"Opis rachunku jest wymagany"
+        "description": {
+          "name": "Opis Billa",
+          "nameRequired": "Wymagane jest opisy Billa."
         },
-        "debt":{
-          "name":"Dług",
-          "nameRequired":"Dług jest wymagany"
+        "debt": {
+          "name": "Debt",
+          "nameRequired": "wymagana jest Debta."
         }
       },
-      "dateStart":"Data rozpoczęcia:",
-      "dateEnd":"Data zakończenia:",
-      "fiat":"Fiat",
-      "crypto":"Kryptowaluta",
-      "select":{
-        "label":"Wybierz użytkowników"
+      "dateStart": "Początek:",
+      "dateEnd": "Koniec:",
+      "fiat": "Fiat",
+      "crypto": "Cryptocurrency",
+      "select": {
+        "label": "użytkownik języka"
       },
-      "debtEvenlyCheckbox":"Podzielić równo dług?",
-      "createButton":{
-        "text":"Tworzenie rachunku",
-        "loadingButton":"Ładowania..."
+      "debtEvenlyCheckbox": "Rozwijanie się nawet zadłużenia.",
+      "createButton": {
+        "text": "Utworzył projekt ustawy",
+        "loadingButton": "Loading."
       }
     },
-    "groupForm":{
-      "title":"Tworzenie grupy",
-      "inputs":{
-        "name":{
-          "name":"Nazwa grupy",
-          "nameRequired":"Grupa nazw jest wymagana"
+    "groupForm": {
+      "title": "Tworzenie grupy.",
+      "inputs": {
+        "name": {
+          "name": "nazwa",
+          "nameRequired": "Grupa instrumentalna"
         },
-        "description":{
-          "name":"Opis grupy",
-          "nameRequired":"Opis grupy jest wymagany"
+        "description": {
+          "name": "opis grupy",
+          "nameRequired": "Wymaganie opisu grupowego"
         }
       },
-      "select":{
-        "label":"Wybierz użytkowników"
+      "select": {
+        "label": "użytkownik języka"
       },
-      "createButton":{
-        "text":"Tworzenie grupy",
-        "loadingButton":"Ładowania..."
+      "createButton": {
+        "text": "Tworzenie grupy.",
+        "loadingButton": "Loading."
       }
     },
-    "loginForm":{
-      "inputs":{
-        "email":{
-          "name":"E-mail",
-          "nameRequired":"E-mail jest wymagany"
+    "loginForm": {
+      "inputs": {
+        "email": {
+          "name": "Email",
+          "nameRequired": "W razie potrzeby wymagana jest emaila."
         },
-        "password":{
-          "name":"Hasło",
-          "nameRequired":"Hasło jest wymagane"
+        "password": {
+          "name": "Password",
+          "nameRequired": "hasło jest wymagane"
         }
       },
-      "loginButton":{
-        "text":"Login",
-        "loadingButton":"Ładowania..."
+      "loginButton": {
+        "text": "Logina",
+        "loadingButton": "Loading."
       },
-      "textToRegister":{
-        "text":"Nie masz jeszcze konta?",
-        "linkText":"Zarejestruj się"
+      "textToRegister": {
+        "text": "Nie ma jeszcze żadnych informacji.",
+        "linkText": "Sign Up (ang.)."
       }
     },
-    "registerForm":{
-      "inputs":{
-        "password":{
-          "name":"Hasło",
-          "nameRequired":"Hasło jest wymagane"
+    "registerForm": {
+      "inputs": {
+        "password": {
+          "name": "Password",
+          "nameRequired": "hasło jest wymagane"
         },
-        "confirmPassword":{
-          "name":"Potwierdź hasło",
-          "nameRequired":"Potwierdź hasło jest wymagane"
+        "confirmPassword": {
+          "name": "Confirm password",
+          "nameRequired": "Nakazuje się, że hasło jest wymagane."
         }
       },
-      "registerButton":{
-        "text":"Rejestrować",
-        "loadingButton":"Ładowania..."
+      "registerButton": {
+        "text": "Rejestr",
+        "loadingButton": "Loading."
       },
-      "textToLogin":{
-        "text":"Masz już konto?",
-        "linkText":"Rejestrowanie"
+      "textToLogin": {
+        "text": "Czytanie to jeszcze?",
+        "linkText": "Sign In"
       }
     },
-    "profileForm":{
-      "inputs":{
-        "firstName":{
-          "name":"Imię",
-          "nameRequired":"Imię jest wymagane"
+    "profileForm": {
+      "inputs": {
+        "firstName": {
+          "name": "imię pierwsze",
+          "nameRequired": "wymagana jest nazwa pierwszej nazwy."
         },
-        "lastName":{
-          "name":"Nazwisko",
-          "nameRequired":"Nazwisko jest wymagane"
+        "lastName": {
+          "name": "Nazwa",
+          "nameRequired": "Wymagana jest ostatnia nazwa."
         },
-        "username":{
-          "name":"Nazwa użytkownika",
-          "nameRequired":"Nazwa użytkownika jest wymagana"
+        "username": {
+          "name": "Username",
+          "nameRequired": "Nazwy użytkowników wymaga się od użytkowników"
         },
-        "email":{
-          "name":"E-mail",
-          "nameRequired":"E-mail jest wymagany"
+        "email": {
+          "name": "Email",
+          "nameRequired": "W razie potrzeby wymagana jest emaila."
         },
-        "phone":{
-          "name":"Telefon",
-          "nameRequired":"Wymagany jest telefon"
+        "phone": {
+          "name": "Phone",
+          "nameRequired": "W razie potrzeby potrzebuje Phone."
         }
       },
-      "select":{
-        "title":"Wybierz płeć",
-        "male":"Mężczyzna",
-        "female":"Kobieta",
-        "other":"Inny"
+      "select": {
+        "title": "Gendera",
+        "male": "Male",
+        "female": "żeński",
+        "other": "Inny inny"
       },
-      "birthDate":"Data urodzenia:",
-      "createButton":{
-        "text":"Aktualizowanie profilu",
-        "loadingButton":"Ładowania..."
+      "birthDate": "Data urodzenia:",
+      "createButton": {
+        "text": "profil aktualny",
+        "loadingButton": "Loading."
       }
     },
-    "contactForm":{
-      "title":"Kontakt z administratorem",
-      "topic":"Temat:",
-      "description":"Opis:",
-      "button":{
-        "text":"Wyślij",
-        "loadingText":"Ładowania..."
+    "contactForm": {
+      "title": "Kontakt z administratorem",
+      "topic": "Topic:",
+      "description": "Opis:",
+      "button": {
+        "text": "Send",
+        "loadingText": "Loading."
       }
     },
-    "billCard":{
-      "dateCreated":"Utworzono:",
-      "dateEnd":"Kończy się:",
-      "deleteButton":"Usunąć",
-      "goButton":"Iść"
+    "billCard": {
+      "dateCreated": "Stworzenie:",
+      "dateEnd": "Koniec:",
+      "deleteButton": "Delete",
+      "goButton": "Go"
     },
-    "groupCard":{
-      "dateCreated":"Utworzono:",
-      "deleteButton":"Usunąć",
-      "goButton":"Iść"
+    "groupCard": {
+      "dateCreated": "Stworzenie:",
+      "deleteButton": "Delete",
+      "goButton": "Go"
     },
-    "modal":{
-      "adminDeleteBill":{
-        "title":"Czy na pewno chcesz usunąć ten rachunek?",
-        "description":"Spowoduje to usunięcie wszystkich komentarzy i związanych z danymi rachunku!",
-        "deleteButtonText":"Tak, proszę usunąć ten rachunek"
+    "modal": {
+      "adminDeleteBill": {
+        "title": "Czy chcesz usunąć ten projekt?",
+        "description": "Wynika to z wszystkich komentarzy i powiązanych z danymi ustaw.",
+        "deleteButtonText": "usunąć ten projekt"
       },
-      "adminDeleteGroup":{
-        "title":"Czy na pewno chcesz usunąć tę grupę?",
-        "description":"Jego usunie wszystkie rachunki i związane z grupą dane!",
-        "deleteButtonText":"Tak, proszę usunąć tę grupę"
+      "adminDeleteGroup": {
+        "title": "Czy chcesz usunąć tę grupę?",
+        "description": "Zwolnił wszystkie projekty i wiązał się z danymi grupowymi.",
+        "deleteButtonText": "usunąć tę grupę"
       }
     },
-    "commentsCard":{
-      "title":"Komentarze",
-      "addCommentButton":{
-        "text":"Dodaj komentarz",
-        "textLoading":"Ładowania..."
+    "commentsCard": {
+      "title": "Kompozycja",
+      "addCommentButton": {
+        "text": "komentarz",
+        "textLoading": "Loading."
       },
-      "buttons":{
-        "save":"Zapisać",
-        "cancel":"Anuluj",
-        "like":"Lubić",
-        "dislike":"Niechęć",
-        "edit":"Redagować",
-        "reply":"Odpowiedź",
-        "addReply":"Dodaj odpowiedź",
-        "cancelReply":"Anuluj odpowiadanie"
+      "buttons": {
+        "save": "Save",
+        "cancel": "Cancel",
+        "like": "jak",
+        "dislike": "Dyskusja",
+        "edit": "Edyta",
+        "reply": "reprezentatywnie",
+        "addReply": "Ad odpowiada.",
+        "cancelReply": "Cancel"
       },
-      "noRepliesText":"Brak odpowiedzi"
+      "noRepliesText": "żadna z nich nie zawiera"
     },
-    "header":{
-      "links":{
-        "createGroup":"Utwórz grupę",
-        "contact":"Kontakt",
-        "converter":"Przelicznik walut",
-        "faq":"FAQ",
-        "login":"Login"
+    "header": {
+      "links": {
+        "createGroup": "Grupa Twórcza",
+        "contact": "Kontakt",
+        "converter": "konwerter",
+        "faq": "FAQ",
+        "login": "Logina"
       }
     },
-    "dropdown":{
-      "profile":"Profil",
-      "groups":"Grupy",
-      "bills":"Rachunki",
-      "statistics":"Statystyka",
-      "adminUsers":"Wszyscy użytkownicy",
-      "adminGroups":"Wszystkie grupy",
-      "adminBills":"Wszystkie rachunki",
-      "adminFaq":"Utwórz FAQ",
-      "settings":"Ustawienia",
-      "logout":"Wyloguj"
+    "dropdown": {
+      "profile": "Profil",
+      "groups": "Grupa",
+      "bills": "Bill",
+      "statistics": "Statystyki",
+      "charts": "Charts",
+      "adminUsers": "wszyscy użytkownicy",
+      "adminGroups": "grupa wszystkich grup",
+      "adminBills": "wszystkie ustawy",
+      "adminFaq": "Stworzenie FAQ",
+      "settings": "Setting",
+      "logout": "Logos"
     },
-    "layout":{
-      "backButtonText":"Wstecz"
+    "layout": {
+      "backButtonText": "Back"
     },
-    "footer":{
-      "aboutUs":{
-        "title":"O nas",
-        "careers":"Kariery",
-        "investors":"Inwestorów",
-        "blog":"Blog firmowy"
+    "footer": {
+      "aboutUs": {
+        "title": "About Us (ang.).",
+        "careers": "Career",
+        "investors": "Inwestor",
+        "blog": "Blog"
       },
-      "topCities":{
-        "title":"Najpopularniejsze miasta",
-        "cracow":"Kraków",
-        "sanDiego":"San Diego",
-        "london":"Londyn",
-        "chicago":"Chicago"
+      "topCities": {
+        "title": "Top Cities",
+        "cracow": "Kraków",
+        "sanDiego": "San Diego",
+        "london": "Londyn",
+        "chicago": "Chicago"
       },
-      "services":{
-        "title":"Usługi",
-        "development":"Rozwój",
-        "stage":"Scena",
-        "production":"Produkcja"
+      "services": {
+        "title": "Usługa",
+        "development": "Development",
+        "stage": "sesja",
+        "production": "Production"
       },
-      "social":{
-        "title":"Społeczny",
-        "instagram":"{{instagram}}",
-        "twitter":"{{twitter}}",
-        "facebook":"{{facebook}}",
-        "linkedin":"{{linkedin}}"
+      "social": {
+        "title": "socjalna",
+        "instagram": "{{instagram}}",
+        "twitter": "{{twitter}}",
+        "facebook": "{{facebook}}",
+        "linkedin": "{{linkedin}}"
       }
     }
   }
