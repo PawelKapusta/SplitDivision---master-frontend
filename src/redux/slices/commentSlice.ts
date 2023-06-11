@@ -1,8 +1,6 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { AppThunk } from "../store";
+import { AnyAction, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { AppState, AppThunk } from "../store";
 import { HYDRATE } from "next-redux-wrapper";
-import { AppState } from "../store";
-import { AnyAction } from "@reduxjs/toolkit";
 import { Dispatch } from "redux";
 import authAxios from "../../api/axios/axios";
 import {
@@ -23,7 +21,9 @@ interface CommentState {
     billCommentsSuccess: boolean;
     isCreateCommentLoading: boolean;
     isCreateSubcommentLoading: boolean;
+    isDeleteSubcommentLoading: boolean;
     isSubcommentUpdateLoading: boolean;
+    isDeleteCommentLoading: boolean;
     billSubcommentsSuccess: boolean;
     deleteCommentSuccess: boolean;
     createCommentSuccess: boolean;
@@ -38,8 +38,10 @@ const initialState: CommentState = {
     isLoading: false,
     isUpdateLoading: false,
     isCreateCommentLoading: false,
+    isDeleteSubcommentLoading: false,
     isCreateSubcommentLoading: false,
     isSubcommentUpdateLoading: false,
+    isDeleteCommentLoading: false,
     error: null,
     success: false,
     billCommentsSuccess: false,
@@ -152,21 +154,39 @@ const commentSlice = createSlice({
         },
 
         deleteCommentStart(state) {
-            state.isLoading = true;
+            state.isDeleteCommentLoading = true;
             state.error = null;
         },
         deleteCommentSuccess(state, action: PayloadAction<string>) {
             state.comments = state.comments.filter(
                 (u) => u.id !== action.payload,
             );
-            state.isLoading = false;
+            state.isDeleteCommentLoading = false;
             state.deleteCommentSuccess = true;
         },
         deleteCommentFailure(state, action: PayloadAction<string>) {
-            state.isLoading = false;
+            state.isDeleteCommentLoading = false;
             state.error = action.payload;
             state.deleteCommentSuccess = false;
         },
+
+        deleteSubcommentStart(state) {
+            state.isDeleteSubcommentLoading = true;
+            state.error = null;
+        },
+        deleteSubcommentSuccess(state, action: PayloadAction<string>) {
+            state.comments = state.comments.filter(
+                (u) => u.id !== action.payload,
+            );
+            state.isDeleteSubcommentLoading = false;
+            state.deleteSubcommentSuccess = true;
+        },
+        deleteSubcommentFailure(state, action: PayloadAction<string>) {
+            state.isDeleteSubcommentLoading = false;
+            state.error = action.payload;
+            state.deleteSubcommentSuccess = false;
+        },
+
         commentError: (state, action: PayloadAction<string>) => {
             console.log("auth state", state);
             console.log("auth eroror", state.error);
@@ -211,6 +231,9 @@ export const {
     deleteCommentStart,
     deleteCommentSuccess,
     deleteCommentFailure,
+    deleteSubcommentStart,
+    deleteSubcommentSuccess,
+    deleteSubcommentFailure,
     commentError,
 } = commentSlice.actions;
 
@@ -317,6 +340,20 @@ export const deleteComment =
             dispatch(deleteCommentSuccess(id));
         } catch (error) {
             dispatch(deleteCommentFailure(error as string));
+        }
+    };
+
+export const deleteSubcomment =
+    (id: string): AppThunk =>
+    async (dispatch: Dispatch) => {
+        try {
+            dispatch(deleteSubcommentStart());
+            await authAxios.delete(
+                `${process.env.NEXT_PUBLIC_API_GATEWAY_URL}/subcomments/${id}`,
+            );
+            dispatch(deleteSubcommentSuccess(id));
+        } catch (error) {
+            dispatch(deleteSubcommentFailure(error as string));
         }
     };
 

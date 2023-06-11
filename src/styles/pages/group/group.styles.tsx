@@ -233,10 +233,12 @@ export const DeleteGroupButton = styled.div`
     background-color: #cb2d3e;
     border-radius: 30px;
     padding: 5px;
+    height: 40px;
 
     img {
         background-color: #cb2d3e;
         border-radius: 30px;
+        height: 100%;
     }
 
     &:hover {

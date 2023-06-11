@@ -94,6 +94,8 @@ const Bill: NextPage = () => {
         createCommentSuccess,
         createSubcommentSuccess,
         updateSubcommentSuccess,
+        deleteSubcommentSuccess,
+        isDeleteCommentLoading,
     } = useSelector(selectCommentState);
     let decodedToken: TDecodedJWTToken, userId: string;
     if (isAuthenticated) {
@@ -140,6 +142,8 @@ const Bill: NextPage = () => {
         createCommentSuccess,
         createSubcommentSuccess,
         updateSubcommentSuccess,
+        deleteSubcommentSuccess,
+        deleteSubcommentSuccess,
     ]);
 
     const handleDeleteBillOpenModal = () => {
@@ -541,7 +545,7 @@ const Bill: NextPage = () => {
                             </a>
                         </CodeQrDownloadLink>
                     ) : null}
-                    {isLoading || commentsLoading ? (
+                    {isLoading || commentsLoading || isDeleteCommentLoading ? (
                         <Spinner isSmall />
                     ) : (
                         <CommentsCard billId={billId as string} />

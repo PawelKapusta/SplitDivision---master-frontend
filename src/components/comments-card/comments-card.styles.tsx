@@ -101,7 +101,7 @@ export const CommentCardContentText = styled.div`
     padding: 20px;
 `;
 
-export const CommentCardContentButtons = styled.div`
+export const CommentCardContentButtons = styled.div<{ isComment?: boolean }>`
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -139,8 +139,21 @@ export const CommentCardContentButtons = styled.div`
     }
 
     button:nth-child(4) {
-        background-color: ${({ theme }) => theme.palette.gold};
-        width: 100px;
+        background-color: ${({ isComment, theme }) =>
+            isComment ? theme.palette.gold : "red"};
+        width: ${({ isComment }) => (isComment ? "100px" : "")};
+
+        img {
+            background-color: red;
+        }
+    }
+
+    button:nth-child(5) {
+        background-color: ${({ isComment }) => (isComment ? "red" : "")};
+
+        img {
+            background-color: red;
+        }
     }
 `;
 

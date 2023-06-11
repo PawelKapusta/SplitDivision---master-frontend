@@ -8,6 +8,8 @@ import {
 import {
     createComment,
     createSubcomment,
+    deleteComment,
+    deleteSubcomment,
     selectCommentState,
     updateComment,
     updateSubcomment,
@@ -46,10 +48,10 @@ const CommentsCard = ({ billId }: TCommentsCardProps): ReactElement => {
         isLoading,
         billComments,
         isCreateCommentLoading,
-        createCommentSuccess,
         isUpdateLoading,
         createSubcommentSuccess,
-        updateSubcommentSuccess,
+        isDeleteCommentLoading,
+        isDeleteSubcommentLoading,
     } = useSelector(selectCommentState);
     const { isLoading: usersLoading, users } = useSelector(selectUserState);
     const { t } = useTranslation();
@@ -82,6 +84,7 @@ const CommentsCard = ({ billId }: TCommentsCardProps): ReactElement => {
     const [subcommentEditId, setSubcommentEditId] = useState<string | null>(
         null,
     );
+    const [key, setKey] = useState(0);
     const addCommentClick = () => {
         if (newCommentContent.trim() !== "") {
             const newCommentData: CommentFormData = {
@@ -287,9 +290,22 @@ const CommentsCard = ({ billId }: TCommentsCardProps): ReactElement => {
         );
     };
 
+    const handleDeleteComment = (id: string) => {
+        dispatch(deleteComment(id));
+        setKey((prev) => prev + 1);
+    };
+
+    const handleDeleteSubcomment = (id: string) => {
+        dispatch(deleteSubcomment(id));
+    };
+
     return (
-        <CommentsCardBox>
-            {isCreateCommentLoading && isUpdateLoading && usersLoading ? (
+        <CommentsCardBox key={key}>
+            {isCreateCommentLoading &&
+            isUpdateLoading &&
+            isDeleteCommentLoading &&
+            isDeleteSubcommentLoading &&
+            usersLoading ? (
                 <Spinner isSmall />
             ) : (
                 <CommentsCardBox>
@@ -309,6 +325,8 @@ const CommentsCard = ({ billId }: TCommentsCardProps): ReactElement => {
                     </CreateCommentButton>
                     {!isLoading &&
                         !usersLoading &&
+                        !isDeleteCommentLoading &&
+                        !isDeleteSubcommentLoading &&
                         allComments?.map((comment: Comment) => (
                             <CommentCard key={comment.id}>
                                 {commentEditId === comment.id ? (
@@ -361,7 +379,7 @@ const CommentsCard = ({ billId }: TCommentsCardProps): ReactElement => {
                                         <CommentCardContentText>
                                             <p>{comment.content}</p>{" "}
                                         </CommentCardContentText>
-                                        <CommentCardContentButtons>
+                                        <CommentCardContentButtons isComment>
                                             <button
                                                 onClick={() =>
                                                     handleLikeCommentClick(
@@ -386,17 +404,21 @@ const CommentsCard = ({ billId }: TCommentsCardProps): ReactElement => {
                                                 )}{" "}
                                                 ({comment.dislikes_number})
                                             </button>
-                                            <button
-                                                onClick={() =>
-                                                    handleEditComment(
-                                                        comment.id,
-                                                    )
-                                                }
-                                            >
-                                                {t(
-                                                    "components.commentsCard.buttons.edit",
+                                            {comment &&
+                                                comment?.owner_id ===
+                                                    userId && (
+                                                    <button
+                                                        onClick={() =>
+                                                            handleEditComment(
+                                                                comment.id,
+                                                            )
+                                                        }
+                                                    >
+                                                        {t(
+                                                            "components.commentsCard.buttons.edit",
+                                                        )}
+                                                    </button>
                                                 )}
-                                            </button>
                                             <button
                                                 onClick={() =>
                                                     setCommentReplyId(
@@ -408,6 +430,24 @@ const CommentsCard = ({ billId }: TCommentsCardProps): ReactElement => {
                                                     "components.commentsCard.buttons.reply",
                                                 )}
                                             </button>
+                                            {comment &&
+                                                comment?.owner_id ===
+                                                    userId && (
+                                                    <button
+                                                        onClick={() =>
+                                                            handleDeleteComment(
+                                                                comment?.id,
+                                                            )
+                                                        }
+                                                    >
+                                                        <Image
+                                                            src="/icons/delete_icon_white.svg"
+                                                            width={30}
+                                                            height={30}
+                                                            alt="Delete-icon.svg"
+                                                        />
+                                                    </button>
+                                                )}
                                         </CommentCardContentButtons>
                                     </CommentCardContent>
                                 )}
@@ -551,17 +591,43 @@ const CommentsCard = ({ billId }: TCommentsCardProps): ReactElement => {
                                                                     }
                                                                     )
                                                                 </button>
-                                                                <button
-                                                                    onClick={() =>
-                                                                        handleEditSubcomment(
-                                                                            subcomment?.id,
-                                                                        )
-                                                                    }
-                                                                >
-                                                                    {t(
-                                                                        "components.commentsCard.buttons.edit",
+                                                                {subcomment &&
+                                                                    subcomment?.owner_id ===
+                                                                        userId && (
+                                                                        <button
+                                                                            onClick={() =>
+                                                                                handleEditSubcomment(
+                                                                                    subcomment?.id,
+                                                                                )
+                                                                            }
+                                                                        >
+                                                                            {t(
+                                                                                "components.commentsCard.buttons.edit",
+                                                                            )}
+                                                                        </button>
                                                                     )}
-                                                                </button>
+                                                                {subcomment &&
+                                                                    subcomment?.owner_id ===
+                                                                        userId && (
+                                                                        <button
+                                                                            onClick={() =>
+                                                                                handleDeleteSubcomment(
+                                                                                    subcomment?.id,
+                                                                                )
+                                                                            }
+                                                                        >
+                                                                            <Image
+                                                                                src="/icons/delete_icon_white.svg"
+                                                                                width={
+                                                                                    30
+                                                                                }
+                                                                                height={
+                                                                                    30
+                                                                                }
+                                                                                alt="Delete-icon.svg"
+                                                                            />
+                                                                        </button>
+                                                                    )}
                                                             </CommentCardContentButtons>
                                                         </CommentCardContent>
                                                     )}
