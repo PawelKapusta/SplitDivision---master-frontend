@@ -54,6 +54,7 @@ export const BillCardTitle = styled.div`
         img {
             margin-right: 15px;
         }
+
         display: flex;
         justify-content: center;
         align-items: center;
@@ -61,6 +62,7 @@ export const BillCardTitle = styled.div`
         text-align: center;
         margin-top: 20px;
     }
+
     & * {
         background-color: ${({ theme }) => theme.palette.gold};
     }
@@ -150,6 +152,7 @@ export const BillTotal = styled.div`
         margin: 5px;
         text-align: center;
         font-weight: bold;
+
         & > * {
             background-color: ${({ theme }) => theme.palette.gold};
         }
@@ -182,5 +185,24 @@ export const CodeQrDownloadLink = styled.div`
 
     &:hover {
         color: ${({ theme }) => theme.palette.white};
+    }
+`;
+
+export const RegulateSpan = styled.span`
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+`;
+
+export const RegulateButton = styled.button`
+    display: flex;
+    background-color: dodgerblue;
+    border: 1px solid dodgerblue;
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 20px;
+
+    &:hover {
+        background-color: 0 5px 10px 0 ${({ theme }) => theme.palette.white};
     }
 `;

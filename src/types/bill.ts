@@ -21,6 +21,11 @@ export interface BillsUsers {
     bill_id: string;
 }
 
+export interface BillsUsersUpdateData {
+    bill_id: string;
+    user_id: string;
+}
+
 export interface BillUsersDebt {
     id: string;
     debt: number;

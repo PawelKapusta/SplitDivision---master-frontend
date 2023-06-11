@@ -1,28 +1,34 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { AppThunk } from "../store";
+import { AnyAction, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { AppState, AppThunk } from "../store";
 import { HYDRATE } from "next-redux-wrapper";
-import { AppState } from "../store";
-import { AnyAction } from "@reduxjs/toolkit";
 import { Dispatch } from "redux";
 import authAxios from "../../api/axios/axios";
-import { Bill } from "../../types/bill";
+import {
+    Bill,
+    BillFormData,
+    BillsUsers,
+    BillsUsersUpdateData,
+} from "../../types/bill";
 import { User } from "next-auth";
-import { BillFormData } from "../../types/bill";
 
 interface BillState {
     bills: Bill[];
     userBills: Bill[];
     groupBills: Bill[];
     billUsers: User[];
+    bills_users: BillsUsers[];
     bill: Bill | null;
     isLoading: boolean;
-    error: string | null;
+    isLoadingBillsUsersLoading: boolean;
     success: boolean;
     createBillSuccess: boolean;
+    billsUsersSuccess: boolean;
     userBillsSuccess: boolean;
     groupBillsSuccess: boolean;
     billUsersSuccess: boolean;
     deleteBillSuccess: boolean;
+    error: string | null;
+    billsUsersError: string | null;
 }
 
 const initialState: BillState = {
@@ -30,15 +36,19 @@ const initialState: BillState = {
     userBills: [],
     groupBills: [],
     billUsers: [],
+    bills_users: [],
     bill: null,
     isLoading: false,
-    error: null,
+    isLoadingBillsUsersLoading: false,
     success: false,
     userBillsSuccess: false,
+    billsUsersSuccess: false,
     createBillSuccess: false,
     groupBillsSuccess: false,
     billUsersSuccess: false,
     deleteBillSuccess: false,
+    error: null,
+    billsUsersError: null,
 };
 
 const billSlice = createSlice({
@@ -151,6 +161,25 @@ const billSlice = createSlice({
             state.success = false;
         },
 
+        updateBillsUsersStart(state) {
+            state.isLoadingBillsUsersLoading = true;
+            state.billsUsersError = null;
+            state.billsUsersSuccess = false;
+        },
+        updateBillsUsersSuccess(state, action: PayloadAction<BillsUsers>) {
+            const index = state.bills_users.findIndex(
+                (u) => u.id === action.payload.id,
+            );
+            state.bills_users[index] = action.payload;
+            state.isLoadingBillsUsersLoading = false;
+            state.billsUsersSuccess = true;
+        },
+        updateBillsUsersFailure(state, action: PayloadAction<string>) {
+            state.isLoadingBillsUsersLoading = false;
+            state.billsUsersError = action.payload;
+            state.billsUsersSuccess = false;
+        },
+
         deleteBillStart(state) {
             state.isLoading = true;
             state.error = null;
@@ -210,6 +239,9 @@ export const {
     updateBillStart,
     updateBillSuccess,
     updateBillFailure,
+    updateBillsUsersStart,
+    updateBillsUsersSuccess,
+    updateBillsUsersFailure,
     deleteBillStart,
     deleteBillSuccess,
     deleteBillFailure,
@@ -323,6 +355,22 @@ export const updateBill =
             dispatch(updateBillSuccess(data));
         } catch (error) {
             dispatch(updateBillFailure(error as string));
+        }
+    };
+
+export const updateBillsUsers =
+    (id: string, bills_users: BillsUsersUpdateData): AppThunk =>
+    async (dispatch: Dispatch) => {
+        try {
+            dispatch(updateBillsUsersStart());
+            const response = await authAxios.put(
+                `${process.env.NEXT_PUBLIC_API_GATEWAY_URL}/bills/user/${id}`,
+                bills_users,
+            );
+            const data = response.data;
+            dispatch(updateBillsUsersSuccess(data));
+        } catch (error) {
+            dispatch(updateBillsUsersFailure(error as string));
         }
     };
 

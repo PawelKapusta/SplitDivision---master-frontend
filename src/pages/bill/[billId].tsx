@@ -7,6 +7,7 @@ import {
     fetchBill,
     fetchBillUsers,
     selectBillState,
+    updateBillsUsers,
 } from "@redux/slices/billSlice";
 import { useDispatch, useSelector } from "react-redux";
 import Spinner from "@components/spinner";
@@ -26,32 +27,33 @@ import useAlert from "../../hocs/useAlert";
 import {
     DeleteGroupButton,
     EditGroupButton,
-    GroupCardActions,
     ListItem,
     ListItemText,
     PrimaryText,
     SecondaryText,
 } from "@styles/pages/group/group.styles";
 import {
+    BillCardActions,
     BillCardContent,
     BillCardDescription,
     BillCardImage,
     BillCardTitle,
-    BillContainer,
-    BillTotal,
-    Container,
-    QRCodeBox,
-    BillUsersContainer,
     BillCenterTitle,
-    BillCardActions,
-    CodeQrDownloadLink,
+    BillContainer,
     BillImageBox,
     BillImageCard,
+    BillTotal,
+    BillUsersContainer,
+    CodeQrDownloadLink,
+    Container,
+    QRCodeBox,
+    RegulateButton,
+    RegulateSpan,
 } from "@styles/pages/bill/bill.styles";
 import { FIAT } from "../../types/currency";
 import { User } from "../../types/user";
 import Link from "next/link";
-import { BillsUsers } from "../../types/bill";
+import { BillsUsers, BillsUsersUpdateData } from "../../types/bill";
 import QRCode from "qrcode.react";
 import { saveAs } from "file-saver";
 import CommentsCard from "@components/comments-card";
@@ -61,14 +63,24 @@ import {
 } from "@redux/slices/commentSlice";
 import { fetchUsers } from "@redux/slices/userSlice";
 import { useTranslation } from "react-i18next";
+import { TDecodedJWTToken } from "../../types/jwt";
+import { getDecodedJWTToken } from "../../utils/jwt";
+import { selectAuthState } from "@redux/slices/authSlice";
 
 const Bill: NextPage = () => {
     const router = useRouter();
     const { t } = useTranslation();
     const { billId } = router.query;
     const dispatch = useDispatch();
-    const { isLoading, bill, error, deleteBillSuccess, billUsers } =
-        useSelector(selectBillState);
+    const { isAuthenticated, token } = useSelector(selectAuthState);
+    const {
+        isLoading,
+        bill,
+        error,
+        deleteBillSuccess,
+        billUsers,
+        billsUsersSuccess,
+    } = useSelector(selectBillState);
     const {
         error: commentsError,
         isLoading: commentsLoading,
@@ -76,6 +88,11 @@ const Bill: NextPage = () => {
         createSubcommentSuccess,
         updateSubcommentSuccess,
     } = useSelector(selectCommentState);
+    let decodedToken: TDecodedJWTToken, userId: string;
+    if (isAuthenticated) {
+        decodedToken = getDecodedJWTToken(token);
+        userId = decodedToken.id;
+    }
     const [deleteBillModalOpen, setDeleteBillModalOpen] = useState(false);
     const { showAlert, AlertWrapper } = useAlert();
     const combinedUsersBills =
@@ -106,7 +123,7 @@ const Bill: NextPage = () => {
         dispatch(fetchBill(billId as string));
         dispatch(fetchBillUsers(billId as string));
         dispatch(fetchUsers());
-    }, [billId]);
+    }, [billId, billsUsersSuccess]);
 
     useEffect(() => {
         dispatch(fetchBillComments(billId as string));
@@ -132,6 +149,19 @@ const Bill: NextPage = () => {
         if (!deleteBillSuccess && !error) {
             router.replace("/bills");
         }
+    };
+
+    const handleRegulateButton = (
+        bills_users: string,
+        user_id: string,
+        bill_id: string,
+    ) => {
+        console.log("here udapte this");
+        const bills_usersUpdateData: BillsUsersUpdateData = {
+            user_id: user_id,
+            bill_id: bill_id,
+        };
+        dispatch(updateBillsUsers(bills_users, bills_usersUpdateData));
     };
 
     console.log("billUsers", billUsers);
@@ -269,67 +299,75 @@ const Bill: NextPage = () => {
                             <BillUsersContainer>
                                 {combinedUsersBills &&
                                     combinedUsersBills.map(
-                                        (user: User & BillsUsers) => {
+                                        (bills_users: User & BillsUsers) => {
                                             return (
                                                 <ListItem
-                                                    key={user?.id}
-                                                    isBlocked={user?.is_blocked}
+                                                    key={bills_users?.id}
+                                                    isBlocked={
+                                                        bills_users?.is_blocked
+                                                    }
                                                 >
                                                     <Avatar>
                                                         <img
                                                             src={
-                                                                user?.avatar_image
+                                                                bills_users?.avatar_image
                                                             }
                                                             alt="Avatar icon"
                                                         />
                                                     </Avatar>
                                                     <ListItemText
                                                         isBlocked={
-                                                            user?.is_blocked
+                                                            bills_users?.is_blocked
                                                         }
                                                     >
                                                         <PrimaryText>
-                                                            {user?.first_name}{" "}
-                                                            {user?.last_name}
+                                                            {
+                                                                bills_users?.first_name
+                                                            }{" "}
+                                                            {
+                                                                bills_users?.last_name
+                                                            }
                                                         </PrimaryText>
                                                         <SecondaryText
                                                             isBlocked={
-                                                                user?.is_blocked
+                                                                bills_users?.is_blocked
                                                             }
                                                         >
-                                                            {user?.email}
+                                                            {bills_users?.email}
                                                         </SecondaryText>
                                                     </ListItemText>
                                                     <ListItemText
                                                         isBlocked={
-                                                            user?.is_blocked
+                                                            bills_users?.is_blocked
                                                         }
                                                     >
                                                         <PrimaryText>
                                                             {t(
                                                                 "screens.bill.labels.username",
                                                             )}
-                                                            {user?.username}
+                                                            {
+                                                                bills_users?.username
+                                                            }
                                                         </PrimaryText>
                                                         <SecondaryText
                                                             isBlocked={
-                                                                user?.is_blocked
+                                                                bills_users?.is_blocked
                                                             }
                                                         >
                                                             {t(
                                                                 "screens.bill.labels.phone",
                                                             )}
-                                                            {user?.phone}
+                                                            {bills_users?.phone}
                                                         </SecondaryText>
                                                     </ListItemText>
                                                     <ListItemText
                                                         isBlocked={
-                                                            user?.is_blocked
+                                                            bills_users?.is_blocked
                                                         }
                                                     >
                                                         <PrimaryText>
-                                                            {user &&
-                                                            user?.is_blocked ? (
+                                                            {bills_users &&
+                                                            bills_users?.is_blocked ? (
                                                                 <span>
                                                                     {t(
                                                                         "screens.bill.labels.userBlocked",
@@ -346,16 +384,16 @@ const Bill: NextPage = () => {
                                                                 <span>
                                                                     <PrimaryText>
                                                                         {getFormattedDate(
-                                                                            user?.birth_date,
+                                                                            bills_users?.birth_date,
                                                                         )}
                                                                     </PrimaryText>
                                                                     <SecondaryText
                                                                         isBlocked={
-                                                                            user?.is_blocked
+                                                                            bills_users?.is_blocked
                                                                         }
                                                                     >
                                                                         {
-                                                                            user?.gender
+                                                                            bills_users?.gender
                                                                         }
                                                                     </SecondaryText>
                                                                 </span>
@@ -364,12 +402,12 @@ const Bill: NextPage = () => {
                                                     </ListItemText>
                                                     <ListItemText
                                                         isBlocked={
-                                                            user?.is_blocked
+                                                            bills_users?.is_blocked
                                                         }
                                                     >
                                                         <PrimaryText
                                                             isRegulated={
-                                                                user?.is_regulated
+                                                                bills_users?.is_regulated
                                                             }
                                                         >
                                                             <span>
@@ -377,8 +415,8 @@ const Bill: NextPage = () => {
                                                                     "screens.bill.labels.debt",
                                                                 )}
                                                                 {parseFloat(
-                                                                    user &&
-                                                                        user?.debt.toString(),
+                                                                    bills_users &&
+                                                                        bills_users?.debt.toString(),
                                                                 )}{" "}
                                                                 {
                                                                     bill?.currency_code
@@ -387,15 +425,15 @@ const Bill: NextPage = () => {
                                                         </PrimaryText>
                                                         <SecondaryText
                                                             isBlocked={
-                                                                user?.is_blocked
+                                                                bills_users?.is_blocked
                                                             }
                                                         >
-                                                            <span>
+                                                            <RegulateSpan>
                                                                 {t(
                                                                     "screens.bill.labels.isRegulated",
                                                                 )}
-                                                                {user &&
-                                                                user?.is_regulated ? (
+                                                                {bills_users &&
+                                                                bills_users?.is_regulated ? (
                                                                     <Image
                                                                         priority
                                                                         src="/icons/yes-icon.svg"
@@ -408,19 +446,36 @@ const Bill: NextPage = () => {
                                                                         alt="Yes icon"
                                                                     />
                                                                 ) : (
-                                                                    <Image
-                                                                        priority
-                                                                        src="/icons/no-icon.svg"
-                                                                        height={
-                                                                            20
-                                                                        }
-                                                                        width={
-                                                                            20
-                                                                        }
-                                                                        alt="No icon"
-                                                                    />
+                                                                    <RegulateSpan>
+                                                                        <Image
+                                                                            priority
+                                                                            src="/icons/no-icon.svg"
+                                                                            height={
+                                                                                20
+                                                                            }
+                                                                            width={
+                                                                                20
+                                                                            }
+                                                                            alt="No icon"
+                                                                        />
+                                                                        {combinedUsersBills &&
+                                                                        userId ===
+                                                                            bills_users?.user_id ? (
+                                                                            <RegulateButton
+                                                                                onClick={() =>
+                                                                                    handleRegulateButton(
+                                                                                        bills_users?.id,
+                                                                                        bills_users?.user_id,
+                                                                                        bills_users?.bill_id,
+                                                                                    )
+                                                                                }
+                                                                            >
+                                                                                Regulate
+                                                                            </RegulateButton>
+                                                                        ) : null}
+                                                                    </RegulateSpan>
                                                                 )}
-                                                            </span>
+                                                            </RegulateSpan>
                                                         </SecondaryText>
                                                     </ListItemText>
                                                 </ListItem>
