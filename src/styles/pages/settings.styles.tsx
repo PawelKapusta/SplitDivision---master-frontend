@@ -51,6 +51,7 @@ export const MessageForNotPremiumUsers = styled.div`
     text-align: center;
     color: ${({ theme }) => theme.palette.gold};
     width: 50%;
+    margin-top: 30px;
 `;
 
 export const MoreFeaturesSoon = styled.div`

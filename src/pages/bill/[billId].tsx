@@ -26,7 +26,6 @@ import {
 import useAlert from "../../hocs/useAlert";
 import {
     DeleteGroupButton,
-    EditGroupButton,
     ListItem,
     ListItemText,
     PrimaryText,
@@ -66,6 +65,11 @@ import { useTranslation } from "react-i18next";
 import { TDecodedJWTToken } from "../../types/jwt";
 import { getDecodedJWTToken } from "../../utils/jwt";
 import { selectAuthState } from "@redux/slices/authSlice";
+import { ALL_ACCESS, Subscription } from "../../types/subscription";
+import {
+    fetchUserSubscriptions,
+    selectSubscriptionState,
+} from "@redux/slices/subscriptionSlice";
 
 const Bill: NextPage = () => {
     const router = useRouter();
@@ -73,6 +77,9 @@ const Bill: NextPage = () => {
     const { billId } = router.query;
     const dispatch = useDispatch();
     const { isAuthenticated, token } = useSelector(selectAuthState);
+    const { userSubscription, isUserSubscriptionsLoading } = useSelector(
+        selectSubscriptionState,
+    );
     const {
         isLoading,
         bill,
@@ -123,6 +130,7 @@ const Bill: NextPage = () => {
         dispatch(fetchBill(billId as string));
         dispatch(fetchBillUsers(billId as string));
         dispatch(fetchUsers());
+        dispatch(fetchUserSubscriptions(userId as string));
     }, [billId, billsUsersSuccess]);
 
     useEffect(() => {
@@ -164,6 +172,14 @@ const Bill: NextPage = () => {
         dispatch(updateBillsUsers(bills_users, bills_usersUpdateData));
     };
 
+    const hasFullAccess = (userSubscription: Subscription[]) => {
+        return userSubscription.find(
+            (subscription: Subscription) => subscription?.type === ALL_ACCESS,
+        );
+    };
+    const hasUserAnySubscriptions =
+        userSubscription && userSubscription?.length > 0;
+
     console.log("billUsers", billUsers);
     console.log("combinedUsersBills", combinedUsersBills);
 
@@ -182,7 +198,7 @@ const Bill: NextPage = () => {
 
     return (
         <Container>
-            {isLoading ? (
+            {isLoading && isUserSubscriptionsLoading ? (
                 <Spinner />
             ) : (
                 <BillContainer>
@@ -230,24 +246,26 @@ const Bill: NextPage = () => {
                                 </p>
                             </BillTotal>
                             <BillCardActions>
-                                <EditGroupButton>
-                                    <Image
-                                        src="/icons/edit-icon.svg"
-                                        width={30}
-                                        height={30}
-                                        alt="Edit-icon.svg"
-                                    />
-                                </EditGroupButton>
-                                <DeleteGroupButton
-                                    onClick={handleDeleteBillOpenModal}
-                                >
-                                    <Image
-                                        src="/icons/delete_icon_white.svg"
-                                        width={30}
-                                        height={30}
-                                        alt="Delete-icon.svg"
-                                    />
-                                </DeleteGroupButton>
+                                {/*<EditGroupButton>*/}
+                                {/*    <Image*/}
+                                {/*        src="/icons/edit-icon.svg"*/}
+                                {/*        width={30}*/}
+                                {/*        height={30}*/}
+                                {/*        alt="Edit-icon.svg"*/}
+                                {/*    />*/}
+                                {/*</EditGroupButton>*/}
+                                {bill && bill?.owner_id === userId && (
+                                    <DeleteGroupButton
+                                        onClick={handleDeleteBillOpenModal}
+                                    >
+                                        <Image
+                                            src="/icons/delete_icon_white.svg"
+                                            width={30}
+                                            height={30}
+                                            alt="Delete-icon.svg"
+                                        />
+                                    </DeleteGroupButton>
+                                )}
                             </BillCardActions>
                         </BillCardTitle>
                         <BillCardDescription isLongDescription={false}>
@@ -365,7 +383,11 @@ const Bill: NextPage = () => {
                                                             bills_users?.is_blocked
                                                         }
                                                     >
-                                                        <PrimaryText>
+                                                        <PrimaryText
+                                                            isBlocked={
+                                                                bills_users?.is_blocked
+                                                            }
+                                                        >
                                                             {bills_users &&
                                                             bills_users?.is_blocked ? (
                                                                 <span>
@@ -408,6 +430,9 @@ const Bill: NextPage = () => {
                                                         <PrimaryText
                                                             isRegulated={
                                                                 bills_users?.is_regulated
+                                                            }
+                                                            isBlocked={
+                                                                bills_users?.is_blocked
                                                             }
                                                         >
                                                             <span>
@@ -501,18 +526,21 @@ const Bill: NextPage = () => {
                             includeMargin={true}
                         />
                     </QRCodeBox>
-                    <CodeQrDownloadLink>
-                        <a
-                            onClick={() =>
-                                downloadCodeQrClick(
-                                    bill?.code_qr,
-                                    `Bill-${bill?.id}-code-qr.png`,
-                                )
-                            }
-                        >
-                            {t("screens.bill.codeQrDownloadText")}
-                        </a>
-                    </CodeQrDownloadLink>
+                    {hasUserAnySubscriptions &&
+                    hasFullAccess(userSubscription) ? (
+                        <CodeQrDownloadLink>
+                            <a
+                                onClick={() =>
+                                    downloadCodeQrClick(
+                                        bill?.code_qr,
+                                        `Bill-${bill?.id}-code-qr.png`,
+                                    )
+                                }
+                            >
+                                {t("screens.bill.codeQrDownloadText")}
+                            </a>
+                        </CodeQrDownloadLink>
+                    ) : null}
                     {isLoading || commentsLoading ? (
                         <Spinner isSmall />
                     ) : (

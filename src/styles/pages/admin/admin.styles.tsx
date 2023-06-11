@@ -29,6 +29,7 @@ export const DeleteIconButton = styled.button`
         border-radius: 50%;
         background-color: red;
     }
+
     &:hover {
         box-shadow: 0 0 10px ${({ theme }) => theme.palette.white};
     }
@@ -52,6 +53,7 @@ export const GoIconButton = styled.button`
     a {
         background-color: dodgerblue;
     }
+
     &:hover {
         box-shadow: 0 0 10px ${({ theme }) => theme.palette.white};
     }
@@ -66,6 +68,7 @@ export const DeleteModalContent = styled.div`
     & > * {
         background-color: ${({ theme }) => theme.palette.black} !important;
     }
+
     button {
         position: absolute;
         top: 40px;
@@ -105,7 +108,7 @@ export const DeleteModalButton = styled.button<{
     height: 50px;
     border-radius: 20px;
     background-color: ${({ isBlock, isAdmin }) =>
-        isBlock ? "purple" : isAdmin ? "green" : "red"};
+        isBlock ? "purple" : isAdmin ? "green" : "red !important"};
     cursor: pointer;
 
     img {

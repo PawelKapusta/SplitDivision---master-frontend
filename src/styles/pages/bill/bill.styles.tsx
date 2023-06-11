@@ -182,6 +182,7 @@ export const CodeQrDownloadLink = styled.div`
     background-color: ${({ theme }) => theme.palette.black};
     color: ${({ theme }) => theme.palette.gold};
     cursor: pointer;
+    margin-bottom: 20px;
 
     &:hover {
         color: ${({ theme }) => theme.palette.white};

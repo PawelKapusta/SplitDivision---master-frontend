@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useState } from "react";
+import React, { ReactElement, useState } from "react";
 import {
     Comment,
     CommentFormData,
@@ -8,7 +8,6 @@ import {
 import {
     createComment,
     createSubcomment,
-    fetchBillComments,
     selectCommentState,
     updateComment,
     updateSubcomment,
@@ -16,17 +15,17 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import {
     CommentCard,
+    CommentCardAvatar,
+    CommentCardContent,
+    CommentCardContentButtons,
+    CommentCardContentText,
+    CommentCardRepliesBox,
+    CommentReplyBox,
     CommentsCardBox,
     CommentsCardTextArea,
-    CreateCommentButton,
-    CommentCardContent,
-    CommentCardContentText,
-    CommentCardAvatar,
-    CommentCardContentButtons,
-    CommentReplyBox,
-    CommentsCardTextEditArea,
     CommentsCardTextEdiBox,
-    CommentCardRepliesBox,
+    CommentsCardTextEditArea,
+    CreateCommentButton,
 } from "@components/comments-card/comments-card.styles";
 import Spinner from "@components/spinner";
 import { selectUserState } from "@redux/slices/userSlice";
@@ -443,7 +442,7 @@ const CommentsCard = ({ billId }: TCommentsCardProps): ReactElement => {
                                         findSubcommentsForThisComment(
                                             comment?.id,
                                         )?.map((subcomment: Subcomment) => (
-                                            <div>
+                                            <div key={subcomment.id}>
                                                 <CommentCard
                                                     key={subcomment.id}
                                                 >

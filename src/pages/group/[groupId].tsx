@@ -10,21 +10,20 @@ import {
     selectGroupState,
 } from "@redux/slices/groupSlice";
 import {
-    GroupContainer,
-    GroupCardContent,
-    GroupCardTitle,
-    GroupCardDescription,
-    GroupCardImage,
-    CreateBillButton,
-    GroupCardActions,
     CenterTitle,
     Container,
+    CreateBillButton,
+    DeleteGroupButton,
+    GroupCardActions,
+    GroupCardContent,
+    GroupCardDescription,
+    GroupCardImage,
+    GroupCardTitle,
+    GroupContainer,
     ListItem,
     ListItemText,
     PrimaryText,
     SecondaryText,
-    DeleteGroupButton,
-    EditGroupButton,
 } from "@styles/pages/group/group.styles";
 import { getFormattedDate } from "../../utils/date";
 import Spinner from "@components/spinner";
@@ -135,14 +134,14 @@ const Group: NextPage = () => {
                                 {getFormattedDate(group?.data_created)}
                             </p>
                             <GroupCardActions>
-                                <EditGroupButton>
-                                    <Image
-                                        src="/icons/edit-icon.svg"
-                                        width={30}
-                                        height={30}
-                                        alt="Edit-icon.svg"
-                                    />
-                                </EditGroupButton>
+                                {/*<EditGroupButton>*/}
+                                {/*    <Image*/}
+                                {/*        src="/icons/edit-icon.svg"*/}
+                                {/*        width={30}*/}
+                                {/*        height={30}*/}
+                                {/*        alt="Edit-icon.svg"*/}
+                                {/*    />*/}
+                                {/*</EditGroupButton>*/}
                                 <DeleteGroupButton
                                     onClick={handleDeleteGroupOpenModal}
                                 >
@@ -269,7 +268,9 @@ const Group: NextPage = () => {
                                         <ListItemText
                                             isBlocked={user?.is_blocked}
                                         >
-                                            <PrimaryText>
+                                            <PrimaryText
+                                                isBlocked={user?.is_blocked}
+                                            >
                                                 {user && user?.is_blocked ? (
                                                     <span>
                                                         {t(

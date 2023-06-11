@@ -46,10 +46,12 @@ export const GroupCardTitle = styled.div`
         font-size: 24px;
         margin-bottom: 15px;
     }
+
     p:nth-child(2) {
         img {
             margin-right: 15px;
         }
+
         display: flex;
         justify-content: center;
         align-items: center;
@@ -57,6 +59,7 @@ export const GroupCardTitle = styled.div`
         text-align: center;
         margin-top: 20px;
     }
+
     & * {
         background-color: ${({ theme }) => theme.palette.gold};
     }
@@ -141,30 +144,33 @@ export const Container = styled.div`
 `;
 
 export const ListItem = styled.div<{ isBlocked: boolean }>`
-    display: flex;
-    align-items: center;
-    padding: 8px 16px;
-    border: 1px solid #b77d30;
-    background-color: ${({ isBlocked, theme }) =>
-        isBlocked ? "#cb2d3e" : theme.palette.gold}};
-    & * {
-        background-color: ${({ isBlocked, theme }) =>
-            isBlocked ? "#cb2d3e" : theme.palette.gold};
-    }
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+  border: 1px solid #b77d30;
+  background-color: ${({ isBlocked, theme }) =>
+      isBlocked ? "#cb2d3e" : theme.palette.gold}
+}
 
-    &:nth-child(1) {
-        border-radius: 20px 20px 0 0;
-    }
+;
+& * {
+  background-color: ${({ isBlocked, theme }) =>
+      isBlocked ? "#cb2d3e" : theme.palette.gold};
+}
 
-    &:last-child {
-        border-radius: 0 0 20px 20px;
-    }
+&:nth-child(1) {
+  border-radius: 20px 20px 0 0;
+}
 
-    img {
-        display: block;
-        height: 100%;
-        width: 100%;
-    }
+&:last-child {
+  border-radius: 0 0 20px 20px;
+}
+
+img {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
 `;
 
 export const ListItemText = styled.div<{ isBlocked: boolean }>`
@@ -174,12 +180,16 @@ export const ListItemText = styled.div<{ isBlocked: boolean }>`
         isBlocked ? "#cb2d3e" : theme.palette.gold};
 `;
 
-export const PrimaryText = styled.div<{ isRegulated?: boolean }>`
+export const PrimaryText = styled.div<{
+    isRegulated?: boolean;
+    isBlocked?: boolean;
+}>`
     font-weight: 500;
     text-align: center;
 
     span {
         color: ${({ isRegulated }) => (isRegulated ? "green" : "red")};
+        color: ${({ isBlocked }) => (isBlocked ? "black" : "")};
         font-weight: bold;
     }
 
@@ -208,6 +218,7 @@ export const EditGroupButton = styled.div`
     background-color: dodgerblue;
     border-radius: 30px;
     padding: 5px;
+
     img {
         background-color: dodgerblue;
         border-radius: 30px;
@@ -222,6 +233,7 @@ export const DeleteGroupButton = styled.div`
     background-color: #cb2d3e;
     border-radius: 30px;
     padding: 5px;
+
     img {
         background-color: #cb2d3e;
         border-radius: 30px;

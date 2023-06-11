@@ -10,7 +10,7 @@ export const CommentsCardBox = styled.div`
     min-height: 300px;
 
     & > * {
-        ${({ theme }) => theme.palette.black};
+        background-color: ${({ theme }) => theme.palette.black};
     }
 
     h2 {
@@ -18,6 +18,7 @@ export const CommentsCardBox = styled.div`
         display: flex;
         justify-content: center;
         align-items: center;
+        background-color: ${({ theme }) => theme.palette.black};
         color: ${({ theme }) => theme.palette.gold};
     }
 `;
