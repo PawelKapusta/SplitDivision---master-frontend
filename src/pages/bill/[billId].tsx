@@ -499,7 +499,9 @@ const Bill: NextPage = () => {
                                                                                     )
                                                                                 }
                                                                             >
-                                                                                Regulate
+                                                                                {t(
+                                                                                    "screens.bill.labels.regulate",
+                                                                                )}
                                                                             </RegulateButton>
                                                                         ) : null}
                                                                     </RegulateSpan>

@@ -2,18 +2,21 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 import { AppState, AppThunk } from "../store";
 import { Dispatch } from "redux";
-import { FAQ } from "../../types/faq";
+import { FAQ, FAQFormData } from "../../types/faq";
+import authAxios from "../../api/axios/axios";
 
 interface FAQState {
     faqs: FAQ[];
     isLoading: boolean;
     error: string | null;
+    success: boolean;
 }
 
 const initialState: FAQState = {
     faqs: [],
     isLoading: false,
     error: null,
+    success: false,
 };
 
 const faqSlice = createSlice({
@@ -113,6 +116,22 @@ export const fetchFaqs = (): AppThunk => async (dispatch: Dispatch) => {
         dispatch(getFaqsFailure(error as string));
     }
 };
+
+export const createFaq =
+    (faq: Omit<FAQFormData, "id">): AppThunk =>
+    async (dispatch: Dispatch) => {
+        try {
+            dispatch(createFaqStart());
+            const response = await authAxios.post(
+                `${process.env.NEXT_PUBLIC_API_GATEWAY_URL}/faqs`,
+                faq,
+            );
+            const data = response.data;
+            dispatch(createFaqSuccess(data));
+        } catch (error) {
+            dispatch(createFaqFailure(error as string));
+        }
+    };
 
 export const selectFaqState = (state: AppState) => state.faq;
 

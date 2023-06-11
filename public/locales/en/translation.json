@@ -97,7 +97,8 @@
         "userBlocked": "User has been blocked!",
         "contactUs": " Contact us",
         "debt": "Debt: ",
-        "isRegulated": "isRegulated: "
+        "isRegulated": "isRegulated: ",
+        "regulate": "Regulate"
       },
       "codeQrDownloadText": "Click here to download QR"
     },
@@ -122,6 +123,17 @@
       "bills": {
         "title": "All bills",
         "noBillsText": "There are no bills!"
+      },
+      "faq": {
+        "title": "Create a frequently asked question",
+        "label": {
+          "question": "Question",
+          "answer": "Answer"
+        },
+        "button": {
+          "text": "Create a FAQ",
+          "loadingText": "Loading..."
+        }
       },
       "groups": {
         "title": "All groups",
@@ -199,7 +211,8 @@
         "noEnoughPeopleError": "Please select at least 2 people",
         "successSentEmailToAdministrator": "Successfully sent email to administrator",
         "errorSentEmailToAdministrator": "Email not sent",
-        "successUpdateUser": "Successfully updated user"
+        "successUpdateUser": "Successfully updated user",
+        "successCreateFAQ": "Successfully created a faq"
       }
     },
     "billForm": {

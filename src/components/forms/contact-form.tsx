@@ -1,11 +1,11 @@
-import React, { useState, ChangeEvent, FormEvent, ReactElement } from "react";
+import React, { ChangeEvent, FormEvent, ReactElement, useState } from "react";
 import emailjs from "emailjs-com";
 import { useSelector } from "react-redux";
 import { selectUserState } from "@redux/slices/userSlice";
 import {
+    ContactButtonRow,
     ContactCard,
     ContactRow,
-    ContactButtonRow,
     Title,
 } from "@styles/pages/contact.styles";
 import LoadingButton from "@components/loading-button";
@@ -31,7 +31,7 @@ const ContactForm = (): ReactElement => {
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         setLoading(true);
-        const from_name = user.email;
+        const from_name = user?.email;
         const { topic, description } = formState;
         const serviceId =
             process.env.NEXT_PUBLIC_API_EMAIL_SERVICE_ID || "secret";
@@ -80,9 +80,7 @@ const ContactForm = (): ReactElement => {
                     <h1>{t("components.contactForm.title")}</h1>
                 </Title>
                 <ContactRow>
-                    <label htmlFor="topic">
-                        {t("components.contactForm.topic")}
-                    </label>
+                    <label>{t("components.contactForm.topic")}</label>
                     <input
                         type="text"
                         id="topic"
@@ -93,16 +91,14 @@ const ContactForm = (): ReactElement => {
                     />
                 </ContactRow>
                 <ContactRow>
-                    <label htmlFor="description">
-                        {t("components.contactForm.description")}
-                    </label>
+                    <label>{t("components.contactForm.description")}</label>
                     <textarea
                         id="description"
                         name="description"
                         value={formState.description}
                         onChange={handleInputChange}
                         required
-                    ></textarea>
+                    />
                 </ContactRow>
                 <ContactButtonRow>
                     <LoadingButton
