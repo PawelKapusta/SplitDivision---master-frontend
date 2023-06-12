@@ -1,10 +1,6 @@
-import React, { useEffect, useState, ReactElement, ChangeEvent } from "react";
+import React, { ChangeEvent, ReactElement, useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import {
-    BillFormData,
-    BillUsersDebt,
-    UserSelectedDebts,
-} from "../../types/bill";
+import { BillFormData, UserSelectedDebts } from "../../types/bill";
 import { useDispatch, useSelector } from "react-redux";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { MultiSelect } from "react-multi-select-component";
@@ -12,23 +8,23 @@ import Image from "next/image";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import {
+    BillCardContainer,
+    BillCustomDatePicker,
+    CurrencyOption,
+    CurrencySelector,
+    CurrencySelectorContainer,
+    DateLabel,
+    DebtDivideEvenlyCheckbox,
+    DebtInput,
     Error,
     FormCard,
     Input,
     InputDescription,
+    SelectedUserDebtBox,
+    SelectedUserDebtInput,
+    SelectedUserDebtLabel,
     Title,
     UsersSelector,
-    BillCardContainer,
-    DateLabel,
-    BillCustomDatePicker,
-    CurrencySelectorContainer,
-    CurrencySelector,
-    CurrencyOption,
-    DebtInput,
-    SelectedUserDebtInput,
-    SelectedUserDebtBox,
-    SelectedUserDebtLabel,
-    DebtDivideEvenlyCheckbox,
 } from "@styles/pages/create/bill.styles";
 import LoadingButton from "@components/loading-button";
 import { BillSchema } from "../../types/schema";
@@ -46,11 +42,11 @@ import { TDecodedJWTToken } from "../../types/jwt";
 import { getDecodedJWTToken } from "../../utils/jwt";
 import { selectAuthState } from "@redux/slices/authSlice";
 import {
-    fiatCurrencyNames,
-    FIAT,
     CRYPTO,
-    Currency,
     cryptoCurrencyNames,
+    Currency,
+    FIAT,
+    fiatCurrencyNames,
 } from "../../types/currency";
 import Flag from "react-world-flags";
 import { fetchGroupUsers, selectGroupState } from "@redux/slices/groupSlice";
@@ -161,8 +157,6 @@ const BillForm = ({
         }
     }, [dispatch, isAuthenticated, userId]);
 
-    console.log("groupUSers", groupUsers);
-
     const handleTypeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         setSelectedType(event.target.value);
     };
@@ -223,11 +217,7 @@ const BillForm = ({
                             id,
                             debt,
                         })) || {};
-
-                    console.log("array", data.usersIdDebtList);
-                    // data.usersIdDebtList =
                 }
-                console.log("sum", sum);
             } else {
                 const howManyUsersInBill = selected.length;
                 const evenlyDebt = data.debt / howManyUsersInBill;
@@ -235,12 +225,7 @@ const BillForm = ({
                     id: user.value,
                     debt: evenlyDebt,
                 }));
-                console.log("Selected", selected);
-                console.log("evenlyDebt", evenlyDebt);
             }
-            console.log(data);
-            console.log(selectedUserDebts);
-            // data.usersIdDebtList = selected.map((obj) => obj.value);
             dispatch(createBill(data));
             handleCloseModal();
         }
@@ -269,7 +254,6 @@ const BillForm = ({
     const handleDivideEvenlyDebt = () => {
         setIsChecked(!isChecked);
     };
-    console.log("selectedUserDebts", selectedUserDebts);
 
     return (
         <BillCardContainer>

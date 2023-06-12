@@ -36,7 +36,6 @@ const FAQ: NextPage = () => {
         };
         dispatch(createFaq(faqsData));
         setFormState({ question: "", answer: "" });
-        console.log(formState);
     };
 
     useEffect(() => {

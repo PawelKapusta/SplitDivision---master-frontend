@@ -12,6 +12,7 @@ import authAxios from "../../api/axios/axios";
 interface SubscriptionState {
     subscriptions: Subscription[];
     userSubscription: Subscription[];
+    subscriptionsBought: SubscriptionsUsers[];
     subscriptionsUsers: SubscriptionsUsers[];
     isLoading: boolean;
     isUserSubscriptionsLoading: boolean;
@@ -25,6 +26,7 @@ interface SubscriptionState {
 const initialState: SubscriptionState = {
     subscriptions: [],
     userSubscription: [],
+    subscriptionsBought: [],
     subscriptionsUsers: [],
     isLoading: false,
     isUserSubscriptionsLoading: false,
@@ -48,6 +50,22 @@ const subscriptionSlice = createSlice({
             state.isLoading = false;
         },
         getSubscriptionsFailure(state, action: PayloadAction<string>) {
+            state.isLoading = false;
+            state.error = action.payload;
+        },
+
+        getSubscriptionsBoughtStart(state) {
+            state.isLoading = true;
+            state.error = null;
+        },
+        getSubscriptionsBoughtSuccess(
+            state,
+            action: PayloadAction<SubscriptionsUsers[]>,
+        ) {
+            state.subscriptionsBought = action.payload;
+            state.isLoading = false;
+        },
+        getSubscriptionsBoughtFailure(state, action: PayloadAction<string>) {
             state.isLoading = false;
             state.error = action.payload;
         },
@@ -148,6 +166,9 @@ export const {
     getSubscriptionsStart,
     getSubscriptionsSuccess,
     getSubscriptionsFailure,
+    getSubscriptionsBoughtStart,
+    getSubscriptionsBoughtSuccess,
+    getSubscriptionsBoughtFailure,
     getUserSubscriptionsStart,
     getUserSubscriptionsSuccess,
     getUserSubscriptionsFailure,
@@ -177,6 +198,20 @@ export const fetchSubscriptions =
             dispatch(getSubscriptionsSuccess(data));
         } catch (error) {
             dispatch(getSubscriptionsFailure(error as string));
+        }
+    };
+
+export const fetchSubscriptionsBought =
+    (): AppThunk => async (dispatch: Dispatch) => {
+        try {
+            dispatch(getSubscriptionsBoughtStart());
+            const response = await axios.get(
+                `${process.env.NEXT_PUBLIC_API_GATEWAY_URL}/subscriptions/bought`,
+            );
+            const data = response.data;
+            dispatch(getSubscriptionsBoughtSuccess(data));
+        } catch (error) {
+            dispatch(getSubscriptionsBoughtFailure(error as string));
         }
     };
 

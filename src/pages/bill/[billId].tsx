@@ -126,8 +126,6 @@ const Bill: NextPage = () => {
         }
     }, [error, commentsError]);
 
-    console.log("bill", bill);
-    console.log("billId", billId);
     useEffect(() => {
         dispatch(fetchBill(billId as string));
         dispatch(fetchBillUsers(billId as string));
@@ -155,7 +153,6 @@ const Bill: NextPage = () => {
     };
 
     const handleBillModalDeleteClick = () => {
-        console.log("Delete");
         dispatch(deleteBill(billId as string));
         handleDeleteBillCloseModal();
         if (!deleteBillSuccess && !error) {
@@ -168,7 +165,6 @@ const Bill: NextPage = () => {
         user_id: string,
         bill_id: string,
     ) => {
-        console.log("here udapte this");
         const bills_usersUpdateData: BillsUsersUpdateData = {
             user_id: user_id,
             bill_id: bill_id,
@@ -183,9 +179,6 @@ const Bill: NextPage = () => {
     };
     const hasUserAnySubscriptions =
         userSubscription && userSubscription?.length > 0;
-
-    console.log("billUsers", billUsers);
-    console.log("combinedUsersBills", combinedUsersBills);
 
     const downloadCodeQrClick = (
         data: string,

@@ -39,8 +39,6 @@ const ContactForm = (): ReactElement => {
             process.env.NEXT_PUBLIC_API_EMAIL_TEMPLATE_ID || "secret";
         const userId = process.env.NEXT_PUBLIC_API_EMAIL_USER_ID || "secret";
 
-        console.log(serviceId, templateId, userId);
-        console.log(topic, description);
         emailjs
             .send(
                 serviceId,
@@ -50,7 +48,6 @@ const ContactForm = (): ReactElement => {
             )
             .then(
                 (result) => {
-                    console.log(result.text);
                     setFormState({ topic: "", description: "" });
                     setLoading(false);
                     showAlert(
@@ -61,7 +58,6 @@ const ContactForm = (): ReactElement => {
                     );
                 },
                 (error) => {
-                    console.error(error.text);
                     setLoading(false);
                     showAlert(
                         t(

@@ -2,8 +2,8 @@ import React, { ReactElement, useEffect, useState } from "react";
 import Image from "next/image";
 import {
     CardContainer,
-    CardImage,
     CardDescription,
+    CardImage,
     CardLink,
     CardTitle,
 } from "./group-bill-card.styles";
@@ -11,14 +11,14 @@ import { Group } from "../../types/group";
 import { getFormattedDate } from "../../utils/date";
 import TextTruncate from "react-text-truncate";
 import {
-    DeleteIconButton,
-    GoIconButton,
     Actions,
-    DeleteModalContent,
-    DeleteModalTitle,
-    DeleteModalDescription,
     DeleteButtonActions,
+    DeleteIconButton,
     DeleteModalButton,
+    DeleteModalContent,
+    DeleteModalDescription,
+    DeleteModalTitle,
+    GoIconButton,
 } from "@styles/pages/admin/admin.styles";
 import { useRouter } from "next/router";
 import Modal from "@components/modal";
@@ -64,7 +64,6 @@ const GroupCard = ({ group, isAdmin }: TGroupCardProps): ReactElement => {
     };
 
     const handleModalDeleteClick = () => {
-        console.log("Delete");
         dispatch(deleteGroup(group.id));
     };
 

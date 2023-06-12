@@ -13,7 +13,9 @@ import {
 
 interface CommentState {
     comments: Comment[];
+    subcomments: Subcomment[];
     billComments: Comment[];
+    userCommentsAndSubcomments?: any;
     isLoading: boolean;
     isUpdateLoading: boolean;
     error: string | null;
@@ -34,6 +36,7 @@ interface CommentState {
 
 const initialState: CommentState = {
     comments: [],
+    subcomments: [],
     billComments: [],
     isLoading: false,
     isUpdateLoading: false,
@@ -68,6 +71,43 @@ const commentSlice = createSlice({
             state.success = true;
         },
         getCommentsFailure(state, action: PayloadAction<string>) {
+            state.isLoading = false;
+            state.error = action.payload;
+            state.success = false;
+        },
+        getSubcommentsStart(state) {
+            state.isLoading = true;
+            state.error = null;
+            state.deleteCommentSuccess = false;
+        },
+        getSubcommentsSuccess(state, action: PayloadAction<Subcomment[]>) {
+            state.subcomments = action.payload;
+            state.isLoading = false;
+            state.success = true;
+        },
+        getSubcommentsFailure(state, action: PayloadAction<string>) {
+            state.isLoading = false;
+            state.error = action.payload;
+            state.success = false;
+        },
+        getUserCommentsAndSubcommentsStart(state) {
+            state.isLoading = true;
+            state.error = null;
+            state.deleteCommentSuccess = false;
+        },
+        getUserCommentsAndSubcommentsSuccess(
+            state,
+            action: PayloadAction<Comment[]>,
+        ) {
+            console.log("state", action.payload);
+            state.userCommentsAndSubcomments = action.payload;
+            state.isLoading = false;
+            state.success = true;
+        },
+        getUserCommentsAndSubcommentsFailure(
+            state,
+            action: PayloadAction<string>,
+        ) {
             state.isLoading = false;
             state.error = action.payload;
             state.success = false;
@@ -213,6 +253,12 @@ export const {
     getCommentsStart,
     getCommentsSuccess,
     getCommentsFailure,
+    getSubcommentsStart,
+    getSubcommentsSuccess,
+    getSubcommentsFailure,
+    getUserCommentsAndSubcommentsStart,
+    getUserCommentsAndSubcommentsSuccess,
+    getUserCommentsAndSubcommentsFailure,
     getBillCommentsStart,
     getBillCommentsSuccess,
     getBillCommentsFailure,
@@ -249,6 +295,35 @@ export const fetchComments = (): AppThunk => async (dispatch: Dispatch) => {
         dispatch(getCommentsFailure(error as string));
     }
 };
+
+export const fetchSubcomments = (): AppThunk => async (dispatch: Dispatch) => {
+    try {
+        dispatch(getSubcommentsStart());
+        const response = await authAxios.get(
+            `${process.env.NEXT_PUBLIC_API_GATEWAY_URL}/subcomments`,
+        );
+        const data = response.data;
+        dispatch(getSubcommentsSuccess(data));
+    } catch (error) {
+        dispatch(getSubcommentsFailure(error as string));
+    }
+};
+
+export const fetchUserCommentsAndSubcomments =
+    (userId: string): AppThunk =>
+    async (dispatch: Dispatch) => {
+        try {
+            dispatch(getUserCommentsAndSubcommentsStart());
+            const response = await authAxios.get(
+                `${process.env.NEXT_PUBLIC_API_GATEWAY_URL}/comments/subcomments/user/${userId}`,
+            );
+            const data = response.data;
+            console.log("data", data);
+            dispatch(getUserCommentsAndSubcommentsSuccess(data));
+        } catch (error) {
+            dispatch(getUserCommentsAndSubcommentsFailure(error as string));
+        }
+    };
 
 export const fetchBillComments =
     (billId: string): AppThunk =>

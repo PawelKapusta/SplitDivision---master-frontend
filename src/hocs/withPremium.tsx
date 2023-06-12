@@ -41,8 +41,6 @@ const WithPremiumComponent: NextPage<WithPremiumProps> = ({ children }) => {
     const hasUserAnySubscriptions =
         userSubscription && userSubscription?.length > 0;
 
-    console.log("hasFull", hasFullAccess, "length", hasUserAnySubscriptions);
-
     useEffect(() => {
         if (
             !isUserSubscriptionsLoading &&

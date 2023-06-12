@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { NextPage } from "next";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
     fetchUser,
     fetchUsers,
@@ -13,7 +13,6 @@ import GroupForm from "@components/forms/group-form";
 import { GroupContainer } from "@styles/pages/create/group.styles";
 import { TDecodedJWTToken } from "../../types/jwt";
 import { getDecodedJWTToken } from "../../utils/jwt";
-import useAlert from "../../hocs/useAlert";
 
 const Group: NextPage = () => {
     const dispatch = useDispatch();
@@ -25,13 +24,11 @@ const Group: NextPage = () => {
         decodedToken = getDecodedJWTToken(token);
         userId = decodedToken.id;
     }
-    console.log("session", session, status);
+
     useEffect(() => {
         dispatch(fetchUsers());
-        console.log("userID", userId);
         dispatch(fetchUser(userId));
     }, [isAuthenticated]);
-    console.log(users);
 
     return (
         <GroupContainer>

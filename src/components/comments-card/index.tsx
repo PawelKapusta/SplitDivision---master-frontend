@@ -112,11 +112,6 @@ const CommentsCard = ({ billId }: TCommentsCardProps): ReactElement => {
         }
     };
 
-    console.log("billComments", billComments);
-    console.log("comments", allComments);
-    console.log("allSubcomments", allSubcomments);
-    console.log("createSubcommentSuccess", createSubcommentSuccess);
-
     const handleLikeCommentClick = (commentId: string) => {
         let commentLikesNumber = 0;
         if (!isUserVoted[commentId]) {
@@ -253,7 +248,6 @@ const CommentsCard = ({ billId }: TCommentsCardProps): ReactElement => {
     };
     const handleSaveSubcomment = (subcommentId: string) => {
         const updatedComments = allSubcomments.map((subcomment) => {
-            console.log("herererererer", editedSubcommentContent);
             if (subcomment.id === subcommentId) {
                 return { ...subcomment, content: editedSubcommentContent };
             }

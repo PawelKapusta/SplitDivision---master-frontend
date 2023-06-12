@@ -18,8 +18,6 @@ const Groups = (): ReactElement => {
         dispatch(fetchGroups());
     }, []);
 
-    console.log("groups", groups);
-
     return (
         <div>
             {isLoading ? (

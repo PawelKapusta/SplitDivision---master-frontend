@@ -14,11 +14,10 @@ const Bills = (): ReactElement => {
     const dispatch = useDispatch();
     const { isLoading, bills } = useSelector(selectBillState);
     const { AlertWrapper } = useAlert();
+
     useEffect(() => {
         dispatch(fetchBills());
     }, []);
-
-    console.log("bills", bills);
 
     return (
         <div>

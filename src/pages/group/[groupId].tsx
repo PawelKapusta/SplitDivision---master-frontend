@@ -65,8 +65,6 @@ const Group: NextPage = () => {
     const { createBillSuccess } = useSelector(selectBillState);
     const router = useRouter();
     const { groupId } = router.query;
-    console.log(groupId);
-    console.log("groupBills", groupBills);
 
     useEffect(() => {
         if (error) {
@@ -91,7 +89,6 @@ const Group: NextPage = () => {
     };
 
     const handleGroupModalDeleteClick = () => {
-        console.log("Delete");
         dispatch(deleteGroup(group.id));
         handleDeleteGroupCloseModal();
         if (!error) {
@@ -114,7 +111,7 @@ const Group: NextPage = () => {
     useEffect(() => {
         setIsLongDescription(group?.description.length > 800);
     }, [group]);
-    console.log("groupBills", groupBills);
+
     return (
         <div>
             {isLoading ? (

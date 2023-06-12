@@ -1,12 +1,12 @@
-import React, { useEffect, useState, ReactElement } from "react";
+import React, { ReactElement, useEffect, useState } from "react";
 import Image from "next/image";
 import {
     CardContainer,
-    CardImage,
+    CardCost,
     CardDescription,
+    CardImage,
     CardLink,
     CardTitle,
-    CardCost,
 } from "./group-bill-card.styles";
 import { Bill } from "../../types/bill";
 import { getFormattedDate } from "../../utils/date";
@@ -58,7 +58,6 @@ const BillCard = ({ bill, isAdmin }: TBillCardProps): ReactElement => {
     };
 
     const handleModalDeleteClick = () => {
-        console.log("Delete");
         dispatch(deleteBill(bill.id));
     };
 

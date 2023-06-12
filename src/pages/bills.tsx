@@ -29,7 +29,6 @@ const Bills: NextPage = () => {
         dispatch(fetchUserBills(userId));
     }, []);
 
-    console.log("userBills", userBills);
     return (
         <div>
             {isLoading ? (
