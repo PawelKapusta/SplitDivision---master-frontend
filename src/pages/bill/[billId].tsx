@@ -103,6 +103,7 @@ const Bill: NextPage = () => {
         userId = decodedToken.id;
     }
     const [deleteBillModalOpen, setDeleteBillModalOpen] = useState(false);
+
     const { showAlert, AlertWrapper } = useAlert();
     const combinedUsersBills =
         billUsers &&
@@ -193,6 +194,10 @@ const Bill: NextPage = () => {
             });
     };
 
+    const isOwner = (id: string) => {
+        return id === userId;
+    };
+
     return (
         <Container>
             {isLoading && isUserSubscriptionsLoading ? (
@@ -251,7 +256,7 @@ const Bill: NextPage = () => {
                                 {/*        alt="Edit-icon.svg"*/}
                                 {/*    />*/}
                                 {/*</EditGroupButton>*/}
-                                {bill && bill?.owner_id === userId && (
+                                {bill && isOwner(bill?.owner_id) && (
                                     <DeleteGroupButton
                                         onClick={handleDeleteBillOpenModal}
                                     >

@@ -99,19 +99,16 @@ const CryptoChart: NextPage = () => {
             },
         },
     };
+
     const chartData = {
         labels:
             coinData &&
-            coinData.map((value: [number, number]) =>
-                moment(value.x).format("MMM DD"),
-            ),
+            coinData.map((value: any) => moment(value.x).format("MMM DD")),
         datasets: [
             {
                 fill: true,
                 label: cryptoId && cryptoId.toString().toUpperCase(),
-                data:
-                    coinData &&
-                    coinData.map((value: [number, number]) => value.y),
+                data: coinData && coinData.map((value: any) => value.y),
                 borderColor: "#35A2EB",
                 backgroundColor: "#35a2eb80",
             },
