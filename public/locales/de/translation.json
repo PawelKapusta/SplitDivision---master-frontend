@@ -29,6 +29,63 @@
         "description": "Wir schätzen Ihren Kauf. Ihre Zahlung wurde ohne Probleme akzeptiert und verarbeitet. Jetzt werden Sie umgeleitet."
       }
     },
+    "charts": {
+      "title": "Krypto",
+      "crypto": {
+        "days": {
+          "7days": "7 Tage",
+          "30days": "30 Tage",
+          "90days": "90 Tage",
+          "180days": "180 Tage",
+          "365days": "365 Tage"
+        },
+        "description": "Beschreibung der Coin"
+      }
+    },
+    "statistics": {
+      "title": "Statistik",
+      "yourStatistics": "Ihre Statistik",
+      "appStatistics": "Anwendungsstatistik",
+      "components": {
+        "user": {
+          "title": "Benutzer",
+          "users": "Alle Benutzer in der Anwendung:",
+          "admin": "Admin-Benutzer in der Anwendung:",
+          "blocked": "Blockierte Benutzer in der Anwendung:",
+          "dividedByService": "Benutzer, die nach Dienstleistungen unterteilt sind:",
+          "dividedByGender": "Benutzer geteilt nach Geschlecht:"
+        },
+        "bill": {
+          "title": "Rechnungen",
+          "bills": "Alle Rechnungen in der Anwendung:",
+          "dividedByType": "Rechnungen nach Typ unterteilt:",
+          "dividedByCode": "Rechnungen geteilt durch Währungscode:",
+          "legend": "FIAT - grün, CRYPTO - gold"
+        },
+        "group": {
+          "title": "Gruppen",
+          "groups": "Alle Gruppen in der Anwendung:"
+        },
+        "comment": {
+          "title": "Bemerkungen",
+          "titleSubcomments": "Einnahmen",
+          "comments": "Alle Kommentare in der Anmeldung:",
+          "subcomments": "Alle Teilbeträge in der Anwendung:"
+        },
+        "subscription": {
+          "title": "Abonnements",
+          "subscriptions": "Alle Abonnements in der Anmeldung:",
+          "subscriptionsBought": "Alle gekauften Abonnements in der Anmeldung:"
+        },
+        "singleUser": {
+          "groups": "Die Anzahl der Gruppen, zu denen Sie gehören, ist:",
+          "subscriptions": "Die Anzahl der gekauften Abonnements ist:",
+          "bills": "Die Anzahl der Rechnungen, zu denen Sie gehören ist:",
+          "comments": "Die Anzahl der von Ihnen geschriebenen Kommentare ist:",
+          "subcomments": "Die Anzahl der Beiträge, die Sie geschrieben haben, ist:"
+        }
+      }
+    },
     "calculator": {
       "cryptoConverter": {
         "title": "Crypto Konverter",
@@ -97,7 +154,8 @@
         "userBlocked": "Benutzer wurde gesperrt!",
         "contactUs": "Kontaktieren Sie uns",
         "debt": "Schulden:",
-        "isRegulated": "istReguliert:"
+        "isRegulated": "istReguliert:",
+        "regulate": "Reglement"
       },
       "codeQrDownloadText": "Klicken Sie hier, um QR herunterzuladen"
     },
@@ -122,6 +180,17 @@
       "bills": {
         "title": "Alle Rechnungen",
         "noBillsText": "Es gibt keine Rechnungen!"
+      },
+      "faq": {
+        "title": "Eine häufig gestellte Frage stellen",
+        "label": {
+          "question": "Frage",
+          "answer": "Antwort"
+        },
+        "button": {
+          "text": "FAQ erstellen",
+          "loadingText": "Ich lade."
+        }
       },
       "groups": {
         "title": "Alle Gruppen",
@@ -199,7 +268,8 @@
         "noEnoughPeopleError": "Bitte wählen Sie mindestens 2 Personen",
         "successSentEmailToAdministrator": "E-Mail an den Administrator geschickt",
         "errorSentEmailToAdministrator": "E-Mail senden",
-        "successUpdateUser": "Erfolgreich aktualisierter Benutzer"
+        "successUpdateUser": "Erfolgreich aktualisierter Benutzer",
+        "successCreateFAQ": "Erfolgreich ein faq geschaffen"
       }
     },
     "billForm": {

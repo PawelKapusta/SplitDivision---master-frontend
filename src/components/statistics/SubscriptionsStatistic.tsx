@@ -6,6 +6,7 @@ import {
     SubscriptionsStatistics,
     SubscriptionStatisticsObj,
 } from "../../types/subscription";
+import { useTranslation } from "react-i18next";
 
 export type TSubscriptionsStatisticsProp = {
     subscriptions: SubscriptionStatisticsObj[];
@@ -18,7 +19,7 @@ const SubscriptionsStatistics = ({
 }: TSubscriptionsStatisticsProp) => {
     const [subscriptionsStatisticsData, setSubscriptionsStatisticsData] =
         useState<SubscriptionsStatistics>(subscriptionsStatistics);
-
+    const { t } = useTranslation();
     useEffect(() => {
         let subscriptionsNumber = 0;
         let subscriptionsBoughtNumber = 0;
@@ -43,13 +44,15 @@ const SubscriptionsStatistics = ({
 
     return (
         <StatisticsPageScreens>
-            <h1>Subscriptions</h1>
+            <h1>{t("screens.statistics.components.subscription.title")}</h1>
             <h3>
-                All subscriptions in the application:
+                {t("screens.statistics.components.subscription.subscriptions")}
                 <p>{subscriptionsStatisticsData.subscriptionsNumber}</p>
             </h3>
             <h3>
-                All bought subscriptions in the application:
+                {t(
+                    "screens.statistics.components.subscription.subscriptionsBought",
+                )}
                 <p>{subscriptionsStatisticsData.subscriptionsBoughtNumber}</p>
             </h3>
         </StatisticsPageScreens>

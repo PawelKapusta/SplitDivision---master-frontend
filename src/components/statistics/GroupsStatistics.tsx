@@ -5,6 +5,7 @@ import {
     groupsStatistics,
     GroupStatisticsObj,
 } from "../../types/group";
+import { useTranslation } from "react-i18next";
 
 export type TGroupsStatisticsProp = {
     groups: GroupStatisticsObj[];
@@ -13,7 +14,7 @@ export type TGroupsStatisticsProp = {
 const GroupsStatistics = ({ groups }: TGroupsStatisticsProp) => {
     const [groupsStatisticsData, setGroupsStatisticsData] =
         useState<GroupsStatistics>(groupsStatistics);
-
+    const { t } = useTranslation();
     useEffect(() => {
         let groupsNumber = 0;
 
@@ -30,9 +31,9 @@ const GroupsStatistics = ({ groups }: TGroupsStatisticsProp) => {
 
     return (
         <StatisticsPageScreens>
-            <h1>Groups</h1>
+            <h1>{t("screens.statistics.components.group.title")}</h1>
             <h3>
-                All groups in the application:
+                {t("screens.statistics.components.group.groups")}
                 <p>{groupsStatisticsData.groupsNumber}</p>
             </h3>
         </StatisticsPageScreens>

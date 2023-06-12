@@ -29,6 +29,63 @@
         "description": "We appreciate your purchase. Your payment was accepted and processed without any issues. Now you will be redirected..."
       }
     },
+    "charts": {
+      "title": "Crypto",
+      "crypto": {
+        "days": {
+          "7days": "7 days",
+          "30days": "30 days",
+          "90days": "90 days",
+          "180days": "180 days",
+          "365days": "365 days"
+        },
+        "description": "Coin description"
+      }
+    },
+    "statistics": {
+      "title": "Statistics",
+      "yourStatistics": "Your statistics",
+      "appStatistics": "Application statistics",
+      "components": {
+        "user": {
+          "title": "Users",
+          "users": "All users in the application:",
+          "admin": "Admin users in the application:",
+          "blocked": "Blocked users in the application:",
+          "dividedByService": "Users divided by services:",
+          "dividedByGender": "Users divided by gender:"
+        },
+        "bill": {
+          "title": "Bills",
+          "bills": "All bills in the application:",
+          "dividedByType": "Bills divided by type:",
+          "dividedByCode": "Bills divided by currency code:",
+          "legend": "FIAT - green, CRYPTO - gold"
+        },
+        "group": {
+          "title": "Groups",
+          "groups": "All groups in the application:"
+        },
+        "comment": {
+          "title": "Comments",
+          "titleSubcomments": "Subcomments",
+          "comments": "All comments in the application:",
+          "subcomments": "All subcomments in the application:"
+        },
+        "subscription": {
+          "title": "Subscriptions",
+          "subscriptions": "All subscriptions in the application:",
+          "subscriptionsBought": "All bought subscriptions in the application:"
+        },
+        "singleUser": {
+          "groups": "The number of groups you belong to is:",
+          "subscriptions": "The number of subscriptions you bought is:",
+          "bills": "The number of bills you belong to is:",
+          "comments": "The number of comments you wrote is:",
+          "subcomments": "The number of subcomments you wrote is:"
+        }
+      }
+    },
     "calculator": {
       "cryptoConverter": {
         "title": "Crypto Converter",

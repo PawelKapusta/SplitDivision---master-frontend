@@ -11,6 +11,7 @@ import {
     FIAT,
     fiatCurrencyNames,
 } from "../../types/currency";
+import { useTranslation } from "react-i18next";
 
 export type TBillsStatisticsProp = {
     bills: BillStatisticsObj[];
@@ -19,7 +20,7 @@ export type TBillsStatisticsProp = {
 const BillsStatistics = ({ bills }: TBillsStatisticsProp) => {
     const [billsStatisticsData, setBillsStatisticsData] =
         useState<BillsStatistics>(billsStatistics);
-
+    const { t } = useTranslation();
     useEffect(() => {
         let billsNumber = 0;
         const currencyTypesNumber: { [key: string]: number } = {};
@@ -68,13 +69,13 @@ const BillsStatistics = ({ bills }: TBillsStatisticsProp) => {
 
     return (
         <StatisticsPageScreens>
-            <h1>Bills</h1>
+            <h1> {t("screens.statistics.components.bill.title")}</h1>
             <h3>
-                All bills in the application:
+                {t("screens.statistics.components.bill.bills")}
                 <p>{billsStatisticsData.billsNumber}</p>
             </h3>
             <h3>
-                Bills divided by type:
+                {t("screens.statistics.components.bill.dividedByType")}
                 <p>
                     {Object.entries(
                         billsStatisticsData.currencyTypesNumber,
@@ -90,9 +91,9 @@ const BillsStatistics = ({ bills }: TBillsStatisticsProp) => {
                 </p>
             </h3>
             <h3>
-                Bills divided by currency code:
+                {t("screens.statistics.components.bill.dividedByCode")}
                 <div style={{ marginTop: "10px" }}>
-                    FIAT - green, CRYPTO - gold
+                    {t("screens.statistics.components.bill.legend")}
                 </div>
                 <p>
                     {Object.entries(

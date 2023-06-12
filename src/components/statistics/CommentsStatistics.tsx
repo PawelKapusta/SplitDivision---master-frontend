@@ -6,6 +6,7 @@ import {
     CommentStatisticsObj,
     SubcommentStatisticsObj,
 } from "../../types/comment";
+import { useTranslation } from "react-i18next";
 
 export type TCommentsStatisticsProp = {
     comments: CommentStatisticsObj[];
@@ -18,7 +19,7 @@ const CommentsStatistics = ({
 }: TCommentsStatisticsProp) => {
     const [commentsStatisticsData, setCommentsStatisticsData] =
         useState<CommentsStatistics>(commentsStatistics);
-
+    const { t } = useTranslation();
     useEffect(() => {
         let commentsNumber = 0;
         let subcommentsNumber = 0;
@@ -42,13 +43,13 @@ const CommentsStatistics = ({
 
     return (
         <StatisticsPageScreens>
-            <h1>Comments</h1>
+            <h1>{t("screens.statistics.components.comment.title")}</h1>
             <h3>
-                All comments in the application:
+                {t("screens.statistics.components.comment.comments")}
                 <p>{commentsStatisticsData.commentsNumber}</p>
             </h3>
             <h3>
-                All subcomments in the application:
+                {t("screens.statistics.components.comment.subcomments")}
                 <p>{commentsStatisticsData.subcommentsNumber}</p>
             </h3>
         </StatisticsPageScreens>

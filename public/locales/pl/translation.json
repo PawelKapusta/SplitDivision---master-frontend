@@ -29,6 +29,63 @@
         "description": "Wykorzystuje swój zakup. Wypłata została przyjęta i wprowadzona bez żadnych problemów. Teraz będziesz przekierować."
       }
     },
+    "charts": {
+      "title": "Crypto",
+      "crypto": {
+        "days": {
+          "7days": "7 dni",
+          "30days": "30 dni",
+          "90days": "90 dni",
+          "180days": "180 dni",
+          "365days": "365 dni"
+        },
+        "description": "Opis Coin"
+      }
+    },
+    "statistics": {
+      "title": "Statystyki",
+      "yourStatistics": "Statystyki",
+      "appStatistics": "Statystyki",
+      "components": {
+        "user": {
+          "title": "User",
+          "users": "Wszelkie użytkownicy w aplikacji:",
+          "admin": "Admin użytkownicy aplikacji:",
+          "blocked": "Zablokowany użytkownik w aplikacji:",
+          "dividedByService": "Usługi podzielone są na:",
+          "dividedByGender": "Użytkowniki podzielone przez płeć:"
+        },
+        "bill": {
+          "title": "Bill",
+          "bills": "Wszystkie projekty w aplikacji:",
+          "dividedByType": "Dzieje się według typu:",
+          "dividedByCode": "Ustawa podzielona na kod walutowy",
+          "legend": "CRYPTO - zielony, CRYPTO - złoto."
+        },
+        "group": {
+          "title": "Grupa",
+          "groups": "Wszystkie grupy w aplikacji:"
+        },
+        "comment": {
+          "title": "Kompozycja",
+          "titleSubcomments": "podkomisja",
+          "comments": "Wszystkie komentarze w aplikacji:",
+          "subcomments": "Wszystkie podkomentarze w aplikacji:"
+        },
+        "subscription": {
+          "title": "Opis",
+          "subscriptions": "Wszystkie subskrypcje w aplikacji:",
+          "subscriptionsBought": "Wszystko kupowało subskrypcje w aplikacji:"
+        },
+        "singleUser": {
+          "groups": "Liczba grup, które należy do grupy, to: .",
+          "subscriptions": "Liczba poborów kupowanych jest: .",
+          "bills": "Liczba rachunków należy do: .",
+          "comments": "Liczba komentarzy napisała: .",
+          "subcomments": "Liczba podkomórek, które napisała, to znaczy: ."
+        }
+      }
+    },
     "calculator": {
       "cryptoConverter": {
         "title": "Crypto Converter",
@@ -97,7 +154,8 @@
         "userBlocked": "User został zablokowany.",
         "contactUs": "Kontakt nas.",
         "debt": "Debt:",
-        "isRegulated": "Regulatek:"
+        "isRegulated": "Regulatek:",
+        "regulate": "Regulate"
       },
       "codeQrDownloadText": "Click here to download"
     },
@@ -122,6 +180,17 @@
       "bills": {
         "title": "wszystkie ustawy",
         "noBillsText": "Nie ma żadnych ustaw!"
+      },
+      "faq": {
+        "title": "Często pytano o pytanie.",
+        "label": {
+          "question": "kwestia",
+          "answer": "Answer"
+        },
+        "button": {
+          "text": "Stworzenie FAQ",
+          "loadingText": "Loading."
+        }
       },
       "groups": {
         "title": "grupa wszystkich grup",
@@ -199,7 +268,8 @@
         "noEnoughPeopleError": "Wybranie przynajmniej 2 osób.",
         "successSentEmailToAdministrator": "e-mail do administratora",
         "errorSentEmailToAdministrator": "Email nie wysyłał poczty.",
-        "successUpdateUser": "Sukcesowo aktualizowany użytkownik"
+        "successUpdateUser": "Sukcesowo aktualizowany użytkownik",
+        "successCreateFAQ": "Sukcesowo stworzył fak."
       }
     },
     "billForm": {

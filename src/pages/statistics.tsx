@@ -108,7 +108,7 @@ const Statistics: NextPage = () => {
             ) : (
                 <StatisticsContent>
                     <Title>
-                        <h1>Statistics</h1>
+                        <h1>{t("screens.statistics.title")}</h1>
                     </Title>
                     <StatisticsImage>
                         <Image
@@ -119,7 +119,9 @@ const Statistics: NextPage = () => {
                         />
                     </StatisticsImage>
                     <ApplicationStatistics>
-                        <SectionTitle>Your statistics</SectionTitle>
+                        <SectionTitle>
+                            {t("screens.statistics.yourStatistics")}
+                        </SectionTitle>
                         <Section>
                             <SectionRow>
                                 <SingleUserStatistics
@@ -137,7 +139,9 @@ const Statistics: NextPage = () => {
                                 />
                             </SectionRow>
                         </Section>
-                        <SectionTitle>Application statistics</SectionTitle>
+                        <SectionTitle>
+                            {t("screens.statistics.appStatistics")}
+                        </SectionTitle>
                         <Section>
                             <SectionRow>
                                 <UsersStatistics users={users} />

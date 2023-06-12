@@ -2,16 +2,20 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 import { AppState, AppThunk } from "../store";
 import { Dispatch } from "redux";
-import { fiatCurrencyNames, Currency, TCrypto } from "../../types/currency";
+import { Currency, fiatCurrencyNames, TCrypto } from "../../types/currency";
 
 interface CurrencyState {
     fiatCurrencies: Currency[];
     cryptoCurrencies: TCrypto[];
+    cryptoCurrenciesToChart: TCrypto[];
+    cryptoCurrencyData: TCrypto[];
     cryptoCurrenciesRatesToFiatCurrencies: any;
     supportedFiatCurrenciesWithCryptoCurrencies: [];
     convertedFiatTotal: number | null;
     isLoading: boolean;
     isFiatConvertLoading: boolean;
+    isCryptoCurrencyDataLoading: boolean;
+    isCryptoCurrenciesToChartLoading: boolean;
     isFetchCryptoCurrenciesLoading: boolean;
     isSupportedFiatCurrenciesWithCryptoCurrenciesLoading: boolean;
     isCryptoCurrenciesRatesToFiatCurrenciesLoading: boolean;
@@ -21,10 +25,14 @@ interface CurrencyState {
 const initialState: CurrencyState = {
     fiatCurrencies: [],
     cryptoCurrencies: [],
+    cryptoCurrenciesToChart: [],
+    cryptoCurrencyData: [],
     cryptoCurrenciesRatesToFiatCurrencies: {},
     supportedFiatCurrenciesWithCryptoCurrencies: [],
     convertedFiatTotal: null,
     isLoading: false,
+    isCryptoCurrenciesToChartLoading: false,
+    isCryptoCurrencyDataLoading: false,
     isFiatConvertLoading: false,
     isFetchCryptoCurrenciesLoading: false,
     isSupportedFiatCurrenciesWithCryptoCurrenciesLoading: false,
@@ -113,6 +121,36 @@ const currencySlice = createSlice({
             state.isCryptoCurrenciesRatesToFiatCurrenciesLoading = false;
             state.error = action.payload;
         },
+
+        getCryptoCurrenciesToChartStart(state) {
+            state.isCryptoCurrenciesToChartLoading = true;
+            state.error = null;
+        },
+        getCryptoCurrenciesToChartSuccess(state, action: PayloadAction<any>) {
+            state.cryptoCurrenciesToChart = action.payload;
+            state.isCryptoCurrenciesToChartLoading = false;
+        },
+        getCryptoCurrenciesToChartFailure(
+            state,
+            action: PayloadAction<string>,
+        ) {
+            state.isCryptoCurrenciesToChartLoading = false;
+            state.error = action.payload;
+        },
+
+        getCryptoCurrencyDataStart(state) {
+            state.isCryptoCurrencyDataLoading = true;
+            state.error = null;
+        },
+        getCryptoCurrencyDataSuccess(state, action: PayloadAction<any>) {
+            state.cryptoCurrencyData = action.payload;
+            state.isCryptoCurrencyDataLoading = false;
+        },
+        getCryptoCurrencyDataFailure(state, action: PayloadAction<string>) {
+            state.isCryptoCurrencyDataLoading = false;
+            state.error = action.payload;
+        },
+
         currencyError: (state, action: PayloadAction<string>) => {
             console.log("auth state", state);
             console.log("auth eroror", state.error);
@@ -141,6 +179,12 @@ export const {
     getCryptoCurrenciesRatesToFiatCurrenciesStart,
     getCryptoCurrenciesRatesToFiatCurrenciesSuccess,
     getCryptoCurrenciesRatesToFiatCurrenciesFailure,
+    getCryptoCurrenciesToChartStart,
+    getCryptoCurrenciesToChartSuccess,
+    getCryptoCurrenciesToChartFailure,
+    getCryptoCurrencyDataStart,
+    getCryptoCurrencyDataSuccess,
+    getCryptoCurrencyDataFailure,
 } = currencySlice.actions;
 
 const getCurrencyName = (code: string) => {
@@ -242,6 +286,37 @@ export const fetchCryptoCurrenciesRatesToFiatCurrencies =
                     error as string,
                 ),
             );
+        }
+    };
+
+export const fetchCryptoCurrenciesToChart =
+    (cryptoCurrencyId: string, days: number): AppThunk =>
+    async (dispatch: Dispatch) => {
+        try {
+            dispatch(getCryptoCurrenciesToChartStart());
+
+            const response = await axios.get(
+                `${process.env.NEXT_PUBLIC_CRYPTO_CURRENCIES_CHARTS}${cryptoCurrencyId}/market_chart?vs_currency=usd&days=${days}`,
+            );
+            dispatch(getCryptoCurrenciesToChartSuccess(response.data));
+        } catch (error) {
+            dispatch(getCryptoCurrenciesToChartFailure(error as string));
+        }
+    };
+
+export const fetchCryptoCurrencyData =
+    (cryptoCurrencyId: string): AppThunk =>
+    async (dispatch: Dispatch) => {
+        try {
+            dispatch(getCryptoCurrencyDataStart());
+
+            const response = await axios.get(
+                `${process.env.NEXT_PUBLIC_CRYPTO_CURRENCIES_CHARTS}${cryptoCurrencyId}?localization=false&tickers=false&market_data=false&community_data=false&sparkline=false`,
+            );
+            console.log("response data", response.data);
+            dispatch(getCryptoCurrencyDataSuccess(response.data));
+        } catch (error) {
+            dispatch(getCryptoCurrencyDataFailure(error as string));
         }
     };
 

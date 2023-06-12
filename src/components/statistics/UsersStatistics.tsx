@@ -5,6 +5,7 @@ import {
     UserStatisticsObj,
 } from "../../types/user";
 import { StatisticsPageScreens } from "@styles/statistics.styles";
+import { useTranslation } from "react-i18next";
 
 export type TUsersStatisticsProp = {
     users: UserStatisticsObj[];
@@ -13,6 +14,7 @@ export type TUsersStatisticsProp = {
 const UsersStatistics = ({ users }: TUsersStatisticsProp) => {
     const [usersStatisticsData, setUsersStatisticsData] =
         useState<UsersStatistics>(usersStatistics);
+    const { t } = useTranslation();
 
     useEffect(() => {
         let usersNumber = 0;
@@ -66,21 +68,21 @@ const UsersStatistics = ({ users }: TUsersStatisticsProp) => {
 
     return (
         <StatisticsPageScreens>
-            <h1>Users</h1>
+            <h1>{t("screens.statistics.components.user.title")}</h1>
             <h3>
-                All users in the application:
+                {t("screens.statistics.components.user.users")}
                 <p>{usersStatisticsData.usersNumber}</p>
             </h3>
             <h3>
-                Admin users in the application:
+                {t("screens.statistics.components.user.admin")}
                 <p>{usersStatisticsData.adminUsers}</p>
             </h3>
             <h3>
-                Blocked users in the application:
+                {t("screens.statistics.components.user.blocked")}
                 <p> {usersStatisticsData.blockedUsers}</p>
             </h3>
             <h3>
-                Users divided by services:
+                {t("screens.statistics.components.user.dividedByService")}
                 <p>
                     {Object.entries(usersStatisticsData.services).map(
                         ([service, number]) => {
@@ -96,7 +98,7 @@ const UsersStatistics = ({ users }: TUsersStatisticsProp) => {
                 </p>
             </h3>
             <h3>
-                Users divided by gender:
+                {t("screens.statistics.components.user.dividedByGender")}
                 <p>
                     {Object.entries(usersStatisticsData.gender).map(
                         ([gender, number]) => {

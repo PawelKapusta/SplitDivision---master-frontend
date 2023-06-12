@@ -22,6 +22,7 @@ import {
     FIAT,
     fiatCurrencyNames,
 } from "../../types/currency";
+import { useTranslation } from "react-i18next";
 
 export type TSingleUserStatisticsProp = {
     groups: GroupStatisticsObj[];
@@ -40,7 +41,7 @@ const SingleUserStatistics = ({
 }: TSingleUserStatisticsProp) => {
     const [singleUserStatisticsData, setSingleUserStatisticsData] =
         useState<SingleUserStatisticsInterface>(singleUserStatistics);
-
+    const { t } = useTranslation();
     useEffect(() => {
         let groupsNumber = 0;
         let billsNumber = 0;
@@ -132,25 +133,29 @@ const SingleUserStatistics = ({
                 }}
             >
                 <SectionRow>
-                    <h1>Groups</h1>
+                    <h1>{t("screens.statistics.components.group.title")}</h1>
                     <h3>
-                        The number of groups you belong to is:
+                        {t("screens.statistics.components.singleUser.groups")}
                         <p>{singleUserStatisticsData.groupsNumber}</p>
                     </h3>
-                    <h1>Subscriptions</h1>
+                    <h1>
+                        {t("screens.statistics.components.subscription.title")}
+                    </h1>
                     <h3>
-                        The number of subscriptions you bought is:
+                        {t(
+                            "screens.statistics.components.singleUser.subscriptions",
+                        )}
                         <p>{singleUserStatisticsData.subscriptionsNumber}</p>
                     </h3>
                 </SectionRow>
                 <SectionRow>
-                    <h1>Bills</h1>
+                    <h1>{t("screens.statistics.components.bill.title")}</h1>
                     <h3>
-                        The number of bills you belong to is
+                        {t("screens.statistics.components.singleUser.bills")}
                         <p>{singleUserStatisticsData.billsNumber}</p>
                     </h3>
                     <h3>
-                        Bills divided by type:
+                        {t("screens.statistics.components.bill.dividedByType")}
                         <p>
                             {Object.entries(
                                 singleUserStatisticsData.currencyBillTypesNumber,
@@ -166,9 +171,9 @@ const SingleUserStatistics = ({
                         </p>
                     </h3>
                     <h3>
-                        Bills divided by currency code:
+                        {t("screens.statistics.components.bill.dividedByCode")}
                         <div style={{ marginTop: "10px" }}>
-                            FIAT - green, CRYPTO - gold
+                            {t("screens.statistics.components.bill.legend")}
                         </div>
                         <p>
                             {Object.entries(
@@ -193,14 +198,20 @@ const SingleUserStatistics = ({
                     </h3>
                 </SectionRow>
                 <SectionRow>
-                    <h1>Comments</h1>
+                    <h1>{t("screens.statistics.components.comment.title")}</h1>
                     <h3>
-                        The number of comments you wrote is:
+                        {t("screens.statistics.components.singleUser.comments")}
                         <p>{singleUserStatisticsData.commentsNumber}</p>
                     </h3>
-                    <h1>Subcomments</h1>
+                    <h1>
+                        {t(
+                            "screens.statistics.components.comment.titleSubcomments",
+                        )}
+                    </h1>
                     <h3>
-                        The number of subcomments you wrote is:
+                        {t(
+                            "screens.statistics.components.singleUser.subcomments",
+                        )}
                         <p>{singleUserStatisticsData.subcommentsNumber}</p>
                     </h3>
                 </SectionRow>
