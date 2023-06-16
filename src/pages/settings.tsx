@@ -23,6 +23,7 @@ import { TDecodedJWTToken } from "../types/jwt";
 import { getDecodedJWTToken } from "../utils/jwt";
 import { goToCheckout } from "../checkout";
 import { ALL_ACCESS, Subscription } from "../types/subscription";
+import { withAuth } from "../hocs/withAuth";
 
 const Settings: NextPage = () => {
     const { isAuthenticated, token } = useSelector(selectAuthState);
@@ -128,4 +129,4 @@ const Settings: NextPage = () => {
     );
 };
 
-export default Settings;
+export default withAuth(Settings);

@@ -3,13 +3,13 @@ import { useRouter } from "next/router";
 import { ReactElement, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectAuthState } from "@redux/slices/authSlice";
-import { TDecodedJWTToken } from "../types/jwt";
-import { getDecodedJWTToken } from "../utils/jwt";
 import { selectUserState } from "@redux/slices/userSlice";
 import {
     fetchUserSubscriptions,
     selectSubscriptionState,
 } from "@redux/slices/subscriptionSlice";
+import { TDecodedJWTToken } from "../types/jwt";
+import { getDecodedJWTToken } from "../utils/jwt";
 import { ALL_ACCESS, Subscription } from "../types/subscription";
 
 interface WithPremiumProps {
@@ -18,19 +18,13 @@ interface WithPremiumProps {
 
 const WithPremiumComponent: NextPage<WithPremiumProps> = ({ children }) => {
     const { isAuthenticated, token } = useSelector(selectAuthState);
-    const { isLoading, userSubscription, isUserSubscriptionsLoading } =
-        useSelector(selectSubscriptionState);
+    const { userSubscription, isUserSubscriptionsLoading } = useSelector(
+        selectSubscriptionState,
+    );
+    const { user } = useSelector(selectUserState);
     const dispatch = useDispatch();
     const router = useRouter();
     let decodedToken: TDecodedJWTToken, userId: string;
-    if (isAuthenticated) {
-        decodedToken = getDecodedJWTToken(token);
-        userId = decodedToken.id;
-    }
-    const { user } = useSelector(selectUserState);
-    useEffect(() => {
-        dispatch(fetchUserSubscriptions(userId as string));
-    }, [isAuthenticated]);
 
     const hasFullAccess = (userSubscription: Subscription[]) => {
         return userSubscription.find(
@@ -40,6 +34,15 @@ const WithPremiumComponent: NextPage<WithPremiumProps> = ({ children }) => {
 
     const hasUserAnySubscriptions =
         userSubscription && userSubscription?.length > 0;
+
+    if (isAuthenticated) {
+        decodedToken = getDecodedJWTToken(token);
+        userId = decodedToken.id;
+    }
+
+    useEffect(() => {
+        dispatch(fetchUserSubscriptions(userId as string));
+    }, [isAuthenticated]);
 
     useEffect(() => {
         if (

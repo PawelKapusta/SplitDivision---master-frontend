@@ -108,7 +108,7 @@ export const BillUsersContainer = styled.div`
     display: flex;
     justify-content: center;
     flex-direction: column;
-    width: 800px;
+    width: 900px;
 
     img {
         width: 60px;

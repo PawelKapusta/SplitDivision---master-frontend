@@ -168,8 +168,8 @@ export const ListItem = styled.div<{ isBlocked: boolean }>`
 
 img {
   display: block;
-  height: 100%;
-  width: 100%;
+  height: 80px;
+  width: 80px;
 }
 `;
 

@@ -3,6 +3,12 @@ import { withAdmin } from "../../hocs/withAdmin";
 import { useDispatch, useSelector } from "react-redux";
 import Spinner from "@components/spinner";
 import {
+    AdminButton,
+    AdminUsersPage,
+    Avatar,
+    BlockButton,
+    ButtonActions,
+    DeleteButton,
     DeleteButtonActions,
     DeleteModalButton,
     DeleteModalContent,
@@ -10,14 +16,8 @@ import {
     DeleteModalTitle,
     Title,
     UserCard,
-    UserTitle,
     UserColumn,
-    Avatar,
-    AdminUsersPage,
-    ButtonActions,
-    BlockButton,
-    DeleteButton,
-    AdminButton,
+    UserTitle,
 } from "@styles/pages/admin/admin.styles";
 import useAlert from "../../hocs/useAlert";
 
@@ -215,15 +215,8 @@ const Users = (): ReactElement => {
                                 <UserCard key={user.id}>
                                     <UserColumn>
                                         <Avatar>
-                                            <Image
-                                                priority
-                                                src={
-                                                    (user &&
-                                                        user?.avatar_image) ||
-                                                    "/icons/avatar.svg"
-                                                }
-                                                height={80}
-                                                width={80}
+                                            <img
+                                                src={user && user?.avatar_image}
                                                 alt="Avatar icon"
                                             />
                                         </Avatar>

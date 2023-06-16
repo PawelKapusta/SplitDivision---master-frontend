@@ -206,17 +206,29 @@ export const Avatar = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 50px;
-    height: 50px;
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
 
     img {
+        display: block;
         border-radius: 50%;
+        width: 100%;
+        height: 100%;
     }
 
     @media ${(props) => props.theme.breakpoints.md} {
         img:hover {
             box-shadow: none;
         }
+    }
+`;
+
+export const AvatarList = styled.div`
+    img {
+        display: block;
+        border-radius: 50%;
+        width: 80px;
+        height: 80px;
     }
 `;

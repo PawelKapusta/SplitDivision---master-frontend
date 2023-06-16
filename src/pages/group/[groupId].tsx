@@ -27,7 +27,7 @@ import {
 } from "@styles/pages/group/group.styles";
 import { getFormattedDate } from "../../utils/date";
 import Spinner from "@components/spinner";
-import Avatar from "@mui/material/Avatar";
+
 import { User } from "../../types/user";
 import Modal from "@components/modal";
 import BillForm from "@components/forms/bill-form";
@@ -37,6 +37,7 @@ import { Bill } from "../../types/bill";
 import BillCard from "@components/cards/bill-card";
 import { NextPage } from "next";
 import {
+    AvatarList,
     DeleteButtonActions,
     DeleteModalButton,
     DeleteModalContent,
@@ -54,8 +55,7 @@ const Group: NextPage = () => {
     const { t } = useTranslation();
 
     const dispatch = useDispatch();
-    const { isLoading, group, groupUsers, deleteGroupSuccess } =
-        useSelector(selectGroupState);
+    const { isLoading, group, groupUsers } = useSelector(selectGroupState);
     const {
         isLoading: billsLoading,
         groupBills,
@@ -225,12 +225,12 @@ const Group: NextPage = () => {
                                         key={user?.id}
                                         isBlocked={user?.is_blocked}
                                     >
-                                        <Avatar>
+                                        <AvatarList>
                                             <img
                                                 src={user?.avatar_image}
                                                 alt="Avatar icon"
                                             />
-                                        </Avatar>
+                                        </AvatarList>
                                         <ListItemText
                                             isBlocked={user?.is_blocked}
                                         >

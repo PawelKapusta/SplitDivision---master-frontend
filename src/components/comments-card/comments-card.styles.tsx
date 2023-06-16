@@ -93,6 +93,7 @@ export const CommentCardAvatar = styled.div`
 
     span {
         margin-top: 10px;
+        margin-left: 10px;
     }
 `;
 

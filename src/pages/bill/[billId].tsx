@@ -16,7 +16,7 @@ import { getFormattedDate } from "../../utils/date";
 import Flag from "react-world-flags";
 import Modal from "@components/modal";
 import {
-    Avatar,
+    AvatarList,
     DeleteButtonActions,
     DeleteModalButton,
     DeleteModalContent,
@@ -327,14 +327,14 @@ const Bill: NextPage = () => {
                                                         bills_users?.is_blocked
                                                     }
                                                 >
-                                                    <Avatar>
+                                                    <AvatarList>
                                                         <img
                                                             src={
                                                                 bills_users?.avatar_image
                                                             }
                                                             alt="Avatar icon"
                                                         />
-                                                    </Avatar>
+                                                    </AvatarList>
                                                     <ListItemText
                                                         isBlocked={
                                                             bills_users?.is_blocked

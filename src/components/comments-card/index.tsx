@@ -32,7 +32,7 @@ import {
 import Spinner from "@components/spinner";
 import { selectUserState } from "@redux/slices/userSlice";
 import { User } from "../../types/user";
-import { Avatar } from "@styles/pages/admin/admin.styles";
+import { AvatarList } from "@styles/pages/admin/admin.styles";
 import Image from "next/image";
 import { selectAuthState } from "@redux/slices/authSlice";
 import { TDecodedJWTToken } from "../../types/jwt";
@@ -349,7 +349,7 @@ const CommentsCard = ({ billId }: TCommentsCardProps): ReactElement => {
                                 ) : (
                                     <CommentCardContent>
                                         <CommentCardAvatar>
-                                            <Avatar>
+                                            <AvatarList>
                                                 <Image
                                                     priority
                                                     src={
@@ -361,7 +361,7 @@ const CommentsCard = ({ billId }: TCommentsCardProps): ReactElement => {
                                                     width={50}
                                                     alt="Avatar icon"
                                                 />
-                                            </Avatar>
+                                            </AvatarList>
                                             <span>
                                                 {
                                                     findUserById(
@@ -518,7 +518,7 @@ const CommentsCard = ({ billId }: TCommentsCardProps): ReactElement => {
                                                     ) : (
                                                         <CommentCardContent>
                                                             <CommentCardAvatar>
-                                                                <Avatar>
+                                                                <AvatarList>
                                                                     <Image
                                                                         priority
                                                                         src={
@@ -535,7 +535,7 @@ const CommentsCard = ({ billId }: TCommentsCardProps): ReactElement => {
                                                                         }
                                                                         alt="Avatar icon"
                                                                     />
-                                                                </Avatar>
+                                                                </AvatarList>
                                                                 <span>
                                                                     {
                                                                         findUserById(
