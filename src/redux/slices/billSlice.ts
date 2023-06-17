@@ -195,20 +195,15 @@ const billSlice = createSlice({
             state.deleteBillSuccess = false;
         },
         billError: (state, action: PayloadAction<string>) => {
-            console.log("auth state", state);
-            console.log("auth eroror", state.error);
             state.bills = [];
             state.bill = null;
             state.isLoading = false;
             state.error = action.payload;
             state.success = false;
-            console.log("action", action.payload);
-            console.log("error", state.error);
         },
     },
     extraReducers: (builder) => {
         builder.addCase(HYDRATE, (state: AppState, action: AnyAction) => {
-            console.log("HYDRATE", action.payload);
             return {
                 ...state,
                 ...action.payload.bill,
@@ -284,7 +279,6 @@ export const fetchGroupBills =
             const response = await authAxios.get(
                 `${process.env.NEXT_PUBLIC_API_GATEWAY_URL}/bills/group/${groupId}`,
             );
-            console.log("data", response);
             const data = response.data;
             dispatch(getGroupBillsSuccess(data));
         } catch (error) {
@@ -319,7 +313,6 @@ export const fetchBill =
                 `${process.env.NEXT_PUBLIC_API_GATEWAY_URL}/bills/${id}`,
             );
             const data = response.data;
-            console.log("data", data);
             dispatch(getBillSuccess(data));
         } catch (error) {
             dispatch(getBillFailure(error as string));

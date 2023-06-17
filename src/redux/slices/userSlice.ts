@@ -1,8 +1,6 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { AppThunk } from "../store";
+import { AnyAction, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { AppState, AppThunk } from "../store";
 import { HYDRATE } from "next-redux-wrapper";
-import { AppState } from "../store";
-import { AnyAction } from "@reduxjs/toolkit";
 import axios from "axios";
 import { Dispatch } from "redux";
 import authAxios from "../../api/axios/axios";
@@ -132,15 +130,11 @@ const userSlice = createSlice({
             state.successDeleteUser = false;
         },
         userError: (state, action: PayloadAction<string>) => {
-            console.log("auth state", state);
-            console.log("auth eroror", state.error);
             state.users = [];
             state.user = null;
             state.isLoading = false;
             state.error = action.payload;
             state.success = false;
-            console.log("action", action.payload);
-            console.log("error", state.error);
         },
     },
     extraReducers: (builder) => {

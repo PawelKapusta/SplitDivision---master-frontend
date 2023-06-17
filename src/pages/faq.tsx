@@ -13,8 +13,6 @@ const FAQ: NextPage = () => {
         dispatch(fetchFaqs());
     }, [dispatch]);
 
-    console.log("faqs", faqs);
-
     return <div>{isLoading ? <Spinner /> : <FaqTable />}</div>;
 };
 

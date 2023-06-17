@@ -77,13 +77,9 @@ const faqSlice = createSlice({
             state.error = action.payload;
         },
         faqError: (state, action: PayloadAction<string>) => {
-            console.log("auth state", state);
-            console.log("auth eroror", state.error);
             state.faqs = [];
             state.isLoading = false;
             state.error = action.payload;
-            console.log("action", action.payload);
-            console.log("error", state.error);
         },
     },
 });

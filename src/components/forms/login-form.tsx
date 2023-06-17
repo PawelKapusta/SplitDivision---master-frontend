@@ -1,13 +1,12 @@
 import React, { ReactElement } from "react";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser, selectAuthState } from "@redux/slices/authSlice";
 import { LoginFormData } from "../../types/user";
 import {
+    Error,
     FormCard,
     Input,
-    Error,
-    OAuthLoginButton,
     RegisterDescription,
 } from "@styles/pages/auth/auth.styles";
 import LoadingButton from "@components/loading-button";
@@ -65,8 +64,6 @@ const LoginForm = (): ReactElement => {
                         ? t("components.loginForm.loginButton.loadingButton")
                         : t("components.loginForm.loginButton.text")}
                 </LoadingButton>
-                <OAuthLoginButton>Placeholder 1</OAuthLoginButton>
-                <OAuthLoginButton>Placeholder 2</OAuthLoginButton>
                 <RegisterDescription>
                     <p>
                         {t("components.loginForm.textToRegister.text")}

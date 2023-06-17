@@ -1,8 +1,6 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { AppThunk } from "../store";
+import { AnyAction, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { AppState, AppThunk } from "../store";
 import { HYDRATE } from "next-redux-wrapper";
-import { AppState } from "../store";
-import { AnyAction } from "@reduxjs/toolkit";
 import { Dispatch } from "redux";
 import authAxios from "../../api/axios/axios";
 import { Group, GroupFormData } from "../../types/group";
@@ -146,20 +144,15 @@ const groupSlice = createSlice({
             state.deleteGroupSuccess = false;
         },
         groupError: (state, action: PayloadAction<string>) => {
-            console.log("auth state", state);
-            console.log("auth eroror", state.error);
             state.groups = [];
             state.group = null;
             state.isLoading = false;
             state.error = action.payload;
             state.success = false;
-            console.log("action", action.payload);
-            console.log("error", state.error);
         },
     },
     extraReducers: (builder) => {
         builder.addCase(HYDRATE, (state: AppState, action: AnyAction) => {
-            console.log("HYDRATE", action.payload);
             return {
                 ...state,
                 ...action.payload.group,

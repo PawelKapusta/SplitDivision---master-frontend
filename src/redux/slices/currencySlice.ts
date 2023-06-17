@@ -49,7 +49,6 @@ const currencySlice = createSlice({
             state.error = null;
         },
         getFiatCurrenciesSuccess(state, action: PayloadAction<Currency[]>) {
-            console.log("action", action, action.payload);
             state.fiatCurrencies = action.payload;
             state.isLoading = false;
         },
@@ -62,7 +61,6 @@ const currencySlice = createSlice({
             state.error = null;
         },
         getCryptoCurrenciesSuccess(state, action: PayloadAction<TCrypto[]>) {
-            console.log("action", action, action.payload);
             state.cryptoCurrencies = action.payload;
             state.isFetchCryptoCurrenciesLoading = false;
         },
@@ -152,13 +150,9 @@ const currencySlice = createSlice({
         },
 
         currencyError: (state, action: PayloadAction<string>) => {
-            console.log("auth state", state);
-            console.log("auth eroror", state.error);
             state.fiatCurrencies = [];
             state.isLoading = false;
             state.error = action.payload;
-            console.log("action", action.payload);
-            console.log("error", state.error);
         },
     },
 });
@@ -313,7 +307,6 @@ export const fetchCryptoCurrencyData =
             const response = await axios.get(
                 `${process.env.NEXT_PUBLIC_CRYPTO_CURRENCIES_CHARTS}${cryptoCurrencyId}?localization=false&tickers=false&market_data=false&community_data=false&sparkline=false`,
             );
-            console.log("response data", response.data);
             dispatch(getCryptoCurrencyDataSuccess(response.data));
         } catch (error) {
             dispatch(getCryptoCurrencyDataFailure(error as string));

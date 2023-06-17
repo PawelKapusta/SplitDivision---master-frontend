@@ -27,7 +27,6 @@ const Groups: NextPage = () => {
         dispatch(fetchUserGroups(userId));
     }, []);
 
-    console.log(userGroups);
     return (
         <div>
             {isLoading ? (

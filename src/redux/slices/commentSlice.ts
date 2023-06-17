@@ -99,7 +99,6 @@ const commentSlice = createSlice({
             state,
             action: PayloadAction<Comment[]>,
         ) {
-            console.log("state", action.payload);
             state.userCommentsAndSubcomments = action.payload;
             state.isLoading = false;
             state.success = true;
@@ -228,19 +227,14 @@ const commentSlice = createSlice({
         },
 
         commentError: (state, action: PayloadAction<string>) => {
-            console.log("auth state", state);
-            console.log("auth eroror", state.error);
             state.comments = [];
             state.isLoading = false;
             state.error = action.payload;
             state.success = false;
-            console.log("action", action.payload);
-            console.log("error", state.error);
         },
     },
     extraReducers: (builder) => {
         builder.addCase(HYDRATE, (state: AppState, action: AnyAction) => {
-            console.log("HYDRATE", action.payload);
             return {
                 ...state,
                 ...action.payload.comment,
@@ -318,7 +312,7 @@ export const fetchUserCommentsAndSubcomments =
                 `${process.env.NEXT_PUBLIC_API_GATEWAY_URL}/comments/subcomments/user/${userId}`,
             );
             const data = response.data;
-            console.log("data", data);
+
             dispatch(getUserCommentsAndSubcommentsSuccess(data));
         } catch (error) {
             dispatch(getUserCommentsAndSubcommentsFailure(error as string));

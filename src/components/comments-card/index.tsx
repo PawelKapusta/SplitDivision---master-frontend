@@ -49,7 +49,6 @@ const CommentsCard = ({ billId }: TCommentsCardProps): ReactElement => {
         billComments,
         isCreateCommentLoading,
         isUpdateLoading,
-        createSubcommentSuccess,
         isDeleteCommentLoading,
         isDeleteSubcommentLoading,
     } = useSelector(selectCommentState);
@@ -93,7 +92,6 @@ const CommentsCard = ({ billId }: TCommentsCardProps): ReactElement => {
                 bill_id: billId,
             };
             dispatch(createComment(newCommentData));
-            console.log(newCommentContent);
             setNewCommentContent("");
         }
     };
@@ -107,7 +105,6 @@ const CommentsCard = ({ billId }: TCommentsCardProps): ReactElement => {
                 bill_id: billId,
             };
             dispatch(createSubcomment(newSubcommentData));
-            console.log(newSubcommentData);
             setCommentReplyContent("");
         }
     };

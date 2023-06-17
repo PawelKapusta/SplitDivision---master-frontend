@@ -48,9 +48,6 @@ const Settings: NextPage = () => {
         dispatch(fetchUserSubscriptions(userId as string));
     }, []);
 
-    console.log("subscriptions", subscriptions);
-    console.log("userSubscription", userSubscription);
-
     const hasFullAccess = (userSubscription: Subscription[]) => {
         return userSubscription.find(
             (subscription: Subscription) => subscription?.type === ALL_ACCESS,

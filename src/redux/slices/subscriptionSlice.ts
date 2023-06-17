@@ -151,13 +151,9 @@ const subscriptionSlice = createSlice({
             state.error = action.payload;
         },
         subscriptionError: (state, action: PayloadAction<string>) => {
-            console.log("auth state", state);
-            console.log("auth eroror", state.error);
             state.subscriptions = [];
             state.isLoading = false;
             state.error = action.payload;
-            console.log("action", action.payload);
-            console.log("error", state.error);
         },
     },
 });

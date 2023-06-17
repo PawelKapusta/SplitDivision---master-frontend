@@ -131,14 +131,6 @@ const Group: NextPage = () => {
                                 {getFormattedDate(group?.data_created)}
                             </p>
                             <GroupCardActions>
-                                {/*<EditGroupButton>*/}
-                                {/*    <Image*/}
-                                {/*        src="/icons/edit-icon.svg"*/}
-                                {/*        width={30}*/}
-                                {/*        height={30}*/}
-                                {/*        alt="Edit-icon.svg"*/}
-                                {/*    />*/}
-                                {/*</EditGroupButton>*/}
                                 <DeleteGroupButton
                                     onClick={handleDeleteGroupOpenModal}
                                 >

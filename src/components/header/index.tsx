@@ -1,23 +1,23 @@
-import React, { useState, ReactElement } from "react";
+import React, { ReactElement, useState } from "react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import Dropdown from "@components/dropdown";
-const Logo = dynamic(() => import("@components/logo"), {
-    ssr: false,
-});
-
 import {
     Container,
-    Wrapper,
     Hamburger,
-    NavbarToggleIcon,
+    MenuLink,
     NavbarMenu,
     NavbarMenuItem,
-    MenuLink,
+    NavbarToggleIcon,
+    Wrapper,
 } from "./header.styles";
 import { useSelector } from "react-redux";
 import { selectAuthState } from "@redux/slices/authSlice";
 import { useTranslation } from "react-i18next";
+
+const Logo = dynamic(() => import("@components/logo"), {
+    ssr: false,
+});
 
 const Header = (): ReactElement => {
     const [showMenu, setShowMenu] = useState(false);
@@ -27,7 +27,6 @@ const Header = (): ReactElement => {
         setShowMenu(!showMenu);
     };
 
-    console.log(isAuthenticated);
     return (
         <Container data-testid="container">
             <Wrapper>

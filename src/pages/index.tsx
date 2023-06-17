@@ -2,14 +2,14 @@ import React, { useEffect } from "react";
 import Image from "next/image";
 import CardContent from "@components/card-content";
 import {
+    Cards,
+    CardsRow,
+    CardsTitle,
+    Description,
     MainBox,
     MainLeft,
     MainRight,
     Title,
-    Description,
-    Cards,
-    CardsRow,
-    CardsTitle,
 } from "@styles/pages/home.styles";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUser, selectUserState } from "@redux/slices/userSlice";
@@ -17,6 +17,10 @@ import { selectAuthState } from "@redux/slices/authSlice";
 import { getDecodedJWTToken } from "../utils/jwt";
 import { TDecodedJWTToken } from "../types/jwt";
 import { useTranslation } from "react-i18next";
+import {
+    fetchSubscriptions,
+    fetchUserSubscriptions,
+} from "@redux/slices/subscriptionSlice";
 
 const Home: React.FC = () => {
     const dispatch = useDispatch();
@@ -31,6 +35,8 @@ const Home: React.FC = () => {
 
     useEffect(() => {
         dispatch(fetchUser(userId));
+        dispatch(fetchSubscriptions());
+        dispatch(fetchUserSubscriptions(userId as string));
     }, [isAuthenticated]);
 
     return (
