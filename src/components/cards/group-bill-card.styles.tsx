@@ -17,9 +17,11 @@ export const CardContainer = styled.div<{
     padding: 10px;
     cursor: pointer;
     font-size: 20px;
+
     & * {
         background-color: ${({ isAdmin }) => (isAdmin ? "#D3D3D3" : "white")};
     }
+
     &:hover {
         box-shadow: 0 0 20px ${({ theme }) => theme.palette.white};
     }
@@ -31,9 +33,14 @@ export const CardTitle = styled.div`
     justify-content: space-around;
     width: 250px;
     margin-left: 10px;
+
     p {
         color: ${({ theme }) => theme.palette.black};
         margin-bottom: 5px;
+
+        @media ${(props) => props.theme.breakpoints.sm} {
+            font-size: 18px;
+        }
     }
 
     p:nth-child(1) {
@@ -67,9 +74,14 @@ export const CardCost = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+
     p {
         color: ${({ theme }) => theme.palette.black};
         font-weight: bold;
         font-size: 24px;
+        @media ${(props) => props.theme.breakpoints.sm} {
+            font-size: 20px;
+            margin-left: 10px;
+        }
     }
 `;

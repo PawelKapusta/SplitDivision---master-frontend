@@ -21,6 +21,13 @@ export const CommentsCardBox = styled.div`
         background-color: ${({ theme }) => theme.palette.black};
         color: ${({ theme }) => theme.palette.gold};
     }
+
+    @media ${(props) => props.theme.breakpoints.lg} {
+        img {
+            width: 50px;
+            height: 50px;
+        }
+    }
 `;
 
 export const CommentsCardTextEdiBox = styled.div`
@@ -100,6 +107,10 @@ export const CommentCardAvatar = styled.div`
 export const CommentCardContentText = styled.div`
     width: 70%;
     padding: 20px;
+
+    @media ${(props) => props.theme.breakpoints.lg} {
+        width: 50%;
+    }
 `;
 
 export const CommentCardContentButtons = styled.div<{ isComment?: boolean }>`
@@ -127,16 +138,26 @@ export const CommentCardContentButtons = styled.div<{ isComment?: boolean }>`
     button:nth-child(1) {
         background-color: forestgreen;
         width: 120px;
+
+        @media ${(props) => props.theme.breakpoints.lg} {
+            width: 60px;
+        }
     }
 
     button:nth-child(2) {
         background-color: red;
         width: 130px;
+        @media ${(props) => props.theme.breakpoints.lg} {
+            width: 60px;
+        }
     }
 
     button:nth-child(3) {
         background-color: dodgerblue;
         width: 100px;
+        @media ${(props) => props.theme.breakpoints.lg} {
+            width: 60px;
+        }
     }
 
     button:nth-child(4) {
@@ -147,6 +168,10 @@ export const CommentCardContentButtons = styled.div<{ isComment?: boolean }>`
         img {
             background-color: red;
         }
+
+        @media ${(props) => props.theme.breakpoints.lg} {
+            width: 60px;
+        }
     }
 
     button:nth-child(5) {
@@ -154,6 +179,19 @@ export const CommentCardContentButtons = styled.div<{ isComment?: boolean }>`
 
         img {
             background-color: red;
+        }
+    }
+
+    @media ${(props) => props.theme.breakpoints.lg} {
+        display: flex;
+        flex-direction: column;
+
+        button {
+            font-size: 12px;
+
+            img {
+                height: 15px;
+            }
         }
     }
 `;

@@ -25,11 +25,8 @@ import {
 } from "@styles/pages/admin/admin.styles";
 import useAlert from "../../hocs/useAlert";
 import {
+    BillListItem,
     DeleteGroupButton,
-    ListItem,
-    ListItemText,
-    PrimaryText,
-    SecondaryText,
 } from "@styles/pages/group/group.styles";
 import {
     BillCardActions,
@@ -41,6 +38,9 @@ import {
     BillContainer,
     BillImageBox,
     BillImageCard,
+    BillListItemText,
+    BillPrimaryText,
+    BillSecondaryText,
     BillTotal,
     BillUsersContainer,
     CodeQrDownloadLink,
@@ -248,14 +248,6 @@ const Bill: NextPage = () => {
                                 </p>
                             </BillTotal>
                             <BillCardActions>
-                                {/*<EditGroupButton>*/}
-                                {/*    <Image*/}
-                                {/*        src="/icons/edit-icon.svg"*/}
-                                {/*        width={30}*/}
-                                {/*        height={30}*/}
-                                {/*        alt="Edit-icon.svg"*/}
-                                {/*    />*/}
-                                {/*</EditGroupButton>*/}
                                 {bill && isOwner(bill?.owner_id) && (
                                     <DeleteGroupButton
                                         onClick={handleDeleteBillOpenModal}
@@ -321,7 +313,7 @@ const Bill: NextPage = () => {
                                     combinedUsersBills.map(
                                         (bills_users: User & BillsUsers) => {
                                             return (
-                                                <ListItem
+                                                <BillListItem
                                                     key={bills_users?.id}
                                                     isBlocked={
                                                         bills_users?.is_blocked
@@ -335,41 +327,41 @@ const Bill: NextPage = () => {
                                                             alt="Avatar icon"
                                                         />
                                                     </AvatarList>
-                                                    <ListItemText
+                                                    <BillListItemText
                                                         isBlocked={
                                                             bills_users?.is_blocked
                                                         }
                                                     >
-                                                        <PrimaryText>
+                                                        <BillPrimaryText>
                                                             {
                                                                 bills_users?.first_name
                                                             }{" "}
                                                             {
                                                                 bills_users?.last_name
                                                             }
-                                                        </PrimaryText>
-                                                        <SecondaryText
+                                                        </BillPrimaryText>
+                                                        <BillSecondaryText
                                                             isBlocked={
                                                                 bills_users?.is_blocked
                                                             }
                                                         >
                                                             {bills_users?.email}
-                                                        </SecondaryText>
-                                                    </ListItemText>
-                                                    <ListItemText
+                                                        </BillSecondaryText>
+                                                    </BillListItemText>
+                                                    <BillListItemText
                                                         isBlocked={
                                                             bills_users?.is_blocked
                                                         }
                                                     >
-                                                        <PrimaryText>
+                                                        <BillPrimaryText>
                                                             {t(
                                                                 "screens.bill.labels.username",
                                                             )}
                                                             {
                                                                 bills_users?.username
                                                             }
-                                                        </PrimaryText>
-                                                        <SecondaryText
+                                                        </BillPrimaryText>
+                                                        <BillSecondaryText
                                                             isBlocked={
                                                                 bills_users?.is_blocked
                                                             }
@@ -378,14 +370,14 @@ const Bill: NextPage = () => {
                                                                 "screens.bill.labels.phone",
                                                             )}
                                                             {bills_users?.phone}
-                                                        </SecondaryText>
-                                                    </ListItemText>
-                                                    <ListItemText
+                                                        </BillSecondaryText>
+                                                    </BillListItemText>
+                                                    <BillListItemText
                                                         isBlocked={
                                                             bills_users?.is_blocked
                                                         }
                                                     >
-                                                        <PrimaryText
+                                                        <BillPrimaryText
                                                             isBlocked={
                                                                 bills_users?.is_blocked
                                                             }
@@ -406,12 +398,12 @@ const Bill: NextPage = () => {
                                                                 </span>
                                                             ) : (
                                                                 <span>
-                                                                    <PrimaryText>
+                                                                    <BillPrimaryText>
                                                                         {getFormattedDate(
                                                                             bills_users?.birth_date,
                                                                         )}
-                                                                    </PrimaryText>
-                                                                    <SecondaryText
+                                                                    </BillPrimaryText>
+                                                                    <BillSecondaryText
                                                                         isBlocked={
                                                                             bills_users?.is_blocked
                                                                         }
@@ -419,17 +411,17 @@ const Bill: NextPage = () => {
                                                                         {
                                                                             bills_users?.gender
                                                                         }
-                                                                    </SecondaryText>
+                                                                    </BillSecondaryText>
                                                                 </span>
                                                             )}
-                                                        </PrimaryText>
-                                                    </ListItemText>
-                                                    <ListItemText
+                                                        </BillPrimaryText>
+                                                    </BillListItemText>
+                                                    <BillListItemText
                                                         isBlocked={
                                                             bills_users?.is_blocked
                                                         }
                                                     >
-                                                        <PrimaryText
+                                                        <BillPrimaryText
                                                             isRegulated={
                                                                 bills_users?.is_regulated
                                                             }
@@ -449,8 +441,8 @@ const Bill: NextPage = () => {
                                                                     bill?.currency_code
                                                                 }
                                                             </span>
-                                                        </PrimaryText>
-                                                        <SecondaryText
+                                                        </BillPrimaryText>
+                                                        <BillSecondaryText
                                                             isBlocked={
                                                                 bills_users?.is_blocked
                                                             }
@@ -505,9 +497,9 @@ const Bill: NextPage = () => {
                                                                     </RegulateSpan>
                                                                 )}
                                                             </RegulateSpan>
-                                                        </SecondaryText>
-                                                    </ListItemText>
-                                                </ListItem>
+                                                        </BillSecondaryText>
+                                                    </BillListItemText>
+                                                </BillListItem>
                                             );
                                         },
                                     )}

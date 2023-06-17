@@ -4,6 +4,10 @@ export const Container = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+
+    @media ${(props) => props.theme.breakpoints.lg} {
+        width: 100%;
+    }
 `;
 
 export const BillContainer = styled.div`
@@ -16,6 +20,11 @@ export const BillContainer = styled.div`
 
     & > * {
         background-color: ${({ theme }) => theme.palette.gold};
+    }
+
+    @media ${(props) => props.theme.breakpoints.lg} {
+        margin-top: 30px;
+        width: 100%;
     }
 `;
 
@@ -30,6 +39,13 @@ export const BillCardContent = styled.div<{ isLongDescription: boolean }>`
     color: ${({ theme }) => theme.palette.black};
     border-radius: 20px;
     width: 80%;
+
+    @media ${(props) => props.theme.breakpoints.lg} {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 60vh;
+    }
 `;
 
 export const BillCardTitle = styled.div`
@@ -66,6 +82,11 @@ export const BillCardTitle = styled.div`
     & * {
         background-color: ${({ theme }) => theme.palette.gold};
     }
+
+    @media ${(props) => props.theme.breakpoints.lg} {
+        width: 100%;
+        margin: 0;
+    }
 `;
 
 export const BillCardActions = styled.div`
@@ -78,6 +99,10 @@ export const BillCardActions = styled.div`
         cursor: pointer;
         height: 30px;
         width: 50px;
+    }
+
+    @media ${(props) => props.theme.breakpoints.lg} {
+        width: 100%;
     }
 `;
 
@@ -93,6 +118,10 @@ export const BillCardDescription = styled.div<{ isLongDescription: boolean }>`
     & * {
         background-color: ${({ theme }) => theme.palette.gold};
     }
+
+    @media ${(props) => props.theme.breakpoints.lg} {
+        width: 100%;
+    }
 `;
 
 export const BillCenterTitle = styled.div`
@@ -102,6 +131,10 @@ export const BillCenterTitle = styled.div`
     font-weight: bold;
     margin-bottom: 30px;
     background-color: ${({ theme }) => theme.palette.black};
+
+    @media ${(props) => props.theme.breakpoints.lg} {
+        margin-top: 150px;
+    }
 `;
 
 export const BillUsersContainer = styled.div`
@@ -112,6 +145,10 @@ export const BillUsersContainer = styled.div`
 
     img {
         width: 60px;
+    }
+
+    @media ${(props) => props.theme.breakpoints.lg} {
+        width: 100%;
     }
 `;
 
@@ -127,6 +164,10 @@ export const BillCardImage = styled.div`
         height: 100%;
         object-fit: cover;
         border-radius: 20px;
+    }
+
+    @media ${(props) => props.theme.breakpoints.lg} {
+        width: 100%;
     }
 `;
 
@@ -156,6 +197,60 @@ export const BillTotal = styled.div`
         & > * {
             background-color: ${({ theme }) => theme.palette.gold};
         }
+    }
+`;
+
+export const BillListItemText = styled.div<{ isBlocked: boolean }>`
+    margin-left: 16px;
+    width: 30%;
+    background-color: ${({ isBlocked, theme }) =>
+        isBlocked ? "#cb2d3e" : theme.palette.gold};
+    @media ${(props) => props.theme.breakpoints.lg} {
+        margin: 20px 0;
+        width: 100%;
+    }
+`;
+
+export const BillPrimaryText = styled.div<{
+    isRegulated?: boolean;
+    isBlocked?: boolean;
+}>`
+    font-weight: 500;
+    text-align: center;
+
+    span {
+        color: ${({ isRegulated }) => (isRegulated ? "green" : "red")};
+        color: ${({ isBlocked }) => (isBlocked ? "black" : "")};
+        font-weight: bold;
+    }
+
+    a:hover {
+        color: ${({ theme }) => theme.palette.black};
+    }
+
+    @media ${(props) => props.theme.breakpoints.lg} {
+        margin-top: 5px;
+        width: 100%;
+    }
+`;
+
+export const BillSecondaryText = styled.div<{ isBlocked: boolean }>`
+    color: ${({ isBlocked, theme }) =>
+        isBlocked ? theme.palette.black : "#757575"};
+    margin-top: 5px;
+    text-align: center;
+
+    img {
+        height: 20px;
+    }
+
+    span {
+        display: flex;
+        flex-direction: row;
+    }
+
+    @media ${(props) => props.theme.breakpoints.lg} {
+        width: 100%;
     }
 `;
 

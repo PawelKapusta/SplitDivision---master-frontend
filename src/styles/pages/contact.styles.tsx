@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const ContactCard = styled.div`
     display: flex;
     justify-content: center;
-    height: 60vh;
+    height: 70vh;
     border-radius: 20px;
     box-shadow: 0 5px 10px 0 ${({ theme }) => theme.palette.white};
     margin: 150px 100px;
@@ -18,7 +18,7 @@ export const ContactCard = styled.div`
     }
 
     @media ${(props) => props.theme.breakpoints.lg} {
-        height: 80vh;
+        height: 70vh;
     }
 
     @media ${(props) => props.theme.breakpoints.md} {
@@ -28,6 +28,7 @@ export const ContactCard = styled.div`
 
     @media ${(props) => props.theme.breakpoints.sm} {
         width: 90%;
+        height: 100vh;
     }
 `;
 
@@ -40,6 +41,7 @@ export const Title = styled.div`
 
     @media ${(props) => props.theme.breakpoints.sm} {
         font-size: 16px;
+        margin-bottom: 60px;
     }
 `;
 
@@ -51,6 +53,10 @@ export const ContactRow = styled.div`
     label {
         font-size: 26px;
         font-weight: bold;
+
+        @media ${(props) => props.theme.breakpoints.sm} {
+            font-size: 22px;
+        }
     }
 
     input {
@@ -59,6 +65,10 @@ export const ContactRow = styled.div`
         height: 50px;
         border-radius: 20px;
         padding: 15px;
+
+        @media ${(props) => props.theme.breakpoints.sm} {
+            font-size: 16px;
+        }
     }
 
     textarea {

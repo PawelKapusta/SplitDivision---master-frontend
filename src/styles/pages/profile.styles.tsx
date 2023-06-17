@@ -3,6 +3,9 @@ import styled from "styled-components";
 export const ProfileCard = styled.div`
     height: 100vh;
     width: 100%;
+    @media ${(props) => props.theme.breakpoints.lg} {
+        height: 150vh;
+    }
 `;
 
 export const AvatarCard = styled.div`
@@ -26,7 +29,7 @@ export const FormCard = styled.div`
     height: 550px;
 
     @media ${(props) => props.theme.breakpoints.lg} {
-        height: 400px;
+        height: 100vh;
     }
     @media ${(props) => props.theme.breakpoints.md} {
         margin-bottom: 50px;
@@ -44,12 +47,22 @@ export const FormCard = styled.div`
     }
 
     input:nth-child(2) {
-        max-width: 20%;
+        max-width: 30%;
     }
 
     .react-datepicker__input-container {
         display: flex;
         justify-content: center;
+    }
+
+    @media ${(props) => props.theme.breakpoints.lg} {
+        button {
+            width: 50%;
+        }
+
+        input:nth-child(2) {
+            max-width: 50%;
+        }
     }
 `;
 
@@ -64,6 +77,10 @@ export const Input = styled.input`
 
     &:nth-child(1) {
         margin-top: 30px;
+    }
+
+    @media ${(props) => props.theme.breakpoints.lg} {
+        width: 80%;
     }
 `;
 

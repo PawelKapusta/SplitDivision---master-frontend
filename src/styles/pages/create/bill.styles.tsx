@@ -3,13 +3,19 @@ import styled from "styled-components";
 export const BillCardContainer = styled.div`
     display: flex;
     justify-content: center;
+
+    @media ${(props) => props.theme.breakpoints.sm} {
+        button:last-child {
+            width: 60%;
+        }
+    }
 `;
 export const FormCard = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
 
-    width: 1200px;
+    width: 100%;
 
     overflow-y: auto;
 
@@ -29,13 +35,11 @@ export const FormCard = styled.div`
     }
 
     @media ${(props) => props.theme.breakpoints.lg} {
-        height: 400px;
+        width: 100%;
+        height: 80vh;
     }
     @media ${(props) => props.theme.breakpoints.md} {
         margin-bottom: 50px;
-    }
-
-    @media ${(props) => props.theme.breakpoints.sm} {
     }
 `;
 
@@ -51,6 +55,14 @@ export const Input = styled.input`
     &:nth-child(1) {
         margin-top: 30px;
     }
+
+    @media ${(props) => props.theme.breakpoints.lg} {
+        width: 80%;
+    }
+    @media ${(props) => props.theme.breakpoints.md} {
+        font-size: 16px;
+        width: 80%;
+    }
 `;
 
 export const DebtInput = styled.input`
@@ -60,6 +72,10 @@ export const DebtInput = styled.input`
     font-size: 20px;
     border-color: ${({ theme }) => theme.palette.gold};
     padding: 10px;
+
+    @media ${(props) => props.theme.breakpoints.lg} {
+        width: 80%;
+    }
 `;
 
 export const InputDescription = styled.textarea`
@@ -73,6 +89,15 @@ export const InputDescription = styled.textarea`
 
     &:nth-child(1) {
         margin-top: 30px;
+    }
+
+    @media ${(props) => props.theme.breakpoints.lg} {
+        height: 200px;
+        width: 80%;
+    }
+    @media ${(props) => props.theme.breakpoints.md} {
+        min-height: 150px;
+        font-size: 16px;
     }
 `;
 
@@ -96,11 +121,35 @@ export const Title = styled.div`
     height: 40px;
     text-align: center;
     margin-bottom: 20px;
+
+    @media ${(props) => props.theme.breakpoints.lg} {
+        font-size: 32px;
+    }
+
+    @media ${(props) => props.theme.breakpoints.md} {
+        font-size: 24px;
+    }
+
+    @media ${(props) => props.theme.breakpoints.sm} {
+        font-size: 20px;
+    }
 `;
 
 export const UsersSelector = styled.div`
     margin-top: 20px;
     width: 500px;
+
+    @media ${(props) => props.theme.breakpoints.lg} {
+        width: 450px;
+    }
+
+    @media ${(props) => props.theme.breakpoints.md} {
+        width: 400px;
+    }
+
+    @media ${(props) => props.theme.breakpoints.sm} {
+        width: 300px;
+    }
 
     .search input {
         border: 1px solid ${({ theme }) => theme.palette.white};
@@ -165,12 +214,23 @@ export const DateLabel = styled.label`
     font-weight: bold;
     color: ${({ theme }) => theme.palette.gold};
     font-size: 20px;
+    @media ${(props) => props.theme.breakpoints.md} {
+        font-size: 18px;
+    }
 `;
 
 export const BillCustomDatePicker = styled.div`
     position: relative;
     margin-top: 15px;
     width: 80%;
+
+    @media ${(props) => props.theme.breakpoints.lg} {
+        width: 60%;
+    }
+
+    @media ${(props) => props.theme.breakpoints.md} {
+        width: 40%;
+    }
 
     .react-datepicker__input-container {
         input {
@@ -194,6 +254,7 @@ export const BillCustomDatePicker = styled.div`
     .react-datepicker__current-month {
         color: ${({ theme }) => theme.palette.gold};
     }
+
     .react-datepicker__day-name {
         border-radius: 4px;
         color: ${({ theme }) => theme.palette.white};
@@ -254,6 +315,11 @@ export const CurrencySelectorContainer = styled.div`
         width: 50px;
         margin-right: 10px;
     }
+
+    @media ${(props) => props.theme.breakpoints.md} {
+        display: flex;
+        flex-direction: column;
+    }
 `;
 
 export const CurrencySelector = styled.select`
@@ -262,6 +328,10 @@ export const CurrencySelector = styled.select`
     border-radius: 4px;
     font-size: 18px;
     margin: 10px;
+
+    @media ${(props) => props.theme.breakpoints.lg} {
+        width: 80%;
+    }
 `;
 
 export const CurrencyOption = styled.option`
@@ -273,6 +343,17 @@ export const SelectedUserDebtBox = styled.div`
     justify-content: center;
     align-items: center;
     width: 100%;
+
+    @media ${(props) => props.theme.breakpoints.lg} {
+        display: flex;
+        flex-direction: column;
+        width: 80%;
+        margin-top: 20px;
+    }
+    @media ${(props) => props.theme.breakpoints.md} {
+    }
+    @media ${(props) => props.theme.breakpoints.sm} {
+    }
 `;
 
 export const SelectedUserDebtLabel = styled.label`

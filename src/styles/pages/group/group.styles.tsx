@@ -27,6 +27,14 @@ export const GroupCardContent = styled.div<{ isLongDescription: boolean }>`
     color: ${({ theme }) => theme.palette.black};
     border-radius: 20px;
     width: 80%;
+
+    @media ${(props) => props.theme.breakpoints.lg} {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        font-size: 20px;
+        height: 500px;
+    }
 `;
 
 export const GroupCardTitle = styled.div`
@@ -63,6 +71,11 @@ export const GroupCardTitle = styled.div`
     & * {
         background-color: ${({ theme }) => theme.palette.gold};
     }
+
+    @media ${(props) => props.theme.breakpoints.lg} {
+        width: 100%;
+        margin: 0;
+    }
 `;
 
 export const GroupCardActions = styled.div`
@@ -74,6 +87,10 @@ export const GroupCardActions = styled.div`
         cursor: pointer;
         height: 30px;
         width: 50px;
+    }
+
+    @media ${(props) => props.theme.breakpoints.lg} {
+        height: 80px;
     }
 `;
 
@@ -89,6 +106,10 @@ export const GroupCardDescription = styled.div<{ isLongDescription: boolean }>`
     & * {
         background-color: ${({ theme }) => theme.palette.gold};
     }
+
+    @media ${(props) => props.theme.breakpoints.lg} {
+        width: 100%;
+    }
 `;
 
 export const GroupCardImage = styled.div`
@@ -103,6 +124,11 @@ export const GroupCardImage = styled.div`
         height: 100%;
         object-fit: contain;
         border-radius: 20px;
+    }
+
+    @media ${(props) => props.theme.breakpoints.lg} {
+        width: 100%;
+        height: 150px;
     }
 `;
 
@@ -143,6 +169,48 @@ export const Container = styled.div`
     margin-top: 30px;
 `;
 
+export const BillListItem = styled.div<{ isBlocked: boolean }>`
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+  border: 1px solid #b77d30;
+  background-color: ${({ isBlocked, theme }) =>
+      isBlocked ? "#cb2d3e" : theme.palette.gold}
+}
+
+;
+& * {
+  background-color: ${({ isBlocked, theme }) =>
+      isBlocked ? "#cb2d3e" : theme.palette.gold};
+}
+
+&:nth-child(1) {
+  border-radius: 20px 20px 0 0;
+}
+
+&:last-child {
+  border-radius: 0 0 20px 20px;
+}
+
+img {
+  display: block;
+  height: 80px;
+  width: 80px;
+}
+
+@media ${(props) => props.theme.breakpoints.lg} {
+  display: flex;
+  flex-direction: column;
+  font-size: 18px;
+  padding: 0;
+  img {
+    display: block;
+    height: 35px;
+    width: 40px;
+  }
+}
+`;
+
 export const ListItem = styled.div<{ isBlocked: boolean }>`
   display: flex;
   align-items: center;
@@ -170,6 +238,15 @@ img {
   display: block;
   height: 80px;
   width: 80px;
+}
+
+@media ${(props) => props.theme.breakpoints.lg} {
+  font-size: 16px;
+  img {
+    display: block;
+    height: 35px;
+    width: 40px;
+  }
 }
 `;
 
