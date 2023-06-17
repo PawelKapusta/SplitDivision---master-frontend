@@ -16,10 +16,31 @@ export const ContactCard = styled.div`
     h1 {
         margin-bottom: 30px;
     }
+
+    @media ${(props) => props.theme.breakpoints.lg} {
+        height: 80vh;
+    }
+
+    @media ${(props) => props.theme.breakpoints.md} {
+        width: 80%;
+        margin: 50px auto;
+    }
+
+    @media ${(props) => props.theme.breakpoints.sm} {
+        width: 90%;
+    }
 `;
 
 export const Title = styled.div`
     text-align: center;
+
+    @media ${(props) => props.theme.breakpoints.md} {
+        font-size: 20px;
+    }
+
+    @media ${(props) => props.theme.breakpoints.sm} {
+        font-size: 16px;
+    }
 `;
 
 export const ContactRow = styled.div`
@@ -31,6 +52,7 @@ export const ContactRow = styled.div`
         font-size: 26px;
         font-weight: bold;
     }
+
     input {
         width: 100%;
         margin-top: 20px;

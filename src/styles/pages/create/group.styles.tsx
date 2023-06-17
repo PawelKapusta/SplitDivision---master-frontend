@@ -6,11 +6,16 @@ export const GroupContainer = styled.div`
     justify-content: center;
     box-shadow: 0 5px 10px 0 ${({ theme }) => theme.palette.white};
     height: 60vh;
-    margin: 80px 150px 0 150px;
+    margin-top: 50px;
+    width: 100%;
 
     @media ${(props) => props.theme.breakpoints.md} {
         margin-top: 50px;
-        align-items: flex-start;
+    }
+
+    @media ${(props) => props.theme.breakpoints.sm} {
+        margin-right: 0;
+        box-shadow: none;
     }
 `;
 
@@ -19,21 +24,29 @@ export const FormCard = styled.div`
     flex-direction: column;
     align-items: center;
     height: 550px;
-    width: 1000px;
+    width: 900px;
 
     button:nth-child(7) {
         margin-top: 30px;
         width: 30%;
+
+        @media ${(props) => props.theme.breakpoints.sm} {
+            width: 50%;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
     }
 
     @media ${(props) => props.theme.breakpoints.lg} {
         height: 400px;
+        width: 750px;
     }
     @media ${(props) => props.theme.breakpoints.md} {
-        margin-bottom: 50px;
+        width: 650px;
     }
 
     @media ${(props) => props.theme.breakpoints.sm} {
+        width: 350px;
     }
 `;
 
@@ -49,19 +62,28 @@ export const Input = styled.input`
     &:nth-child(1) {
         margin-top: 30px;
     }
+
+    @media ${(props) => props.theme.breakpoints.lg} {
+        width: 80%;
+        font-size: 18px;
+    }
 `;
 
 export const InputDescription = styled.textarea`
     margin-top: 15px;
     width: 100%;
     border-radius: 5px;
-    height: 155px;
+    height: 180px;
     font-size: 20px;
     border-color: ${({ theme }) => theme.palette.gold};
     padding: 10px;
 
     &:nth-child(1) {
         margin-top: 30px;
+    }
+
+    @media ${(props) => props.theme.breakpoints.lg} {
+        width: 80%;
     }
 `;
 
@@ -85,11 +107,17 @@ export const Title = styled.div`
     height: 40px;
     text-align: center;
     margin-bottom: 20px;
+    @media ${(props) => props.theme.breakpoints.lg} {
+        font-size: 32px;
+    }
 `;
 
 export const UsersSelector = styled.div`
     margin-top: 20px;
     width: 500px;
+    @media ${(props) => props.theme.breakpoints.sm} {
+        width: 250px;
+    }
 
     .search input {
         border: 1px solid white;

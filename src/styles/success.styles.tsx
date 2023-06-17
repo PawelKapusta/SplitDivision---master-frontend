@@ -24,4 +24,29 @@ export const SuccessPageBox = styled.div<{
     p {
         font-size: 20px;
     }
+
+    @media ${(props) => props.theme.breakpoints.lg} {
+        h1 {
+            font-size: 28px;
+        }
+
+        p {
+            font-size: 18px;
+        }
+    }
+    @media ${(props) => props.theme.breakpoints.md} {
+        h1 {
+            font-size: 24px;
+        }
+
+        p {
+            font-size: 16px;
+        }
+    }
+
+    @media ${(props) => props.theme.breakpoints.sm} {
+        h1 {
+            font-size: 22px;
+        }
+    }
 `;
