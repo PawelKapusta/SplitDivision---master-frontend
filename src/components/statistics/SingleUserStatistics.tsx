@@ -30,6 +30,7 @@ export type TSingleUserStatisticsProp = {
     comments: CommentStatisticsObj[];
     subcomments: SubcommentStatisticsObj[];
     subscriptions: SubscriptionStatisticsObj[];
+    userId: string;
 };
 
 const SingleUserStatistics = ({
@@ -38,6 +39,7 @@ const SingleUserStatistics = ({
     comments,
     subcomments,
     subscriptions,
+    userId,
 }: TSingleUserStatisticsProp) => {
     const [singleUserStatisticsData, setSingleUserStatisticsData] =
         useState<SingleUserStatisticsInterface>(singleUserStatistics);
@@ -90,8 +92,10 @@ const SingleUserStatistics = ({
             }
         });
 
+        console.log("subscriptions", subscriptions);
+
         subscriptions?.forEach((subscription) => {
-            if (subscription) {
+            if (subscription && subscription?.user_id === userId) {
                 subscriptionsNumber += 1;
             }
         });

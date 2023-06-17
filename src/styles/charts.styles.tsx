@@ -19,6 +19,10 @@ export const CurrencyCard = styled.div`
             border-radius: 50%;
         }
     }
+
+    @media ${(props) => props.theme.breakpoints.lg} {
+        width: 80%;
+    }
 `;
 
 export const ChartContent = styled.div`
@@ -58,6 +62,10 @@ export const ChartCoinDescriptionTitle = styled.div`
     font-weight: bold;
     color: ${({ theme }) => theme.palette.gold};
     margin: 40px 0;
+
+    @media ${(props) => props.theme.breakpoints.lg} {
+        font-size: 25px;
+    }
 `;
 
 export const ChartDescriptionCard = styled.div`
@@ -69,4 +77,8 @@ export const ChartDescriptionCard = styled.div`
     width: 90%;
     font-size: 20px;
     margin-bottom: 60px;
+
+    @media ${(props) => props.theme.breakpoints.lg} {
+        font-size: 16px;
+    }
 `;

@@ -31,10 +31,8 @@ export interface SubscriptionsStatistics {
 
 export interface SubscriptionStatisticsObj {
     id: string;
-    type: string;
-    currency_type: string;
-    currency_code: string;
-    features: Record<string, unknown>;
+    subscription_id: string;
+    user_id: string;
 }
 
 export interface SubscriptionBoughtStatisticsObj {

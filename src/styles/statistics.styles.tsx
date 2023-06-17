@@ -51,22 +51,37 @@ export const SectionTitle = styled.div`
     font-size: 36px;
     font-weight: bold;
     margin-bottom: 20px;
+
+    @media ${(props) => props.theme.breakpoints.lg} {
+        font-size: 30px;
+    }
 `;
 
 export const StatisticsPageScreens = styled.div`
     h1 {
         color: dodgerblue;
+        @media ${(props) => props.theme.breakpoints.lg} {
+            font-size: 20px;
+        }
     }
 
     h3 {
         margin: 20px;
         color: ${({ theme }) => theme.palette.gold};
+
+        @media ${(props) => props.theme.breakpoints.lg} {
+            margin: 5px;
+            margin-bottom: 15px;
+        }
     }
 
     p {
         color: red;
         margin-top: 10px;
         font-size: 22px;
+        @media ${(props) => props.theme.breakpoints.lg} {
+            font-size: 18px;
+        }
     }
 `;
 

@@ -97,6 +97,10 @@ const Statistics: NextPage = () => {
         }
     }, [dispatch, isAuthenticated]);
 
+    const getUserID = () => {
+        return userId;
+    };
+
     return (
         <StatisticsPage>
             {billLoading ||
@@ -135,7 +139,8 @@ const Statistics: NextPage = () => {
                                         userCommentsAndSubcomments &&
                                         userCommentsAndSubcomments.userSubcomments
                                     }
-                                    subscriptions={subscriptionsUsers}
+                                    subscriptions={subscriptionsBought}
+                                    userId={getUserID()}
                                 />
                             </SectionRow>
                         </Section>
