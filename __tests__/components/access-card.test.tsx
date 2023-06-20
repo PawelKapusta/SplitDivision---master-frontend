@@ -1,22 +1,21 @@
-import axios from "axios";
+import React from "react";
+import { render, screen } from "@testing-library/react";
+import { ThemeProvider } from "styled-components";
+import AccessCard from "@components/access-card/index";
 
-describe("fetchData", () => {
-    const mockData = { id: 1, name: "John Doe" };
-    beforeEach(() => {
-        jest.resetAllMocks();
-    });
-    it("should fetch data from a given URL", async () => {
-        jest.spyOn(axios, "get").mockResolvedValueOnce({ data: mockData });
-        const url = "https://example.com/api/data";
-        const response = await axios.get(url);
-        expect(response.data).toEqual(mockData);
-        expect(axios.get).toHaveBeenCalledWith(url);
-    });
-    it("should handle network errors", async () => {
-        const errorMessage = "Network error";
-        jest.spyOn(axios, "get").mockRejectedValueOnce(new Error(errorMessage));
-        const url = "https://example.com/api/data";
-        await expect(axios.get(url)).rejects.toThrow(errorMessage);
-        expect(axios.get).toHaveBeenCalledWith(url);
+const mockTheme = { palette: { gold: "gold" }, breakpoints: "lg" };
+describe("access-card component", () => {
+    it("renders correctly", () => {
+        render(
+            <ThemeProvider theme={mockTheme}>
+                <AccessCard imageSrc={"/path/image.png"}>
+                    <div>Children</div>
+                </AccessCard>
+            </ThemeProvider>,
+        );
+        const image = screen.getByAltText("/path/image.png image");
+        const children = screen.getByText("Children");
+        expect(image).toBeInTheDocument();
+        expect(children).toBeInTheDocument();
     });
 });

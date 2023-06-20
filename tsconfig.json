@@ -11,7 +11,8 @@
       "node",
       "styled-normalize",
       "next-auth",
-      "@types/node"
+      "@types/node",
+      "@types/testing-library__jest-dom"
     ],
     "allowJs": true,
     "skipLibCheck": true,
