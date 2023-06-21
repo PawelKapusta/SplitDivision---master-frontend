@@ -1,12 +1,11 @@
-import React from "react";
 import { render, screen } from "@testing-library/react";
 import { ThemeProvider } from "styled-components";
 import AccessCard from "@components/access-card/index";
+import { mockTheme } from "../mocks/theme";
 
-const mockTheme = { palette: { gold: "gold" }, breakpoints: "lg" };
 describe("access-card component", () => {
     it("renders correctly", () => {
-        render(
+        const { container } = render(
             <ThemeProvider theme={mockTheme}>
                 <AccessCard imageSrc={"/path/image.png"}>
                     <div>Children</div>
@@ -17,5 +16,6 @@ describe("access-card component", () => {
         const children = screen.getByText("Children");
         expect(image).toBeInTheDocument();
         expect(children).toBeInTheDocument();
+        expect(container).toMatchSnapshot();
     });
 });

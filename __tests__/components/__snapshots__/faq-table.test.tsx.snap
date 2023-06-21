@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`faq-table component renders correctly 1`] = `
+<div>
+  <div
+    class="sc-b0e1a03d-0 hfhUIA"
+  >
+    <h2>
+      screens.faq.title
+    </h2>
+    <ul
+      class="sc-b0e1a03d-1 dwLlxZ"
+    >
+      <li>
+        <h3
+          class="sc-b0e1a03d-2 hYLNXS faq-question"
+        >
+          Q1
+        </h3>
+        <div
+          class="sc-b0e1a03d-3 khYBjR faq-answer"
+        >
+          A1
+        </div>
+      </li>
+      <li>
+        <h3
+          class="sc-b0e1a03d-2 hYLNXS faq-question"
+        >
+          Q2
+        </h3>
+        <div
+          class="sc-b0e1a03d-3 khYBjR faq-answer"
+        >
+          A2
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+`;

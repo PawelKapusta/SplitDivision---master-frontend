@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`alert component renders correctly 1`] = `
+<div>
+  <div
+    class="sc-49f0a3d4-0 dEbtqz"
+    type="success"
+  >
+    <span
+      class="sc-49f0a3d4-1 bFwfBF"
+      type="success"
+    >
+      <img
+        alt="Alert Icon"
+        src="/icons/success-icon.svg"
+      />
+    </span>
+    Test alert message
+  </div>
+</div>
+`;

@@ -1,0 +1,154 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`footer component renders correctly 1`] = `
+<div>
+  <div
+    class="MuiBox-root css-5g3grw"
+  >
+    <div
+      class="MuiContainer-root MuiContainer-maxWidthLg css-1oqqzyl-MuiContainer-root"
+    >
+      <div
+        class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2 css-1xu1mzw-MuiGrid-root"
+      >
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 MuiGrid-grid-md-3 MuiGrid-grid-lg-3 css-1unik2p-MuiGrid-root"
+        >
+          <div
+            class="sc-9d0763-0 iKorOP"
+          >
+            <p
+              class="sc-9d0763-2 ehJfRo"
+            >
+              components.footer.aboutUs.title
+            </p>
+            <a
+              class="sc-9d0763-1 gGMNM"
+              href="#"
+            >
+              components.footer.aboutUs.careers
+            </a>
+            <a
+              class="sc-9d0763-1 gGMNM"
+              href="#"
+            >
+              components.footer.aboutUs.investors
+            </a>
+            <a
+              class="sc-9d0763-1 gGMNM"
+              href="#"
+            >
+              components.footer.aboutUs.blog
+            </a>
+          </div>
+        </div>
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 MuiGrid-grid-md-3 MuiGrid-grid-lg-3 css-1unik2p-MuiGrid-root"
+        >
+          <div
+            class="sc-9d0763-0 iKorOP"
+          >
+            <p
+              class="sc-9d0763-2 ehJfRo"
+            >
+              components.footer.topCities.title
+            </p>
+            <a
+              class="sc-9d0763-1 gGMNM"
+              href="#"
+            >
+              components.footer.topCities.cracow
+            </a>
+            <a
+              class="sc-9d0763-1 gGMNM"
+              href="#"
+            >
+              components.footer.topCities.sanDiego
+            </a>
+            <a
+              class="sc-9d0763-1 gGMNM"
+              href="#"
+            >
+              components.footer.topCities.london
+            </a>
+            <a
+              class="sc-9d0763-1 gGMNM"
+              href="#"
+            >
+              components.footer.topCities.chicago
+            </a>
+          </div>
+        </div>
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 MuiGrid-grid-md-3 MuiGrid-grid-lg-3 css-1unik2p-MuiGrid-root"
+        >
+          <div
+            class="sc-9d0763-0 iKorOP"
+          >
+            <p
+              class="sc-9d0763-2 ehJfRo"
+            >
+              components.footer.services.title
+            </p>
+            <a
+              class="sc-9d0763-1 gGMNM"
+              href="#"
+            >
+              components.footer.services.development
+            </a>
+            <a
+              class="sc-9d0763-1 gGMNM"
+              href="#"
+            >
+              components.footer.services.stage
+            </a>
+            <a
+              class="sc-9d0763-1 gGMNM"
+              href="#"
+            >
+              components.footer.services.production
+            </a>
+          </div>
+        </div>
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 MuiGrid-grid-md-3 MuiGrid-grid-lg-3 css-1unik2p-MuiGrid-root"
+        >
+          <div
+            class="sc-9d0763-0 iKorOP"
+          >
+            <p
+              class="sc-9d0763-2 ehJfRo"
+            >
+              components.footer.social.title
+            </p>
+            <a
+              class="sc-9d0763-1 gGMNM"
+              href="#"
+            >
+              components.footer.social.instagram
+            </a>
+            <a
+              class="sc-9d0763-1 gGMNM"
+              href="#"
+            >
+              components.footer.social.twitter
+            </a>
+            <a
+              class="sc-9d0763-1 gGMNM"
+              href="#"
+            >
+              components.footer.social.facebook
+            </a>
+            <a
+              class="sc-9d0763-1 gGMNM"
+              href="#"
+            >
+              components.footer.social.linkedin
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

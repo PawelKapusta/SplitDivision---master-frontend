@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`modal component renders correctly 1`] = `
+<div>
+  <div
+    class="sc-51f8e2a0-0 kBmVQJ"
+  >
+    <div
+      class="sc-51f8e2a0-1 YlaYB"
+    >
+      <div>
+        Children
+      </div>
+      <button>
+        <img
+          alt="Close-icon.svg"
+          data-nimg="1"
+          decoding="async"
+          height="35"
+          loading="lazy"
+          src="/icons/close-icon.svg"
+          style="color: transparent;"
+          width="35"
+        />
+      </button>
+    </div>
+  </div>
+</div>
+`;

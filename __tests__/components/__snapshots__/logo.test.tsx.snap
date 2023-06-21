@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`logo component renders correctly 1`] = `
+<div>
+  <div
+    class="sc-61620a93-0 kYZJFy"
+  >
+    <img
+      alt="logoImage"
+      data-nimg="1"
+      decoding="async"
+      height="95"
+      loading="lazy"
+      src="/_next/image?url=%2Fimages%2Flogo.png&w=384&q=75"
+      srcset="/_next/image?url=%2Fimages%2Flogo.png&w=256&q=75 1x, /_next/image?url=%2Fimages%2Flogo.png&w=384&q=75 2x"
+      style="color: transparent;"
+      width="175"
+    />
+  </div>
+</div>
+`;

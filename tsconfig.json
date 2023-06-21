@@ -12,7 +12,8 @@
       "styled-normalize",
       "next-auth",
       "@types/node",
-      "@types/testing-library__jest-dom"
+      "@types/testing-library__jest-dom",
+      "@types/redux-mock-store"
     ],
     "allowJs": true,
     "skipLibCheck": true,

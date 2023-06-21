@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`access-card component renders correctly 1`] = `
+<div>
+  <div
+    class="sc-b975094-0 aSLkC"
+  >
+    <div
+      class="sc-b975094-1 cwvPMC"
+    >
+      <div
+        class="sc-b975094-2 juIojN"
+      >
+        <img
+          alt="bitcoin-icon"
+          class="sc-b975094-3 EKWit"
+          src="/icons/bitcoin.svg"
+        />
+      </div>
+      <img
+        alt="/path/image.png image"
+        data-nimg="1"
+        decoding="async"
+        fetchpriority="high"
+        height="1000"
+        src="/_next/image?url=%2Fpath%2Fimage.png&w=2048&q=75"
+        srcset="/_next/image?url=%2Fpath%2Fimage.png&w=1080&q=75 1x, /_next/image?url=%2Fpath%2Fimage.png&w=2048&q=75 2x"
+        style="color: transparent;"
+        width="1000"
+      />
+    </div>
+    <div>
+      Children
+    </div>
+  </div>
+</div>
+`;

@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`card-content component renders correctly 1`] = `
+<div>
+  <div
+    class="sc-1e6392dd-7 gSvTi"
+  >
+    <img
+      alt="Text icon"
+      data-nimg="1"
+      decoding="async"
+      fetchpriority="high"
+      height="35"
+      src="/_next/image?url=%2Fpath%2Fimage.png&w=96&q=75"
+      srcset="/_next/image?url=%2Fpath%2Fimage.png&w=48&q=75 1x, /_next/image?url=%2Fpath%2Fimage.png&w=96&q=75 2x"
+      style="color: transparent;"
+      width="35"
+    />
+    <div
+      class="sc-1e6392dd-8 cemKMf"
+    >
+      Text
+    </div>
+  </div>
+</div>
+`;

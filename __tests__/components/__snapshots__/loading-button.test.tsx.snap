@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`loading-button component renders correctly 1`] = `
+<div>
+  <button
+    class="sc-dcf6818b-0 eQtfgN"
+    style="position: relative;"
+    type="submit"
+  >
+    <div>
+      Buttton
+    </div>
+  </button>
+</div>
+`;
